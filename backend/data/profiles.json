@@ -248,5 +248,217 @@
     ],
     "financial_priority": 7,
     "short_term_goal": "Build a strong wildlife photography portfolio and complete 3 real-world wildlife photography projects within the next 6 months"
+  },
+  "test_user_1": {
+    "user_id": "test_user_1",
+    "name": "Test User",
+    "education": "BS Computer Science",
+    "career_goal": "Full Stack Lead",
+    "interests": [
+      "Web",
+      "Cloud"
+    ],
+    "skills": [
+      "Python",
+      "TypeScript"
+    ],
+    "skills_to_improve": [
+      "GraphQL",
+      "Docker"
+    ],
+    "available_hours_per_day": 7.0,
+    "sleep_hours": 7.5,
+    "workload": "medium",
+    "regular_activities": [
+      "Swimming"
+    ],
+    "major_commitments": [
+      {
+        "name": "Web Project",
+        "hours_per_week": 10.0
+      }
+    ],
+    "financial_priority": 7,
+    "short_term_goal": "Launch product MVP"
+  },
+  "user_1787426260263_wruv5": {
+    "user_id": "user_1787426260263_wruv5",
+    "name": "Nishitha R",
+    "education": "B.Tech AI Engineer",
+    "career_goal": "AI Software Engineer",
+    "interests": [],
+    "skills": [
+      "Python",
+      "FastAPI",
+      "React"
+    ],
+    "skills_to_improve": [
+      "PyTorch",
+      "System Design"
+    ],
+    "available_hours_per_day": 6.0,
+    "sleep_hours": 7.0,
+    "workload": "medium",
+    "regular_activities": [],
+    "major_commitments": [],
+    "financial_priority": 8,
+    "short_term_goal": "Build high impact software projects"
+  },
+  "test_user_hs": {
+    "user_id": "test_user_hs",
+    "name": "TEST_USER",
+    "education": "B.Tech Computer Science",
+    "career_goal": "Research Scientist",
+    "interests": [],
+    "skills": [],
+    "skills_to_improve": [],
+    "available_hours_per_day": 4.0,
+    "sleep_hours": 6.0,
+    "workload": "medium",
+    "regular_activities": [],
+    "major_commitments": [],
+    "financial_priority": 3,
+    "short_term_goal": "Build high impact software projects"
+  },
+  "test_slider_user": {
+    "user_id": "test_slider_user",
+    "name": "Startup Founder Test",
+    "education": "B.Tech Computer Science",
+    "career_goal": "Tech Founder & AI Entrepreneur",
+    "interests": [],
+    "skills": [
+      "Python",
+      "Product",
+      "React"
+    ],
+    "skills_to_improve": [
+      "Pitching",
+      "Market Research"
+    ],
+    "available_hours_per_day": 8.0,
+    "sleep_hours": 7.0,
+    "workload": "medium",
+    "regular_activities": [],
+    "major_commitments": [],
+    "financial_priority": 5,
+    "short_term_goal": "Build high impact software projects"
+  },
+  "user_empty_sim_store": {
+    "user_id": "user_empty_sim_store",
+    "name": "Photographer User",
+    "education": "B.Tech Computer Science",
+    "career_goal": "Wildlife Photographer",
+    "interests": [],
+    "skills": [
+      "Camera Handling"
+    ],
+    "skills_to_improve": [
+      "Lighting"
+    ],
+    "available_hours_per_day": 6.0,
+    "sleep_hours": 7.0,
+    "workload": "medium",
+    "regular_activities": [],
+    "major_commitments": [],
+    "financial_priority": 5,
+    "short_term_goal": "Build high impact software projects"
+  },
+  "user_execution_test": {
+    "user_id": "user_execution_test",
+    "name": "Exec User",
+    "education": "B.Tech Computer Science",
+    "career_goal": "Become Teacher",
+    "interests": [],
+    "skills": [],
+    "skills_to_improve": [],
+    "available_hours_per_day": 6.0,
+    "sleep_hours": 7.0,
+    "workload": "medium",
+    "regular_activities": [],
+    "major_commitments": [],
+    "financial_priority": 5,
+    "short_term_goal": "Build high impact software projects"
+  },
+  "test_fallback_user": {
+    "user_id": "test_fallback_user",
+    "name": "Fallback User",
+    "education": "B.Tech Computer Science",
+    "career_goal": "Software Engineer",
+    "interests": [],
+    "skills": [],
+    "skills_to_improve": [],
+    "available_hours_per_day": 6.0,
+    "sleep_hours": 7.0,
+    "workload": "medium",
+    "regular_activities": [],
+    "major_commitments": [],
+    "financial_priority": 5,
+    "short_term_goal": "Build high impact software projects"
+  },
+  "schema_user": {
+    "user_id": "schema_user",
+    "name": "Schema User",
+    "education": "B.Tech Computer Science",
+    "career_goal": "Software Engineer",
+    "interests": [],
+    "skills": [],
+    "skills_to_improve": [],
+    "available_hours_per_day": 6.0,
+    "sleep_hours": 7.0,
+    "workload": "medium",
+    "regular_activities": [],
+    "major_commitments": [],
+    "financial_priority": 5,
+    "short_term_goal": "Build high impact software projects"
+  },
+  "user_wildlife_test": {
+    "user_id": "user_wildlife_test",
+    "name": "Wildlife Photographer User",
+    "education": "B.Sc.",
+    "career_goal": "Wild life photographer",
+    "interests": [],
+    "skills": [
+      "Photography basics",
+      "DSLR handling",
+      "Composition",
+      "Lightroom"
+    ],
+    "skills_to_improve": [
+      "Advanced camera techniques",
+      "Wildlife tracking",
+      "Animal behavior"
+    ],
+    "available_hours_per_day": 6.0,
+    "sleep_hours": 7.0,
+    "workload": "medium",
+    "regular_activities": [],
+    "major_commitments": [],
+    "financial_priority": 5,
+    "short_term_goal": "Build a strong wildlife photography portfolio and complete 3 real-world wildlife photography projects within the next 6 months."
+  },
+  "user_1787590421303_8uejt": {
+    "user_id": "user_1787590421303_8uejt",
+    "name": "Mohammed Arif",
+    "education": "B.Tech IT",
+    "career_goal": "Full Stack Developer",
+    "interests": [],
+    "skills": [
+      "Next.js",
+      "Node.js",
+      "Python"
+    ],
+    "skills_to_improve": [
+      "DSA"
+    ],
+    "available_hours_per_day": 6.0,
+    "sleep_hours": 7.0,
+    "workload": "medium",
+    "regular_activities": [
+      "Gym 3x/week",
+      "Coding practice"
+    ],
+    "major_commitments": [],
+    "financial_priority": 10,
+    "short_term_goal": "Earn high"
   }
 }

@@ -103,33 +103,44 @@ def normalize_degree(education_str: str) -> Dict[str, str]:
 def extract_major(raw: str, lower: str, degree_family: str) -> str:
     """Extracts and normalizes major/specialization from raw string."""
     # Computer Science & Computing
-    if any(k in lower for k in ['computer science engineering', 'computer science & engineering', 'cse', 'cs engineering', 'computer science', 'computer engineering', 'cs', 'it', 'information technology', 'software engineering']):
-        if 'ai' in lower or 'machine learning' in lower or 'ml' in lower:
+    cs_patterns = [
+        r'computer\s+science\s+(&|and)?\s*engineering',
+        r'\bcse\b',
+        r'\bcs\s+engineering\b',
+        r'computer\s+science',
+        r'computer\s+engineering',
+        r'\bcs\b',
+        r'\bit\b',
+        r'information\s+technology',
+        r'software\s+engineering'
+    ]
+    if any(re.search(pat, lower) for pat in cs_patterns):
+        if re.search(r'\b(ai|ml|machine\s+learning|artificial\s+intelligence)\b', lower):
             return "AI & Machine Learning"
-        if 'data science' in lower or 'analytics' in lower:
+        if re.search(r'\b(data\s+science|analytics|big\s+data)\b', lower):
             return "Data Science & Analytics"
-        if 'cyber' in lower or 'security' in lower:
+        if re.search(r'\b(cyber|security)\b', lower):
             return "Cybersecurity"
         return "Computer Science & Engineering" if degree_family == "Engineering" else "Computer Science"
 
     # AI / ML
-    if any(k in lower for k in ['ai/ml', 'ai & ml', 'artificial intelligence', 'machine learning']):
+    if any(re.search(pat, lower) for pat in [r'\bai[/\s&]+ml\b', r'artificial\s+intelligence', r'machine\s+learning', r'\bai\b', r'\bml\b']):
         return "AI & Machine Learning"
 
     # Data Science
-    if any(k in lower for k in ['data science', 'data analytics', 'big data']):
+    if any(re.search(pat, lower) for pat in [r'data\s+science', r'data\s+analytics', r'big\s+data']):
         return "Data Science & Analytics"
 
     # Electronics / Electrical
-    if any(k in lower for k in ['electronics', 'electrical', 'ece', 'eee', 'telecommunication']):
+    if any(re.search(pat, lower) for pat in [r'electronics', r'electrical', r'\bece\b', r'\beee\b', r'telecommunication']):
         return "Electronics & Electrical Engineering"
 
     # Mechanical
-    if any(k in lower for k in ['mechanical', 'mech', 'mechatronics', 'automobile']):
+    if any(re.search(pat, lower) for pat in [r'mechanical', r'\bmech\b', r'mechatronics', r'automobile', r'automotive']):
         return "Mechanical Engineering"
 
     # Civil
-    if any(k in lower for k in ['civil', 'structural', 'construction']):
+    if any(re.search(pat, lower) for pat in [r'civil', r'structural', r'construction']):
         return "Civil Engineering"
 
     # Physical Sciences
@@ -137,7 +148,7 @@ def extract_major(raw: str, lower: str, degree_family: str) -> str:
         return "Physics"
     if 'chemistry' in lower:
         return "Chemistry"
-    if any(k in lower for k in ['math', 'mathematics', 'stats', 'statistics']):
+    if any(re.search(pat, lower) for pat in [r'\bmath\b', r'mathematics', r'\bstats\b', r'statistics']):
         return "Mathematics & Statistics"
 
     # Life & Biological Sciences
@@ -161,7 +172,7 @@ def extract_major(raw: str, lower: str, degree_family: str) -> str:
         return "Finance & Banking"
     if 'marketing' in lower:
         return "Marketing"
-    if 'hr' in lower or 'human resource' in lower:
+    if re.search(r'\bhr\b', lower) or 'human resource' in lower:
         return "Human Resource Management"
     if 'business analytics' in lower:
         return "Business Analytics"
@@ -179,7 +190,7 @@ def extract_major(raw: str, lower: str, degree_family: str) -> str:
         return "History"
     if 'geography' in lower:
         return "Geography"
-    if any(k in lower for k in ['journalism', 'media', 'mass comm', 'communication']):
+    if any(re.search(pat, lower) for pat in [r'journalism', r'media', r'mass\s+comm', r'communication']):
         return "Journalism & Media Communication"
     if 'english' in lower or 'literature' in lower:
         return "English & Literature"
@@ -187,7 +198,7 @@ def extract_major(raw: str, lower: str, degree_family: str) -> str:
     # Specific professional majors
     if 'marine' in lower:
         return "Marine Science"
-    if 'agriculture' in lower or 'agri' in lower:
+    if 'agriculture' in lower or re.search(r'\bagri\b', lower):
         return "Agricultural Sciences"
 
     # Clean fallback: strip degree prefixes
@@ -246,7 +257,7 @@ def resolve_higher_studies_path(profile: Optional[UserProfile]) -> Dict[str, Any
         domain_name = "Computer Applications & IT"
 
     elif deg_family == "Commerce":
-        pg_degree = f"M.Com / MBA in {major}" if major else "M.Com / MBA Advanced Business Studies"
+        pg_degree = f"M.Com / MBA in {major}" if major else "M.Com / MBA in Commerce & Financial Studies"
         slider1 = f"Advanced {major or 'Commerce & Finance'} Fundamentals"
         slider2 = "CAT / M.Com / MBA Entrance Prep"
         slider3 = "Financial Modeling & Case Studies"

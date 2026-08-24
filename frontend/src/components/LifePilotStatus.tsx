@@ -1,7 +1,7 @@
 import React from 'react';
 import { SimulationResponse, ActionRoadmap, ProgressSummary, AdaptiveFutureFeedback } from '../types/schema';
-import { Card } from './common/Card';
-import { Badge } from './common/Badge';
+import { Card } from './ui/card';
+import { Badge } from './ui/badge';
 import {
   Compass,
   TrendingUp,
@@ -34,24 +34,24 @@ export const LifePilotStatus: React.FC<LifePilotStatusProps> = ({
   // If no simulation or roadmap exists yet, render clean invitation banner
   if (!simulationData && !roadmap) {
     return (
-      <Card level={2} className="p-6 bg-gradient-to-r from-white via-[#FAF9F5] to-[#F0EEFF] border border-[#635BFF]/30 space-y-2 light-card-shadow">
+      <div className="p-6 bg-gradient-to-r from-white via-[#FAFAF7] to-[#EEF2FF] border border-[#5850EC]/30 rounded-[28px] space-y-2 shadow-sm">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="space-y-1 text-center sm:text-left">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#635BFF] font-mono flex items-center gap-1.5 justify-center sm:justify-start">
-              <Compass className="w-4 h-4 text-[#635BFF]" /> LIFEPILOT INTELLIGENCE STATUS
+            <span className="text-[10px] font-mono font-bold uppercase tracking-[0.18em] text-[#5850EC] flex items-center gap-1.5 justify-center sm:justify-start">
+              <Compass className="w-4 h-4 text-[#5850EC]" /> STEPNEXT INTELLIGENCE STATUS
             </span>
-            <h3 className="text-lg font-bold text-[#171827] font-heading">
-              Choose a direction to begin your LifePilot.
+            <h3 className="text-lg font-bold text-[#0F172A] font-heading">
+              Choose a direction to begin your simulation.
             </h3>
-            <p className="text-xs text-[#667085]">
+            <p className="text-xs text-slate-500 font-medium">
               Adjust investment sliders and click "Run Simulation" to generate your authoritative recommendation and personal roadmap.
             </p>
           </div>
-          <Badge variant="indigo" className="text-xs px-4 py-2 shrink-0 font-mono">
+          <Badge variant="indigo" size="default" className="font-mono">
             STATUS: AWAITING SIMULATION
           </Badge>
         </div>
-      </Card>
+      </div>
     );
   }
 
@@ -75,105 +75,143 @@ export const LifePilotStatus: React.FC<LifePilotStatusProps> = ({
   const nextActionText = adaptiveFuture?.next_action || (roadmap?.weekly_actions?.find(a => a.status !== "completed")?.title || "Complete weekly roadmap actions.");
 
   const renderTrendBadge = () => {
-    if (trend === 'improving') return <span className="text-[#32C6A6] font-bold text-[11px] flex items-center gap-0.5"><TrendingUp className="w-3 h-3" /> ↑ Improving</span>;
-    if (trend === 'declining') return <span className="text-[#FF7A6B] font-bold text-[11px] flex items-center gap-0.5"><TrendingDown className="w-3 h-3" /> ↓ Declining</span>;
-    if (trend === 'stable') return <span className="text-[#635BFF] font-bold text-[11px] flex items-center gap-0.5"><Minus className="w-3 h-3" /> → Stable</span>;
-    return <span className="text-[#667085] text-[11px] font-mono">• Awaiting Data</span>;
+    if (trend === 'improving') return <span className="text-[#10B981] font-bold text-[11px] flex items-center gap-0.5"><TrendingUp className="w-3 h-3" /> ↑ Improving</span>;
+    if (trend === 'declining') return <span className="text-[#F43F5E] font-bold text-[11px] flex items-center gap-0.5"><TrendingDown className="w-3 h-3" /> ↓ Declining</span>;
+    if (trend === 'stable') return <span className="text-[#5850EC] font-bold text-[11px] flex items-center gap-0.5"><Minus className="w-3 h-3" /> → Stable</span>;
+    return <span className="text-slate-400 text-[11px] font-mono">• Awaiting Data</span>;
   };
 
   const renderFutureStatusBadge = () => {
     switch (futureStatus) {
       case 'on_track':
-        return <Badge variant="green" className="text-[10px] px-2 py-0.5 font-mono">ON TRACK</Badge>;
+        return <Badge variant="success" size="sm" className="font-mono">ON TRACK</Badge>;
       case 'needs_adjustment':
-        return <Badge variant="amber" className="text-[10px] px-2 py-0.5 font-mono">NEEDS ADJ</Badge>;
+        return <Badge variant="warning" size="sm" className="font-mono">NEEDS ADJ</Badge>;
       case 'stabilize':
-        return <Badge variant="indigo" className="text-[10px] px-2 py-0.5 font-mono">STABILIZE</Badge>;
+        return <Badge variant="indigo" size="sm" className="font-mono">STABILIZE</Badge>;
       case 're_evaluate':
-        return <Badge variant="red" className="text-[10px] px-2 py-0.5 font-mono animate-pulse">RE-EVALUATE</Badge>;
+        return <Badge variant="destructive" size="sm" className="font-mono animate-pulse">RE-EVALUATE</Badge>;
       default:
-        return <Badge variant="neutral" className="text-[10px] font-mono">ON TRACK</Badge>;
+        return <Badge variant="outline" size="sm" className="font-mono">ON TRACK</Badge>;
     }
   };
 
   return (
     <div className="max-w-[1400px] mx-auto w-full">
-      <Card level={2} className="p-5 bg-gradient-to-r from-white via-[#FAF9F5] to-[#F0EEFF] border border-[#635BFF]/30 rounded-[24px] space-y-4 light-card-shadow min-w-0">
-      <div className="flex items-center justify-between border-b border-[#E5E5DC] pb-3">
-        <span className="text-[10px] font-bold uppercase tracking-wider text-[#635BFF] font-mono flex items-center gap-1.5">
-          <Zap className="w-4 h-4 text-[#635BFF]" /> LIFEPILOT SYSTEM INTELLIGENCE STATUS
-        </span>
-        <span className="text-[10px] font-mono text-[#667085]">
-          Active User: <strong>{progress?.user_id || roadmap?.user_id || "demo_user"}</strong>
-        </span>
+      <div className="bg-white border border-black/[0.07] rounded-[28px] p-5 sm:p-6 shadow-sm space-y-4">
+        {/* Top Header Row */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-black/[0.05] pb-3">
+          <div className="flex items-center gap-2">
+            <div className="p-1.5 rounded-lg bg-[#5850EC]/10 text-[#5850EC]">
+              <Compass className="w-4 h-4" />
+            </div>
+            <span className="text-xs font-bold uppercase tracking-wider text-[#0F172A] font-heading">
+              SYSTEM INTELLIGENCE STATUS
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] font-mono text-slate-400">ACTIVE TRAJECTORY:</span>
+            <span className="text-xs font-mono font-extrabold text-[#5850EC] bg-[#5850EC]/10 px-2.5 py-0.5 rounded-full">
+              {recommendedScenario.toUpperCase()}
+            </span>
+          </div>
+        </div>
+
+        {/* 4 Key Pillars Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+          {/* 1. CURRENT DIRECTION */}
+          <div
+            onClick={() => onNavigateToSection?.('section-simulator')}
+            className="p-3.5 rounded-2xl bg-slate-50 border border-black/[0.04] space-y-1.5 cursor-pointer hover:bg-slate-100/80 transition"
+          >
+            <div className="flex items-center justify-between text-slate-400">
+              <span className="font-mono font-bold text-[10px] uppercase">DIRECTION</span>
+              <Compass className="w-3.5 h-3.5 text-[#5850EC]" />
+            </div>
+            <p className="font-extrabold text-[#0F172A] truncate text-sm font-heading">
+              {recommendedScenario}
+            </p>
+            <div className="flex items-center gap-1">
+              <span className="text-[11px] font-mono font-bold text-[#5850EC]">{directionScore}/100</span>
+              <span className="text-[10px] text-slate-400">alignment</span>
+            </div>
+          </div>
+
+          {/* 2. RECENT EXECUTION */}
+          <div
+            onClick={() => onNavigateToSection?.('section-progress')}
+            className="p-3.5 rounded-2xl bg-slate-50 border border-black/[0.04] space-y-1.5 cursor-pointer hover:bg-slate-100/80 transition"
+          >
+            <div className="flex items-center justify-between text-slate-400">
+              <span className="font-mono font-bold text-[10px] uppercase">EXECUTION</span>
+              <TrendingUp className="w-3.5 h-3.5 text-[#10B981]" />
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="font-extrabold text-[#0F172A] text-sm font-mono font-heading">
+                {executionPct}%
+              </span>
+              {renderTrendBadge()}
+            </div>
+            <div className="flex items-center gap-1 text-[10px] text-slate-400 font-mono">
+              <Flame className="w-3 h-3 text-[#F59E0B]" />
+              <span>{streak} wk streak</span>
+            </div>
+          </div>
+
+          {/* 3. WORKLOAD LOAD */}
+          <div
+            onClick={() => onNavigateToSection?.('section-roadmap')}
+            className="p-3.5 rounded-2xl bg-slate-50 border border-black/[0.04] space-y-1.5 cursor-pointer hover:bg-slate-100/80 transition"
+          >
+            <div className="flex items-center justify-between text-slate-400">
+              <span className="font-mono font-bold text-[10px] uppercase">WORKLOAD</span>
+              <Activity className="w-3.5 h-3.5 text-purple-600" />
+            </div>
+            <p className="font-extrabold text-[#0F172A] truncate text-sm font-heading">
+              {workloadLevel}
+            </p>
+            <p className="text-[10px] text-slate-400 font-mono font-medium">
+              ~{weeklyHours}h weekly investment
+            </p>
+          </div>
+
+          {/* 4. FUTURE HEALTH */}
+          <div
+            onClick={() => onNavigateToSection?.('section-adaptive-future')}
+            className="p-3.5 rounded-2xl bg-slate-50 border border-black/[0.04] space-y-1.5 cursor-pointer hover:bg-slate-100/80 transition"
+          >
+            <div className="flex items-center justify-between text-slate-400">
+              <span className="font-mono font-bold text-[10px] uppercase">TRAJECTORY</span>
+              <ShieldCheck className="w-3.5 h-3.5 text-[#5850EC]" />
+            </div>
+            <div className="flex items-center gap-1.5">
+              {renderFutureStatusBadge()}
+            </div>
+            <p className="text-[10px] text-slate-400 font-mono">
+              {confidence}% direction confidence
+            </p>
+          </div>
+        </div>
+
+        {/* Bottom Recommendation Strip */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-3 border-t border-black/[0.05] text-xs">
+          <div className="flex items-center gap-2 text-slate-600 min-w-0">
+            <span className="w-2 h-2 rounded-full bg-[#5850EC] shrink-0" />
+            <span className="font-mono text-slate-400 text-[10px] uppercase">NEXT ADAPTIVE ACTION:</span>
+            <span className="font-semibold text-[#0F172A] truncate">{nextActionText}</span>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => onNavigateToSection?.('section-checkin')}
+            className="text-[#5850EC] hover:text-[#4338CA] font-bold flex items-center gap-1 text-xs shrink-0 self-end sm:self-center transition"
+          >
+            <span>Log Check-in</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </button>
+        </div>
       </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-xs">
-        {/* Card 1: DIRECTION */}
-        <div className="p-3.5 rounded-xl bg-white border border-[#E5E5DC] space-y-1">
-          <span className="text-[9px] font-bold uppercase tracking-wider text-[#667085] font-mono block">
-            1. DIRECTION
-          </span>
-          <div className="font-extrabold text-[#171827] text-sm font-heading flex items-center justify-between">
-            <span>{recommendedScenario.toUpperCase()}</span>
-            <span className="text-xs font-mono text-[#635BFF] font-bold">{directionScore}/100</span>
-          </div>
-          <span className="text-[10px] text-[#219B81] font-medium block">★ Strongest Path</span>
-        </div>
-
-        {/* Card 2: EXECUTION */}
-        <div className="p-3.5 rounded-xl bg-white border border-[#E5E5DC] space-y-1">
-          <span className="text-[9px] font-bold uppercase tracking-wider text-[#667085] font-mono block">
-            2. EXECUTION
-          </span>
-          <div className="font-extrabold text-[#171827] text-sm font-mono flex items-center justify-between">
-            <span>{executionPct}% completion</span>
-            {renderTrendBadge()}
-          </div>
-          <span className="text-[10px] text-[#667085] font-mono flex items-center gap-1">
-            <Flame className="w-3 h-3 text-[#FF7A6B]" /> {streak}-wk streak (≥50%)
-          </span>
-        </div>
-
-        {/* Card 3: WORKLOAD */}
-        <div className="p-3.5 rounded-xl bg-white border border-[#E5E5DC] space-y-1">
-          <span className="text-[9px] font-bold uppercase tracking-wider text-[#667085] font-mono block">
-            3. WORKLOAD
-          </span>
-          <div className="font-extrabold text-[#171827] text-sm font-heading flex items-center justify-between">
-            <span>{workloadLevel}</span>
-            <span className="text-xs font-mono text-[#667085]">{weeklyHours}h/wk</span>
-          </div>
-          <span className="text-[10px] text-[#667085] block">Sustainable capacity</span>
-        </div>
-
-        {/* Card 4: FUTURE HEALTH */}
-        <div className="p-3.5 rounded-xl bg-white border border-[#E5E5DC] space-y-1">
-          <span className="text-[9px] font-bold uppercase tracking-wider text-[#667085] font-mono block">
-            4. FUTURE HEALTH
-          </span>
-          <div className="font-extrabold text-[#171827] text-sm font-heading flex items-center justify-between">
-            {renderFutureStatusBadge()}
-            <span className="text-xs font-mono text-[#635BFF] font-bold">{confidence}% conf</span>
-          </div>
-          <span className="text-[10px] text-[#667085] block truncate">
-            {adaptiveFuture?.trigger_reason || "Trajectory is consistent"}
-          </span>
-        </div>
-      </div>
-
-      {/* NEXT BEST ACTION FOOTER BANNER */}
-      <div className="p-3 rounded-xl bg-[#FAF9F5] border border-[#E5E5DC] flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
-        <div className="flex items-center gap-2 text-[#171827]">
-          <CheckCircle2 className="w-4 h-4 text-[#635BFF] shrink-0" />
-          <span className="font-bold">Next Best Action:</span>
-          <span className="text-[#667085] truncate max-w-md">{nextActionText}</span>
-        </div>
-        <Badge variant="indigo" className="text-[10px] shrink-0 font-mono">
-          INTENTIONAL PROGRESS
-        </Badge>
-      </div>
-    </Card>
     </div>
   );
 };

@@ -30,6 +30,8 @@ def evaluate_future_feedback(user_id: str) -> AdaptiveFutureFeedback:
 
     profile = PROFILES_STORE.get(user_id)
     career_goal = (profile.career_goal or "").strip() if profile else ""
+    if not career_goal and roadmap and roadmap.goal_context:
+        career_goal = roadmap.goal_context.strip()
     current_scenario = career_goal or (sim.recommendation.recommended_scenario if sim else (roadmap.scenario if roadmap else "Career Target"))
 
     # Find winning result object & alternative scenarios
@@ -43,7 +45,7 @@ def evaluate_future_feedback(user_id: str) -> AdaptiveFutureFeedback:
         current_score = winner_res.overall_score
 
         for res in sim.results:
-            if res.name.lower() not in current_scenario.lower() and current_scenario.lower() not in res.name.lower():
+            if res.name != winner_res.name and res.name.lower() not in current_scenario.lower():
                 gap = current_score - res.overall_score
                 if 0 <= gap <= 5 and gap < min_gap:
                     min_gap = gap
@@ -84,10 +86,13 @@ def evaluate_future_feedback(user_id: str) -> AdaptiveFutureFeedback:
     confidence = max(20, min(98, conf))
     print(f"[AdaptiveFuture] FUTURE_CONFIDENCE: value={confidence}")
 
-    # Evaluate Re-evaluation eligibility
+    # Evaluate Re-evaluation eligibility (requires persistent low execution across check-ins)
+    persistent_low_execution = (
+        progress.overall_execution_percentage < 60 and completion_pct < 60
+    )
     eligible_re_eval = (
         checkin_count >= 3 and
-        (trend == "declining" or completion_pct < 60) and
+        persistent_low_execution and
         len(progress.repeatedly_missed_actions) > 0 and
         workload.lower() in ["easy", "manageable", "low", "unknown"] and
         close_alt_name is not None

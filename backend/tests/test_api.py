@@ -228,6 +228,7 @@ def test_health_db_includes_api_key_status():
     assert "api_key_status" in data
 
 def test_ai_graceful_fallback_without_crash():
+    client.post("/api/profile", json={"user_id": "test_fallback_user", "name": "Fallback User", "career_goal": "Software Engineer"})
     # Calling digital twin endpoint should never crash even if API key is invalid/missing
     response = client.post("/api/digital-twin/test_fallback_user")
     assert response.status_code == 200
@@ -280,6 +281,7 @@ def test_simulation_attempts_gemini_and_falls_back_gracefully(monkeypatch):
 
 def test_simulation_schema_preservation():
     """Ensures response schema is strictly preserved for frontend compatibility."""
+    client.post("/api/profile", json={"user_id": "schema_user", "name": "Schema User", "career_goal": "Software Engineer"})
     sim_request = {
         "scenarios": [
             {

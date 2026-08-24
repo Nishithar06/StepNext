@@ -4,34 +4,67 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/stepnext-logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>StepNext</title>
+    <title>StepNext — Decision Support Intelligence</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
         darkMode: 'class',
         theme: {
           extend: {
+            fontFamily: {
+              sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+              heading: ['Plus Jakarta Sans', 'sans-serif'],
+              mono: ['JetBrains Mono', 'monospace'],
+            },
             colors: {
-              canvas: '#F7F7F2',
+              canvas: '#FAFAF7',
               surface: '#FFFFFF',
-              'surface-elevated': '#FAF9F5',
-              'surface-hover': '#F0EEFF',
-              ink: '#171827',
-              slate: '#667085',
-              indigo: '#635BFF',
-              mint: '#32C6A6',
-              coral: '#FF7A6B',
-              yellow: '#F5C96A'
+              'surface-elevated': '#F4F4EE',
+              'surface-hover': '#EEF2FF',
+              ink: '#0F172A',
+              'ink-secondary': '#334155',
+              slate: '#64748B',
+              muted: '#94A3B8',
+              indigo: {
+                DEFAULT: '#5850EC',
+                50: '#EEF2FF',
+                100: '#E0E7FF',
+                500: '#6366F1',
+                600: '#5850EC',
+                700: '#4338CA',
+              },
+              mint: {
+                DEFAULT: '#10B981',
+                50: '#ECFDF5',
+                500: '#10B981',
+                600: '#059669',
+              },
+              coral: {
+                DEFAULT: '#F43F5E',
+                50: '#FFF1F2',
+                500: '#F43F5E',
+              },
+              amber: {
+                DEFAULT: '#F59E0B',
+                50: '#FFFBEB',
+                500: '#F59E0B',
+              }
+            },
+            boxShadow: {
+              'taste-card': '0 1px 3px rgba(0,0,0,0.02), 0 12px 36px -8px rgba(15,23,42,0.05)',
+              'taste-card-hover': '0 4px 12px rgba(0,0,0,0.03), 0 20px 40px -12px rgba(15,23,42,0.08)',
+              'taste-glow-indigo': '0 0 0 1px rgba(99,102,241,0.2), 0 8px 24px -4px rgba(99,102,241,0.2)',
+              'taste-glow-mint': '0 0 0 1px rgba(16,185,129,0.2), 0 8px 24px -4px rgba(16,185,129,0.2)',
             }
           }
         }
       }
     </script>
   </head>
-  <body class="bg-[#F7F7F2] text-[#171827] antialiased selection:bg-[#635BFF] selection:text-white min-h-screen">
+  <body class="taste-grid-bg text-[#0F172A] antialiased selection:bg-[#5850EC] selection:text-white min-h-screen">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

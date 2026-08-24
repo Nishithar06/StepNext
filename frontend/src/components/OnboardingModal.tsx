@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { UserProfile, Commitment } from '../types/schema';
-import { Card } from './common/Card';
-import { Button } from './common/Button';
-import { X, ChevronRight, ChevronLeft, Check, Sparkles, AlertCircle } from 'lucide-react';
+import { Button } from './ui/button';
+import { Badge } from './ui/badge';
+import { X, ChevronRight, ChevronLeft, Check, Sparkles, AlertCircle, User, Compass, Zap, Target, Layers, Clock } from 'lucide-react';
 
 interface OnboardingModalProps {
   isOpen: boolean;
@@ -101,71 +101,102 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
     }
   };
 
+  const stepsList = [
+    { title: 'Identity', icon: <User className="w-3.5 h-3.5" /> },
+    { title: 'Aspirations', icon: <Target className="w-3.5 h-3.5" /> },
+    { title: 'Skills', icon: <Layers className="w-3.5 h-3.5" /> },
+    { title: 'Bandwidth', icon: <Clock className="w-3.5 h-3.5" /> },
+    { title: 'Tracks', icon: <Compass className="w-3.5 h-3.5" /> },
+    { title: 'Review', icon: <Check className="w-3.5 h-3.5" /> },
+  ];
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fade-in">
-      <div className="bg-white border border-[#E5E5DC] rounded-2xl w-full max-w-xl overflow-hidden flex flex-col max-h-[90vh] light-card-shadow">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-md animate-in fade-in">
+      <div className="bg-white border border-black/[0.08] rounded-[28px] w-full max-w-xl overflow-hidden flex flex-col max-h-[90vh] shadow-[0_20px_60px_rgba(0,0,0,0.15)] animate-in zoom-in-95 duration-200">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-[#E5E5DC] bg-white">
-          <div className="flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-[#635BFF]" />
-            <h3 className="text-base font-bold text-[#171827] font-heading">
-              User Profile Configuration
-            </h3>
+        <div className="flex items-center justify-between px-6 py-5 border-b border-black/[0.06] bg-white">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-2xl bg-[#5850EC]/10 text-[#5850EC] flex items-center justify-center">
+              <Sparkles className="w-5 h-5" />
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-[#0F172A] font-heading">
+                Profile & Goals Baseline
+              </h3>
+              <p className="text-xs text-slate-500 font-medium">Configure parameters to personalize simulation trajectories</p>
+            </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1 text-[#667085] hover:text-[#171827] rounded-lg transition"
+            className="p-2 text-slate-400 hover:text-slate-900 rounded-xl hover:bg-slate-100 transition"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Visual Progress Indicator */}
-        <div className="px-6 py-3 bg-[#FAF9F5] border-b border-[#E5E5DC] flex items-center justify-between text-xs">
-          <span className="text-[#667085] font-semibold">Step {step} of 6</span>
-          <div className="flex items-center gap-1.5 font-mono">
-            {[1, 2, 3, 4, 5, 6].map((s, idx) => (
-              <React.Fragment key={s}>
-                <span className={s <= step ? 'text-[#635BFF] font-bold' : 'text-[#D1D1C7]'}>
-                  {s <= step ? '●' : '○'}
-                </span>
-                {idx < 5 && <span className="text-[#E5E5DC]">━</span>}
-              </React.Fragment>
-            ))}
-          </div>
+        {/* Visual Progress Step Tabs */}
+        <div className="px-6 py-3 bg-slate-50/80 border-b border-black/[0.06] flex items-center justify-between overflow-x-auto text-xs">
+          {stepsList.map((st, idx) => {
+            const stepNum = idx + 1;
+            const isCurrent = step === stepNum;
+            const isCompleted = step > stepNum;
+
+            return (
+              <div key={idx} className="flex items-center gap-1.5 shrink-0">
+                <button
+                  type="button"
+                  onClick={() => setStep(stepNum)}
+                  className={`flex items-center gap-1.5 px-2.5 py-1 rounded-xl font-mono text-[10px] font-bold transition-all ${
+                    isCurrent
+                      ? 'bg-[#5850EC] text-white shadow-sm'
+                      : isCompleted
+                      ? 'bg-[#ECFDF5] text-[#10B981]'
+                      : 'text-slate-400 hover:text-slate-700'
+                  }`}
+                >
+                  <span>{stepNum}.</span>
+                  <span>{st.title}</span>
+                </button>
+                {idx < stepsList.length - 1 && <span className="text-slate-300">›</span>}
+              </div>
+            );
+          })}
         </div>
 
         {/* Form Body */}
-        <div className="p-6 overflow-y-auto space-y-5 flex-1 bg-white text-[#171827]">
+        <div className="p-6 overflow-y-auto space-y-5 flex-1 bg-white text-[#0F172A]">
           {error && (
-            <div className="p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs flex items-center gap-2">
-              <AlertCircle className="w-4 h-4 text-rose-500 shrink-0" />
+            <div className="p-3.5 rounded-2xl bg-[#FFF1F2] border border-[#F43F5E]/30 text-[#F43F5E] text-xs flex items-center gap-2 font-medium">
+              <AlertCircle className="w-4 h-4 shrink-0" />
               <span>{error}</span>
             </div>
           )}
 
           {/* STEP 1: Basic Info */}
           {step === 1 && (
-            <div className="space-y-4 animate-fade-in">
-              <h4 className="text-sm font-bold text-[#171827] font-heading">1. Basic Information</h4>
+            <div className="space-y-4 animate-in fade-in duration-200">
               <div>
-                <label className="block text-xs font-bold text-[#171827] mb-1.5">Full Name</label>
+                <span className="text-[10px] font-mono font-bold uppercase tracking-[0.16em] text-[#5850EC]">STEP 01</span>
+                <h4 className="text-base font-bold text-[#0F172A] font-heading">Personal & Educational Background</h4>
+              </div>
+              <div className="space-y-1">
+                <label className="block text-xs font-bold text-[#0F172A]">Full Name</label>
                 <input
                   type="text"
                   placeholder="e.g. Sarah Chen"
                   value={name}
                   onChange={e => setName(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#FAF9F5] border border-[#E5E5DC] text-[#171827] placeholder:text-[#98A2B3] text-sm font-medium focus:outline-none focus:border-[#635BFF] focus:bg-white"
+                  className="w-full px-4 py-2.5 rounded-2xl bg-slate-50 border border-black/[0.08] text-[#0F172A] placeholder:text-slate-400 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#5850EC]/30"
                 />
               </div>
-              <div>
-                <label className="block text-xs font-bold text-[#171827] mb-1.5">Education / Background</label>
+              <div className="space-y-1">
+                <label className="block text-xs font-bold text-[#0F172A]">Education Background / Major</label>
                 <input
                   type="text"
-                  placeholder="e.g. B.Tech Computer Science"
+                  placeholder="e.g. B.Tech Computer Science (Final Year)"
                   value={education}
                   onChange={e => setEducation(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#FAF9F5] border border-[#E5E5DC] text-[#171827] placeholder:text-[#98A2B3] text-sm font-medium focus:outline-none focus:border-[#635BFF] focus:bg-white"
+                  className="w-full px-4 py-2.5 rounded-2xl bg-slate-50 border border-black/[0.08] text-[#0F172A] placeholder:text-slate-400 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#5850EC]/30"
                 />
               </div>
             </div>
@@ -173,32 +204,35 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
 
           {/* STEP 2: Career & Goals */}
           {step === 2 && (
-            <div className="space-y-4 animate-fade-in">
-              <h4 className="text-sm font-bold text-[#171827] font-heading">2. Career Aspirations & Priority</h4>
+            <div className="space-y-4 animate-in fade-in duration-200">
               <div>
-                <label className="block text-xs font-bold text-[#171827] mb-1.5">Primary Career Goal</label>
+                <span className="text-[10px] font-mono font-bold uppercase tracking-[0.16em] text-[#5850EC]">STEP 02</span>
+                <h4 className="text-base font-bold text-[#0F172A] font-heading">Career Aspirations & Financial Weight</h4>
+              </div>
+              <div className="space-y-1">
+                <label className="block text-xs font-bold text-[#0F172A]">Primary Career Goal</label>
                 <input
                   type="text"
-                  placeholder="e.g. Senior AI Engineer"
+                  placeholder="e.g. Senior AI Software Engineer"
                   value={careerGoal}
                   onChange={e => setCareerGoal(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#FAF9F5] border border-[#E5E5DC] text-[#171827] placeholder:text-[#98A2B3] text-sm font-medium focus:outline-none focus:border-[#635BFF] focus:bg-white"
+                  className="w-full px-4 py-2.5 rounded-2xl bg-slate-50 border border-black/[0.08] text-[#0F172A] placeholder:text-slate-400 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#5850EC]/30"
                 />
               </div>
-              <div>
-                <label className="block text-xs font-bold text-[#171827] mb-1.5">Short-term Goal (6 months)</label>
+              <div className="space-y-1">
+                <label className="block text-xs font-bold text-[#0F172A]">Short-term Target (6 months)</label>
                 <input
                   type="text"
-                  placeholder="e.g. Secure high-growth placement"
+                  placeholder="e.g. Secure high-impact software role"
                   value={shortTermGoal}
                   onChange={e => setShortTermGoal(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#FAF9F5] border border-[#E5E5DC] text-[#171827] placeholder:text-[#98A2B3] text-sm font-medium focus:outline-none focus:border-[#635BFF] focus:bg-white"
+                  className="w-full px-4 py-2.5 rounded-2xl bg-slate-50 border border-black/[0.08] text-[#0F172A] placeholder:text-slate-400 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#5850EC]/30"
                 />
               </div>
-              <div>
-                <div className="flex justify-between text-xs mb-1.5">
-                  <label className="text-[#171827] font-bold">Financial Priority Rating</label>
-                  <span className="text-[#635BFF] font-bold font-mono">{financialPriority} / 10</span>
+              <div className="p-3.5 rounded-2xl bg-slate-50 border border-black/[0.05] space-y-1.5">
+                <div className="flex justify-between text-xs">
+                  <label className="text-[#0F172A] font-bold">Financial Priority Rating</label>
+                  <span className="text-[#5850EC] font-bold font-mono">{financialPriority} / 10</span>
                 </div>
                 <input
                   type="range"
@@ -206,7 +240,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
                   max="10"
                   value={financialPriority}
                   onChange={e => setFinancialPriority(Number(e.target.value))}
-                  className="w-full"
+                  className="w-full cursor-pointer"
                 />
               </div>
             </div>
@@ -214,26 +248,29 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
 
           {/* STEP 3: Skills */}
           {step === 3 && (
-            <div className="space-y-4 animate-fade-in">
-              <h4 className="text-sm font-bold text-[#171827] font-heading">3. Skills & Focus Areas</h4>
+            <div className="space-y-4 animate-in fade-in duration-200">
               <div>
-                <label className="block text-xs font-bold text-[#171827] mb-1.5">Current Skills (comma separated)</label>
+                <span className="text-[10px] font-mono font-bold uppercase tracking-[0.16em] text-[#5850EC]">STEP 03</span>
+                <h4 className="text-base font-bold text-[#0F172A] font-heading">Skills Profile & Growth Focus</h4>
+              </div>
+              <div className="space-y-1">
+                <label className="block text-xs font-bold text-[#0F172A]">Current Active Skills (comma separated)</label>
                 <input
                   type="text"
-                  placeholder="e.g. Python, React, FastAPI"
+                  placeholder="e.g. Python, React, FastAPI, SQL"
                   value={skillsStr}
                   onChange={e => setSkillsStr(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#FAF9F5] border border-[#E5E5DC] text-[#171827] placeholder:text-[#98A2B3] text-sm font-medium focus:outline-none focus:border-[#635BFF] focus:bg-white"
+                  className="w-full px-4 py-2.5 rounded-2xl bg-slate-50 border border-black/[0.08] text-[#0F172A] placeholder:text-slate-400 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#5850EC]/30"
                 />
               </div>
-              <div>
-                <label className="block text-xs font-bold text-[#171827] mb-1.5">Skills to Develop</label>
+              <div className="space-y-1">
+                <label className="block text-xs font-bold text-[#0F172A]">Skills to Develop (comma separated)</label>
                 <input
                   type="text"
-                  placeholder="e.g. DSA, System Design, PyTorch"
+                  placeholder="e.g. DSA, System Design, LLM fine-tuning"
                   value={skillsToImproveStr}
                   onChange={e => setSkillsToImproveStr(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#FAF9F5] border border-[#E5E5DC] text-[#171827] placeholder:text-[#98A2B3] text-sm font-medium focus:outline-none focus:border-[#635BFF] focus:bg-white"
+                  className="w-full px-4 py-2.5 rounded-2xl bg-slate-50 border border-black/[0.08] text-[#0F172A] placeholder:text-slate-400 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#5850EC]/30"
                 />
               </div>
             </div>
@@ -241,40 +278,43 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
 
           {/* STEP 4: Lifestyle */}
           {step === 4 && (
-            <div className="space-y-4 animate-fade-in">
-              <h4 className="text-sm font-bold text-[#171827] font-heading">4. Lifestyle & Workload</h4>
+            <div className="space-y-4 animate-in fade-in duration-200">
+              <div>
+                <span className="text-[10px] font-mono font-bold uppercase tracking-[0.16em] text-[#5850EC]">STEP 04</span>
+                <h4 className="text-base font-bold text-[#0F172A] font-heading">Lifestyle & Bandwidth Parameters</h4>
+              </div>
               <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-bold text-[#171827] mb-1.5">Daily Available Hours</label>
+                <div className="space-y-1">
+                  <label className="block text-xs font-bold text-[#0F172A]">Daily Available Focus (hrs)</label>
                   <input
                     type="number"
                     step="0.5"
                     value={availableHours}
                     onChange={e => setAvailableHours(Number(e.target.value))}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#FAF9F5] border border-[#E5E5DC] text-[#171827] text-sm font-medium focus:outline-none focus:border-[#635BFF] focus:bg-white"
+                    className="w-full px-4 py-2.5 rounded-2xl bg-slate-50 border border-black/[0.08] text-[#0F172A] text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#5850EC]/30"
                   />
                 </div>
-                <div>
-                  <label className="block text-xs font-bold text-[#171827] mb-1.5">Sleep Hours per Night</label>
+                <div className="space-y-1">
+                  <label className="block text-xs font-bold text-[#0F172A]">Sleep Hours / Night</label>
                   <input
                     type="number"
                     step="0.5"
                     value={sleepHours}
                     onChange={e => setSleepHours(Number(e.target.value))}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#FAF9F5] border border-[#E5E5DC] text-[#171827] text-sm font-medium focus:outline-none focus:border-[#635BFF] focus:bg-white"
+                    className="w-full px-4 py-2.5 rounded-2xl bg-slate-50 border border-black/[0.08] text-[#0F172A] text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#5850EC]/30"
                   />
                 </div>
               </div>
-              <div>
-                <label className="block text-xs font-bold text-[#171827] mb-1.5">Perceived Workload Pace</label>
+              <div className="space-y-1">
+                <label className="block text-xs font-bold text-[#0F172A]">Perceived Workload Intensity</label>
                 <select
                   value={workload}
                   onChange={e => setWorkload(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#FAF9F5] border border-[#E5E5DC] text-[#171827] text-sm font-medium focus:outline-none focus:border-[#635BFF] focus:bg-white"
+                  className="w-full px-4 py-2.5 rounded-2xl bg-slate-50 border border-black/[0.08] text-[#0F172A] text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#5850EC]/30"
                 >
-                  <option value="low" className="bg-white text-[#171827]">Low — Relaxed pace</option>
-                  <option value="medium" className="bg-white text-[#171827]">Medium — Steady pace</option>
-                  <option value="high" className="bg-white text-[#171827]">High — Intense schedule</option>
+                  <option value="low">Low — Relaxed pace</option>
+                  <option value="medium">Medium — Steady pace</option>
+                  <option value="high">High — Intense schedule</option>
                 </select>
               </div>
             </div>
@@ -282,18 +322,21 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
 
           {/* STEP 5: Commitments */}
           {step === 5 && (
-            <div className="space-y-4 animate-fade-in">
-              <h4 className="text-sm font-bold text-[#171827] font-heading">5. Major Weekly Commitments</h4>
+            <div className="space-y-4 animate-in fade-in duration-200">
+              <div>
+                <span className="text-[10px] font-mono font-bold uppercase tracking-[0.16em] text-[#5850EC]">STEP 05</span>
+                <h4 className="text-base font-bold text-[#0F172A] font-heading">Major Active Commitments</h4>
+              </div>
               <div className="space-y-2">
                 {commitments.map((c, i) => (
-                  <div key={i} className="flex items-center justify-between p-3 rounded-xl bg-[#FAF9F5] border border-[#E5E5DC] text-xs">
-                    <span className="font-semibold text-[#171827]">{c.name}</span>
+                  <div key={i} className="flex items-center justify-between p-3.5 rounded-2xl bg-slate-50 border border-black/[0.05] text-xs">
+                    <span className="font-semibold text-[#0F172A]">{c.name}</span>
                     <div className="flex items-center gap-3">
-                      <span className="text-[#635BFF] font-mono font-bold">{c.hours_per_week} hrs/wk</span>
+                      <span className="text-[#5850EC] font-mono font-bold">{c.hours_per_week} hrs/wk</span>
                       <button
                         type="button"
                         onClick={() => handleRemoveCommitment(i)}
-                        className="text-[#667085] hover:text-rose-600 font-bold text-sm"
+                        className="text-slate-400 hover:text-[#F43F5E] font-bold text-sm"
                       >
                         ×
                       </button>
@@ -308,16 +351,16 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
                   placeholder="Commitment name..."
                   value={newCommitmentName}
                   onChange={e => setNewCommitmentName(e.target.value)}
-                  className="flex-1 px-3.5 py-2 rounded-xl bg-[#FAF9F5] border border-[#E5E5DC] text-[#171827] text-xs font-medium focus:outline-none focus:border-[#635BFF] focus:bg-white"
+                  className="flex-1 px-4 py-2.5 rounded-2xl bg-slate-50 border border-black/[0.08] text-[#0F172A] text-xs font-medium focus:outline-none focus:ring-2 focus:ring-[#5850EC]/30"
                 />
                 <input
                   type="number"
                   placeholder="Hrs/wk"
                   value={newCommitmentHours}
                   onChange={e => setNewCommitmentHours(Number(e.target.value))}
-                  className="w-20 px-3.5 py-2 rounded-xl bg-[#FAF9F5] border border-[#E5E5DC] text-[#171827] text-xs font-medium focus:outline-none focus:border-[#635BFF] focus:bg-white"
+                  className="w-24 px-4 py-2.5 rounded-2xl bg-slate-50 border border-black/[0.08] text-[#0F172A] text-xs font-medium focus:outline-none focus:ring-2 focus:ring-[#5850EC]/30"
                 />
-                <Button variant="secondary" size="sm" onClick={handleAddCommitment}>
+                <Button variant="outline" size="sm" onClick={handleAddCommitment}>
                   Add
                 </Button>
               </div>
@@ -326,24 +369,27 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
 
           {/* STEP 6: Review */}
           {step === 6 && (
-            <div className="space-y-4 animate-fade-in text-xs">
-              <h4 className="text-sm font-bold text-[#171827] font-heading">6. Review Profile Summary</h4>
-              <div className="p-4 rounded-xl bg-[#FAF9F5] border border-[#E5E5DC] space-y-2.5">
-                <div className="flex justify-between border-b border-[#E5E5DC] pb-2">
-                  <span className="text-[#667085] font-medium">Name:</span>
-                  <span className="font-bold text-[#171827]">{name || 'User'}</span>
+            <div className="space-y-4 animate-in fade-in duration-200 text-xs">
+              <div>
+                <span className="text-[10px] font-mono font-bold uppercase tracking-[0.16em] text-[#10B981]">STEP 06</span>
+                <h4 className="text-base font-bold text-[#0F172A] font-heading">Review & Confirm Profile</h4>
+              </div>
+              <div className="p-4 rounded-2xl bg-slate-50 border border-black/[0.06] space-y-3">
+                <div className="flex justify-between border-b border-black/[0.05] pb-2">
+                  <span className="text-slate-500 font-mono">Name:</span>
+                  <span className="font-bold text-[#0F172A]">{name || 'User'}</span>
                 </div>
-                <div className="flex justify-between border-b border-[#E5E5DC] pb-2">
-                  <span className="text-[#667085] font-medium">Career Goal:</span>
-                  <span className="font-bold text-[#635BFF]">{careerGoal || 'Software Engineer'}</span>
+                <div className="flex justify-between border-b border-black/[0.05] pb-2">
+                  <span className="text-slate-500 font-mono">Career Target:</span>
+                  <span className="font-bold text-[#5850EC]">{careerGoal || 'Software Engineer'}</span>
                 </div>
-                <div className="flex justify-between border-b border-[#E5E5DC] pb-2">
-                  <span className="text-[#667085] font-medium">Sleep / Available:</span>
-                  <span className="font-bold text-[#171827]">{sleepHours}h sleep / {availableHours}h work</span>
+                <div className="flex justify-between border-b border-black/[0.05] pb-2">
+                  <span className="text-slate-500 font-mono">Sleep / Work Quota:</span>
+                  <span className="font-bold text-[#0F172A]">{sleepHours}h sleep / {availableHours}h focus</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-[#667085] font-medium">Weekly Commitments:</span>
-                  <span className="font-bold text-purple-700">{commitments.reduce((sum, c) => sum + c.hours_per_week, 0)} hrs/wk</span>
+                  <span className="text-slate-500 font-mono">Commitment Load:</span>
+                  <span className="font-bold text-purple-600 font-mono">{commitments.reduce((sum, c) => sum + c.hours_per_week, 0)} hrs/wk</span>
                 </div>
               </div>
             </div>
@@ -351,36 +397,39 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
         </div>
 
         {/* Footer Navigation */}
-        <div className="flex items-center justify-between px-6 py-4 border-t border-[#E5E5DC] bg-[#FAF9F5]">
+        <div className="flex items-center justify-between px-6 py-4 border-t border-black/[0.06] bg-slate-50/80">
           {step > 1 ? (
             <Button
-              variant="secondary"
+              variant="outline"
               size="sm"
               onClick={() => setStep(step - 1)}
-              icon={<ChevronLeft className="w-4 h-4" />}
+              className="gap-1.5"
             >
-              Back
+              <ChevronLeft className="w-4 h-4" />
+              <span>Back</span>
             </Button>
           ) : <div />}
 
           {step < 6 ? (
             <Button
-              variant="primary"
+              variant="default"
               size="sm"
               onClick={() => setStep(step + 1)}
-              icon={<ChevronRight className="w-4 h-4" />}
+              className="gap-1.5 font-bold"
             >
-              Continue
+              <span>Continue</span>
+              <ChevronRight className="w-4 h-4" />
             </Button>
           ) : (
             <Button
-              variant="primary"
+              variant="gradient"
               size="sm"
               onClick={handleSubmit}
-              isLoading={loading}
-              icon={<Check className="w-4 h-4" />}
+              disabled={loading}
+              className="gap-1.5 font-bold shadow-md"
             >
-              Save Profile & Re-analyze
+              <Check className="w-4 h-4" />
+              <span>{loading ? "Saving..." : "Save Profile & Re-analyze"}</span>
             </Button>
           )}
         </div>

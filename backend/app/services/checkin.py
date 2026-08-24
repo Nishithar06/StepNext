@@ -32,14 +32,18 @@ def calculate_sleep_duration(sleep_time: str, wake_time: str) -> float:
 def create_or_update_daily_checkin(
     user_id: str,
     input_data: DailyCheckInInput,
-    target_date: Optional[str] = None
+    target_date: Optional[str] = None,
+    checkin_date: Optional[str] = None
 ) -> DailyCheckIn:
     """Creates or updates a daily check-in for target_date (defaults to today YYYY-MM-DD)."""
-    today_str = target_date or date.today().isoformat()
-    duration = calculate_sleep_duration(input_data.sleep_time, input_data.wake_time)
+    today_str = target_date or checkin_date or date.today().isoformat()
     
-    # Override sleep_duration with calculated value if provided or fallback
-    calc_duration = duration if duration > 0 else input_data.sleep_duration
+    # If sleep_duration was explicitly provided without explicit sleep_time/wake_time, respect it
+    if "sleep_duration" in input_data.model_fields_set and "sleep_time" not in input_data.model_fields_set and "wake_time" not in input_data.model_fields_set:
+        calc_duration = input_data.sleep_duration
+    else:
+        duration = calculate_sleep_duration(input_data.sleep_time, input_data.wake_time)
+        calc_duration = duration if duration > 0 else input_data.sleep_duration
 
     checkin_id = str(uuid.uuid4())
     now_iso = datetime.now().isoformat()

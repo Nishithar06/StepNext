@@ -103,5 +103,194 @@
     "alternative_scenario": null,
     "alternative_score": null,
     "created_at": "2026-08-23T12:47:52.076040"
+  },
+  "test_user_adaptive": {
+    "user_id": "test_user_adaptive",
+    "status": "re_evaluate",
+    "current_scenario": "Placement",
+    "current_score": 82,
+    "execution_health": "Execution 45% (stable)",
+    "workload_health": "Manageable",
+    "future_confidence": 55,
+    "trigger_reason": "Persistent low execution in Placement with competitive alternative Higher Studies (80/100).",
+    "recommendation": "re_run_future_simulator",
+    "evidence": [
+      "Persistent low completion (45%) across 3 check-ins despite manageable workload.",
+      "Repeatedly missed actions in key Placement priority areas.",
+      "Alternative path 'Higher Studies' is within 2 points (80 vs 82)."
+    ],
+    "next_action": "Re-run Future Simulator to compare Placement vs Higher Studies with your actual execution capacity.",
+    "should_re_evaluate": true,
+    "alternative_scenario": "Higher Studies",
+    "alternative_score": 80,
+    "created_at": "2026-08-24T16:50:01.913235"
+  },
+  "user_fresh_test": {
+    "user_id": "user_fresh_test",
+    "status": "on_track",
+    "current_scenario": "Career Target",
+    "current_score": 85,
+    "execution_health": "Execution 0% (insufficient_data)",
+    "workload_health": "Unknown",
+    "future_confidence": 60,
+    "trigger_reason": "Execution pattern is healthy and consistent with recommended path.",
+    "recommendation": "continue_current_path",
+    "evidence": [
+      "Weekly execution (0%) is aligned with Career Target milestone requirements.",
+      "Workload level (Unknown) is sustainable.",
+      "Confidence score of 60% indicates strong trajectory alignment."
+    ],
+    "next_action": "Continue executing weekly roadmap actions consistently.",
+    "should_re_evaluate": false,
+    "alternative_scenario": null,
+    "alternative_score": null,
+    "created_at": "2026-08-24T16:50:01.426040"
+  },
+  "user_checkin_test": {
+    "user_id": "user_checkin_test",
+    "status": "on_track",
+    "current_scenario": "Become teacher",
+    "current_score": 85,
+    "execution_health": "Execution 0% (insufficient_data)",
+    "workload_health": "Manageable",
+    "future_confidence": 60,
+    "trigger_reason": "Execution pattern is healthy and consistent with recommended path.",
+    "recommendation": "continue_current_path",
+    "evidence": [
+      "Weekly execution (0%) is aligned with Become teacher milestone requirements.",
+      "Workload level (Manageable) is sustainable.",
+      "Confidence score of 60% indicates strong trajectory alignment."
+    ],
+    "next_action": "Continue executing weekly roadmap actions consistently.",
+    "should_re_evaluate": false,
+    "alternative_scenario": null,
+    "alternative_score": null,
+    "created_at": "2026-08-24T16:51:24.383226"
+  },
+  "test_user_gap": {
+    "user_id": "test_user_gap",
+    "status": "on_track",
+    "current_scenario": "Placement",
+    "current_score": 90,
+    "execution_health": "Execution 40% (stable)",
+    "workload_health": "Manageable",
+    "future_confidence": 55,
+    "trigger_reason": "Execution pattern is healthy and consistent with recommended path.",
+    "recommendation": "continue_current_path",
+    "evidence": [
+      "Weekly execution (40%) is aligned with Placement milestone requirements.",
+      "Workload level (Manageable) is sustainable.",
+      "Confidence score of 55% indicates strong trajectory alignment."
+    ],
+    "next_action": "Continue executing weekly roadmap actions consistently.",
+    "should_re_evaluate": false,
+    "alternative_scenario": null,
+    "alternative_score": null,
+    "created_at": "2026-08-24T16:50:01.915712"
+  },
+  "test_user_1chk": {
+    "user_id": "test_user_1chk",
+    "status": "on_track",
+    "current_scenario": "Placement",
+    "current_score": 82,
+    "execution_health": "Execution 35% (insufficient_data)",
+    "workload_health": "Manageable",
+    "future_confidence": 60,
+    "trigger_reason": "Execution pattern is healthy and consistent with recommended path.",
+    "recommendation": "continue_current_path",
+    "evidence": [
+      "Weekly execution (35%) is aligned with Placement milestone requirements.",
+      "Workload level (Manageable) is sustainable.",
+      "Confidence score of 60% indicates strong trajectory alignment."
+    ],
+    "next_action": "Continue executing weekly roadmap actions consistently.",
+    "should_re_evaluate": false,
+    "alternative_scenario": null,
+    "alternative_score": null,
+    "created_at": "2026-08-24T16:50:01.917170"
+  },
+  "user_isolated_adaptive": {
+    "user_id": "user_isolated_adaptive",
+    "status": "on_track",
+    "current_scenario": "Career Target",
+    "current_score": 85,
+    "execution_health": "Execution 0% (insufficient_data)",
+    "workload_health": "Unknown",
+    "future_confidence": 60,
+    "trigger_reason": "Execution pattern is healthy and consistent with recommended path.",
+    "recommendation": "continue_current_path",
+    "evidence": [
+      "Weekly execution (0%) is aligned with Career Target milestone requirements.",
+      "Workload level (Unknown) is sustainable.",
+      "Confidence score of 60% indicates strong trajectory alignment."
+    ],
+    "next_action": "Continue executing weekly roadmap actions consistently.",
+    "should_re_evaluate": false,
+    "alternative_scenario": null,
+    "alternative_score": null,
+    "created_at": "2026-08-24T16:50:01.917940"
+  },
+  "test_checkin_user": {
+    "user_id": "test_checkin_user",
+    "status": "on_track",
+    "current_scenario": "Career Target",
+    "current_score": 85,
+    "execution_health": "Execution 0% (insufficient_data)",
+    "workload_health": "Unknown",
+    "future_confidence": 60,
+    "trigger_reason": "Execution pattern is healthy and consistent with recommended path.",
+    "recommendation": "continue_current_path",
+    "evidence": [
+      "Weekly execution (0%) is aligned with Career Target milestone requirements.",
+      "Workload level (Unknown) is sustainable.",
+      "Confidence score of 60% indicates strong trajectory alignment."
+    ],
+    "next_action": "Continue executing weekly roadmap actions consistently.",
+    "should_re_evaluate": false,
+    "alternative_scenario": null,
+    "alternative_score": null,
+    "created_at": "2026-08-24T16:51:24.568277"
+  },
+  "test_user_integration": {
+    "user_id": "test_user_integration",
+    "status": "on_track",
+    "current_scenario": "AI Software Engineer",
+    "current_score": 90,
+    "execution_health": "Execution 40% (stable)",
+    "workload_health": "Manageable",
+    "future_confidence": 55,
+    "trigger_reason": "Execution pattern is healthy and consistent with recommended path.",
+    "recommendation": "continue_current_path",
+    "evidence": [
+      "Weekly execution (40%) is aligned with AI Software Engineer milestone requirements.",
+      "Workload level (Manageable) is sustainable.",
+      "Confidence score of 55% indicates strong trajectory alignment."
+    ],
+    "next_action": "Continue executing weekly roadmap actions consistently.",
+    "should_re_evaluate": false,
+    "alternative_scenario": null,
+    "alternative_score": null,
+    "created_at": "2026-08-24T16:50:01.488795"
+  },
+  "user_1787590421303_8uejt": {
+    "user_id": "user_1787590421303_8uejt",
+    "status": "on_track",
+    "current_scenario": "Full Stack Developer",
+    "current_score": 86,
+    "execution_health": "Execution 100% (insufficient_data)",
+    "workload_health": "Easy",
+    "future_confidence": 85,
+    "trigger_reason": "Execution pattern is healthy and consistent with recommended path.",
+    "recommendation": "continue_current_path",
+    "evidence": [
+      "Weekly execution (100%) is aligned with Full Stack Developer milestone requirements.",
+      "Workload level (Easy) is sustainable.",
+      "Confidence score of 85% indicates strong trajectory alignment."
+    ],
+    "next_action": "Continue executing weekly roadmap actions consistently.",
+    "should_re_evaluate": false,
+    "alternative_scenario": null,
+    "alternative_score": null,
+    "created_at": "2026-08-24T17:15:26.207037"
   }
 }

@@ -65,6 +65,7 @@ export interface Recommendation {
   reason: string;
   tradeoffs: string[];
   next_steps: string[];
+  engine_used?: string;
 }
 
 export interface SimulationResponse {
@@ -79,6 +80,8 @@ export interface HealthResponse {
   status: string;
   supabase_connected: boolean;
   gemini_connected: boolean;
+  api_key_configured?: boolean;
+  api_key_status?: string;
   mode: string;
 }
 
@@ -163,6 +166,7 @@ export interface ActionRoadmap {
   metrics_to_track: MetricToTrack[];
   next_checkin: string;
   created_at: string;
+  goal_context?: string;
 }
 
 export interface WeeklyCheckInSubmission {

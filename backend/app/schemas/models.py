@@ -63,7 +63,7 @@ class OverloadScore(BaseModel):
 
 class ScenarioInput(BaseModel):
     name: str
-    description: str
+    description: Optional[str] = Field(default="")
     weekly_hours: float = Field(default=15.0, ge=0)
     focus_areas: List[str] = Field(default_factory=list)
     investments: Optional[Dict[str, float]] = Field(default_factory=dict)
@@ -84,11 +84,13 @@ class ScenarioResult(BaseModel):
     explanation: str
 
 class Recommendation(BaseModel):
+    model_config = ConfigDict(extra="ignore")
     recommended_scenario: str
     reason: str
     tradeoffs: List[str] = Field(default_factory=list)
     next_steps: List[str] = Field(default_factory=list)
     engine_used: Optional[str] = Field(default="deterministic_fallback", description="Engine used: gemini-2.0-flash or deterministic_fallback")
+    score_gap: Optional[int] = Field(default=None)
 
 
 class SimulationResponse(BaseModel):

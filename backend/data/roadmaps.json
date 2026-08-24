@@ -608,5 +608,2201 @@
     "next_checkin": "In 7 Days",
     "created_at": "2026-08-23T15:41:55.696274",
     "goal_context": "Become a highly skilled Wildlife Photographer and build a professional career documenting wildlife and conservation"
+  },
+  "test_user_progress": {
+    "id": "roadmap_a47c2fc4",
+    "user_id": "test_user_progress",
+    "scenario": "Placement",
+    "overall_score": 85,
+    "reason": "Highest overall score",
+    "workload_risk": 30,
+    "risk_level": "Strong alignment",
+    "workload_caution": null,
+    "milestones": [
+      {
+        "timeframe": "30 DAYS",
+        "title": "Ai Software Engineer Foundations & Skill Building",
+        "items": [
+          "Complete core practice units in Ai Software Engineer Core Fundamentals",
+          "Draft baseline portfolio outline for Ai Software Engineer roles",
+          "Review core principles in Ai Software Engineer Practical Execution"
+        ]
+      },
+      {
+        "timeframe": "60 DAYS",
+        "title": "Ai Software Engineer Portfolio & Practical Execution",
+        "items": [
+          "Deploy 2 real-world Ai Software Engineer projects/case studies",
+          "Complete peer evaluations in Ai Software Engineer Core Fundamentals",
+          "Conduct networking outreach for Ai Software Engineer opportunities"
+        ]
+      },
+      {
+        "timeframe": "90 DAYS",
+        "title": "Ai Software Engineer Career Launch & Placement",
+        "items": [
+          "Achieve top shortlist status as a Ai Software Engineer",
+          "Complete final assessment rounds",
+          "Secure target offer/position as a Ai Software Engineer"
+        ]
+      }
+    ],
+    "weekly_actions": [
+      {
+        "id": "6418789d-b95e-4b47-8209-e8de54c9bc96",
+        "title": "Master Ai Software Engineer Core Skills & Ai Software Engineer Core Fundamentals",
+        "description": "Dedicate 10 hrs/week to mastering Ai Software Engineer Core Fundamentals and core domain principles for becoming a Ai Software Engineer.",
+        "category": "SKILL",
+        "target": "10 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "4e0f09c5-021d-474c-8d4c-07d12e4a278e",
+        "title": "Build Ai Software Engineer Practical Portfolio & Case Studies",
+        "description": "Invest ~6 hrs/week building live portfolio projects, field deliverables, or case studies in Ai Software Engineer Practical Execution.",
+        "category": "PROJECT",
+        "target": "6 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "00894dbb-e4d2-4b79-9b92-6488742ee311",
+        "title": "Ai Software Engineer Career Outreach & Portfolio Review",
+        "description": "Spend 4 hrs/week practicing role-specific assessments, portfolio presentations, and industry networking for Ai Software Engineer positions.",
+        "category": "CAREER",
+        "target": "4 hrs/week",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "top_priorities": [
+      {
+        "id": "ebcf31aa-63b9-475f-b58a-c677b5c2ad42",
+        "title": "Ai Software Engineer Core Mastery",
+        "description": "Master key fundamentals in Ai Software Engineer Core Fundamentals",
+        "category": "SKILL",
+        "target": "Core Competency",
+        "status": "in_progress",
+        "priority": "High"
+      },
+      {
+        "id": "187ca46f-a485-475e-b247-ab23d5f4fbda",
+        "title": "Ai Software Engineer Portfolio Assets",
+        "description": "Build & ship live practical deliverables in Ai Software Engineer Practical Execution",
+        "category": "PROJECT",
+        "target": "2 Live Portfolio Items",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "07e93461-b897-4fbe-ac34-d767a40895c4",
+        "title": "Ai Software Engineer Industry Readiness",
+        "description": "Complete portfolio reviews & professional outreach prep",
+        "category": "CAREER",
+        "target": "5 Outreach Contacts",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "metrics_to_track": [
+      {
+        "name": "Ai Software Engineer Core Fundamentals Practice Units",
+        "current": "0",
+        "target": "40"
+      },
+      {
+        "name": "Ai Software Engineer Portfolio Assets",
+        "current": "0",
+        "target": "2"
+      },
+      {
+        "name": "Portfolio Reviews Completed",
+        "current": "0",
+        "target": "5"
+      },
+      {
+        "name": "Outreach Contacts",
+        "current": "0",
+        "target": "10"
+      }
+    ],
+    "next_checkin": "In 7 Days",
+    "created_at": "2026-08-24T16:50:02.784124",
+    "goal_context": "AI Software Engineer"
+  },
+  "user_teacher": {
+    "id": "roadmap_1d345b0e",
+    "user_id": "user_teacher",
+    "scenario": "Placement",
+    "overall_score": 85,
+    "reason": "Highest overall score",
+    "workload_risk": 30,
+    "risk_level": "Winning placement scenario",
+    "workload_caution": null,
+    "milestones": [
+      {
+        "timeframe": "30 DAYS",
+        "title": "Teacher Foundations & Skill Building",
+        "items": [
+          "Complete core practice units in Classroom Management",
+          "Draft baseline portfolio outline for Teacher roles",
+          "Review core principles in Communication"
+        ]
+      },
+      {
+        "timeframe": "60 DAYS",
+        "title": "Teacher Portfolio & Practical Execution",
+        "items": [
+          "Deploy 2 real-world Teacher projects/case studies",
+          "Complete peer evaluations in Classroom Management",
+          "Conduct networking outreach for Teacher opportunities"
+        ]
+      },
+      {
+        "timeframe": "90 DAYS",
+        "title": "Teacher Career Launch & Placement",
+        "items": [
+          "Achieve top shortlist status as a Teacher",
+          "Complete final assessment rounds",
+          "Secure target offer/position as a Teacher"
+        ]
+      }
+    ],
+    "weekly_actions": [
+      {
+        "id": "d371e6c6-8fcc-45f6-80e1-fc1506eda2e3",
+        "title": "Master Teacher Core Skills & Classroom Management",
+        "description": "Dedicate 8 hrs/week to mastering Classroom Management and core domain principles for becoming a Teacher.",
+        "category": "SKILL",
+        "target": "8 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "7fe42fc8-0817-4c19-9be2-e0398cd26ffc",
+        "title": "Build Teacher Practical Portfolio & Case Studies",
+        "description": "Invest ~6 hrs/week building live portfolio projects, field deliverables, or case studies in Communication.",
+        "category": "PROJECT",
+        "target": "6 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "423aff52-9600-42da-8b89-0be612ee1a35",
+        "title": "Teacher Career Outreach & Portfolio Review",
+        "description": "Spend 4 hrs/week practicing role-specific assessments, portfolio presentations, and industry networking for Teacher positions.",
+        "category": "CAREER",
+        "target": "4 hrs/week",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "top_priorities": [
+      {
+        "id": "784ad0a3-13d1-4697-9568-c7fbc7ef51b2",
+        "title": "Teacher Core Mastery",
+        "description": "Master key fundamentals in Classroom Management",
+        "category": "SKILL",
+        "target": "Core Competency",
+        "status": "in_progress",
+        "priority": "High"
+      },
+      {
+        "id": "4d032d25-05fe-4d5e-ad32-fb1455f0f055",
+        "title": "Teacher Portfolio Assets",
+        "description": "Build & ship live practical deliverables in Communication",
+        "category": "PROJECT",
+        "target": "2 Live Portfolio Items",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "928b7699-d72d-48cb-bd48-c4175da2783f",
+        "title": "Teacher Industry Readiness",
+        "description": "Complete portfolio reviews & professional outreach prep",
+        "category": "CAREER",
+        "target": "5 Outreach Contacts",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "metrics_to_track": [
+      {
+        "name": "Classroom Management Practice Units",
+        "current": "0",
+        "target": "32"
+      },
+      {
+        "name": "Teacher Portfolio Assets",
+        "current": "0",
+        "target": "2"
+      },
+      {
+        "name": "Portfolio Reviews Completed",
+        "current": "0",
+        "target": "5"
+      },
+      {
+        "name": "Outreach Contacts",
+        "current": "0",
+        "target": "10"
+      }
+    ],
+    "next_checkin": "In 7 Days",
+    "created_at": "2026-08-24T16:51:24.344408",
+    "goal_context": "Become teacher"
+  },
+  "user_swe": {
+    "id": "roadmap_6a3d9455",
+    "user_id": "user_swe",
+    "scenario": "Placement",
+    "overall_score": 85,
+    "reason": "Highest overall score",
+    "workload_risk": 30,
+    "risk_level": "Winning placement scenario",
+    "workload_caution": null,
+    "milestones": [
+      {
+        "timeframe": "30 DAYS",
+        "title": "Software Engineer Foundations & Skill Building",
+        "items": [
+          "Complete core practice units in DSA",
+          "Draft baseline portfolio outline for Software Engineer roles",
+          "Review core principles in System Design"
+        ]
+      },
+      {
+        "timeframe": "60 DAYS",
+        "title": "Software Engineer Portfolio & Practical Execution",
+        "items": [
+          "Deploy 2 real-world Software Engineer projects/case studies",
+          "Complete peer evaluations in DSA",
+          "Conduct networking outreach for Software Engineer opportunities"
+        ]
+      },
+      {
+        "timeframe": "90 DAYS",
+        "title": "Software Engineer Career Launch & Placement",
+        "items": [
+          "Achieve top shortlist status as a Software Engineer",
+          "Complete final assessment rounds",
+          "Secure target offer/position as a Software Engineer"
+        ]
+      }
+    ],
+    "weekly_actions": [
+      {
+        "id": "c5f4b6d4-ce0d-4150-a7c9-75331c621908",
+        "title": "Master Software Engineer Core Skills & DSA",
+        "description": "Dedicate 8 hrs/week to mastering DSA and core domain principles for becoming a Software Engineer.",
+        "category": "SKILL",
+        "target": "8 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "1e1e4eaf-c299-4660-93bd-5b4323b6a36f",
+        "title": "Build Software Engineer Practical Portfolio & Case Studies",
+        "description": "Invest ~6 hrs/week building live portfolio projects, field deliverables, or case studies in System Design.",
+        "category": "PROJECT",
+        "target": "6 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "377f5bff-4c19-45e7-8913-39779f6d7e60",
+        "title": "Software Engineer Career Outreach & Portfolio Review",
+        "description": "Spend 4 hrs/week practicing role-specific assessments, portfolio presentations, and industry networking for Software Engineer positions.",
+        "category": "CAREER",
+        "target": "4 hrs/week",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "top_priorities": [
+      {
+        "id": "02badcfc-dd65-45c2-941a-158687a017c8",
+        "title": "Software Engineer Core Mastery",
+        "description": "Master key fundamentals in DSA",
+        "category": "SKILL",
+        "target": "Core Competency",
+        "status": "in_progress",
+        "priority": "High"
+      },
+      {
+        "id": "89a31c84-7563-4b58-8016-2b5b026ac933",
+        "title": "Software Engineer Portfolio Assets",
+        "description": "Build & ship live practical deliverables in System Design",
+        "category": "PROJECT",
+        "target": "2 Live Portfolio Items",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "a47fc0bc-117e-49ae-8e19-2c67bb0df6e1",
+        "title": "Software Engineer Industry Readiness",
+        "description": "Complete portfolio reviews & professional outreach prep",
+        "category": "CAREER",
+        "target": "5 Outreach Contacts",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "metrics_to_track": [
+      {
+        "name": "DSA Practice Units",
+        "current": "0",
+        "target": "32"
+      },
+      {
+        "name": "Software Engineer Portfolio Assets",
+        "current": "0",
+        "target": "2"
+      },
+      {
+        "name": "Portfolio Reviews Completed",
+        "current": "0",
+        "target": "5"
+      },
+      {
+        "name": "Outreach Contacts",
+        "current": "0",
+        "target": "10"
+      }
+    ],
+    "next_checkin": "In 7 Days",
+    "created_at": "2026-08-24T16:51:24.349128",
+    "goal_context": "Become software engineer"
+  },
+  "user_lawyer": {
+    "id": "roadmap_4e0f6018",
+    "user_id": "user_lawyer",
+    "scenario": "Placement",
+    "overall_score": 85,
+    "reason": "Highest overall score",
+    "workload_risk": 30,
+    "risk_level": "Winning placement scenario",
+    "workload_caution": null,
+    "milestones": [
+      {
+        "timeframe": "30 DAYS",
+        "title": "Lawyer Foundations & Skill Building",
+        "items": [
+          "Complete core practice units in Legal Writing",
+          "Draft baseline portfolio outline for Lawyer roles",
+          "Review core principles in Lawyer Practical Execution"
+        ]
+      },
+      {
+        "timeframe": "60 DAYS",
+        "title": "Lawyer Portfolio & Practical Execution",
+        "items": [
+          "Deploy 2 real-world Lawyer projects/case studies",
+          "Complete peer evaluations in Legal Writing",
+          "Conduct networking outreach for Lawyer opportunities"
+        ]
+      },
+      {
+        "timeframe": "90 DAYS",
+        "title": "Lawyer Career Launch & Placement",
+        "items": [
+          "Achieve top shortlist status as a Lawyer",
+          "Complete final assessment rounds",
+          "Secure target offer/position as a Lawyer"
+        ]
+      }
+    ],
+    "weekly_actions": [
+      {
+        "id": "5d8b2ff9-580f-4625-a159-a4cfd90ea472",
+        "title": "Master Lawyer Core Skills & Legal Writing",
+        "description": "Dedicate 8 hrs/week to mastering Legal Writing and core domain principles for becoming a Lawyer.",
+        "category": "SKILL",
+        "target": "8 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "34576339-b498-4ca0-a4ff-913dae0a2767",
+        "title": "Build Lawyer Practical Portfolio & Case Studies",
+        "description": "Invest ~6 hrs/week building live portfolio projects, field deliverables, or case studies in Lawyer Practical Execution.",
+        "category": "PROJECT",
+        "target": "6 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "cb85f1c2-98e2-44b7-b517-7e36052da262",
+        "title": "Lawyer Career Outreach & Portfolio Review",
+        "description": "Spend 4 hrs/week practicing role-specific assessments, portfolio presentations, and industry networking for Lawyer positions.",
+        "category": "CAREER",
+        "target": "4 hrs/week",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "top_priorities": [
+      {
+        "id": "c20419b4-c0d9-4e55-8757-a4db626e2935",
+        "title": "Lawyer Core Mastery",
+        "description": "Master key fundamentals in Legal Writing",
+        "category": "SKILL",
+        "target": "Core Competency",
+        "status": "in_progress",
+        "priority": "High"
+      },
+      {
+        "id": "21c7a751-1e2b-4d4b-baf7-c5fd4cf1624a",
+        "title": "Lawyer Portfolio Assets",
+        "description": "Build & ship live practical deliverables in Lawyer Practical Execution",
+        "category": "PROJECT",
+        "target": "2 Live Portfolio Items",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "548b5e3b-7bd1-47f4-839d-4c64f4c096bc",
+        "title": "Lawyer Industry Readiness",
+        "description": "Complete portfolio reviews & professional outreach prep",
+        "category": "CAREER",
+        "target": "5 Outreach Contacts",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "metrics_to_track": [
+      {
+        "name": "Legal Writing Practice Units",
+        "current": "0",
+        "target": "32"
+      },
+      {
+        "name": "Lawyer Portfolio Assets",
+        "current": "0",
+        "target": "2"
+      },
+      {
+        "name": "Portfolio Reviews Completed",
+        "current": "0",
+        "target": "5"
+      },
+      {
+        "name": "Outreach Contacts",
+        "current": "0",
+        "target": "10"
+      }
+    ],
+    "next_checkin": "In 7 Days",
+    "created_at": "2026-08-24T16:51:24.352490",
+    "goal_context": "Become lawyer"
+  },
+  "user_photo": {
+    "id": "roadmap_425b12ab",
+    "user_id": "user_photo",
+    "scenario": "Placement",
+    "overall_score": 85,
+    "reason": "Highest overall score",
+    "workload_risk": 30,
+    "risk_level": "Winning placement scenario",
+    "workload_caution": null,
+    "milestones": [
+      {
+        "timeframe": "30 DAYS",
+        "title": "Wildlife Photographer Foundations & Skill Building",
+        "items": [
+          "Complete core practice units in Lighting & Editing",
+          "Draft baseline portfolio outline for Wildlife Photographer roles",
+          "Review core principles in Wildlife Photographer Practical Execution"
+        ]
+      },
+      {
+        "timeframe": "60 DAYS",
+        "title": "Wildlife Photographer Portfolio & Practical Execution",
+        "items": [
+          "Deploy 2 real-world Wildlife Photographer projects/case studies",
+          "Complete peer evaluations in Lighting & Editing",
+          "Conduct networking outreach for Wildlife Photographer opportunities"
+        ]
+      },
+      {
+        "timeframe": "90 DAYS",
+        "title": "Wildlife Photographer Career Launch & Placement",
+        "items": [
+          "Achieve top shortlist status as a Wildlife Photographer",
+          "Complete final assessment rounds",
+          "Secure target offer/position as a Wildlife Photographer"
+        ]
+      }
+    ],
+    "weekly_actions": [
+      {
+        "id": "d9da414f-6de0-4c6d-97d0-89f5b545065d",
+        "title": "Master Wildlife Photographer Core Skills & Lighting & Editing",
+        "description": "Dedicate 8 hrs/week to mastering Lighting & Editing and core domain principles for becoming a Wildlife Photographer.",
+        "category": "SKILL",
+        "target": "8 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "6de8cec6-c483-4899-bdd5-4fae6f21caa7",
+        "title": "Build Wildlife Photographer Practical Portfolio & Case Studies",
+        "description": "Invest ~6 hrs/week building live portfolio projects, field deliverables, or case studies in Wildlife Photographer Practical Execution.",
+        "category": "PROJECT",
+        "target": "6 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "05d9cfd9-6f84-4b6f-901f-0ea3e022e776",
+        "title": "Wildlife Photographer Career Outreach & Portfolio Review",
+        "description": "Spend 4 hrs/week practicing role-specific assessments, portfolio presentations, and industry networking for Wildlife Photographer positions.",
+        "category": "CAREER",
+        "target": "4 hrs/week",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "top_priorities": [
+      {
+        "id": "2301e5fd-d54a-4d37-a837-ac8d3c14505e",
+        "title": "Wildlife Photographer Core Mastery",
+        "description": "Master key fundamentals in Lighting & Editing",
+        "category": "SKILL",
+        "target": "Core Competency",
+        "status": "in_progress",
+        "priority": "High"
+      },
+      {
+        "id": "34b09eec-80d3-4cfc-a9ab-4b9e7337a1c1",
+        "title": "Wildlife Photographer Portfolio Assets",
+        "description": "Build & ship live practical deliverables in Wildlife Photographer Practical Execution",
+        "category": "PROJECT",
+        "target": "2 Live Portfolio Items",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "cb111dda-e96d-477c-b4eb-758982908fc9",
+        "title": "Wildlife Photographer Industry Readiness",
+        "description": "Complete portfolio reviews & professional outreach prep",
+        "category": "CAREER",
+        "target": "5 Outreach Contacts",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "metrics_to_track": [
+      {
+        "name": "Lighting & Editing Practice Units",
+        "current": "0",
+        "target": "32"
+      },
+      {
+        "name": "Wildlife Photographer Portfolio Assets",
+        "current": "0",
+        "target": "2"
+      },
+      {
+        "name": "Portfolio Reviews Completed",
+        "current": "0",
+        "target": "5"
+      },
+      {
+        "name": "Outreach Contacts",
+        "current": "0",
+        "target": "10"
+      }
+    ],
+    "next_checkin": "In 7 Days",
+    "created_at": "2026-08-24T16:51:24.360653",
+    "goal_context": "Wildlife Photographer"
+  },
+  "user_dynamic_change": {
+    "id": "roadmap_a9c2988d",
+    "user_id": "user_dynamic_change",
+    "scenario": "Placement",
+    "overall_score": 85,
+    "reason": "Highest overall score",
+    "workload_risk": 30,
+    "risk_level": "Winning placement scenario",
+    "workload_caution": null,
+    "milestones": [
+      {
+        "timeframe": "30 DAYS",
+        "title": "Doctor Foundations & Skill Building",
+        "items": [
+          "Complete core practice units in Doctor Core Fundamentals",
+          "Draft baseline portfolio outline for Doctor roles",
+          "Review core principles in Doctor Practical Execution"
+        ]
+      },
+      {
+        "timeframe": "60 DAYS",
+        "title": "Doctor Portfolio & Practical Execution",
+        "items": [
+          "Deploy 2 real-world Doctor projects/case studies",
+          "Complete peer evaluations in Doctor Core Fundamentals",
+          "Conduct networking outreach for Doctor opportunities"
+        ]
+      },
+      {
+        "timeframe": "90 DAYS",
+        "title": "Doctor Career Launch & Placement",
+        "items": [
+          "Achieve top shortlist status as a Doctor",
+          "Complete final assessment rounds",
+          "Secure target offer/position as a Doctor"
+        ]
+      }
+    ],
+    "weekly_actions": [
+      {
+        "id": "de14974e-5e3d-4ba9-8d1c-90348a12df21",
+        "title": "Master Doctor Core Skills & Doctor Core Fundamentals",
+        "description": "Dedicate 8 hrs/week to mastering Doctor Core Fundamentals and core domain principles for becoming a Doctor.",
+        "category": "SKILL",
+        "target": "8 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "423182c7-bfa6-4831-bdcf-a9acf8ee1370",
+        "title": "Build Doctor Practical Portfolio & Case Studies",
+        "description": "Invest ~6 hrs/week building live portfolio projects, field deliverables, or case studies in Doctor Practical Execution.",
+        "category": "PROJECT",
+        "target": "6 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "4958d124-cd0c-4454-bfc5-d77335340aa0",
+        "title": "Doctor Career Outreach & Portfolio Review",
+        "description": "Spend 4 hrs/week practicing role-specific assessments, portfolio presentations, and industry networking for Doctor positions.",
+        "category": "CAREER",
+        "target": "4 hrs/week",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "top_priorities": [
+      {
+        "id": "baa55295-2150-421b-ae09-5bcbf10f4c0c",
+        "title": "Doctor Core Mastery",
+        "description": "Master key fundamentals in Doctor Core Fundamentals",
+        "category": "SKILL",
+        "target": "Core Competency",
+        "status": "in_progress",
+        "priority": "High"
+      },
+      {
+        "id": "fe71304f-6bc5-425e-934a-627dd66f7513",
+        "title": "Doctor Portfolio Assets",
+        "description": "Build & ship live practical deliverables in Doctor Practical Execution",
+        "category": "PROJECT",
+        "target": "2 Live Portfolio Items",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "0987c85f-fa39-4e5d-9d8a-7d011251c142",
+        "title": "Doctor Industry Readiness",
+        "description": "Complete portfolio reviews & professional outreach prep",
+        "category": "CAREER",
+        "target": "5 Outreach Contacts",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "metrics_to_track": [
+      {
+        "name": "Doctor Core Fundamentals Practice Units",
+        "current": "0",
+        "target": "32"
+      },
+      {
+        "name": "Doctor Portfolio Assets",
+        "current": "0",
+        "target": "2"
+      },
+      {
+        "name": "Portfolio Reviews Completed",
+        "current": "0",
+        "target": "5"
+      },
+      {
+        "name": "Outreach Contacts",
+        "current": "0",
+        "target": "10"
+      }
+    ],
+    "next_checkin": "In 7 Days",
+    "created_at": "2026-08-24T16:51:24.370125",
+    "goal_context": "Doctor"
+  },
+  "user_checkin_test": {
+    "id": "roadmap_7f49cae5",
+    "user_id": "user_checkin_test",
+    "scenario": "Placement",
+    "overall_score": 85,
+    "reason": "Highest overall score",
+    "workload_risk": 30,
+    "risk_level": "Winning placement scenario",
+    "workload_caution": null,
+    "milestones": [
+      {
+        "timeframe": "30 DAYS",
+        "title": "Teacher Foundations & Skill Building",
+        "items": [
+          "Complete core practice units in Teacher Core Fundamentals",
+          "Draft baseline portfolio outline for Teacher roles",
+          "Review core principles in Teacher Practical Execution"
+        ]
+      },
+      {
+        "timeframe": "60 DAYS",
+        "title": "Teacher Portfolio & Practical Execution",
+        "items": [
+          "Deploy 2 real-world Teacher projects/case studies",
+          "Complete peer evaluations in Teacher Core Fundamentals",
+          "Conduct networking outreach for Teacher opportunities"
+        ]
+      },
+      {
+        "timeframe": "90 DAYS",
+        "title": "Teacher Career Launch & Placement",
+        "items": [
+          "Achieve top shortlist status as a Teacher",
+          "Complete final assessment rounds",
+          "Secure target offer/position as a Teacher"
+        ]
+      }
+    ],
+    "weekly_actions": [
+      {
+        "id": "820a39a5-3182-4644-9e7a-ad91bfd16c28",
+        "title": "Master Teacher Core Skills & Teacher Core Fundamentals",
+        "description": "Dedicate 8 hrs/week to mastering Teacher Core Fundamentals and core domain principles for becoming a Teacher.",
+        "category": "SKILL",
+        "target": "8 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "bfb8a6ec-d4c8-40d8-bad2-930fc3805b18",
+        "title": "Build Teacher Practical Portfolio & Case Studies",
+        "description": "Invest ~6 hrs/week building live portfolio projects, field deliverables, or case studies in Teacher Practical Execution.",
+        "category": "PROJECT",
+        "target": "6 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "566be660-c54d-40ae-ba2d-ce1ac8ab602f",
+        "title": "Teacher Career Outreach & Portfolio Review",
+        "description": "Spend 4 hrs/week practicing role-specific assessments, portfolio presentations, and industry networking for Teacher positions.",
+        "category": "CAREER",
+        "target": "4 hrs/week",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "top_priorities": [
+      {
+        "id": "8e444ae4-2ac8-4129-9506-da08341497ba",
+        "title": "Teacher Core Mastery",
+        "description": "Master key fundamentals in Teacher Core Fundamentals",
+        "category": "SKILL",
+        "target": "Core Competency",
+        "status": "in_progress",
+        "priority": "High"
+      },
+      {
+        "id": "23886638-8973-4fdf-89b5-10cd9a8c70a0",
+        "title": "Teacher Portfolio Assets",
+        "description": "Build & ship live practical deliverables in Teacher Practical Execution",
+        "category": "PROJECT",
+        "target": "2 Live Portfolio Items",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "aff6cdec-8593-4b0f-b77a-f26ff2dfc823",
+        "title": "Teacher Industry Readiness",
+        "description": "Complete portfolio reviews & professional outreach prep",
+        "category": "CAREER",
+        "target": "5 Outreach Contacts",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "metrics_to_track": [
+      {
+        "name": "Teacher Core Fundamentals Practice Units",
+        "current": "0",
+        "target": "32"
+      },
+      {
+        "name": "Teacher Portfolio Assets",
+        "current": "0",
+        "target": "2"
+      },
+      {
+        "name": "Portfolio Reviews Completed",
+        "current": "0",
+        "target": "5"
+      },
+      {
+        "name": "Outreach Contacts",
+        "current": "0",
+        "target": "10"
+      }
+    ],
+    "next_checkin": "In 7 Days",
+    "created_at": "2026-08-24T16:51:24.375694",
+    "goal_context": "Become teacher"
+  },
+  "user_1787426260263_wruv5": {
+    "id": "roadmap_77025c89",
+    "user_id": "user_1787426260263_wruv5",
+    "scenario": "Placement",
+    "overall_score": 80,
+    "reason": "Placement is recommended as your primary path with an overall alignment score of 80/100, matching your career goal of 'AI Software Engineer' and financial priority (8/10).",
+    "workload_risk": 30,
+    "risk_level": "Placement yields an overall score of 80/100. Goal alignment is 98%, skill growth potential is 69%, learning potential is 79%, and estimated financial outlook is 85%.",
+    "workload_caution": null,
+    "milestones": [
+      {
+        "timeframe": "30 DAYS",
+        "title": "Ai Software Engineer Foundations & Skill Building",
+        "items": [
+          "Complete core practice units in PyTorch",
+          "Draft baseline portfolio outline for Ai Software Engineer roles",
+          "Review core principles in System Design"
+        ]
+      },
+      {
+        "timeframe": "60 DAYS",
+        "title": "Ai Software Engineer Portfolio & Practical Execution",
+        "items": [
+          "Deploy 2 real-world Ai Software Engineer projects/case studies",
+          "Complete peer evaluations in PyTorch",
+          "Conduct networking outreach for Ai Software Engineer opportunities"
+        ]
+      },
+      {
+        "timeframe": "90 DAYS",
+        "title": "Ai Software Engineer Career Launch & Placement",
+        "items": [
+          "Achieve top shortlist status as a Ai Software Engineer",
+          "Complete final assessment rounds",
+          "Secure target offer/position as a Ai Software Engineer"
+        ]
+      }
+    ],
+    "weekly_actions": [
+      {
+        "id": "dd2b9921-0ed3-4775-9b6c-a3586270d6eb",
+        "title": "Master Ai Software Engineer Core Skills & PyTorch",
+        "description": "Dedicate 8 hrs/week to mastering PyTorch and core domain principles for becoming a Ai Software Engineer.",
+        "category": "SKILL",
+        "target": "8 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "d60e11f1-c196-49fa-999f-a83fec43cb00",
+        "title": "Build Ai Software Engineer Practical Portfolio & Case Studies",
+        "description": "Invest ~6 hrs/week building live portfolio projects, field deliverables, or case studies in System Design.",
+        "category": "PROJECT",
+        "target": "6 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "762f7a0b-ffe3-4e17-b6fb-31720ef75495",
+        "title": "Ai Software Engineer Career Outreach & Portfolio Review",
+        "description": "Spend 4 hrs/week practicing role-specific assessments, portfolio presentations, and industry networking for Ai Software Engineer positions.",
+        "category": "CAREER",
+        "target": "4 hrs/week",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "top_priorities": [
+      {
+        "id": "942ce7d4-9f4f-40ad-8912-36c3ce1ede12",
+        "title": "Ai Software Engineer Core Mastery",
+        "description": "Master key fundamentals in PyTorch",
+        "category": "SKILL",
+        "target": "Core Competency",
+        "status": "in_progress",
+        "priority": "High"
+      },
+      {
+        "id": "733e5eb6-2105-48d4-b9a3-bcf0f42ed4e2",
+        "title": "Ai Software Engineer Portfolio Assets",
+        "description": "Build & ship live practical deliverables in System Design",
+        "category": "PROJECT",
+        "target": "2 Live Portfolio Items",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "a17ab5fc-61fe-495d-8919-a6f8c0a52268",
+        "title": "Ai Software Engineer Industry Readiness",
+        "description": "Complete portfolio reviews & professional outreach prep",
+        "category": "CAREER",
+        "target": "5 Outreach Contacts",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "metrics_to_track": [
+      {
+        "name": "PyTorch Practice Units",
+        "current": "0",
+        "target": "32"
+      },
+      {
+        "name": "Ai Software Engineer Portfolio Assets",
+        "current": "0",
+        "target": "2"
+      },
+      {
+        "name": "Portfolio Reviews Completed",
+        "current": "0",
+        "target": "5"
+      },
+      {
+        "name": "Outreach Contacts",
+        "current": "0",
+        "target": "10"
+      }
+    ],
+    "next_checkin": "In 7 Days",
+    "created_at": "2026-08-24T16:51:24.768556",
+    "goal_context": "AI Software Engineer"
+  },
+  "demo_user": {
+    "id": "roadmap_cab03f71",
+    "user_id": "demo_user",
+    "scenario": "Placement",
+    "overall_score": 85,
+    "reason": "Placement is recommended as your primary path with an overall alignment score of 85/100, matching your career goal of 'Senior AI Software Engineer' and financial priority (8/10).",
+    "workload_risk": 42,
+    "risk_level": "Placement yields an overall score of 85/100. Goal alignment is 98%, skill growth potential is 81%, learning potential is 90%, and estimated financial outlook is 95%.",
+    "workload_caution": null,
+    "milestones": [
+      {
+        "timeframe": "30 DAYS",
+        "title": "Senior Ai Software Engineer Foundations & Skill Building",
+        "items": [
+          "Complete core practice units in Data Structures & Algorithms",
+          "Draft baseline portfolio outline for Senior Ai Software Engineer roles",
+          "Review core principles in Distributed Systems"
+        ]
+      },
+      {
+        "timeframe": "60 DAYS",
+        "title": "Senior Ai Software Engineer Portfolio & Practical Execution",
+        "items": [
+          "Deploy 2 real-world Senior Ai Software Engineer projects/case studies",
+          "Complete peer evaluations in Data Structures & Algorithms",
+          "Conduct networking outreach for Senior Ai Software Engineer opportunities"
+        ]
+      },
+      {
+        "timeframe": "90 DAYS",
+        "title": "Senior Ai Software Engineer Career Launch & Placement",
+        "items": [
+          "Achieve top shortlist status as a Senior Ai Software Engineer",
+          "Complete final assessment rounds",
+          "Secure target offer/position as a Senior Ai Software Engineer"
+        ]
+      }
+    ],
+    "weekly_actions": [
+      {
+        "id": "89df20a2-8bf3-4a30-aae6-294cf459556a",
+        "title": "Master Senior Ai Software Engineer Core Skills & Data Structures & Algorithms",
+        "description": "Dedicate 12 hrs/week to mastering Data Structures & Algorithms and core domain principles for becoming a Senior Ai Software Engineer.",
+        "category": "SKILL",
+        "target": "12 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "1183e9c2-7c8a-4687-8c82-d8a12ccfa256",
+        "title": "Build Senior Ai Software Engineer Practical Portfolio & Case Studies",
+        "description": "Invest ~8 hrs/week building live portfolio projects, field deliverables, or case studies in Distributed Systems.",
+        "category": "PROJECT",
+        "target": "8 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "0012f8bc-8698-4683-9c57-c5bb3e776f25",
+        "title": "Senior Ai Software Engineer Career Outreach & Portfolio Review",
+        "description": "Spend 4 hrs/week practicing role-specific assessments, portfolio presentations, and industry networking for Senior Ai Software Engineer positions.",
+        "category": "CAREER",
+        "target": "4 hrs/week",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "top_priorities": [
+      {
+        "id": "fb05589a-9b3c-459a-869d-aec0d0ba8f8e",
+        "title": "Senior Ai Software Engineer Core Mastery",
+        "description": "Master key fundamentals in Data Structures & Algorithms",
+        "category": "SKILL",
+        "target": "Core Competency",
+        "status": "in_progress",
+        "priority": "High"
+      },
+      {
+        "id": "11979a8d-4dff-424d-bdb0-b6835ae41323",
+        "title": "Senior Ai Software Engineer Portfolio Assets",
+        "description": "Build & ship live practical deliverables in Distributed Systems",
+        "category": "PROJECT",
+        "target": "2 Live Portfolio Items",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "bd839caa-9e1d-4e7e-8def-2d2941936648",
+        "title": "Senior Ai Software Engineer Industry Readiness",
+        "description": "Complete portfolio reviews & professional outreach prep",
+        "category": "CAREER",
+        "target": "5 Outreach Contacts",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "metrics_to_track": [
+      {
+        "name": "Data Structures & Algorithms Practice Units",
+        "current": "0",
+        "target": "48"
+      },
+      {
+        "name": "Senior Ai Software Engineer Portfolio Assets",
+        "current": "0",
+        "target": "2"
+      },
+      {
+        "name": "Portfolio Reviews Completed",
+        "current": "0",
+        "target": "5"
+      },
+      {
+        "name": "Outreach Contacts",
+        "current": "0",
+        "target": "10"
+      }
+    ],
+    "next_checkin": "In 7 Days",
+    "created_at": "2026-08-24T17:03:59.704835",
+    "goal_context": "Senior AI Software Engineer"
+  },
+  "test_user_hs": {
+    "id": "roadmap_dadb2704",
+    "user_id": "test_user_hs",
+    "scenario": "Startup",
+    "overall_score": 75,
+    "reason": "Startup is recommended as your primary path with an overall alignment score of 75/100, matching your career goal of 'Research Scientist' and financial priority (3/10).",
+    "workload_risk": 39,
+    "risk_level": "Startup yields an overall score of 75/100. Goal alignment is 90%, skill growth potential is 70%, learning potential is 87%, and estimated financial outlook is 72%.",
+    "workload_caution": null,
+    "milestones": [
+      {
+        "timeframe": "30 DAYS",
+        "title": "Research Scientist Venture Foundations",
+        "items": [
+          "Build v1 service model in Research Scientist Core Fundamentals",
+          "Conduct 15 customer discovery interviews",
+          "Define core value proposition"
+        ]
+      },
+      {
+        "timeframe": "60 DAYS",
+        "title": "Launch Phase for Research Scientist Venture",
+        "items": [
+          "Launch offering to early clients",
+          "Collect feedback & iterate on core service",
+          "Draft partner pitch deck"
+        ]
+      },
+      {
+        "timeframe": "90 DAYS",
+        "title": "Research Scientist Venture Scaling",
+        "items": [
+          "Achieve target client base",
+          "Present Research Scientist venture to partners/investors",
+          "Finalize growth strategy"
+        ]
+      }
+    ],
+    "weekly_actions": [
+      {
+        "id": "c694b842-488f-4035-91d1-fccfadef07ff",
+        "title": "Research Scientist Venture MVP & Service Deliverables",
+        "description": "Build core service offerings & test client workflows in Research Scientist Core Fundamentals for 12 hrs/week.",
+        "category": "PROJECT",
+        "target": "12 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "983fc2ce-24cd-4281-b052-89c35c0dd654",
+        "title": "Research Scientist Client & Market Discovery",
+        "description": "Conduct user/client interviews & validate problem hypotheses for 5 hrs/week.",
+        "category": "RESEARCH",
+        "target": "5 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "b8d813a0-6f43-4047-8946-4f2a9735901a",
+        "title": "Client Pitching & Licensing Outreach for Research Scientist Venture",
+        "description": "Refine pitch materials & connect with clients/partners for 3 hrs/week.",
+        "category": "NETWORKING",
+        "target": "3 hrs/week",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "top_priorities": [
+      {
+        "id": "7cfbbdcb-94c6-4b8d-b979-4f84f3653000",
+        "title": "Working Research Scientist Service MVP",
+        "description": "Deliver functional service/product in Research Scientist Core Fundamentals",
+        "category": "PROJECT",
+        "target": "1 Live MVP",
+        "status": "in_progress",
+        "priority": "High"
+      },
+      {
+        "id": "5c96cf53-cd47-42af-86bc-26d164718705",
+        "title": "Client Market Validation",
+        "description": "Validate problem space with target clients/users",
+        "category": "RESEARCH",
+        "target": "15 Client Interviews",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "cd45015a-698f-4fae-81f5-a9b0719ff938",
+        "title": "Research Scientist Venture Pitch Deck",
+        "description": "Create compelling pitch presentation for Research Scientist venture",
+        "category": "NETWORKING",
+        "target": "1 Deck v1",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "metrics_to_track": [
+      {
+        "name": "Client Interviews Conducted",
+        "current": "0",
+        "target": "15"
+      },
+      {
+        "name": "Service Deliverables Completed",
+        "current": "0",
+        "target": "6"
+      },
+      {
+        "name": "Pitch Materials Revisions",
+        "current": "0",
+        "target": "10"
+      },
+      {
+        "name": "Active Clients / Partners",
+        "current": "0",
+        "target": "50"
+      }
+    ],
+    "next_checkin": "In 7 Days",
+    "created_at": "2026-08-24T16:51:24.736858",
+    "goal_context": "Research Scientist"
+  },
+  "test_slider_user": {
+    "id": "roadmap_6e5cec24",
+    "user_id": "test_slider_user",
+    "scenario": "Startup",
+    "overall_score": 91,
+    "reason": "Startup is recommended as your primary path with an overall alignment score of 91/100, matching your career goal of 'Tech Founder & AI Entrepreneur' and financial priority (5/10).",
+    "workload_risk": 39,
+    "risk_level": "Startup yields an overall score of 91/100. Goal alignment is 98%, skill growth potential is 98%, learning potential is 98%, and estimated financial outlook is 90%.",
+    "workload_caution": null,
+    "milestones": [
+      {
+        "timeframe": "30 DAYS",
+        "title": "Tech Founder & Ai Entrepreneur Venture Foundations",
+        "items": [
+          "Build v1 service model in Pitching",
+          "Conduct 15 customer discovery interviews",
+          "Define core value proposition"
+        ]
+      },
+      {
+        "timeframe": "60 DAYS",
+        "title": "Launch Phase for Tech Founder & Ai Entrepreneur Venture",
+        "items": [
+          "Launch offering to early clients",
+          "Collect feedback & iterate on core service",
+          "Draft partner pitch deck"
+        ]
+      },
+      {
+        "timeframe": "90 DAYS",
+        "title": "Tech Founder & Ai Entrepreneur Venture Scaling",
+        "items": [
+          "Achieve target client base",
+          "Present Tech Founder & Ai Entrepreneur venture to partners/investors",
+          "Finalize growth strategy"
+        ]
+      }
+    ],
+    "weekly_actions": [
+      {
+        "id": "a5a3d8e9-1250-4087-94d5-06b89a39035d",
+        "title": "Tech Founder & Ai Entrepreneur Venture MVP & Service Deliverables",
+        "description": "Build core service offerings & test client workflows in Pitching for 23 hrs/week.",
+        "category": "PROJECT",
+        "target": "23 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "d75f0900-548e-486d-8c79-96d6e0c5f905",
+        "title": "Tech Founder & Ai Entrepreneur Client & Market Discovery",
+        "description": "Conduct user/client interviews & validate problem hypotheses for 12 hrs/week.",
+        "category": "RESEARCH",
+        "target": "12 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "1cdaeaea-0da5-47e4-9ad3-cbc8364cb7a2",
+        "title": "Client Pitching & Licensing Outreach for Tech Founder & Ai Entrepreneur Venture",
+        "description": "Refine pitch materials & connect with clients/partners for 7 hrs/week.",
+        "category": "NETWORKING",
+        "target": "7 hrs/week",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "top_priorities": [
+      {
+        "id": "695fc235-3bc9-45a4-8907-d3a12e925c8f",
+        "title": "Working Tech Founder & Ai Entrepreneur Service MVP",
+        "description": "Deliver functional service/product in Pitching",
+        "category": "PROJECT",
+        "target": "1 Live MVP",
+        "status": "in_progress",
+        "priority": "High"
+      },
+      {
+        "id": "d1d63380-fd1e-4055-be9a-baa3043760e1",
+        "title": "Client Market Validation",
+        "description": "Validate problem space with target clients/users",
+        "category": "RESEARCH",
+        "target": "15 Client Interviews",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "83f98f14-f460-44d3-b218-cb216ed0d7f1",
+        "title": "Tech Founder & Ai Entrepreneur Venture Pitch Deck",
+        "description": "Create compelling pitch presentation for Tech Founder & Ai Entrepreneur venture",
+        "category": "NETWORKING",
+        "target": "1 Deck v1",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "metrics_to_track": [
+      {
+        "name": "Client Interviews Conducted",
+        "current": "0",
+        "target": "36"
+      },
+      {
+        "name": "Service Deliverables Completed",
+        "current": "0",
+        "target": "11"
+      },
+      {
+        "name": "Pitch Materials Revisions",
+        "current": "0",
+        "target": "10"
+      },
+      {
+        "name": "Active Clients / Partners",
+        "current": "0",
+        "target": "50"
+      }
+    ],
+    "next_checkin": "In 7 Days",
+    "created_at": "2026-08-24T16:51:24.795248",
+    "goal_context": "Tech Founder & AI Entrepreneur"
+  },
+  "user_dedup_test": {
+    "id": "roadmap_5881f8c6",
+    "user_id": "user_dedup_test",
+    "scenario": "Placement",
+    "overall_score": 85,
+    "reason": "Highest overall score",
+    "workload_risk": 30,
+    "risk_level": "Winning placement scenario",
+    "workload_caution": null,
+    "milestones": [
+      {
+        "timeframe": "30 DAYS",
+        "title": "Teacher Foundations & Skill Building",
+        "items": [
+          "Complete core practice units in Teacher Core Fundamentals",
+          "Draft baseline portfolio outline for Teacher roles",
+          "Review core principles in Teacher Practical Execution"
+        ]
+      },
+      {
+        "timeframe": "60 DAYS",
+        "title": "Teacher Portfolio & Practical Execution",
+        "items": [
+          "Deploy 2 real-world Teacher projects/case studies",
+          "Complete peer evaluations in Teacher Core Fundamentals",
+          "Conduct networking outreach for Teacher opportunities"
+        ]
+      },
+      {
+        "timeframe": "90 DAYS",
+        "title": "Teacher Career Launch & Placement",
+        "items": [
+          "Achieve top shortlist status as a Teacher",
+          "Complete final assessment rounds",
+          "Secure target offer/position as a Teacher"
+        ]
+      }
+    ],
+    "weekly_actions": [
+      {
+        "id": "ba8fd8f9-776c-4b5e-9103-64e45b6a16e5",
+        "title": "Master Teacher Core Skills & Teacher Core Fundamentals",
+        "description": "Dedicate 8 hrs/week to mastering Teacher Core Fundamentals and core domain principles for becoming a Teacher.",
+        "category": "SKILL",
+        "target": "8 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "5ba2597c-5339-4170-8876-a1f7ebb105d0",
+        "title": "Build Teacher Practical Portfolio & Case Studies",
+        "description": "Invest ~6 hrs/week building live portfolio projects, field deliverables, or case studies in Teacher Practical Execution.",
+        "category": "PROJECT",
+        "target": "6 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "5999f579-54aa-42fa-ba64-0622dd314bf4",
+        "title": "Teacher Career Outreach & Portfolio Review",
+        "description": "Spend 4 hrs/week practicing role-specific assessments, portfolio presentations, and industry networking for Teacher positions.",
+        "category": "CAREER",
+        "target": "4 hrs/week",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "top_priorities": [
+      {
+        "id": "649c1733-cf7c-400a-981a-9d3ae2003409",
+        "title": "Teacher Core Mastery",
+        "description": "Master key fundamentals in Teacher Core Fundamentals",
+        "category": "SKILL",
+        "target": "Core Competency",
+        "status": "in_progress",
+        "priority": "High"
+      },
+      {
+        "id": "7cdc05ad-dda4-44e5-8e4e-7b285da6bdf2",
+        "title": "Teacher Portfolio Assets",
+        "description": "Build & ship live practical deliverables in Teacher Practical Execution",
+        "category": "PROJECT",
+        "target": "2 Live Portfolio Items",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "e0215fc8-f752-47c2-b78e-abe143deb28a",
+        "title": "Teacher Industry Readiness",
+        "description": "Complete portfolio reviews & professional outreach prep",
+        "category": "CAREER",
+        "target": "5 Outreach Contacts",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "metrics_to_track": [
+      {
+        "name": "Teacher Core Fundamentals Practice Units",
+        "current": "0",
+        "target": "32"
+      },
+      {
+        "name": "Teacher Portfolio Assets",
+        "current": "0",
+        "target": "2"
+      },
+      {
+        "name": "Portfolio Reviews Completed",
+        "current": "0",
+        "target": "5"
+      },
+      {
+        "name": "Outreach Contacts",
+        "current": "0",
+        "target": "10"
+      }
+    ],
+    "next_checkin": "In 7 Days",
+    "created_at": "2026-08-24T16:51:24.384688",
+    "goal_context": "Become teacher"
+  },
+  "test_user_integration": {
+    "id": "roadmap_220af326",
+    "user_id": "test_user_integration",
+    "scenario": "Placement",
+    "overall_score": 84,
+    "reason": "Highest score",
+    "workload_risk": 31,
+    "risk_level": "Placement yields an overall score of 84/100. Goal alignment is 97%, skill growth potential is 77%, learning potential is 87%, and estimated financial outlook is 90%.",
+    "workload_caution": null,
+    "milestones": [
+      {
+        "timeframe": "30 DAYS",
+        "title": "Ai Software Engineer Foundations & Skill Building",
+        "items": [
+          "Complete core practice units in Ai Software Engineer Core Fundamentals",
+          "Draft baseline portfolio outline for Ai Software Engineer roles",
+          "Review core principles in Ai Software Engineer Practical Execution"
+        ]
+      },
+      {
+        "timeframe": "60 DAYS",
+        "title": "Ai Software Engineer Portfolio & Practical Execution",
+        "items": [
+          "Deploy 2 real-world Ai Software Engineer projects/case studies",
+          "Complete peer evaluations in Ai Software Engineer Core Fundamentals",
+          "Conduct networking outreach for Ai Software Engineer opportunities"
+        ]
+      },
+      {
+        "timeframe": "90 DAYS",
+        "title": "Ai Software Engineer Career Launch & Placement",
+        "items": [
+          "Achieve top shortlist status as a Ai Software Engineer",
+          "Complete final assessment rounds",
+          "Secure target offer/position as a Ai Software Engineer"
+        ]
+      }
+    ],
+    "weekly_actions": [
+      {
+        "id": "6d0be770-a417-4faf-bc5e-82c90d5b5fea",
+        "title": "Master Ai Software Engineer Core Skills & Ai Software Engineer Core Fundamentals",
+        "description": "Dedicate 8 hrs/week to mastering Ai Software Engineer Core Fundamentals and core domain principles for becoming a Ai Software Engineer.",
+        "category": "SKILL",
+        "target": "8 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "831b03fe-f83d-4494-874a-cea9e6b18362",
+        "title": "Build Ai Software Engineer Practical Portfolio & Case Studies",
+        "description": "Invest ~6 hrs/week building live portfolio projects, field deliverables, or case studies in Ai Software Engineer Practical Execution.",
+        "category": "PROJECT",
+        "target": "6 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "07167fe4-7dae-4222-b6c8-f3043aa28713",
+        "title": "Ai Software Engineer Career Outreach & Portfolio Review",
+        "description": "Spend 4 hrs/week practicing role-specific assessments, portfolio presentations, and industry networking for Ai Software Engineer positions.",
+        "category": "CAREER",
+        "target": "4 hrs/week",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "top_priorities": [
+      {
+        "id": "eb653f3a-a903-425d-ba37-56260226d5f8",
+        "title": "Ai Software Engineer Core Mastery",
+        "description": "Master key fundamentals in Ai Software Engineer Core Fundamentals",
+        "category": "SKILL",
+        "target": "Core Competency",
+        "status": "in_progress",
+        "priority": "High"
+      },
+      {
+        "id": "c84f4024-12c5-42d4-9dcf-3762ffa48f70",
+        "title": "Ai Software Engineer Portfolio Assets",
+        "description": "Build & ship live practical deliverables in Ai Software Engineer Practical Execution",
+        "category": "PROJECT",
+        "target": "2 Live Portfolio Items",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "2002a3fc-7169-47eb-a0fd-b1b47fd5e1c9",
+        "title": "Ai Software Engineer Industry Readiness",
+        "description": "Complete portfolio reviews & professional outreach prep",
+        "category": "CAREER",
+        "target": "5 Outreach Contacts",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "metrics_to_track": [
+      {
+        "name": "Ai Software Engineer Core Fundamentals Practice Units",
+        "current": "0",
+        "target": "32"
+      },
+      {
+        "name": "Ai Software Engineer Portfolio Assets",
+        "current": "0",
+        "target": "2"
+      },
+      {
+        "name": "Portfolio Reviews Completed",
+        "current": "0",
+        "target": "5"
+      },
+      {
+        "name": "Outreach Contacts",
+        "current": "0",
+        "target": "10"
+      }
+    ],
+    "next_checkin": "In 7 Days",
+    "created_at": "2026-08-24T16:50:01.428928",
+    "goal_context": "AI Software Engineer"
+  },
+  "test_fallback_user": {
+    "id": "roadmap_7755a165",
+    "user_id": "test_fallback_user",
+    "scenario": "Fallback Test Scenario",
+    "overall_score": 71,
+    "reason": "Fallback Test Scenario is recommended as your primary path with an overall alignment score of 71/100, matching your career goal of 'Software Engineer' and financial priority (5/10).",
+    "workload_risk": 28,
+    "risk_level": "Fallback Test Scenario yields an overall score of 71/100. Goal alignment is 83%, skill growth potential is 60%, learning potential is 75%, and estimated financial outlook is 80%.",
+    "workload_caution": null,
+    "milestones": [
+      {
+        "timeframe": "30 DAYS",
+        "title": "Software Engineer Foundations & Skill Building",
+        "items": [
+          "Complete core practice units in Software Engineer Core Fundamentals",
+          "Draft baseline portfolio outline for Software Engineer roles",
+          "Review core principles in Software Engineer Practical Execution"
+        ]
+      },
+      {
+        "timeframe": "60 DAYS",
+        "title": "Software Engineer Portfolio & Practical Execution",
+        "items": [
+          "Deploy 2 real-world Software Engineer projects/case studies",
+          "Complete peer evaluations in Software Engineer Core Fundamentals",
+          "Conduct networking outreach for Software Engineer opportunities"
+        ]
+      },
+      {
+        "timeframe": "90 DAYS",
+        "title": "Software Engineer Career Launch & Placement",
+        "items": [
+          "Achieve top shortlist status as a Software Engineer",
+          "Complete final assessment rounds",
+          "Secure target offer/position as a Software Engineer"
+        ]
+      }
+    ],
+    "weekly_actions": [
+      {
+        "id": "e492d2a0-78cb-4077-9d47-b106361864f0",
+        "title": "Master Software Engineer Core Skills & Software Engineer Core Fundamentals",
+        "description": "Dedicate 8 hrs/week to mastering Software Engineer Core Fundamentals and core domain principles for becoming a Software Engineer.",
+        "category": "SKILL",
+        "target": "8 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "d81fa666-9699-4bdc-bcf9-a1461b1c603c",
+        "title": "Build Software Engineer Practical Portfolio & Case Studies",
+        "description": "Invest ~6 hrs/week building live portfolio projects, field deliverables, or case studies in Software Engineer Practical Execution.",
+        "category": "PROJECT",
+        "target": "6 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "8a78e019-dd5e-40d6-8f1f-3cf1b4d0e6e5",
+        "title": "Software Engineer Career Outreach & Portfolio Review",
+        "description": "Spend 4 hrs/week practicing role-specific assessments, portfolio presentations, and industry networking for Software Engineer positions.",
+        "category": "CAREER",
+        "target": "4 hrs/week",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "top_priorities": [
+      {
+        "id": "1521a672-1675-4110-b233-54d1be8a2226",
+        "title": "Software Engineer Core Mastery",
+        "description": "Master key fundamentals in Software Engineer Core Fundamentals",
+        "category": "SKILL",
+        "target": "Core Competency",
+        "status": "in_progress",
+        "priority": "High"
+      },
+      {
+        "id": "d8dad745-d350-4299-b90a-b06571447c2d",
+        "title": "Software Engineer Portfolio Assets",
+        "description": "Build & ship live practical deliverables in Software Engineer Practical Execution",
+        "category": "PROJECT",
+        "target": "2 Live Portfolio Items",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "b70432f6-9be7-4d22-800c-65ed9a6aa7d7",
+        "title": "Software Engineer Industry Readiness",
+        "description": "Complete portfolio reviews & professional outreach prep",
+        "category": "CAREER",
+        "target": "5 Outreach Contacts",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "metrics_to_track": [
+      {
+        "name": "Software Engineer Core Fundamentals Practice Units",
+        "current": "0",
+        "target": "32"
+      },
+      {
+        "name": "Software Engineer Portfolio Assets",
+        "current": "0",
+        "target": "2"
+      },
+      {
+        "name": "Portfolio Reviews Completed",
+        "current": "0",
+        "target": "5"
+      },
+      {
+        "name": "Outreach Contacts",
+        "current": "0",
+        "target": "10"
+      }
+    ],
+    "next_checkin": "In 7 Days",
+    "created_at": "2026-08-24T16:51:24.650759",
+    "goal_context": "Software Engineer"
+  },
+  "schema_user": {
+    "id": "roadmap_8c05a593",
+    "user_id": "schema_user",
+    "scenario": "Test Scenario",
+    "overall_score": 70,
+    "reason": "Test Scenario is recommended as your primary path with an overall alignment score of 70/100, matching your career goal of 'Software Engineer' and financial priority (5/10).",
+    "workload_risk": 31,
+    "risk_level": "Test Scenario yields an overall score of 70/100. Goal alignment is 83%, skill growth potential is 60%, learning potential is 75%, and estimated financial outlook is 80%.",
+    "workload_caution": null,
+    "milestones": [
+      {
+        "timeframe": "30 DAYS",
+        "title": "Software Engineer Foundations & Skill Building",
+        "items": [
+          "Complete core practice units in Software Engineer Core Fundamentals",
+          "Draft baseline portfolio outline for Software Engineer roles",
+          "Review core principles in Software Engineer Practical Execution"
+        ]
+      },
+      {
+        "timeframe": "60 DAYS",
+        "title": "Software Engineer Portfolio & Practical Execution",
+        "items": [
+          "Deploy 2 real-world Software Engineer projects/case studies",
+          "Complete peer evaluations in Software Engineer Core Fundamentals",
+          "Conduct networking outreach for Software Engineer opportunities"
+        ]
+      },
+      {
+        "timeframe": "90 DAYS",
+        "title": "Software Engineer Career Launch & Placement",
+        "items": [
+          "Achieve top shortlist status as a Software Engineer",
+          "Complete final assessment rounds",
+          "Secure target offer/position as a Software Engineer"
+        ]
+      }
+    ],
+    "weekly_actions": [
+      {
+        "id": "a12472aa-bd95-4e8b-b30e-5d2ae226efe2",
+        "title": "Master Software Engineer Core Skills & Software Engineer Core Fundamentals",
+        "description": "Dedicate 8 hrs/week to mastering Software Engineer Core Fundamentals and core domain principles for becoming a Software Engineer.",
+        "category": "SKILL",
+        "target": "8 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "89dd0519-3235-4e51-a7fe-51217a4ddf81",
+        "title": "Build Software Engineer Practical Portfolio & Case Studies",
+        "description": "Invest ~6 hrs/week building live portfolio projects, field deliverables, or case studies in Software Engineer Practical Execution.",
+        "category": "PROJECT",
+        "target": "6 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "96fb89be-26b0-42c2-9c82-cd8739378cb3",
+        "title": "Software Engineer Career Outreach & Portfolio Review",
+        "description": "Spend 4 hrs/week practicing role-specific assessments, portfolio presentations, and industry networking for Software Engineer positions.",
+        "category": "CAREER",
+        "target": "4 hrs/week",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "top_priorities": [
+      {
+        "id": "0c4820fa-ddde-4b68-883b-493f7651a177",
+        "title": "Software Engineer Core Mastery",
+        "description": "Master key fundamentals in Software Engineer Core Fundamentals",
+        "category": "SKILL",
+        "target": "Core Competency",
+        "status": "in_progress",
+        "priority": "High"
+      },
+      {
+        "id": "ae827801-db1e-4d2a-ac47-4b44a24b551a",
+        "title": "Software Engineer Portfolio Assets",
+        "description": "Build & ship live practical deliverables in Software Engineer Practical Execution",
+        "category": "PROJECT",
+        "target": "2 Live Portfolio Items",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "0ebd59c0-c3db-4df3-bd88-6c483a853a8c",
+        "title": "Software Engineer Industry Readiness",
+        "description": "Complete portfolio reviews & professional outreach prep",
+        "category": "CAREER",
+        "target": "5 Outreach Contacts",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "metrics_to_track": [
+      {
+        "name": "Software Engineer Core Fundamentals Practice Units",
+        "current": "0",
+        "target": "32"
+      },
+      {
+        "name": "Software Engineer Portfolio Assets",
+        "current": "0",
+        "target": "2"
+      },
+      {
+        "name": "Portfolio Reviews Completed",
+        "current": "0",
+        "target": "5"
+      },
+      {
+        "name": "Outreach Contacts",
+        "current": "0",
+        "target": "10"
+      }
+    ],
+    "next_checkin": "In 7 Days",
+    "created_at": "2026-08-24T16:51:24.684466",
+    "goal_context": "Software Engineer"
+  },
+  "user_wildlife_test": {
+    "id": "roadmap_efe7d24a",
+    "user_id": "user_wildlife_test",
+    "scenario": "Career Execution (Wildlife Photography)",
+    "overall_score": 84,
+    "reason": "Highest overall score (84/100) aligned with your trajectory as a Wild life photographer.",
+    "workload_risk": 31,
+    "risk_level": "Career Execution (Wildlife Photography) yields an overall score of 84/100. Goal alignment is 95%, skill growth potential is 83%, learning potential is 86%, and estimated financial outlook is 89%.",
+    "workload_caution": null,
+    "milestones": [
+      {
+        "timeframe": "30 DAYS",
+        "title": "Wild Life Photographer Foundations & Skill Building",
+        "items": [
+          "Complete core practice units in Advanced camera techniques",
+          "Draft baseline portfolio outline for Wild Life Photographer roles",
+          "Review core principles in Wildlife tracking"
+        ]
+      },
+      {
+        "timeframe": "60 DAYS",
+        "title": "Wild Life Photographer Portfolio & Practical Execution",
+        "items": [
+          "Deploy 2 real-world Wild Life Photographer projects/case studies",
+          "Complete peer evaluations in Advanced camera techniques",
+          "Conduct networking outreach for Wild Life Photographer opportunities"
+        ]
+      },
+      {
+        "timeframe": "90 DAYS",
+        "title": "Wild Life Photographer Career Launch & Placement",
+        "items": [
+          "Achieve top shortlist status as a Wild Life Photographer",
+          "Complete final assessment rounds",
+          "Secure target offer/position as a Wild Life Photographer"
+        ]
+      }
+    ],
+    "weekly_actions": [
+      {
+        "id": "ee8f701b-df15-4390-9090-9af40a779738",
+        "title": "Master Wild Life Photographer Core Skills & Advanced camera techniques",
+        "description": "Dedicate 8 hrs/week to mastering Advanced camera techniques and core domain principles for becoming a Wild Life Photographer.",
+        "category": "SKILL",
+        "target": "8 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "463adced-bc2e-41e5-bb89-d5b9f02a5906",
+        "title": "Build Wild Life Photographer Practical Portfolio & Case Studies",
+        "description": "Invest ~6 hrs/week building live portfolio projects, field deliverables, or case studies in Wildlife tracking.",
+        "category": "PROJECT",
+        "target": "6 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "7dd0d25e-3ba2-4722-96c0-52a19817b0a9",
+        "title": "Wild Life Photographer Career Outreach & Portfolio Review",
+        "description": "Spend 4 hrs/week practicing role-specific assessments, portfolio presentations, and industry networking for Wild Life Photographer positions.",
+        "category": "CAREER",
+        "target": "4 hrs/week",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "top_priorities": [
+      {
+        "id": "659d1e48-e630-499a-8a7d-a0e70ad596f9",
+        "title": "Wild Life Photographer Core Mastery",
+        "description": "Master key fundamentals in Advanced camera techniques",
+        "category": "SKILL",
+        "target": "Core Competency",
+        "status": "in_progress",
+        "priority": "High"
+      },
+      {
+        "id": "481f1eff-2761-44d4-8035-593abb86ac35",
+        "title": "Wild Life Photographer Portfolio Assets",
+        "description": "Build & ship live practical deliverables in Wildlife tracking",
+        "category": "PROJECT",
+        "target": "2 Live Portfolio Items",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "85de61ad-95f4-43c9-a9a9-88eb8153fb4d",
+        "title": "Wild Life Photographer Industry Readiness",
+        "description": "Complete portfolio reviews & professional outreach prep",
+        "category": "CAREER",
+        "target": "5 Outreach Contacts",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "metrics_to_track": [
+      {
+        "name": "Advanced camera techniques Practice Units",
+        "current": "0",
+        "target": "32"
+      },
+      {
+        "name": "Wild Life Photographer Portfolio Assets",
+        "current": "0",
+        "target": "2"
+      },
+      {
+        "name": "Portfolio Reviews Completed",
+        "current": "0",
+        "target": "5"
+      },
+      {
+        "name": "Outreach Contacts",
+        "current": "0",
+        "target": "10"
+      }
+    ],
+    "next_checkin": "In 7 Days",
+    "created_at": "2026-08-24T16:51:24.447092",
+    "goal_context": "Wild life photographer"
+  },
+  "user_execution_test": {
+    "id": "roadmap_6edb99ea",
+    "user_id": "user_execution_test",
+    "scenario": "Placement",
+    "overall_score": 85,
+    "reason": "Highest overall score",
+    "workload_risk": 30,
+    "risk_level": "Winning placement scenario",
+    "workload_caution": null,
+    "milestones": [
+      {
+        "timeframe": "30 DAYS",
+        "title": "Teacher Foundations & Skill Building",
+        "items": [
+          "Complete core practice units in Teacher Core Fundamentals",
+          "Draft baseline portfolio outline for Teacher roles",
+          "Review core principles in Teacher Practical Execution"
+        ]
+      },
+      {
+        "timeframe": "60 DAYS",
+        "title": "Teacher Portfolio & Practical Execution",
+        "items": [
+          "Deploy 2 real-world Teacher projects/case studies",
+          "Complete peer evaluations in Teacher Core Fundamentals",
+          "Conduct networking outreach for Teacher opportunities"
+        ]
+      },
+      {
+        "timeframe": "90 DAYS",
+        "title": "Teacher Career Launch & Placement",
+        "items": [
+          "Achieve top shortlist status as a Teacher",
+          "Complete final assessment rounds",
+          "Secure target offer/position as a Teacher"
+        ]
+      }
+    ],
+    "weekly_actions": [
+      {
+        "id": "44a113b4-eb95-42c2-a68a-dd07663660cc",
+        "title": "Master Teacher Core Skills & Teacher Core Fundamentals",
+        "description": "Dedicate 8 hrs/week to mastering Teacher Core Fundamentals and core domain principles for becoming a Teacher.",
+        "category": "SKILL",
+        "target": "8 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "bd1d1405-fbae-44cb-b734-1033b3331849",
+        "title": "Build Teacher Practical Portfolio & Case Studies",
+        "description": "Invest ~6 hrs/week building live portfolio projects, field deliverables, or case studies in Teacher Practical Execution.",
+        "category": "PROJECT",
+        "target": "6 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "41f8705e-cc55-4019-9a04-06112c48235c",
+        "title": "Teacher Career Outreach & Portfolio Review",
+        "description": "Spend 4 hrs/week practicing role-specific assessments, portfolio presentations, and industry networking for Teacher positions.",
+        "category": "CAREER",
+        "target": "4 hrs/week",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "top_priorities": [
+      {
+        "id": "a8cccbed-2ec8-4f3e-a0c7-1ebe976cfd46",
+        "title": "Teacher Core Mastery",
+        "description": "Master key fundamentals in Teacher Core Fundamentals",
+        "category": "SKILL",
+        "target": "Core Competency",
+        "status": "in_progress",
+        "priority": "High"
+      },
+      {
+        "id": "da86672c-8745-4f50-9273-977ae7923f71",
+        "title": "Teacher Portfolio Assets",
+        "description": "Build & ship live practical deliverables in Teacher Practical Execution",
+        "category": "PROJECT",
+        "target": "2 Live Portfolio Items",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "a1b421d9-a256-4122-985a-b5528ebecc81",
+        "title": "Teacher Industry Readiness",
+        "description": "Complete portfolio reviews & professional outreach prep",
+        "category": "CAREER",
+        "target": "5 Outreach Contacts",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "metrics_to_track": [
+      {
+        "name": "Teacher Core Fundamentals Practice Units",
+        "current": "0",
+        "target": "32"
+      },
+      {
+        "name": "Teacher Portfolio Assets",
+        "current": "0",
+        "target": "2"
+      },
+      {
+        "name": "Portfolio Reviews Completed",
+        "current": "0",
+        "target": "5"
+      },
+      {
+        "name": "Outreach Contacts",
+        "current": "0",
+        "target": "10"
+      }
+    ],
+    "next_checkin": "In 7 Days",
+    "created_at": "2026-08-24T16:51:24.437068",
+    "goal_context": "Become Teacher"
+  },
+  "user_1787590421303_8uejt": {
+    "id": "roadmap_d67d064c",
+    "user_id": "user_1787590421303_8uejt",
+    "scenario": "Placement",
+    "overall_score": 86,
+    "reason": "Placement is recommended as your primary path with an overall alignment score of 86/100, matching your career goal of 'Full Stack Developer' and financial priority (10/10).",
+    "workload_risk": 35,
+    "risk_level": "Placement yields an overall score of 86/100. Goal alignment is 98%, skill growth potential is 83%, learning potential is 86%, and estimated financial outlook is 94%.",
+    "workload_caution": null,
+    "milestones": [
+      {
+        "timeframe": "30 DAYS",
+        "title": "Full Stack Developer Foundations & Skill Building",
+        "items": [
+          "Complete core practice units in DSA",
+          "Draft baseline portfolio outline for Full Stack Developer roles",
+          "Review core principles in Node.js"
+        ]
+      },
+      {
+        "timeframe": "60 DAYS",
+        "title": "Full Stack Developer Portfolio & Practical Execution",
+        "items": [
+          "Deploy 2 real-world Full Stack Developer projects/case studies",
+          "Complete peer evaluations in DSA",
+          "Conduct networking outreach for Full Stack Developer opportunities"
+        ]
+      },
+      {
+        "timeframe": "90 DAYS",
+        "title": "Full Stack Developer Career Launch & Placement",
+        "items": [
+          "Achieve top shortlist status as a Full Stack Developer",
+          "Complete final assessment rounds",
+          "Secure target offer/position as a Full Stack Developer"
+        ]
+      }
+    ],
+    "weekly_actions": [
+      {
+        "id": "2589304d-d6aa-49e4-81de-60c5ed423341",
+        "title": "Master Full Stack Developer Core Skills & DSA",
+        "description": "Dedicate 8 hrs/week to mastering DSA and core domain principles for becoming a Full Stack Developer.",
+        "category": "SKILL",
+        "target": "8 hrs/week",
+        "status": "completed",
+        "priority": "High"
+      },
+      {
+        "id": "a5a26188-7da5-4904-98a0-39afc1325b88",
+        "title": "Build Full Stack Developer Practical Portfolio & Case Studies",
+        "description": "Invest ~6 hrs/week building live portfolio projects, field deliverables, or case studies in Node.js.",
+        "category": "PROJECT",
+        "target": "6 hrs/week",
+        "status": "completed",
+        "priority": "High"
+      },
+      {
+        "id": "b44d7779-c3e6-48c6-b24c-57a865288531",
+        "title": "Full Stack Developer Career Outreach & Portfolio Review",
+        "description": "Spend 4 hrs/week practicing role-specific assessments, portfolio presentations, and industry networking for Full Stack Developer positions.",
+        "category": "CAREER",
+        "target": "4 hrs/week",
+        "status": "completed",
+        "priority": "Medium"
+      }
+    ],
+    "top_priorities": [
+      {
+        "id": "ae5bdd9b-6429-4d78-bc7a-05251c4b52d2",
+        "title": "Full Stack Developer Core Mastery",
+        "description": "Master key fundamentals in DSA",
+        "category": "SKILL",
+        "target": "Core Competency",
+        "status": "in_progress",
+        "priority": "High"
+      },
+      {
+        "id": "d96c2464-4145-4c9c-a19d-bd15e4eb77a7",
+        "title": "Full Stack Developer Portfolio Assets",
+        "description": "Build & ship live practical deliverables in Node.js",
+        "category": "PROJECT",
+        "target": "2 Live Portfolio Items",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "262f16ba-36d8-4ca2-97ec-d117e1cd4091",
+        "title": "Full Stack Developer Industry Readiness",
+        "description": "Complete portfolio reviews & professional outreach prep",
+        "category": "CAREER",
+        "target": "5 Outreach Contacts",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "metrics_to_track": [
+      {
+        "name": "DSA Practice Units",
+        "current": "0",
+        "target": "32"
+      },
+      {
+        "name": "Full Stack Developer Portfolio Assets",
+        "current": "0",
+        "target": "2"
+      },
+      {
+        "name": "Portfolio Reviews Completed",
+        "current": "0",
+        "target": "5"
+      },
+      {
+        "name": "Outreach Contacts",
+        "current": "0",
+        "target": "10"
+      }
+    ],
+    "next_checkin": "In 7 Days",
+    "created_at": "2026-08-24T17:15:12.576233",
+    "goal_context": "Full Stack Developer"
   }
 }

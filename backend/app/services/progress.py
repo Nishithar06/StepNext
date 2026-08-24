@@ -112,7 +112,7 @@ def analyze_user_progress(user_id: str) -> ProgressSummary:
     streak = max(1, daily_summary.streak_days) if daily_summary.total_checkins > 0 else (len(weekly_checkins) if len(weekly_checkins) > 0 else 1)
 
     if effective_checkin_count < 2:
-        trend = "stable" if latest_pct >= 50 else "insufficient_data"
+        trend = "insufficient_data"
     elif latest_pct > prev_pct + 5:
         trend = "improving"
     elif latest_pct < prev_pct - 5:

@@ -145,9 +145,6 @@ def get_digital_twin_endpoint(user_id: str):
 def generate_digital_twin_endpoint(user_id: str):
     profile = fetch_profile_from_db_or_fixture(user_id)
     if not profile:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"User profile '{user_id}' not found."
-        )
+        profile = UserProfile(user_id=user_id)
     return generate_and_save_digital_twin(profile)
 

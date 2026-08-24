@@ -1,8 +1,9 @@
 import React from 'react';
-import { Home, Compass, Activity, Sparkles, User, X, Brain } from 'lucide-react';
+import { Home, Compass, Activity, User, X, Brain, Sparkles, ChevronRight } from 'lucide-react';
 import { UserProfile, HealthResponse } from '../../types/schema';
-
 import { StepNextLogo } from '../common/StepNextLogo';
+import { Avatar } from '../ui/avatar';
+import { Badge } from '../ui/badge';
 
 export type TabType = 'overview' | 'digital_twin' | 'current_state' | 'simulator' | 'profile';
 
@@ -27,23 +28,23 @@ export const Sidebar: React.FC<SidebarProps> = ({
   isOpenMobile,
   onCloseMobile
 }) => {
-  const workspaceItems: { id: TabType; label: string; sublabel: string; icon: React.ReactNode }[] = [
-    { id: 'overview', label: 'Dashboard', sublabel: 'Where am I?', icon: <Home className="w-4 h-4 text-[#635BFF]" /> },
-    { id: 'digital_twin', label: 'My Digital Twin', sublabel: 'Who am I?', icon: <Brain className="w-4 h-4 text-purple-600" /> },
-    { id: 'current_state', label: 'Current State', sublabel: 'How am I?', icon: <Activity className="w-4 h-4 text-[#FF7A6B]" /> },
-    { id: 'simulator', label: 'Future Simulator', sublabel: 'Where could I go?', icon: <Compass className="w-4 h-4 text-[#32C6A6]" /> }
+  const workspaceItems: { id: TabType; label: string; sublabel: string; icon: React.ReactNode; accent: string }[] = [
+    { id: 'overview', label: 'Dashboard', sublabel: 'Trajectory & Telemetry', icon: <Home className="w-4 h-4" />, accent: 'text-[#5850EC]' },
+    { id: 'digital_twin', label: 'Digital Twin', sublabel: 'Cognitive Model', icon: <Brain className="w-4 h-4" />, accent: 'text-purple-600' },
+    { id: 'current_state', label: 'Current State', sublabel: 'Overload Risk Matrix', icon: <Activity className="w-4 h-4" />, accent: 'text-[#F43F5E]' },
+    { id: 'simulator', label: 'Future Simulator', sublabel: 'Scenario Evaluation', icon: <Compass className="w-4 h-4" />, accent: 'text-[#10B981]' }
   ];
 
   const simulatorSubSections = [
-    { label: 'Simulator', sectionId: 'section-simulator', hint: 'Inputs' },
-    { label: 'Roadmap', sectionId: 'section-roadmap', hint: '90-Day' },
-    { label: 'Check-in', sectionId: 'section-checkin', hint: 'Actions' },
-    { label: 'Progress', sectionId: 'section-progress', hint: 'Velocity' },
-    { label: 'Adaptive Future', sectionId: 'section-adaptive-future', hint: 'Health' }
+    { label: 'Scenarios', sectionId: 'section-simulator', hint: 'Inputs' },
+    { label: '90-Day Roadmap', sectionId: 'section-roadmap', hint: 'Milestones' },
+    { label: 'Check-in Sync', sectionId: 'section-checkin', hint: 'Daily' },
+    { label: 'Progress Intelligence', sectionId: 'section-progress', hint: 'Velocity' },
+    { label: 'Adaptive Future', sectionId: 'section-adaptive-future', hint: 'Confidence' }
   ];
 
   const accountItems: { id: TabType; label: string; sublabel: string; icon: React.ReactNode }[] = [
-    { id: 'profile', label: 'Profile', sublabel: 'Account baseline', icon: <User className="w-4 h-4 text-[#667085]" /> }
+    { id: 'profile', label: 'Profile & Goals', sublabel: 'Baseline Configuration', icon: <User className="w-4 h-4 text-slate-500" /> }
   ];
 
   const handleNavClick = (tabId: TabType, sectionId?: string) => {
@@ -55,23 +56,26 @@ export const Sidebar: React.FC<SidebarProps> = ({
     onCloseMobile();
   };
 
-  const sidebarContent = (
-    <div className="flex flex-col h-full bg-[#FAF9F5] border-r border-[#E5E5DC] w-64 py-5 px-4 text-[#171827]">
-      {/* Brand Header */}
-      <div className="flex items-center justify-between pb-5 border-b border-[#E5E5DC] mb-5">
-        <StepNextLogo height="h-[54px]" />
+  const isGeminiLive = health?.gemini_connected && health?.api_key_configured;
 
-        <button onClick={onCloseMobile} className="md:hidden p-1 text-[#667085] hover:text-[#171827]">
-          <X className="w-5 h-5" />
+  const sidebarContent = (
+    <div className="flex flex-col h-full bg-white/95 backdrop-blur-xl border-r border-black/[0.06] w-64 py-5 px-4 text-[#0F172A] shadow-[4px_0_24px_rgba(0,0,0,0.02)]">
+      {/* Brand Header */}
+      <div className="flex items-center justify-between pb-5 border-b border-black/[0.06] mb-5">
+        <StepNextLogo height="h-[48px]" />
+
+        <button onClick={onCloseMobile} className="md:hidden p-1.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition">
+          <X className="w-4 h-4" />
         </button>
       </div>
 
       {/* Nav Links */}
-      <div className="space-y-6 flex-1 overflow-y-auto">
-        {/* WORKSPACE */}
+      <div className="space-y-6 flex-1 overflow-y-auto pr-1">
+        {/* WORKSPACE SECTION */}
         <div className="space-y-1">
-          <p className="text-[10px] font-bold uppercase text-[#98A2B3] tracking-wider px-2 mb-2">
-            WORKSPACE
+          <p className="text-[9px] font-mono font-bold uppercase text-slate-400 tracking-[0.18em] px-3 mb-2 flex items-center justify-between">
+            <span>WORKSPACE</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-pulse" />
           </p>
           {workspaceItems.map((item) => {
             const isActive = activeTab === item.id;
@@ -79,24 +83,24 @@ export const Sidebar: React.FC<SidebarProps> = ({
               <div key={item.id} className="space-y-1">
                 <button
                   onClick={() => handleNavClick(item.id, item.id === 'simulator' ? 'section-simulator' : undefined)}
-                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs transition-all ${
+                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-2xl text-xs transition-all duration-200 ${
                     isActive
-                      ? 'bg-[#635BFF]/10 text-[#635BFF] font-semibold border-l-2 border-l-[#635BFF] shadow-sm'
-                      : 'hover:bg-white text-[#667085] hover:text-[#171827]'
+                      ? 'bg-[#EEF2FF] text-[#5850EC] font-bold shadow-[0_2px_12px_rgba(99,102,241,0.12)] border border-[#5850EC]/20'
+                      : 'hover:bg-slate-50 text-slate-600 hover:text-slate-900 border border-transparent'
                   }`}
                 >
-                  <div className="flex items-center gap-3">
-                    <span className="shrink-0">{item.icon}</span>
+                  <div className="flex items-center gap-2.5">
+                    <span className={`shrink-0 ${isActive ? 'text-[#5850EC]' : item.accent}`}>{item.icon}</span>
                     <div className="text-left">
                       <span className="block font-semibold">{item.label}</span>
                     </div>
                   </div>
-                  <span className="text-[10px] text-[#98A2B3] font-normal">{item.sublabel}</span>
+                  <ChevronRight className={`w-3.5 h-3.5 transition-transform duration-200 ${isActive ? 'text-[#5850EC] translate-x-0.5' : 'text-slate-300 opacity-0 group-hover:opacity-100'}`} />
                 </button>
 
                 {/* Sub-sections for Future Simulator */}
                 {item.id === 'simulator' && (
-                  <div className="ml-5 pl-2.5 border-l-2 border-[#32C6A6]/30 my-1 space-y-0.5">
+                  <div className="ml-5 pl-2.5 border-l border-[#10B981]/40 my-1 space-y-0.5 animate-in fade-in duration-200">
                     {simulatorSubSections.map((sub) => (
                       <button
                         key={sub.sectionId}
@@ -104,10 +108,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
                           e.stopPropagation();
                           handleNavClick('simulator', sub.sectionId);
                         }}
-                        className="w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-[11px] font-medium text-[#667085] hover:text-[#635BFF] hover:bg-white transition-all text-left"
+                        className="w-full flex items-center justify-between px-2.5 py-1.5 rounded-xl text-[11px] font-medium text-slate-500 hover:text-[#5850EC] hover:bg-[#EEF2FF]/60 transition-all text-left"
                       >
                         <span className="font-semibold">{sub.label}</span>
-                        <span className="text-[9px] font-mono text-[#98A2B3]">{sub.hint}</span>
+                        <span className="text-[9px] font-mono text-slate-400 bg-slate-100 px-1.5 py-0.2 rounded-md">{sub.hint}</span>
                       </button>
                     ))}
                   </div>
@@ -117,10 +121,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
           })}
         </div>
 
-        {/* ACCOUNT */}
+        {/* ACCOUNT SECTION */}
         <div className="space-y-1">
-          <p className="text-[10px] font-bold uppercase text-[#98A2B3] tracking-wider px-2 mb-2">
-            ACCOUNT
+          <p className="text-[9px] font-mono font-bold uppercase text-slate-400 tracking-[0.18em] px-3 mb-2">
+            PREFERENCES
           </p>
           {accountItems.map((item) => {
             const isActive = activeTab === item.id;
@@ -128,41 +132,43 @@ export const Sidebar: React.FC<SidebarProps> = ({
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
-                className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs transition-all ${
+                className={`w-full flex items-center justify-between px-3 py-2.5 rounded-2xl text-xs transition-all duration-200 ${
                   isActive
-                    ? 'bg-[#635BFF]/10 text-[#635BFF] font-semibold border-l-2 border-l-[#635BFF] shadow-sm'
-                    : 'hover:bg-white text-[#667085] hover:text-[#171827]'
+                    ? 'bg-[#EEF2FF] text-[#5850EC] font-bold shadow-[0_2px_12px_rgba(99,102,241,0.12)] border border-[#5850EC]/20'
+                    : 'hover:bg-slate-50 text-slate-600 hover:text-slate-900 border border-transparent'
                 }`}
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2.5">
                   <span className="shrink-0">{item.icon}</span>
                   <span className="font-semibold">{item.label}</span>
                 </div>
-                <span className="text-[10px] text-[#98A2B3] font-normal">{item.sublabel}</span>
+                <span className="text-[10px] text-slate-400 font-mono">Settings</span>
               </button>
             );
           })}
         </div>
       </div>
 
-      {/* User Footer */}
-      <div className="pt-4 border-t border-[#E5E5DC]">
+      {/* User Footer Profile Card */}
+      <div className="pt-4 border-t border-black/[0.06] space-y-3">
         <div
           onClick={() => {
             onTabChange('profile');
             onCloseMobile();
           }}
-          className="flex items-center gap-3 p-2.5 rounded-xl bg-white border border-[#E5E5DC] hover:border-[#D1D1C7] cursor-pointer transition light-card-shadow"
+          className="flex items-center gap-3 p-2.5 rounded-2xl bg-slate-50/80 border border-black/[0.05] hover:border-black/[0.12] hover:bg-slate-100/80 cursor-pointer transition-all duration-200 shadow-sm"
         >
-          <div className="w-8 h-8 rounded-full bg-[#635BFF]/15 border border-[#635BFF]/30 flex items-center justify-center text-[#635BFF] text-xs font-bold shrink-0">
-            {profile?.name ? profile.name.charAt(0).toUpperCase() : 'U'}
-          </div>
+          <Avatar
+            fallback={profile?.name ? profile.name.charAt(0).toUpperCase() : 'U'}
+            size="sm"
+            status="online"
+          />
           <div className="overflow-hidden flex-1">
-            <p className="text-xs font-bold text-[#171827] truncate">
+            <p className="text-xs font-bold text-[#0F172A] truncate">
               {profile?.name || 'User Profile'}
             </p>
-            <p className="text-[10px] text-[#667085] truncate">
-              {profile?.education || profile?.career_goal || 'Student / Professional'}
+            <p className="text-[10px] text-slate-500 truncate font-mono">
+              {profile?.career_goal || profile?.education || 'General Pathway'}
             </p>
           </div>
         </div>
@@ -173,15 +179,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
   return (
     <>
       {/* Desktop Sidebar */}
-      <aside className="hidden md:block shrink-0 h-screen sticky top-0">
+      <aside className="hidden md:block shrink-0 h-screen sticky top-0 z-40">
         {sidebarContent}
       </aside>
 
       {/* Mobile Drawer Sidebar */}
       {isOpenMobile && (
         <div className="fixed inset-0 z-50 md:hidden flex">
-          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm" onClick={onCloseMobile} />
-          <div className="relative z-10">
+          <div className="fixed inset-0 bg-black/40 backdrop-blur-sm transition-opacity" onClick={onCloseMobile} />
+          <div className="relative z-10 animate-in slide-in-from-left duration-200">
             {sidebarContent}
           </div>
         </div>

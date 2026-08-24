@@ -25,8 +25,33 @@ def evaluate_scenario_deterministic(
     desc_lower = scenario.description.lower()
     focus_lower = [f.lower() for f in scenario.focus_areas]
     
-    # Extract investment sliders payload if available or fallback to weekly_hours
-    investments = scenario.investments or {}
+    # Extract investment sliders payload if available, or parse from focus_areas or fallback to weekly_hours
+    investments = dict(scenario.investments or {})
+    if (not investments or sum(investments.values()) == 0) and scenario.focus_areas:
+        import re
+        for f in scenario.focus_areas:
+            f_lower = f.lower()
+            m = re.search(r'(\d+(?:\.\d+)?)\s*h(?:ours?)?/wk', f_lower)
+            hrs = float(m.group(1)) if m else 0.0
+            if "dsa" in f_lower:
+                investments["dsa_prep"] = max(investments.get("dsa_prep", 0.0), hrs or 8.0)
+            elif "portfolio" in f_lower or "project" in f_lower:
+                investments["portfolio_projects"] = max(investments.get("portfolio_projects", 0.0), hrs or 6.0)
+            elif "system" in f_lower or "design" in f_lower:
+                investments["system_design"] = max(investments.get("system_design", 0.0), hrs or 4.0)
+            elif "exam" in f_lower or "gre" in f_lower or "gate" in f_lower:
+                investments["exam_prep"] = max(investments.get("exam_prep", 0.0), hrs or 8.0)
+            elif "research" in f_lower or "paper" in f_lower:
+                investments["research_papers"] = max(investments.get("research_papers", 0.0), hrs or 6.0)
+            elif "sop" in f_lower or "app" in f_lower:
+                investments["sop_applications"] = max(investments.get("sop_applications", 0.0), hrs or 4.0)
+            elif "product" in f_lower or "dev" in f_lower or "mvp" in f_lower:
+                investments["product_development"] = max(investments.get("product_development", 0.0), hrs or 8.0)
+            elif "market" in f_lower or "discovery" in f_lower or "customer" in f_lower:
+                investments["market_discovery"] = max(investments.get("market_discovery", 0.0), hrs or 6.0)
+            elif "pitch" in f_lower or "network" in f_lower or "deck" in f_lower:
+                investments["pitching_networking"] = max(investments.get("pitching_networking", 0.0), hrs or 4.0)
+
     total_investment_hours = float(scenario.weekly_hours)
     if investments and sum(investments.values()) > 0:
         total_investment_hours = float(sum(investments.values()))
@@ -122,9 +147,13 @@ def evaluate_scenario_deterministic(
         startup_alignment_bonus = min(22, int(md_hrs * 1.2 + pd_hrs * 0.6 + pn_hrs * 0.5))
         goal_alignment += startup_alignment_bonus
 
-    else: # Placement
-        if any(term in cg for term in ["software", "developer", "engineer", "placement", "corporate", "job", "full stack", "lead"]):
-            goal_alignment += 16
+    else: # Placement / Career Execution
+        if (
+            any(term in cg for term in ["software", "developer", "engineer", "placement", "corporate", "job", "full stack", "lead"])
+            or "career execution" in name_lower
+            or any(word in name_lower for word in cg.split() if len(word) > 3)
+        ):
+            goal_alignment += 18
         if profile.financial_priority >= 6:
             goal_alignment += 10
 
@@ -206,11 +235,12 @@ def evaluate_scenario_deterministic(
     max_avail_weekly = max(1.0, profile.available_hours_per_day * 7.0)
     hours_risk = int((total_investment_hours / max_avail_weekly) * 25.0)
     
-    # Non-linear workload risk penalty for excessive hours (> 25 hrs/wk)
+    # Non-linear workload risk penalty for excessive hours beyond sustainable capacity
     excess_risk = 0
-    if total_investment_hours > 25.0:
-        excess_hrs = total_investment_hours - 25.0
-        excess_risk = int((excess_hrs ** 1.3) * 2.2)
+    over_capacity_threshold = max(36.0, max_avail_weekly * 0.75)
+    if total_investment_hours > over_capacity_threshold:
+        excess_hrs = total_investment_hours - over_capacity_threshold
+        excess_risk = int((excess_hrs ** 1.1) * 1.5)
         
     overload_penalty = int(overload_score_val * 0.25)
     risk = min(95, max(15, 15 + hours_risk + excess_risk + overload_penalty))
@@ -265,10 +295,15 @@ def build_deterministic_recommendation(
     results: List[ScenarioResult],
     selected_scenario_name: Optional[str] = None
 ) -> Recommendation:
-    """Fallback deterministic recommendation engine selecting strictly highest overall score."""
+    """Fallback deterministic recommendation engine selecting strictly highest overall score or user-selected scenario."""
     sorted_results = sorted(results, key=lambda r: r.overall_score, reverse=True)
     top_score_res = sorted_results[0]
     chosen = top_score_res
+    
+    if selected_scenario_name:
+        matching = [r for r in results if selected_scenario_name.lower() in r.name.lower() or r.name.lower() in selected_scenario_name.lower()]
+        if matching and matching[0].overall_score >= (top_score_res.overall_score - 15):
+            chosen = matching[0]
     
     reason = (
         f"{chosen.name} is recommended as your primary path with an overall alignment score of {chosen.overall_score}/100, "

@@ -1,11 +1,12 @@
 import sys
 import os
+from datetime import date, timedelta
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from app.schemas.models import UserProfile, ScenarioInput, ScenarioResult, Recommendation, SimulationResponse
 from app.services.roadmap import generate_roadmap_deterministic, extract_goal_intelligence
-from app.store import ROADMAPS_STORE, SIMULATIONS_STORE, PROFILES_STORE
+from app.store import ROADMAPS_STORE, SIMULATIONS_STORE, PROFILES_STORE, CHECKINS_STORE
 
 def create_mock_simulation(user_id: str) -> SimulationResponse:
     res = ScenarioResult(
@@ -265,6 +266,7 @@ def test_profession_agnostic_goal_intelligence():
     from app.services.checkin import create_or_update_daily_checkin
 
     uid_ex = "user_exercise_test"
+    CHECKINS_STORE.pop(uid_ex, None)
     
     # State 1: Default/No exercise (exercise_completed is False)
     c1 = create_or_update_daily_checkin(uid_ex, DailyCheckInInput(sleep_duration=7.5, energy=8, stress=3))
@@ -283,6 +285,7 @@ def test_profession_agnostic_goal_intelligence():
     from app.services.checkin import get_checkin_summary
 
     uid_sum = "user_summary_test"
+    CHECKINS_STORE.pop(uid_sum, None)
     create_or_update_daily_checkin(uid_sum, DailyCheckInInput(sleep_time="23:00", wake_time="07:00", energy=7, stress=6, planned_tasks=5, completed_tasks=4))
     
     summary_res = get_checkin_summary(uid_sum)
@@ -300,6 +303,7 @@ def test_profession_agnostic_goal_intelligence():
     from app.services.progress import analyze_user_progress
 
     uid_exec = "user_execution_test"
+    CHECKINS_STORE.pop(uid_exec, None)
     p_exec = UserProfile(user_id=uid_exec, name="Exec User", career_goal="Wildlife Photographer")
     PROFILES_STORE[uid_exec] = p_exec
     sim_exec = create_mock_simulation(uid_exec)
@@ -341,6 +345,8 @@ def test_profession_agnostic_goal_intelligence():
     print("--- TEST 18: Energy & Stress Telemetry Accuracy Verification ---")
     uid_es1 = "user_es_test_1"
     uid_es2 = "user_es_test_2"
+    CHECKINS_STORE.pop(uid_es1, None)
+    CHECKINS_STORE.pop(uid_es2, None)
 
     # Single check-in: energy 7, stress 6, mood 9
     c_es1 = create_or_update_daily_checkin(uid_es1, DailyCheckInInput(energy=7, stress=6, mood=9))
@@ -397,6 +403,7 @@ def test_profession_agnostic_goal_intelligence():
 
     # TEST 20: Progress Intelligence NameError Fix & Execution Verification
     print("--- TEST 20: Progress Intelligence NameError Fix & Execution Verification ---")
+    CHECKINS_STORE.pop(uid_wp, None)
     prog_wp_0 = analyze_user_progress(uid_wp)
     assert prog_wp_0 is not None, "analyze_user_progress must return valid summary for 0 check-ins"
 

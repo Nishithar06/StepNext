@@ -58,5 +58,35 @@
       "guidance_message": "Your plan may be too ambitious. Consider reducing workload before adding more goals.",
       "created_at": "2026-08-23T12:49:56.018489"
     }
+  ],
+  "user_dedup_test": [
+    {
+      "id": "wcheckin_user_dedup_test_2026_W35",
+      "user_id": "user_dedup_test",
+      "roadmap_id": "roadmap_ba2e92fb",
+      "completed_actions_count": 0,
+      "total_actions_count": 3,
+      "completion_percentage": 0,
+      "completion_level": "All",
+      "workload_feeling": "Easy",
+      "blocker": "None",
+      "guidance_message": "You're maintaining a sustainable pace and making solid progress.",
+      "created_at": "2026-08-24T17:14:14.239309"
+    }
+  ],
+  "user_1787590421303_8uejt": [
+    {
+      "id": "wcheckin_user_1787590421303_8uejt_2026_W35",
+      "user_id": "user_1787590421303_8uejt",
+      "roadmap_id": "roadmap_1bc04e36",
+      "completed_actions_count": 0,
+      "total_actions_count": 3,
+      "completion_percentage": 0,
+      "completion_level": "Some",
+      "workload_feeling": "Easy",
+      "blocker": "Other",
+      "guidance_message": "Keep tracking your weekly actions consistently to stay aligned with your trajectory.",
+      "created_at": "2026-08-24T16:57:13.232782"
+    }
   ]
 }

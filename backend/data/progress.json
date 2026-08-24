@@ -51,5 +51,573 @@
         "Highly Skilled Wildlife Photographer And Build A Professional Career Documenting Wildlife And Conservation Domain Research & Field Practice"
       ]
     }
+  },
+  "test_user_adaptive": {
+    "user_id": "test_user_adaptive",
+    "roadmap_id": "rm_456",
+    "scenario": "Placement",
+    "overall_execution_percentage": 50,
+    "latest_week_completion_percentage": 45,
+    "previous_week_completion_percentage": 50,
+    "completion_trend": "stable",
+    "execution_velocity": -5.0,
+    "current_execution_streak": 3,
+    "total_actions_planned": 2,
+    "total_actions_completed": 0,
+    "missed_actions": [
+      {
+        "action_id": "act_dsa",
+        "title": "Solve DSA Problems",
+        "category": "SKILL",
+        "status": "not_started",
+        "missed_count": 3,
+        "insight_type": "needs_review"
+      },
+      {
+        "action_id": "act_proj",
+        "title": "Build Portfolio",
+        "category": "PROJECT",
+        "status": "not_started",
+        "missed_count": 3,
+        "insight_type": "needs_review"
+      }
+    ],
+    "repeatedly_missed_actions": [
+      {
+        "action_id": "act_dsa",
+        "title": "Solve DSA Problems",
+        "category": "SKILL",
+        "status": "not_started",
+        "missed_count": 3,
+        "insight_type": "needs_review"
+      },
+      {
+        "action_id": "act_proj",
+        "title": "Build Portfolio",
+        "category": "PROJECT",
+        "status": "not_started",
+        "missed_count": 3,
+        "insight_type": "needs_review"
+      }
+    ],
+    "weekly_history_trend": [
+      45,
+      50,
+      55
+    ],
+    "workload_signal": "Manageable",
+    "adaptive_recommendation": {
+      "recommendation_type": "observe",
+      "title": "Observe Execution Pattern",
+      "message": "Keep checking in for another week so LifePilot can identify a reliable execution pattern.",
+      "priority_actions": [
+        "Solve DSA Problems",
+        "Build Portfolio"
+      ]
+    }
+  },
+  "test_user_no_roadmap": {
+    "user_id": "test_user_no_roadmap",
+    "roadmap_id": null,
+    "scenario": "None",
+    "overall_execution_percentage": 0,
+    "latest_week_completion_percentage": 0,
+    "previous_week_completion_percentage": 0,
+    "completion_trend": "insufficient_data",
+    "execution_velocity": 0.0,
+    "current_execution_streak": 0,
+    "total_actions_planned": 0,
+    "total_actions_completed": 0,
+    "missed_actions": [],
+    "repeatedly_missed_actions": [],
+    "weekly_history_trend": [],
+    "workload_signal": "Unknown",
+    "adaptive_recommendation": {
+      "recommendation_type": "observe",
+      "title": "No Active Roadmap",
+      "message": "Complete a Future Simulation to create your first roadmap.",
+      "priority_actions": []
+    }
+  },
+  "test_user_progress": {
+    "user_id": "test_user_progress",
+    "roadmap_id": "roadmap_a47c2fc4",
+    "scenario": "Placement",
+    "overall_execution_percentage": 82,
+    "latest_week_completion_percentage": 85,
+    "previous_week_completion_percentage": 80,
+    "completion_trend": "stable",
+    "execution_velocity": 5.0,
+    "current_execution_streak": 2,
+    "total_actions_planned": 3,
+    "total_actions_completed": 0,
+    "missed_actions": [
+      {
+        "action_id": "6418789d-b95e-4b47-8209-e8de54c9bc96",
+        "title": "Master Ai Software Engineer Core Skills & Ai Software Engineer Core Fundamentals",
+        "category": "SKILL",
+        "status": "not_started",
+        "missed_count": 2,
+        "insight_type": "needs_review"
+      },
+      {
+        "action_id": "4e0f09c5-021d-474c-8d4c-07d12e4a278e",
+        "title": "Build Ai Software Engineer Practical Portfolio & Case Studies",
+        "category": "PROJECT",
+        "status": "not_started",
+        "missed_count": 2,
+        "insight_type": "needs_review"
+      },
+      {
+        "action_id": "00894dbb-e4d2-4b79-9b92-6488742ee311",
+        "title": "Ai Software Engineer Career Outreach & Portfolio Review",
+        "category": "CAREER",
+        "status": "not_started",
+        "missed_count": 2,
+        "insight_type": "needs_review"
+      }
+    ],
+    "repeatedly_missed_actions": [
+      {
+        "action_id": "6418789d-b95e-4b47-8209-e8de54c9bc96",
+        "title": "Master Ai Software Engineer Core Skills & Ai Software Engineer Core Fundamentals",
+        "category": "SKILL",
+        "status": "not_started",
+        "missed_count": 2,
+        "insight_type": "needs_review"
+      },
+      {
+        "action_id": "4e0f09c5-021d-474c-8d4c-07d12e4a278e",
+        "title": "Build Ai Software Engineer Practical Portfolio & Case Studies",
+        "category": "PROJECT",
+        "status": "not_started",
+        "missed_count": 2,
+        "insight_type": "needs_review"
+      },
+      {
+        "action_id": "00894dbb-e4d2-4b79-9b92-6488742ee311",
+        "title": "Ai Software Engineer Career Outreach & Portfolio Review",
+        "category": "CAREER",
+        "status": "not_started",
+        "missed_count": 2,
+        "insight_type": "needs_review"
+      }
+    ],
+    "weekly_history_trend": [
+      85,
+      80
+    ],
+    "workload_signal": "Manageable",
+    "adaptive_recommendation": {
+      "recommendation_type": "increase_depth",
+      "title": "Increase Activity Depth",
+      "message": "You're consistently executing at a sustainable pace. Consider increasing depth in your highest-impact activity rather than adding many new commitments.",
+      "priority_actions": [
+        "Master Ai Software Engineer Core Skills & Ai Software Engineer Core Fundamentals",
+        "Build Ai Software Engineer Practical Portfolio & Case Studies"
+      ]
+    }
+  },
+  "user_checkin_test": {
+    "user_id": "user_checkin_test",
+    "roadmap_id": "roadmap_7f49cae5",
+    "scenario": "Placement",
+    "overall_execution_percentage": 0,
+    "latest_week_completion_percentage": 0,
+    "previous_week_completion_percentage": 0,
+    "completion_trend": "insufficient_data",
+    "execution_velocity": 0.0,
+    "current_execution_streak": 1,
+    "total_actions_planned": 3,
+    "total_actions_completed": 0,
+    "missed_actions": [
+      {
+        "action_id": "820a39a5-3182-4644-9e7a-ad91bfd16c28",
+        "title": "Master Teacher Core Skills & Teacher Core Fundamentals",
+        "category": "SKILL",
+        "status": "not_started",
+        "missed_count": 1,
+        "insight_type": "carry_forward"
+      },
+      {
+        "action_id": "bfb8a6ec-d4c8-40d8-bad2-930fc3805b18",
+        "title": "Build Teacher Practical Portfolio & Case Studies",
+        "category": "PROJECT",
+        "status": "not_started",
+        "missed_count": 1,
+        "insight_type": "carry_forward"
+      },
+      {
+        "action_id": "566be660-c54d-40ae-ba2d-ce1ac8ab602f",
+        "title": "Teacher Career Outreach & Portfolio Review",
+        "category": "CAREER",
+        "status": "not_started",
+        "missed_count": 1,
+        "insight_type": "carry_forward"
+      }
+    ],
+    "repeatedly_missed_actions": [],
+    "weekly_history_trend": [
+      0
+    ],
+    "workload_signal": "Manageable",
+    "adaptive_recommendation": {
+      "recommendation_type": "observe",
+      "title": "Observe Execution Pattern",
+      "message": "Keep checking in for another week so LifePilot can identify a reliable execution pattern.",
+      "priority_actions": [
+        "Master Teacher Core Skills & Teacher Core Fundamentals",
+        "Build Teacher Practical Portfolio & Case Studies"
+      ]
+    }
+  },
+  "test_user_gap": {
+    "user_id": "test_user_gap",
+    "roadmap_id": "rm_gap",
+    "scenario": "Placement",
+    "overall_execution_percentage": 45,
+    "latest_week_completion_percentage": 40,
+    "previous_week_completion_percentage": 45,
+    "completion_trend": "stable",
+    "execution_velocity": -5.0,
+    "current_execution_streak": 3,
+    "total_actions_planned": 1,
+    "total_actions_completed": 0,
+    "missed_actions": [
+      {
+        "action_id": "a1",
+        "title": "A1",
+        "category": "S",
+        "status": "not_started",
+        "missed_count": 3,
+        "insight_type": "needs_review"
+      }
+    ],
+    "repeatedly_missed_actions": [
+      {
+        "action_id": "a1",
+        "title": "A1",
+        "category": "S",
+        "status": "not_started",
+        "missed_count": 3,
+        "insight_type": "needs_review"
+      }
+    ],
+    "weekly_history_trend": [
+      40,
+      45,
+      50
+    ],
+    "workload_signal": "Manageable",
+    "adaptive_recommendation": {
+      "recommendation_type": "observe",
+      "title": "Observe Execution Pattern",
+      "message": "Keep checking in for another week so LifePilot can identify a reliable execution pattern.",
+      "priority_actions": [
+        "A1"
+      ]
+    }
+  },
+  "test_user_1chk": {
+    "user_id": "test_user_1chk",
+    "roadmap_id": "rm_456",
+    "scenario": "Placement",
+    "overall_execution_percentage": 35,
+    "latest_week_completion_percentage": 35,
+    "previous_week_completion_percentage": 0,
+    "completion_trend": "insufficient_data",
+    "execution_velocity": 0.0,
+    "current_execution_streak": 1,
+    "total_actions_planned": 2,
+    "total_actions_completed": 0,
+    "missed_actions": [
+      {
+        "action_id": "act_dsa",
+        "title": "Solve DSA Problems",
+        "category": "SKILL",
+        "status": "not_started",
+        "missed_count": 1,
+        "insight_type": "carry_forward"
+      },
+      {
+        "action_id": "act_proj",
+        "title": "Build Portfolio",
+        "category": "PROJECT",
+        "status": "not_started",
+        "missed_count": 1,
+        "insight_type": "carry_forward"
+      }
+    ],
+    "repeatedly_missed_actions": [],
+    "weekly_history_trend": [
+      35
+    ],
+    "workload_signal": "Manageable",
+    "adaptive_recommendation": {
+      "recommendation_type": "observe",
+      "title": "Observe Execution Pattern",
+      "message": "Keep checking in for another week so LifePilot can identify a reliable execution pattern.",
+      "priority_actions": [
+        "Solve DSA Problems",
+        "Build Portfolio"
+      ]
+    }
+  },
+  "user_fresh_test": {
+    "user_id": "user_fresh_test",
+    "roadmap_id": null,
+    "scenario": "None",
+    "overall_execution_percentage": 0,
+    "latest_week_completion_percentage": 0,
+    "previous_week_completion_percentage": 0,
+    "completion_trend": "insufficient_data",
+    "execution_velocity": 0.0,
+    "current_execution_streak": 0,
+    "total_actions_planned": 0,
+    "total_actions_completed": 0,
+    "missed_actions": [],
+    "repeatedly_missed_actions": [],
+    "weekly_history_trend": [],
+    "workload_signal": "Unknown",
+    "adaptive_recommendation": {
+      "recommendation_type": "observe",
+      "title": "No Active Roadmap",
+      "message": "Complete a Future Simulation to create your first roadmap.",
+      "priority_actions": []
+    }
+  },
+  "test_user_integration": {
+    "user_id": "test_user_integration",
+    "roadmap_id": "roadmap_220af326",
+    "scenario": "Placement",
+    "overall_execution_percentage": 45,
+    "latest_week_completion_percentage": 40,
+    "previous_week_completion_percentage": 45,
+    "completion_trend": "stable",
+    "execution_velocity": -5.0,
+    "current_execution_streak": 3,
+    "total_actions_planned": 3,
+    "total_actions_completed": 0,
+    "missed_actions": [
+      {
+        "action_id": "6d0be770-a417-4faf-bc5e-82c90d5b5fea",
+        "title": "Master Ai Software Engineer Core Skills & Ai Software Engineer Core Fundamentals",
+        "category": "SKILL",
+        "status": "not_started",
+        "missed_count": 3,
+        "insight_type": "needs_review"
+      },
+      {
+        "action_id": "831b03fe-f83d-4494-874a-cea9e6b18362",
+        "title": "Build Ai Software Engineer Practical Portfolio & Case Studies",
+        "category": "PROJECT",
+        "status": "not_started",
+        "missed_count": 3,
+        "insight_type": "needs_review"
+      },
+      {
+        "action_id": "07167fe4-7dae-4222-b6c8-f3043aa28713",
+        "title": "Ai Software Engineer Career Outreach & Portfolio Review",
+        "category": "CAREER",
+        "status": "not_started",
+        "missed_count": 3,
+        "insight_type": "needs_review"
+      }
+    ],
+    "repeatedly_missed_actions": [
+      {
+        "action_id": "6d0be770-a417-4faf-bc5e-82c90d5b5fea",
+        "title": "Master Ai Software Engineer Core Skills & Ai Software Engineer Core Fundamentals",
+        "category": "SKILL",
+        "status": "not_started",
+        "missed_count": 3,
+        "insight_type": "needs_review"
+      },
+      {
+        "action_id": "831b03fe-f83d-4494-874a-cea9e6b18362",
+        "title": "Build Ai Software Engineer Practical Portfolio & Case Studies",
+        "category": "PROJECT",
+        "status": "not_started",
+        "missed_count": 3,
+        "insight_type": "needs_review"
+      },
+      {
+        "action_id": "07167fe4-7dae-4222-b6c8-f3043aa28713",
+        "title": "Ai Software Engineer Career Outreach & Portfolio Review",
+        "category": "CAREER",
+        "status": "not_started",
+        "missed_count": 3,
+        "insight_type": "needs_review"
+      }
+    ],
+    "weekly_history_trend": [
+      40,
+      45,
+      50
+    ],
+    "workload_signal": "Manageable",
+    "adaptive_recommendation": {
+      "recommendation_type": "observe",
+      "title": "Observe Execution Pattern",
+      "message": "Keep checking in for another week so LifePilot can identify a reliable execution pattern.",
+      "priority_actions": [
+        "Master Ai Software Engineer Core Skills & Ai Software Engineer Core Fundamentals",
+        "Build Ai Software Engineer Practical Portfolio & Case Studies"
+      ]
+    }
+  },
+  "user_wildlife_test": {
+    "user_id": "user_wildlife_test",
+    "roadmap_id": "roadmap_efe7d24a",
+    "scenario": "Career Execution (Wildlife Photography)",
+    "overall_execution_percentage": 0,
+    "latest_week_completion_percentage": 0,
+    "previous_week_completion_percentage": 0,
+    "completion_trend": "stable",
+    "execution_velocity": 0.0,
+    "current_execution_streak": 2,
+    "total_actions_planned": 3,
+    "total_actions_completed": 0,
+    "missed_actions": [
+      {
+        "action_id": "ee8f701b-df15-4390-9090-9af40a779738",
+        "title": "Master Wild Life Photographer Core Skills & Advanced camera techniques",
+        "category": "SKILL",
+        "status": "not_started",
+        "missed_count": 2,
+        "insight_type": "needs_review"
+      },
+      {
+        "action_id": "463adced-bc2e-41e5-bb89-d5b9f02a5906",
+        "title": "Build Wild Life Photographer Practical Portfolio & Case Studies",
+        "category": "PROJECT",
+        "status": "not_started",
+        "missed_count": 2,
+        "insight_type": "needs_review"
+      },
+      {
+        "action_id": "7dd0d25e-3ba2-4722-96c0-52a19817b0a9",
+        "title": "Wild Life Photographer Career Outreach & Portfolio Review",
+        "category": "CAREER",
+        "status": "not_started",
+        "missed_count": 2,
+        "insight_type": "needs_review"
+      }
+    ],
+    "repeatedly_missed_actions": [
+      {
+        "action_id": "ee8f701b-df15-4390-9090-9af40a779738",
+        "title": "Master Wild Life Photographer Core Skills & Advanced camera techniques",
+        "category": "SKILL",
+        "status": "not_started",
+        "missed_count": 2,
+        "insight_type": "needs_review"
+      },
+      {
+        "action_id": "463adced-bc2e-41e5-bb89-d5b9f02a5906",
+        "title": "Build Wild Life Photographer Practical Portfolio & Case Studies",
+        "category": "PROJECT",
+        "status": "not_started",
+        "missed_count": 2,
+        "insight_type": "needs_review"
+      },
+      {
+        "action_id": "7dd0d25e-3ba2-4722-96c0-52a19817b0a9",
+        "title": "Wild Life Photographer Career Outreach & Portfolio Review",
+        "category": "CAREER",
+        "status": "not_started",
+        "missed_count": 2,
+        "insight_type": "needs_review"
+      }
+    ],
+    "weekly_history_trend": [
+      0
+    ],
+    "workload_signal": "Manageable",
+    "adaptive_recommendation": {
+      "recommendation_type": "observe",
+      "title": "Observe Execution Pattern",
+      "message": "Keep checking in for another week so LifePilot can identify a reliable execution pattern.",
+      "priority_actions": [
+        "Master Wild Life Photographer Core Skills & Advanced camera techniques",
+        "Build Wild Life Photographer Practical Portfolio & Case Studies"
+      ]
+    }
+  },
+  "user_execution_test": {
+    "user_id": "user_execution_test",
+    "roadmap_id": "roadmap_6edb99ea",
+    "scenario": "Placement",
+    "overall_execution_percentage": 0,
+    "latest_week_completion_percentage": 0,
+    "previous_week_completion_percentage": 0,
+    "completion_trend": "insufficient_data",
+    "execution_velocity": 0.0,
+    "current_execution_streak": 0,
+    "total_actions_planned": 3,
+    "total_actions_completed": 0,
+    "missed_actions": [
+      {
+        "action_id": "44a113b4-eb95-42c2-a68a-dd07663660cc",
+        "title": "Master Teacher Core Skills & Teacher Core Fundamentals",
+        "category": "SKILL",
+        "status": "carry_forward",
+        "missed_count": 0,
+        "insight_type": "carry_forward"
+      },
+      {
+        "action_id": "bd1d1405-fbae-44cb-b734-1033b3331849",
+        "title": "Build Teacher Practical Portfolio & Case Studies",
+        "category": "PROJECT",
+        "status": "carry_forward",
+        "missed_count": 0,
+        "insight_type": "carry_forward"
+      },
+      {
+        "action_id": "41f8705e-cc55-4019-9a04-06112c48235c",
+        "title": "Teacher Career Outreach & Portfolio Review",
+        "category": "CAREER",
+        "status": "carry_forward",
+        "missed_count": 0,
+        "insight_type": "carry_forward"
+      }
+    ],
+    "repeatedly_missed_actions": [],
+    "weekly_history_trend": [],
+    "workload_signal": "Unknown",
+    "adaptive_recommendation": {
+      "recommendation_type": "observe",
+      "title": "Awaiting Check-in Data",
+      "message": "Complete your first check-in to start building your execution profile.",
+      "priority_actions": [
+        "Master Teacher Core Skills & Teacher Core Fundamentals",
+        "Build Teacher Practical Portfolio & Case Studies"
+      ]
+    }
+  },
+  "user_1787590421303_8uejt": {
+    "user_id": "user_1787590421303_8uejt",
+    "roadmap_id": "roadmap_d67d064c",
+    "scenario": "Placement",
+    "overall_execution_percentage": 0,
+    "latest_week_completion_percentage": 100,
+    "previous_week_completion_percentage": 0,
+    "completion_trend": "insufficient_data",
+    "execution_velocity": 0.0,
+    "current_execution_streak": 1,
+    "total_actions_planned": 3,
+    "total_actions_completed": 3,
+    "missed_actions": [],
+    "repeatedly_missed_actions": [],
+    "weekly_history_trend": [
+      0
+    ],
+    "workload_signal": "Easy",
+    "adaptive_recommendation": {
+      "recommendation_type": "increase_depth",
+      "title": "Increase Activity Depth",
+      "message": "You're consistently executing at a sustainable pace. Consider increasing depth in your highest-impact activity rather than adding many new commitments.",
+      "priority_actions": []
+    }
   }
 }

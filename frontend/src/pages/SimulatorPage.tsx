@@ -5,10 +5,11 @@ import { ProgressIntelligenceSection } from '../components/ProgressIntelligenceS
 import { AdaptiveFutureSection } from '../components/AdaptiveFutureSection';
 import { LifePilotStatus } from '../components/LifePilotStatus';
 import { fetchRoadmap, generateRoadmap, updateRoadmapAction, fetchProgress, fetchAdaptiveFuture } from '../api/client';
-import { Card } from '../components/common/Card';
-import { Button } from '../components/common/Button';
-import { Badge } from '../components/common/Badge';
-import { ProgressBar } from '../components/common/ProgressBar';
+import { Card } from '../components/ui/card';
+import { Button } from '../components/ui/button';
+import { Badge } from '../components/ui/badge';
+import { Progress } from '../components/ui/progress';
+import { useStaggerEntrance } from '../hooks/useGsap';
 import { 
   CheckCircle2, 
   Sparkles, 
@@ -50,7 +51,7 @@ const CircularProgress: React.FC<{ percentage: number; size?: number }> = ({ per
           cx={size / 2}
           cy={size / 2}
           r={radius}
-          stroke="#E5E5DC"
+          stroke="#E2E8F0"
           strokeWidth={strokeWidth}
           fill="transparent"
         />
@@ -58,7 +59,7 @@ const CircularProgress: React.FC<{ percentage: number; size?: number }> = ({ per
           cx={size / 2}
           cy={size / 2}
           r={radius}
-          stroke="#32C6A6"
+          stroke="#10B981"
           strokeWidth={strokeWidth}
           strokeDasharray={circumference}
           strokeDashoffset={strokeDashoffset}
@@ -67,7 +68,7 @@ const CircularProgress: React.FC<{ percentage: number; size?: number }> = ({ per
           className="transition-all duration-1000 ease-out"
         />
       </svg>
-      <span className="absolute font-mono font-extrabold text-[#171827] text-sm">
+      <span className="absolute font-mono font-extrabold text-[#0F172A] text-sm">
         {percentage}%
       </span>
     </div>
@@ -830,12 +831,13 @@ const SimulatorPageContent: React.FC<SimulatorPageProps> = ({
           <div className="flex items-center gap-3">
             <AlertTriangle className="w-6 h-6 text-[#FF7A6B] shrink-0" />
             <div>
-              <h4 className="text-sm font-bold text-[#171827]">Simulation Error</h4>
-              <p className="text-xs text-[#667085]">{errorMsg}</p>
+              <h4 className="text-sm font-bold text-[#0F172A]">Simulation Error</h4>
+              <p className="text-xs text-slate-500">{errorMsg}</p>
             </div>
           </div>
-          <Button variant="secondary" size="sm" onClick={handleSimulate} icon={<RefreshCw className="w-3.5 h-3.5" />}>
-            Try Again
+          <Button variant="outline" size="sm" onClick={handleSimulate} className="gap-1.5">
+            <RefreshCw className="w-3.5 h-3.5" />
+            <span>Try Again</span>
           </Button>
         </Card>
       )}
@@ -843,10 +845,10 @@ const SimulatorPageContent: React.FC<SimulatorPageProps> = ({
       {/* 2. SCENARIO COMPARISON (CLEAN COMPARISON ROW WITH LEADER BADGE) */}
       <section className="space-y-4">
         <div className="flex items-center justify-between">
-          <h2 className="text-xs font-bold uppercase tracking-wider text-[#667085]">
+          <h2 className="text-xs font-mono font-bold uppercase tracking-[0.16em] text-slate-500">
             1. SCENARIO COMPARISON — SELECT TARGET TRAJECTORY
           </h2>
-          <span className="text-xs text-[#667085] font-mono">3 Scenarios Available</span>
+          <span className="text-xs text-slate-500 font-mono">3 Scenarios Available</span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -859,23 +861,22 @@ const SimulatorPageContent: React.FC<SimulatorPageProps> = ({
             return (
               <Card
                 level={2}
-                activeBorder={isSelected}
                 onClick={() => setSelectedScenario('placement')}
-                className={`cursor-pointer space-y-4 relative group transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md ${
-                  isSelected ? 'ring-2 ring-[#635BFF] bg-[#635BFF]/5' : ''
-                } ${isLeader ? 'border-2 border-[#32C6A6] shadow-sm' : ''}`}
+                className={`cursor-pointer space-y-4 relative group transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${
+                  isSelected ? 'ring-2 ring-[#5850EC] bg-[#5850EC]/5' : ''
+                } ${isLeader ? 'border-2 border-[#10B981] shadow-sm' : ''}`}
               >
                 <div className="flex items-center justify-between">
-                  <div className="p-3 rounded-2xl bg-[#635BFF]/10 text-[#635BFF]">
+                  <div className="p-3 rounded-2xl bg-[#5850EC]/10 text-[#5850EC]">
                     <Briefcase className="w-6 h-6" />
                   </div>
                   <div className="flex flex-wrap items-center gap-1.5">
                     {isLeader && (
-                      <Badge variant="green" className="text-[10px] font-bold">
+                      <Badge variant="success" size="sm" className="font-bold">
                         ★ LEADING / BEST FIT
                       </Badge>
                     )}
-                    <Badge variant={isSelected ? 'indigo' : 'neutral'}>
+                    <Badge variant={isSelected ? 'indigo' : 'outline'} size="sm">
                       {isSelected ? 'Selected ✓' : 'Select'}
                     </Badge>
                   </div>
@@ -883,12 +884,12 @@ const SimulatorPageContent: React.FC<SimulatorPageProps> = ({
 
                 <div>
                   <div className="flex items-center justify-between">
-                    <h3 className="text-base font-bold text-[#171827] font-heading">{dims.scenarioTitle}</h3>
-                    <span className="text-lg font-extrabold font-mono text-[#171827]">
+                    <h3 className="text-base font-bold text-[#0F172A] font-heading">{dims.scenarioTitle}</h3>
+                    <span className="text-lg font-extrabold font-mono text-[#0F172A]">
                       {score} / 100
                     </span>
                   </div>
-                  <p className="text-xs text-[#667085] mt-1 leading-relaxed">
+                  <p className="text-xs text-slate-500 mt-1 leading-relaxed">
                     {dims.scenarioDescription}
                   </p>
                 </div>
@@ -905,23 +906,22 @@ const SimulatorPageContent: React.FC<SimulatorPageProps> = ({
             return (
               <Card
                 level={2}
-                activeBorder={isSelected}
                 onClick={() => setSelectedScenario('higher_studies')}
-                className={`cursor-pointer space-y-4 relative group transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md ${
-                  isSelected ? 'ring-2 ring-[#635BFF] bg-[#635BFF]/5' : ''
-                } ${isLeader ? 'border-2 border-[#32C6A6] shadow-sm' : ''}`}
+                className={`cursor-pointer space-y-4 relative group transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${
+                  isSelected ? 'ring-2 ring-[#5850EC] bg-[#5850EC]/5' : ''
+                } ${isLeader ? 'border-2 border-[#10B981] shadow-sm' : ''}`}
               >
                 <div className="flex items-center justify-between">
-                  <div className="p-3 rounded-2xl bg-[#32C6A6]/10 text-[#219B81]">
+                  <div className="p-3 rounded-2xl bg-[#10B981]/10 text-[#10B981]">
                     <GraduationCap className="w-6 h-6" />
                   </div>
                   <div className="flex flex-wrap items-center gap-1.5">
                     {isLeader && (
-                      <Badge variant="green" className="text-[10px] font-bold">
+                      <Badge variant="success" size="sm" className="font-bold">
                         ★ LEADING / BEST FIT
                       </Badge>
                     )}
-                    <Badge variant={isSelected ? 'indigo' : 'neutral'}>
+                    <Badge variant={isSelected ? 'indigo' : 'outline'} size="sm">
                       {isSelected ? 'Selected ✓' : 'Select'}
                     </Badge>
                   </div>
@@ -929,12 +929,12 @@ const SimulatorPageContent: React.FC<SimulatorPageProps> = ({
 
                 <div>
                   <div className="flex items-center justify-between">
-                    <h3 className="text-base font-bold text-[#171827] font-heading">{dims.sc2Title}</h3>
-                    <span className="text-lg font-extrabold font-mono text-[#171827]">
+                    <h3 className="text-base font-bold text-[#0F172A] font-heading">{dims.sc2Title}</h3>
+                    <span className="text-lg font-extrabold font-mono text-[#0F172A]">
                       {score} / 100
                     </span>
                   </div>
-                  <p className="text-xs text-[#667085] mt-1 leading-relaxed">
+                  <p className="text-xs text-slate-500 mt-1 leading-relaxed">
                     {dims.sc2Desc}
                   </p>
                 </div>
@@ -951,23 +951,22 @@ const SimulatorPageContent: React.FC<SimulatorPageProps> = ({
             return (
               <Card
                 level={2}
-                activeBorder={isSelected}
                 onClick={() => setSelectedScenario('startup')}
-                className={`cursor-pointer space-y-4 relative group transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md ${
-                  isSelected ? 'ring-2 ring-[#635BFF] bg-[#635BFF]/5' : ''
-                } ${isLeader ? 'border-2 border-[#32C6A6] shadow-sm' : ''}`}
+                className={`cursor-pointer space-y-4 relative group transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${
+                  isSelected ? 'ring-2 ring-[#5850EC] bg-[#5850EC]/5' : ''
+                } ${isLeader ? 'border-2 border-[#10B981] shadow-sm' : ''}`}
               >
                 <div className="flex items-center justify-between">
-                  <div className="p-3 rounded-2xl bg-[#FF7A6B]/10 text-[#FF7A6B]">
+                  <div className="p-3 rounded-2xl bg-[#F43F5E]/10 text-[#F43F5E]">
                     <Zap className="w-6 h-6" />
                   </div>
                   <div className="flex flex-wrap items-center gap-1.5">
                     {isLeader && (
-                      <Badge variant="green" className="text-[10px] font-bold">
+                      <Badge variant="success" size="sm" className="font-bold">
                         ★ LEADING / BEST FIT
                       </Badge>
                     )}
-                    <Badge variant={isSelected ? 'indigo' : 'neutral'}>
+                    <Badge variant={isSelected ? 'indigo' : 'outline'} size="sm">
                       {isSelected ? 'Selected ✓' : 'Select'}
                     </Badge>
                   </div>
@@ -975,12 +974,12 @@ const SimulatorPageContent: React.FC<SimulatorPageProps> = ({
 
                 <div>
                   <div className="flex items-center justify-between">
-                    <h3 className="text-base font-bold text-[#171827] font-heading">{dims.sc3Title}</h3>
-                    <span className="text-lg font-extrabold font-mono text-[#171827]">
+                    <h3 className="text-base font-bold text-[#0F172A] font-heading">{dims.sc3Title}</h3>
+                    <span className="text-lg font-extrabold font-mono text-[#0F172A]">
                       {score} / 100
                     </span>
                   </div>
-                  <p className="text-xs text-[#667085] mt-1 leading-relaxed">
+                  <p className="text-xs text-slate-500 mt-1 leading-relaxed">
                     {dims.sc3Desc}
                   </p>
                 </div>
@@ -1009,58 +1008,58 @@ const SimulatorPageContent: React.FC<SimulatorPageProps> = ({
               <>
                 <div className="space-y-2">
                   <div className="flex justify-between items-center text-xs">
-                    <span className="font-bold text-[#171827]">{dims.slider1.label}</span>
-                    <Badge variant="green">{dims.slider1.badge}</Badge>
+                    <span className="font-bold text-[#0F172A]">{dims.slider1.label}</span>
+                    <Badge variant="success" size="sm">{dims.slider1.badge}</Badge>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="text-xs font-mono text-[#667085]">0</span>
+                    <span className="text-xs font-mono text-slate-500">0</span>
                     <input
                       type="range"
                       min="0"
                       max="15"
                       value={path1Dim1Hours}
                       onChange={e => setPath1Dim1Hours(Number(e.target.value))}
-                      className="w-full cursor-pointer accent-[#635BFF]"
+                      className="w-full cursor-pointer"
                     />
-                    <span className="text-xs font-mono font-bold text-[#635BFF] shrink-0">{path1Dim1Hours} hrs/week</span>
+                    <span className="text-xs font-mono font-bold text-[#5850EC] shrink-0">{path1Dim1Hours} hrs/week</span>
                   </div>
                 </div>
 
-                <div className="space-y-2 pt-3 border-t border-[#E5E5DC]">
+                <div className="space-y-2 pt-3 border-t border-black/[0.06]">
                   <div className="flex justify-between items-center text-xs">
-                    <span className="font-bold text-[#171827]">{dims.slider2.label}</span>
-                    <Badge variant="indigo">{dims.slider2.badge}</Badge>
+                    <span className="font-bold text-[#0F172A]">{dims.slider2.label}</span>
+                    <Badge variant="indigo" size="sm">{dims.slider2.badge}</Badge>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="text-xs font-mono text-[#667085]">0</span>
+                    <span className="text-xs font-mono text-slate-500">0</span>
                     <input
                       type="range"
                       min="0"
                       max="5"
                       value={path1Dim2Projects}
                       onChange={e => setPath1Dim2Projects(Number(e.target.value))}
-                      className="w-full cursor-pointer accent-[#635BFF]"
+                      className="w-full cursor-pointer"
                     />
-                    <span className="text-xs font-mono font-bold text-[#635BFF] shrink-0">{path1Dim2Projects} / month ({path1Dim2Projects * 3}h/wk)</span>
+                    <span className="text-xs font-mono font-bold text-[#5850EC] shrink-0">{path1Dim2Projects} / month ({path1Dim2Projects * 3}h/wk)</span>
                   </div>
                 </div>
 
-                <div className="space-y-2 pt-3 border-t border-[#E5E5DC]">
+                <div className="space-y-2 pt-3 border-t border-black/[0.06]">
                   <div className="flex justify-between items-center text-xs">
-                    <span className="font-bold text-[#171827]">{dims.slider3.label}</span>
-                    <Badge variant="indigo">{dims.slider3.badge}</Badge>
+                    <span className="font-bold text-[#0F172A]">{dims.slider3.label}</span>
+                    <Badge variant="indigo" size="sm">{dims.slider3.badge}</Badge>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="text-xs font-mono text-[#667085]">0</span>
+                    <span className="text-xs font-mono text-slate-500">0</span>
                     <input
                       type="range"
                       min="0"
                       max="10"
                       value={path1Dim3Hours}
                       onChange={e => setPath1Dim3Hours(Number(e.target.value))}
-                      className="w-full cursor-pointer accent-[#635BFF]"
+                      className="w-full cursor-pointer"
                     />
-                    <span className="text-xs font-mono font-bold text-[#635BFF] shrink-0">{path1Dim3Hours} hrs/week</span>
+                    <span className="text-xs font-mono font-bold text-[#5850EC] shrink-0">{path1Dim3Hours} hrs/week</span>
                   </div>
                 </div>
               </>
@@ -1095,58 +1094,58 @@ const SimulatorPageContent: React.FC<SimulatorPageProps> = ({
                 <>
                   <div className="space-y-2">
                     <div className="flex justify-between items-center text-xs">
-                      <span className="font-bold text-[#171827]">{slider1Label}</span>
-                      <Badge variant="green">+ HIGH IMPACT</Badge>
+                      <span className="font-bold text-[#0F172A]">{slider1Label}</span>
+                      <Badge variant="success" size="sm">+ HIGH IMPACT</Badge>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-xs font-mono text-[#667085]">0</span>
+                      <span className="text-xs font-mono text-slate-500">0</span>
                       <input
                         type="range"
                         min="0"
                         max="20"
                         value={examPrepHours}
                         onChange={e => setExamPrepHours(Number(e.target.value))}
-                        className="w-full cursor-pointer accent-[#32C6A6]"
+                        className="w-full cursor-pointer"
                       />
-                      <span className="text-xs font-mono font-bold text-[#32C6A6] shrink-0">{examPrepHours} hrs/week</span>
+                      <span className="text-xs font-mono font-bold text-[#10B981] shrink-0">{examPrepHours} hrs/week</span>
                     </div>
                   </div>
 
-                  <div className="space-y-2 pt-3 border-t border-[#E5E5DC]">
+                  <div className="space-y-2 pt-3 border-t border-black/[0.06]">
                     <div className="flex justify-between items-center text-xs">
-                      <span className="font-bold text-[#171827]">{slider2Label}</span>
-                      <Badge variant="indigo">+ HIGH IMPACT</Badge>
+                      <span className="font-bold text-[#0F172A]">{slider2Label}</span>
+                      <Badge variant="indigo" size="sm">+ CRITICAL IMPACT</Badge>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-xs font-mono text-[#667085]">0</span>
+                      <span className="text-xs font-mono text-slate-500">0</span>
                       <input
                         type="range"
                         min="0"
                         max="15"
                         value={researchHours}
                         onChange={e => setResearchHours(Number(e.target.value))}
-                        className="w-full cursor-pointer accent-[#32C6A6]"
+                        className="w-full cursor-pointer"
                       />
-                      <span className="text-xs font-mono font-bold text-[#32C6A6] shrink-0">{researchHours} hrs/week</span>
+                      <span className="text-xs font-mono font-bold text-[#10B981] shrink-0">{researchHours} hrs/week</span>
                     </div>
                   </div>
 
-                  <div className="space-y-2 pt-3 border-t border-[#E5E5DC]">
+                  <div className="space-y-2 pt-3 border-t border-black/[0.06]">
                     <div className="flex justify-between items-center text-xs">
-                      <span className="font-bold text-[#171827]">{slider3Label}</span>
-                      <Badge variant="indigo">+ MODERATE IMPACT</Badge>
+                      <span className="font-bold text-[#0F172A]">{slider3Label}</span>
+                      <Badge variant="indigo" size="sm">+ ESSENTIAL IMPACT</Badge>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-xs font-mono text-[#667085]">0</span>
+                      <span className="text-xs font-mono text-slate-500">0</span>
                       <input
                         type="range"
                         min="0"
                         max="10"
                         value={sopAppHours}
                         onChange={e => setSopAppHours(Number(e.target.value))}
-                        className="w-full cursor-pointer accent-[#32C6A6]"
+                        className="w-full cursor-pointer"
                       />
-                      <span className="text-xs font-mono font-bold text-[#32C6A6] shrink-0">{sopAppHours} hrs/week</span>
+                      <span className="text-xs font-mono font-bold text-[#10B981] shrink-0">{sopAppHours} hrs/week</span>
                     </div>
                   </div>
                 </>
@@ -1158,58 +1157,58 @@ const SimulatorPageContent: React.FC<SimulatorPageProps> = ({
               <>
                 <div className="space-y-2">
                   <div className="flex justify-between items-center text-xs">
-                    <span className="font-bold text-[#171827]">Product Development & Prototyping</span>
-                    <Badge variant="green">+ HIGH IMPACT</Badge>
+                    <span className="font-bold text-[#0F172A]">Product Development & Prototyping</span>
+                    <Badge variant="success" size="sm">+ HIGH IMPACT</Badge>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="text-xs font-mono text-[#667085]">0</span>
+                    <span className="text-xs font-mono text-slate-500">0</span>
                     <input
                       type="range"
                       min="0"
                       max="25"
                       value={productDevHours}
                       onChange={e => setProductDevHours(Number(e.target.value))}
-                      className="w-full cursor-pointer accent-[#FF7A6B]"
+                      className="w-full cursor-pointer"
                     />
-                    <span className="text-xs font-mono font-bold text-[#FF7A6B] shrink-0">{productDevHours} hrs/week</span>
+                    <span className="text-xs font-mono font-bold text-[#F43F5E] shrink-0">{productDevHours} hrs/week</span>
                   </div>
                 </div>
 
-                <div className="space-y-2 pt-3 border-t border-[#E5E5DC]">
+                <div className="space-y-2 pt-3 border-t border-black/[0.06]">
                   <div className="flex justify-between items-center text-xs">
-                    <span className="font-bold text-[#171827]">Market Discovery & Customer Research</span>
-                    <Badge variant="amber">+ HIGH IMPACT</Badge>
+                    <span className="font-bold text-[#0F172A]">Market Discovery & Customer Research</span>
+                    <Badge variant="warning" size="sm">+ HIGH IMPACT</Badge>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="text-xs font-mono text-[#667085]">0</span>
+                    <span className="text-xs font-mono text-slate-500">0</span>
                     <input
                       type="range"
                       min="0"
                       max="15"
                       value={marketResearchHours}
                       onChange={e => setMarketResearchHours(Number(e.target.value))}
-                      className="w-full cursor-pointer accent-[#FF7A6B]"
+                      className="w-full cursor-pointer"
                     />
-                    <span className="text-xs font-mono font-bold text-[#FF7A6B] shrink-0">{marketResearchHours} hrs/week</span>
+                    <span className="text-xs font-mono font-bold text-[#F43F5E] shrink-0">{marketResearchHours} hrs/week</span>
                   </div>
                 </div>
 
-                <div className="space-y-2 pt-3 border-t border-[#E5E5DC]">
+                <div className="space-y-2 pt-3 border-t border-black/[0.06]">
                   <div className="flex justify-between items-center text-xs">
-                    <span className="font-bold text-[#171827]">Pitching & Investor Networking</span>
-                    <Badge variant="indigo">+ MODERATE IMPACT</Badge>
+                    <span className="font-bold text-[#0F172A]">Pitching & Investor Networking</span>
+                    <Badge variant="indigo" size="sm">+ MODERATE IMPACT</Badge>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="text-xs font-mono text-[#667085]">0</span>
+                    <span className="text-xs font-mono text-slate-500">0</span>
                     <input
                       type="range"
                       min="0"
                       max="10"
                       value={pitchNetHours}
                       onChange={e => setPitchNetHours(Number(e.target.value))}
-                      className="w-full cursor-pointer accent-[#FF7A6B]"
+                      className="w-full cursor-pointer"
                     />
-                    <span className="text-xs font-mono font-bold text-[#FF7A6B] shrink-0">{pitchNetHours} hrs/week</span>
+                    <span className="text-xs font-mono font-bold text-[#F43F5E] shrink-0">{pitchNetHours} hrs/week</span>
                   </div>
                 </div>
               </>
@@ -1287,16 +1286,16 @@ const SimulatorPageContent: React.FC<SimulatorPageProps> = ({
 
             <div className="space-y-2 pt-2">
               <Button
-                variant="primary"
+                variant="gradient"
                 size="lg"
                 onClick={handleSimulate}
-                isLoading={simulating}
-                icon={<Sparkles className="w-4 h-4" />}
-                className="w-full justify-center py-3.5 font-bold shadow-lg shadow-[#635BFF]/25 hover:shadow-xl hover:shadow-[#635BFF]/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
+                disabled={simulating}
+                className="w-full justify-center py-3.5 font-bold shadow-lg shadow-[#5850EC]/25 hover:shadow-xl hover:shadow-[#5850EC]/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 gap-2"
               >
-                {simulating ? 'Evaluating scenario...' : `✦ RUN FULL SIMULATION`}
+                <Sparkles className="w-4 h-4" />
+                <span>{simulating ? 'Evaluating scenario...' : `✦ RUN FULL SIMULATION`}</span>
               </Button>
-              <p className="text-[10px] text-center text-[#667085] font-mono">
+              <p className="text-[10px] text-center text-slate-500 font-mono">
                 Lock in these assumptions and generate your full decision analysis.
               </p>
             </div>
@@ -1306,13 +1305,13 @@ const SimulatorPageContent: React.FC<SimulatorPageProps> = ({
 
       {/* 4. SIMULATION ANIMATION */}
       {simulating && (
-        <Card level={3} className="p-8 text-center space-y-5 animate-pulse border-2 border-[#635BFF]">
-          <Sparkles className="w-10 h-10 text-[#635BFF] mx-auto animate-spin" />
+        <Card level={3} className="p-8 text-center space-y-5 animate-pulse border-2 border-[#5850EC]">
+          <Sparkles className="w-10 h-10 text-[#5850EC] mx-auto animate-spin" />
           <div className="space-y-1">
-            <h3 className="text-lg font-extrabold text-[#171827] font-heading uppercase tracking-wider">
+            <h3 className="text-lg font-extrabold text-[#0F172A] font-heading uppercase tracking-wider">
               ANALYZING YOUR FUTURE...
             </h3>
-            <p className="text-xs text-[#667085]">
+            <p className="text-xs text-slate-500">
               {isGeminiUsed ? 'AI analysis powered by Gemini 3.6 Flash' : 'Running deterministic constraint evaluation'}
             </p>
           </div>
@@ -1320,41 +1319,43 @@ const SimulatorPageContent: React.FC<SimulatorPageProps> = ({
       )}
 
       {/* 5. RECOMMENDATION & DECISION ANALYSIS */}
-      <section ref={boardRef} className="space-y-4 pt-4 border-t border-[#E5E5DC]">
-        <h2 className="text-xs font-bold uppercase tracking-wider text-[#667085]">
+      <section ref={boardRef} className="space-y-4 pt-4 border-t border-black/[0.06]">
+        <h2 className="text-xs font-mono font-bold uppercase tracking-[0.16em] text-slate-500">
           3. DECISION & RECOMMENDATION ANALYSIS
         </h2>
 
-        <div className="bg-white rounded-[28px] border-2 border-[#635BFF] p-6 lg:p-8 light-card-shadow space-y-6">
+        <div className="bg-white rounded-[28px] border-2 border-[#5850EC] p-6 lg:p-8 shadow-sm space-y-6">
           {/* Header */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#E5E5DC]">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-black/[0.06]">
             <div>
-              <span className="text-[10px] uppercase font-bold tracking-wider text-[#635BFF] font-mono flex items-center gap-1.5">
-                <Cpu className="w-4 h-4 text-[#635BFF]" /> {simulationData ? 'STEPNEXT DECISION ANALYSIS' : 'PREVIEW ANALYSIS'}
+              <span className="text-[10px] uppercase font-bold tracking-wider text-[#5850EC] font-mono flex items-center gap-1.5">
+                <Cpu className="w-4 h-4 text-[#5850EC]" /> {simulationData ? 'STEPNEXT DECISION ANALYSIS' : 'PREVIEW ANALYSIS'}
               </span>
-              <h3 className="text-2xl lg:text-3xl font-extrabold text-[#171827] font-heading mt-1 flex items-center gap-2">
-                <CheckCircle2 className="w-6 h-6 text-[#32C6A6]" />
+              <h3 className="text-2xl lg:text-3xl font-extrabold text-[#0F172A] font-heading mt-1 flex items-center gap-2">
+                <CheckCircle2 className="w-6 h-6 text-[#10B981]" />
                 {activeResult.name.toUpperCase()} {activeResult.overall_score === topLive.overall_score ? '(TOP ALIGNMENT)' : '(SELECTED PATH)'}
               </h3>
             </div>
             <div className="flex items-center gap-2">
-              <Badge variant={simulationData ? (isGeminiUsed ? 'indigo' : 'neutral') : 'neutral'} className="font-mono text-xs font-bold">
+              <Badge variant={simulationData ? (isGeminiUsed ? 'indigo' : 'outline') : 'outline'} size="sm" className="font-mono font-bold">
                 {simulationData ? (isGeminiUsed ? `✨ ${engineUsed}` : `⚡ Rule-based analysis`) : `⚡ Live Preview`}
               </Badge>
-              <Badge variant="green" className="text-xs px-3.5 py-1 font-mono font-bold">
+              <Badge variant="success" size="lg" className="font-mono font-bold">
                 {activeResult.overall_score} / 100 alignment
               </Badge>
             </div>
           </div>
 
           {/* Reasoning */}
-          <div className="p-4 rounded-2xl bg-gradient-to-r from-[#FAF9F5] to-[#F0EEFF] border border-[#635BFF]/20 text-xs sm:text-sm text-[#171827] font-medium leading-relaxed">
-            "{activeResult.explanation || `Your ${activeResult.name} path achieves an overall alignment score of ${activeResult.overall_score}/100 based on your current weekly time allocations and profile goals as a ${dims.professionTitle}. Goal Alignment is ${activeResult.goal_alignment}%, Skill Growth potential is ${activeResult.skill_growth}%, Financial Outlook is ${activeResult.financial_outlook}%, and Workload Risk is ${activeResult.risk}%.`}"
+          <div className="p-4 rounded-2xl bg-gradient-to-r from-slate-50 to-[#EEF2FF] border border-[#5850EC]/20 text-xs sm:text-sm text-[#0F172A] font-medium leading-relaxed">
+            {('explanation' in activeResult && activeResult.explanation)
+              ? `"${activeResult.explanation}"`
+              : `"${activeResult.name} path achieves an overall alignment score of ${activeResult.overall_score}/100 based on your current weekly time allocations and profile goals as a ${dims.professionTitle}. Goal Alignment is ${activeResult.goal_alignment}%, Skill Growth potential is ${activeResult.skill_growth}%, Financial Outlook is ${activeResult.financial_outlook}%, and Workload Risk is ${activeResult.risk}%."`}
           </div>
 
           {/* SCORE DRIVERS BREAKDOWN */}
           <div className="space-y-3 pt-2">
-            <h4 className="text-xs font-bold uppercase text-[#667085] tracking-wider">SCORE DRIVERS BREAKDOWN (CLICK CARD TO SWITCH ANALYSIS)</h4>
+            <h4 className="text-xs font-mono font-bold uppercase text-slate-500 tracking-wider">SCORE DRIVERS BREAKDOWN (CLICK CARD TO SWITCH ANALYSIS)</h4>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
               {(simulationData ? simulationData.results : allLive).map((res, idx) => {
                 const isSelected = res.name.toLowerCase() === activeResult.name.toLowerCase() ||
@@ -1372,17 +1373,17 @@ const SimulatorPageContent: React.FC<SimulatorPageProps> = ({
                     }}
                     className={`cursor-pointer p-3.5 rounded-2xl border transition-all duration-200 space-y-1.5 ${
                       isSelected
-                        ? 'bg-gradient-to-r from-white via-[#FAF9F5] to-[#F0EEFF] border-2 border-[#635BFF] shadow-md ring-1 ring-[#635BFF]'
-                        : 'bg-[#FAF9F5] border-[#E5E5DC] hover:border-[#635BFF]/50'
+                        ? 'bg-gradient-to-r from-white via-slate-50 to-[#EEF2FF] border-2 border-[#5850EC] shadow-md ring-1 ring-[#5850EC]'
+                        : 'bg-slate-50 border-black/[0.06] hover:border-[#5850EC]/50'
                     }`}
                   >
                     <div className="flex justify-between items-center font-mono">
-                      <span className={`font-bold ${isSelected ? 'text-[#635BFF]' : 'text-[#171827]'}`}>
+                      <span className={`font-bold ${isSelected ? 'text-[#5850EC]' : 'text-[#0F172A]'}`}>
                         0{idx + 1} {res.name.toUpperCase()} {isSelected ? '✓' : ''}
                       </span>
-                      <span className="font-extrabold text-[#171827]">{res.overall_score}/100</span>
+                      <span className="font-extrabold text-[#0F172A]">{res.overall_score}/100</span>
                     </div>
-                    <p className="text-[11px] text-[#667085] leading-relaxed">
+                    <p className="text-[11px] text-slate-500 leading-relaxed">
                       Goal Fit: {res.goal_alignment}%, Skill Growth: {res.skill_growth}%, Financial: {res.financial_outlook}%, Risk: {res.risk}%
                     </p>
                   </div>
@@ -1392,11 +1393,11 @@ const SimulatorPageContent: React.FC<SimulatorPageProps> = ({
           </div>
 
           {/* TRADEOFFS */}
-          <div className="space-y-3 pt-2 border-t border-[#E5E5DC]">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[#D84B3B] flex items-center gap-1.5">
-              <AlertTriangle className="w-4 h-4 text-[#D84B3B]" /> KEY TRADEOFFS TO CONSIDER FOR {activeResult.name.toUpperCase()}
+          <div className="space-y-3 pt-2 border-t border-black/[0.06]">
+            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-[#F43F5E] flex items-center gap-1.5">
+              <AlertTriangle className="w-4 h-4 text-[#F43F5E]" /> KEY TRADEOFFS TO CONSIDER FOR {activeResult.name.toUpperCase()}
             </h4>
-            <ul className="space-y-2 text-xs text-[#171827]">
+            <ul className="space-y-2 text-xs text-[#0F172A]">
               {[
                 `Executing ${activeResult.name} requires dedicated focus on target skill building (${activeSelectedScenario.total_hours || 18} hrs/wk).`,
                 `Goal Alignment for this path is ${activeResult.goal_alignment}% with an estimated Workload Risk of ${activeResult.risk}%.`,
@@ -1404,8 +1405,8 @@ const SimulatorPageContent: React.FC<SimulatorPageProps> = ({
                   ? `Note: Alternative path ${topLive.name} achieves a higher alignment score of ${topLive.overall_score}/100.`
                   : `This path achieves top overall alignment (${activeResult.overall_score}/100) among all evaluated trajectories.`
               ].map((tradeoff, idx) => (
-                <li key={idx} className="flex items-start gap-2.5 p-3 rounded-xl bg-[#FF7A6B]/10 border border-[#FF7A6B]/20">
-                  <span className="text-[#FF7A6B] font-bold text-sm leading-none">−</span>
+                <li key={idx} className="flex items-start gap-2.5 p-3 rounded-xl bg-[#FFF1F2] border border-[#F43F5E]/20">
+                  <span className="text-[#F43F5E] font-bold text-sm leading-none">−</span>
                   <span>{tradeoff}</span>
                 </li>
               ))}
@@ -1413,9 +1414,9 @@ const SimulatorPageContent: React.FC<SimulatorPageProps> = ({
           </div>
 
           {/* ACTIONABLE NEXT STEPS */}
-          <div className="space-y-3 pt-2 border-t border-[#E5E5DC]">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[#667085] flex items-center gap-1.5">
-              <TrendingUp className="w-4 h-4 text-[#635BFF]" /> RECOMMENDED NEXT MOVES FOR {activeResult.name.toUpperCase()}
+          <div className="space-y-3 pt-2 border-t border-black/[0.06]">
+            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
+              <TrendingUp className="w-4 h-4 text-[#5850EC]" /> RECOMMENDED NEXT MOVES FOR {activeResult.name.toUpperCase()}
             </h4>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {[
@@ -1423,20 +1424,21 @@ const SimulatorPageContent: React.FC<SimulatorPageProps> = ({
                 `Focus execution on key growth areas: ${profile?.skills_to_improve ? profile.skills_to_improve.join(', ') : 'Core fundamentals'}.`,
                 `Track weekly progress and adjust workload to keep risk at ${activeResult.risk}%.`
               ].map((stepItem, idx) => (
-                <div key={idx} className={`p-4 rounded-2xl ${idx === 0 ? 'bg-gradient-to-r from-white to-[#F0EEFF] border-2 border-[#635BFF]' : 'bg-[#FAF9F5] border border-[#E5E5DC]'} space-y-2 light-card-shadow`}>
+                <div key={idx} className={`p-4 rounded-2xl ${idx === 0 ? 'bg-gradient-to-r from-white to-[#EEF2FF] border-2 border-[#5850EC]' : 'bg-slate-50 border border-black/[0.06]'} space-y-2 shadow-sm`}>
                   <div className="flex justify-between items-center text-xs">
-                    <span className="font-mono font-bold text-[#635BFF]">0{idx + 1} {idx === 0 ? '★' : ''}</span>
-                    <Badge variant={idx === 0 ? 'amber' : 'indigo'}>ACTIONABLE</Badge>
+                    <span className="font-mono font-bold text-[#5850EC]">0{idx + 1} {idx === 0 ? '★' : ''}</span>
+                    <Badge variant={idx === 0 ? 'warning' : 'indigo'} size="sm">ACTIONABLE</Badge>
                   </div>
-                  <p className="text-xs font-bold text-[#171827] leading-relaxed">{stepItem}</p>
+                  <p className="text-xs font-bold text-[#0F172A] leading-relaxed">{stepItem}</p>
                 </div>
               ))}
             </div>
           </div>
           
           <div className="flex justify-end pt-2">
-            <Button variant="secondary" size="sm" onClick={handleAdjustScenarios} icon={<Sliders className="w-3.5 h-3.5" />}>
-              Adjust & Re-Simulate
+            <Button variant="outline" size="sm" onClick={handleAdjustScenarios} className="gap-1.5">
+              <Sliders className="w-3.5 h-3.5" />
+              <span>Adjust & Re-Simulate</span>
             </Button>
           </div>
         </div>

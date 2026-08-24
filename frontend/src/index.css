@@ -1,22 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Geist:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  --canvas: #F7F7F2;
+  --canvas: #FAFAF7;
   --surface: #FFFFFF;
-  --surface-elevated: #FAF9F5;
-  --surface-hover: #F0EEFF;
+  --surface-elevated: #F4F4EE;
+  --surface-hover: #EEF2FF;
   
-  --border: #E5E5DC;
-  --border-strong: #D1D1C7;
+  --border: rgba(0, 0, 0, 0.08);
+  --border-strong: rgba(0, 0, 0, 0.15);
+  --border-glow: rgba(99, 102, 241, 0.3);
 
-  --ink: #171827;
-  --slate: #667085;
-  --muted: #98A2B3;
+  --ink: #0F172A;
+  --ink-secondary: #334155;
+  --slate: #64748B;
+  --muted: #94A3B8;
 
-  --indigo: #635BFF;
-  --mint: #32C6A6;
-  --coral: #FF7A6B;
-  --yellow: #F5C96A;
+  --indigo: #5850EC;
+  --indigo-light: #6366F1;
+  --indigo-glow: rgba(99, 102, 241, 0.18);
+  
+  --mint: #10B981;
+  --mint-glow: rgba(16, 185, 129, 0.18);
+  
+  --coral: #F43F5E;
+  --coral-glow: rgba(244, 63, 94, 0.18);
+  
+  --amber: #F59E0B;
+  --amber-glow: rgba(245, 158, 11, 0.18);
 }
 
 *, *::before, *::after {
@@ -30,53 +40,119 @@ html, body, #root {
   width: 100%;
   background-color: var(--canvas);
   color: var(--ink);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Global Subtle Radial Gradient Canvas */
-.light-canvas-bg {
-  background-color: #F7F7F2;
+/* Taste-Skill Progressive Light Grid Canvas Background */
+.taste-grid-bg {
+  background-color: #FAFAF7;
   background-image: 
-    radial-gradient(at 10% 10%, rgba(240, 238, 255, 0.8) 0px, transparent 40%),
-    radial-gradient(at 90% 90%, rgba(99, 91, 255, 0.05) 0px, transparent 40%);
+    radial-gradient(rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    radial-gradient(at 15% 15%, rgba(99, 102, 241, 0.07) 0px, transparent 50%),
+    radial-gradient(at 85% 85%, rgba(16, 185, 129, 0.05) 0px, transparent 50%);
+  background-size: 24px 24px, 100% 100%, 100% 100%;
   background-attachment: fixed;
 }
 
+/* Taste-Skill Editorial Typography */
 h1, h2, h3, h4, .font-heading {
-  font-family: 'Inter', 'Geist', sans-serif;
-  letter-spacing: -0.02em;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  letter-spacing: -0.03em;
 }
 
-/* Custom Styled Light Range Sliders */
+.font-mono, .font-code {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.taste-label {
+  font-family: 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  color: var(--slate);
+}
+
+/* Taste-Skill Glass & Card Shadows */
+.taste-glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+.taste-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 10px 30px -10px rgba(15, 23, 42, 0.05);
+  border-radius: 24px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.taste-card:hover {
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03), 0 20px 40px -12px rgba(15, 23, 42, 0.08);
+  transform: translateY(-2px);
+}
+
+.taste-card-interactive {
+  cursor: pointer;
+}
+
+.taste-card-interactive:active {
+  transform: scale(0.99);
+}
+
+/* Luminous Glow Tokens */
+.taste-glow-indigo {
+  box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.2), 0 8px 24px -4px rgba(99, 102, 241, 0.15);
+}
+
+.taste-glow-mint {
+  box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.2), 0 8px 24px -4px rgba(16, 185, 129, 0.15);
+}
+
+.light-card-shadow {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 12px 36px -8px rgba(15, 23, 42, 0.05);
+}
+
+/* Custom Progressive Sliders */
 input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
   height: 6px;
   border-radius: 9999px;
-  background: #E5E5DC;
+  background: #E2E8F0;
   outline: none;
+  transition: background 0.2s ease;
 }
+
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background: var(--indigo);
-  border: 2px solid #ffffff;
+  border: 3px solid #FFFFFF;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(99, 91, 255, 0.3);
-  transition: transform 0.15s ease, background-color 0.15s ease;
-}
-input[type="range"]::-webkit-slider-thumb:hover {
-  transform: scale(1.15);
-  background: #5046e5;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4);
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.15s ease;
 }
 
-/* Custom Scrollbar */
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.6);
+}
+
+input[type="range"]::-webkit-slider-thumb:active {
+  transform: scale(1.1);
+}
+
+/* Sleek Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -85,33 +161,37 @@ input[type="range"]::-webkit-slider-thumb:hover {
   background: var(--canvas);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--border-strong);
+  background: #CBD5E1;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--slate);
+  background: #94A3B8;
 }
 
-/* Keyframe animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Animations */
+@keyframes pulseSubtle {
+  0%, 100% { opacity: 0.9; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.03); }
+}
+
+.animate-pulse-subtle {
+  animation: pulseSubtle 3s infinite ease-in-out;
+}
+
+@keyframes orbitSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-orbit-slow {
+  animation: orbitSpin 30s linear infinite;
+}
+
+@keyframes fadeInScale {
+  from { opacity: 0; transform: translateY(8px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .animate-fade-in {
-  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes orbitPulse {
-  0%, 100% { transform: scale(1); opacity: 0.9; }
-  50% { transform: scale(1.05); opacity: 1; }
-}
-
-.orbit-node {
-  animation: orbitPulse 4s infinite ease-in-out;
-}
-
-/* Subtle Card Shadow Token */
-.light-card-shadow {
-  box-shadow: 0 10px 40px rgba(30, 30, 60, 0.05);
+  animation: fadeInScale 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }

@@ -24,8 +24,9 @@ def submit_daily_checkin(input_data: DailyCheckInInput, user_id: str = "demo_use
     # Sync latest checked-in sleep duration to shared user profile state & update overload, progress, adaptive future
     try:
         profile = fetch_profile_from_db_or_fixture(target_uid)
-        profile.sleep_hours = checkin.sleep_duration
-        calculate_and_save_overload(profile)
+        if profile:
+            profile.sleep_hours = checkin.sleep_duration
+            calculate_and_save_overload(profile)
         
         from app.services.progress import analyze_user_progress
         from app.services.adaptive_future import evaluate_future_feedback
@@ -49,8 +50,9 @@ def update_today_checkin_endpoint(input_data: DailyCheckInInput, user_id: str = 
 
     try:
         profile = fetch_profile_from_db_or_fixture(target_uid)
-        profile.sleep_hours = checkin.sleep_duration
-        calculate_and_save_overload(profile)
+        if profile:
+            profile.sleep_hours = checkin.sleep_duration
+            calculate_and_save_overload(profile)
         
         from app.services.progress import analyze_user_progress
         from app.services.adaptive_future import evaluate_future_feedback

@@ -8,41 +8,51 @@ interface LifeOrbitProps {
 
 export const LifeOrbit: React.FC<LifeOrbitProps> = ({
   userName = 'Alex',
-  userGoal = 'Senior AI Engineer',
+  userGoal = 'AI Engineer',
   size = 'md'
 }) => {
   const nodeNodes = [
-    { label: 'Career', color: 'bg-[#635BFF]', textColor: 'text-[#635BFF]', pos: 'top-0 left-1/2 -translate-x-1/2 -translate-y-3' },
-    { label: 'Skills', color: 'bg-[#32C6A6]', textColor: 'text-[#32C6A6]', pos: 'right-0 top-1/2 translate-x-3 -translate-y-1/2' },
-    { label: 'Energy', color: 'bg-[#FF7A6B]', textColor: 'text-[#FF7A6B]', pos: 'bottom-0 left-1/2 -translate-x-1/2 translate-y-3' },
-    { label: 'Goals', color: 'bg-[#F5C96A]', textColor: 'text-[#E5B54A]', pos: 'left-0 top-1/2 -translate-x-3 -translate-y-1/2' }
+    { label: 'Career', color: 'bg-[#5850EC]', textColor: 'text-[#5850EC]', border: 'border-[#5850EC]/20', pos: 'top-0 left-1/2 -translate-x-1/2 -translate-y-3' },
+    { label: 'Skills', color: 'bg-[#10B981]', textColor: 'text-[#10B981]', border: 'border-[#10B981]/20', pos: 'right-0 top-1/2 translate-x-3 -translate-y-1/2' },
+    { label: 'Energy', color: 'bg-[#F43F5E]', textColor: 'text-[#F43F5E]', border: 'border-[#F43F5E]/20', pos: 'bottom-0 left-1/2 -translate-x-1/2 translate-y-3' },
+    { label: 'Trajectory', color: 'bg-[#F59E0B]', textColor: 'text-[#D97706]', border: 'border-[#F59E0B]/20', pos: 'left-0 top-1/2 -translate-x-3 -translate-y-1/2' }
   ];
 
   return (
     <div className="relative flex items-center justify-center p-6 my-auto">
-      {/* SVG Orbital Track */}
-      <svg className="w-56 h-56 text-[#E5E5DC]" viewBox="0 0 200 200" fill="none">
-        <circle cx="100" cy="100" r="75" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" />
-        <circle cx="100" cy="100" r="45" stroke="#635BFF" strokeWidth="1" strokeOpacity="0.2" />
-        {/* Directional trajectory arrow */}
-        <path d="M100 25 A75 75 0 0 1 175 100" stroke="#635BFF" strokeWidth="2" strokeDasharray="3 3" />
-        <circle cx="175" cy="100" r="3" fill="#635BFF" />
+      {/* SVG Orbital Track with Luminous Gradients */}
+      <svg className="w-64 h-64 text-slate-200" viewBox="0 0 200 200" fill="none">
+        <defs>
+          <linearGradient id="orbitGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#5850EC" stopOpacity="0.4" />
+            <stop offset="50%" stopColor="#10B981" stopOpacity="0.4" />
+            <stop offset="100%" stopColor="#5850EC" stopOpacity="0.1" />
+          </linearGradient>
+        </defs>
+
+        <circle cx="100" cy="100" r="82" stroke="currentColor" strokeWidth="1.2" strokeDasharray="3 4" opacity="0.7" />
+        <circle cx="100" cy="100" r="52" stroke="url(#orbitGrad)" strokeWidth="1.5" />
+        
+        {/* Directional trajectory glow arc */}
+        <path d="M100 18 A82 82 0 0 1 182 100" stroke="#5850EC" strokeWidth="2.5" strokeLinecap="round" strokeDasharray="4 4" />
+        <circle cx="182" cy="100" r="4" fill="#5850EC" className="animate-ping" opacity="0.75" />
+        <circle cx="182" cy="100" r="3.5" fill="#5850EC" />
       </svg>
 
       {/* Central Identity Node */}
-      <div className="absolute flex flex-col items-center justify-center w-28 h-28 rounded-full bg-white border border-[#E5E5DC] light-card-shadow text-center p-2 z-10">
-        <span className="text-[10px] uppercase font-bold tracking-wider text-[#635BFF]">YOU</span>
-        <span className="text-sm font-bold text-[#171827] font-heading">{userName}</span>
-        <span className="text-[9px] text-[#667085] truncate max-w-[90px]">{userGoal}</span>
+      <div className="absolute flex flex-col items-center justify-center w-32 h-32 rounded-full bg-white/90 backdrop-blur-md border border-black/[0.08] shadow-[0_8px_30px_rgba(0,0,0,0.06),0_0_0_1px_rgba(99,102,241,0.1)] text-center p-3 z-10 hover:scale-105 transition-transform duration-300">
+        <span className="text-[9px] font-mono uppercase font-bold tracking-[0.18em] text-[#5850EC]">DIGITAL TWIN</span>
+        <span className="text-base font-extrabold text-[#0F172A] font-heading mt-0.5">{userName}</span>
+        <span className="text-[10px] text-slate-500 font-mono truncate max-w-[100px] mt-0.5">{userGoal}</span>
       </div>
 
-      {/* Floating Orbit Nodes */}
+      {/* Floating Orbit Nodes with Glass effect */}
       {nodeNodes.map((node, idx) => (
         <div
           key={idx}
-          className={`absolute flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white border border-[#E5E5DC] shadow-sm text-[11px] font-semibold ${node.pos} orbit-node`}
+          className={`absolute flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/95 backdrop-blur-md border ${node.border} shadow-[0_4px_12px_rgba(0,0,0,0.05)] text-[11px] font-semibold ${node.pos} hover:scale-110 transition-transform duration-200 select-none`}
         >
-          <span className={`w-2 h-2 rounded-full ${node.color}`} />
+          <span className={`w-2 h-2 rounded-full ${node.color} animate-pulse`} />
           <span className={node.textColor}>{node.label}</span>
         </div>
       ))}

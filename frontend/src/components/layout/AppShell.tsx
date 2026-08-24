@@ -29,7 +29,7 @@ export const AppShell: React.FC<AppShellProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen flex light-canvas-bg text-[#171827] antialiased selection:bg-[#635BFF] selection:text-white">
+    <div className="min-h-screen flex taste-grid-bg text-[#0F172A] antialiased selection:bg-[#5850EC] selection:text-white">
       {/* Desktop & Mobile Sidebar */}
       <Sidebar
         activeTab={activeTab}
@@ -53,7 +53,7 @@ export const AppShell: React.FC<AppShellProps> = ({
           onRefreshData={onRefreshData}
         />
 
-        <main className="flex-1 max-w-6xl w-full mx-auto px-4 lg:px-8 py-6 space-y-6">
+        <main className="flex-1 max-w-6xl w-full mx-auto px-4 lg:px-8 py-8 space-y-8">
           {children}
         </main>
       </div>

@@ -35,9 +35,14 @@ def run_system_integration_tests():
 
     # TEST B: Simulation Only
     print("--- TEST B: Simulation Only ---")
-    res_placement = evaluate_scenario_deterministic("Placement", 20.0, ["DSA", "Portfolio"], {"dsa_prep": 10.0, "portfolio_projects": 6.0, "system_design": 4.0}, UserProfile(user_id=test_uid))
-    res_hs = evaluate_scenario_deterministic("Higher Studies", 20.0, ["GRE"], {"exam_prep": 12.0, "research_papers": 5.0, "sop_applications": 3.0}, UserProfile(user_id=test_uid))
-    res_startup = evaluate_scenario_deterministic("Startup", 20.0, ["MVP"], {"mvp_development": 10.0, "customer_validation": 6.0, "pitch_deck": 4.0}, UserProfile(user_id=test_uid))
+    p_int = UserProfile(user_id=test_uid, career_goal="AI Software Engineer", education="B.Tech Computer Science")
+    sc_placement = ScenarioInput(name="Placement", weekly_hours=20.0, focus_areas=["DSA", "Portfolio"], investments={"dsa_prep": 10.0, "portfolio_projects": 6.0, "system_design": 4.0})
+    sc_hs = ScenarioInput(name="Higher Studies", weekly_hours=20.0, focus_areas=["GRE"], investments={"exam_prep": 12.0, "research_papers": 5.0, "sop_applications": 3.0})
+    sc_startup = ScenarioInput(name="Startup", weekly_hours=20.0, focus_areas=["MVP"], investments={"mvp_development": 10.0, "customer_validation": 6.0, "pitch_deck": 4.0})
+
+    res_placement = evaluate_scenario_deterministic(p_int, sc_placement, 20)
+    res_hs = evaluate_scenario_deterministic(p_int, sc_hs, 20)
+    res_startup = evaluate_scenario_deterministic(p_int, sc_startup, 20)
 
     results = [res_placement, res_hs, res_startup]
     winner = max(results, key=lambda r: r.overall_score)
@@ -124,7 +129,17 @@ def run_system_integration_tests():
 
     # TEST H: Strong Alternative Gap (Placement 90 vs Startup 65)
     print("--- TEST H: Strong Alternative Gap ---")
-    SIMULATIONS_STORE[test_uid] = sim # sim winner 85 vs others < 70
+    sim_gap = SimulationResponse(
+        id="sim_sys_gap",
+        user_id=test_uid,
+        scenarios=[ScenarioInput(name="Placement", weekly_hours=20.0), ScenarioInput(name="Startup", weekly_hours=20.0)],
+        results=[
+            ScenarioResult(name="Placement", goal_alignment=90, skill_growth=90, financial_outlook=90, learning_potential=90, risk=20, overall_score=90, explanation="Winner"),
+            ScenarioResult(name="Startup", goal_alignment=65, skill_growth=65, financial_outlook=65, learning_potential=65, risk=50, overall_score=65, explanation="Distant")
+        ],
+        recommendation=Recommendation(recommended_scenario="Placement", reason="Score 90")
+    )
+    SIMULATIONS_STORE[test_uid] = sim_gap
     fb_h = evaluate_future_feedback(test_uid)
     assert fb_h.should_re_evaluate == False
     print("✓ TEST H PASSED: Large score gap prevents path re-evaluation despite low execution\n")

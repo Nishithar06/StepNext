@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { DailyCheckIn, DailyCheckInInput, ActionRoadmap, WeeklyCheckInResult } from '../types/schema';
 import { fetchRoadmap, submitWeeklyCheckIn, fetchWeeklyCheckInHistory } from '../api/client';
-import { Button } from './common/Button';
-import { Badge } from './common/Badge';
-import { X, CheckCircle2, AlertCircle, Calendar, Sparkles, Target, Clock, ShieldAlert, Award } from 'lucide-react';
+import { Button } from './ui/button';
+import { Badge } from './ui/badge';
+import { X, AlertCircle, Calendar, Sparkles, Target, Clock, Zap } from 'lucide-react';
 
 interface CheckInModalProps {
   isOpen: boolean;
@@ -86,7 +86,6 @@ export const CheckInModal: React.FC<CheckInModalProps> = ({
     if (isOpen) {
       const activeUid = localStorage.getItem('stepnext_active_user_id') || 'demo_user';
       
-      // Load active roadmap for CheckIn
       fetchRoadmap(activeUid)
         .then(rm => {
           if (rm) {
@@ -102,7 +101,6 @@ export const CheckInModal: React.FC<CheckInModalProps> = ({
         })
         .catch(err => console.warn('[CheckIn] Roadmap notice:', err));
 
-      // Load weekly checkin history
       fetchWeeklyCheckInHistory(activeUid)
         .then(hist => setWeeklyHistory(hist || []))
         .catch(err => console.warn('[CheckIn] History notice:', err));
@@ -135,9 +133,8 @@ export const CheckInModal: React.FC<CheckInModalProps> = ({
 
   if (!isOpen) return null;
 
-  const { duration: calculatedSleepHours } = calculateSleepDurationFrontend(sleepTime, wakeTime);
+  const { duration: calculatedSleepHours, text: calculatedSleepText } = calculateSleepDurationFrontend(sleepTime, wakeTime);
 
-  // Live calculation of roadmap progress inside Check-in
   const totalRoadmapActions = roadmap?.weekly_actions.length || 0;
   const completedRoadmapActions = Object.values(actionStatuses).filter(st => st === 'completed').length;
   const liveProgressPct = totalRoadmapActions > 0 ? Math.round((completedRoadmapActions / totalRoadmapActions) * 100) : 0;
@@ -157,7 +154,6 @@ export const CheckInModal: React.FC<CheckInModalProps> = ({
     const activeUid = localStorage.getItem('stepnext_active_user_id') || 'demo_user';
 
     try {
-      // 1. Submit standard daily check-in
       const payload: DailyCheckInInput = {
         sleep_time: sleepTime,
         wake_time: wakeTime,
@@ -178,7 +174,6 @@ export const CheckInModal: React.FC<CheckInModalProps> = ({
 
       await onSaveCheckIn(payload);
 
-      // 2. Submit weekly roadmap progress check-in if roadmap exists
       if (roadmap) {
         const weeklyRes = await submitWeeklyCheckIn({
           user_id: activeUid,
@@ -207,103 +202,104 @@ export const CheckInModal: React.FC<CheckInModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fade-in">
-      <div className="bg-white border border-[#E5E5DC] rounded-2xl w-full max-w-2xl overflow-hidden flex flex-col max-h-[92vh] light-card-shadow">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-md animate-in fade-in">
+      <div className="bg-white border border-black/[0.08] rounded-[28px] w-full max-w-2xl overflow-hidden flex flex-col max-h-[92vh] shadow-[0_20px_60px_rgba(0,0,0,0.15)] animate-in zoom-in-95 duration-200">
         
         {/* Modal Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-[#E5E5DC] bg-white">
-          <div className="flex items-center gap-2.5">
-            <span className="text-xl">🌱</span>
+        <div className="flex items-center justify-between px-6 py-5 border-b border-black/[0.06] bg-white">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-2xl bg-[#5850EC]/10 text-[#5850EC] flex items-center justify-center text-xl font-bold">
+              🌱
+            </div>
             <div>
-              <h3 className="text-base font-bold text-[#171827] font-heading flex items-center gap-2">
+              <h3 className="text-lg font-bold text-[#0F172A] font-heading flex items-center gap-2">
                 {todayCheckIn ? "Edit Today's Check-in" : "Weekly Execution & Daily Check-in"}
               </h3>
-              <p className="text-xs text-[#667085]">Report roadmap progress, sleep duration, and workload feedback</p>
+              <p className="text-xs text-slate-500 font-medium">Calibrate roadmap velocity, sleep window, and energy</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 text-[#667085] hover:text-[#171827] rounded-lg transition"
+            className="p-2 text-slate-400 hover:text-slate-900 rounded-xl hover:bg-slate-100 transition"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Modal Body Form */}
-        <form onSubmit={handleSubmit} className="p-6 overflow-y-auto space-y-6 flex-1 bg-white text-[#171827]">
+        <form onSubmit={handleSubmit} className="p-6 overflow-y-auto space-y-6 flex-1 bg-white text-[#0F172A]">
           {error && (
-            <div className="p-3 rounded-xl bg-[#FF7A6B]/10 border border-[#FF7A6B]/30 text-xs text-[#D84B3B] flex items-center gap-2">
+            <div className="p-3.5 rounded-2xl bg-[#FFF1F2] border border-[#F43F5E]/30 text-xs text-[#F43F5E] flex items-center gap-2 font-medium">
               <AlertCircle className="w-4 h-4 shrink-0" />
               <span>{error}</span>
             </div>
           )}
 
-          {/* POST-SUBMISSION PROGRESS SUMMARY & GUIDANCE */}
+          {/* POST-SUBMISSION PROGRESS SUMMARY */}
           {submittedResult && (
-            <div className="p-5 rounded-2xl bg-gradient-to-r from-[#635BFF]/10 to-[#32C6A6]/10 border-2 border-[#635BFF] space-y-3">
+            <div className="p-5 rounded-2xl bg-gradient-to-r from-[#5850EC]/10 to-[#10B981]/10 border border-[#5850EC]/30 space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-extrabold uppercase font-mono text-[#635BFF]">
+                <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#5850EC]">
                   ✦ WEEKLY PROGRESS SUMMARY
                 </span>
-                <Badge variant="green" className="font-mono">
+                <Badge variant="success" size="default">
                   {submittedResult.completion_percentage}% Completed
                 </Badge>
               </div>
 
               <div className="grid grid-cols-3 gap-2 text-center text-xs">
-                <div className="p-2 rounded-xl bg-white border border-[#E5E5DC]">
-                  <span className="text-[10px] text-[#667085] uppercase block">Completed</span>
-                  <span className="font-bold text-[#32C6A6] font-mono">{submittedResult.completed_actions_count}</span>
+                <div className="p-2.5 rounded-xl bg-white border border-black/[0.05]">
+                  <span className="text-[10px] text-slate-400 font-mono uppercase block">Completed</span>
+                  <span className="font-bold text-[#10B981] font-mono text-sm">{submittedResult.completed_actions_count}</span>
                 </div>
-                <div className="p-2 rounded-xl bg-white border border-[#E5E5DC]">
-                  <span className="text-[10px] text-[#667085] uppercase block">Workload</span>
-                  <span className="font-bold text-[#635BFF] font-mono">{submittedResult.workload_feeling}</span>
+                <div className="p-2.5 rounded-xl bg-white border border-black/[0.05]">
+                  <span className="text-[10px] text-slate-400 font-mono uppercase block">Workload</span>
+                  <span className="font-bold text-[#5850EC] font-mono text-sm">{submittedResult.workload_feeling}</span>
                 </div>
-                <div className="p-2 rounded-xl bg-white border border-[#E5E5DC]">
-                  <span className="text-[10px] text-[#667085] uppercase block">Level</span>
-                  <span className="font-bold text-[#F5C96A] font-mono">{submittedResult.completion_level}</span>
+                <div className="p-2.5 rounded-xl bg-white border border-black/[0.05]">
+                  <span className="text-[10px] text-slate-400 font-mono uppercase block">Level</span>
+                  <span className="font-bold text-[#F59E0B] font-mono text-sm">{submittedResult.completion_level}</span>
                 </div>
               </div>
 
-              {/* Workload Intelligence Guidance */}
-              <div className="p-3 rounded-xl bg-white border border-[#635BFF]/20 text-xs text-[#171827] flex items-start gap-2.5">
-                <Sparkles className="w-4 h-4 text-[#635BFF] shrink-0 mt-0.5" />
-                <p className="leading-relaxed">
-                  <strong>Workload Intelligence:</strong> {submittedResult.guidance_message}
+              <div className="p-3.5 rounded-xl bg-white border border-[#5850EC]/20 text-xs text-[#0F172A] flex items-start gap-2.5">
+                <Sparkles className="w-4 h-4 text-[#5850EC] shrink-0 mt-0.5" />
+                <p className="leading-relaxed font-medium">
+                  <strong>Workload Guidance:</strong> {submittedResult.guidance_message}
                 </p>
               </div>
             </div>
           )}
 
-          {/* STEP 1: YOUR CURRENT FOCUS (ROADMAP INTEGRATION) */}
+          {/* ROADMAP INTEGRATION FOCUS */}
           {roadmap && (
-            <div className="p-4 rounded-2xl bg-[#635BFF]/5 border border-[#635BFF]/20 space-y-3">
+            <div className="p-5 rounded-2xl bg-[#EEF2FF] border border-[#5850EC]/20 space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#635BFF] font-mono flex items-center gap-1.5">
-                  <Target className="w-3.5 h-3.5" /> YOUR CURRENT FOCUS
+                <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#5850EC] flex items-center gap-1.5">
+                  <Target className="w-3.5 h-3.5" /> ACTIVE ROADMAP TRACK
                 </span>
-                <Badge variant="indigo" className="font-mono text-[10px]">
-                  Target: {roadmap.scenario.toUpperCase()}
+                <Badge variant="indigo" size="sm">
+                  {roadmap.scenario}
                 </Badge>
               </div>
 
               <div className="space-y-1.5">
                 <div className="flex justify-between items-center text-xs">
-                  <span className="font-bold text-[#171827]">Roadmap Execution Progress</span>
-                  <span className="font-mono font-bold text-[#635BFF]">{completedRoadmapActions} / {totalRoadmapActions} actions ({liveProgressPct}%)</span>
+                  <span className="font-bold text-[#0F172A]">Execution Progress</span>
+                  <span className="font-mono font-bold text-[#5850EC]">{completedRoadmapActions} / {totalRoadmapActions} actions ({liveProgressPct}%)</span>
                 </div>
-                <div className="w-full h-2 bg-[#E5E5DC] rounded-full overflow-hidden">
-                  <div className="h-full bg-[#635BFF] transition-all duration-300 rounded-full" style={{ width: `${liveProgressPct}%` }} />
+                <div className="w-full h-2.5 bg-slate-200 rounded-full overflow-hidden">
+                  <div className="h-full bg-gradient-to-r from-[#5850EC] to-[#6366F1] transition-all duration-300 rounded-full" style={{ width: `${liveProgressPct}%` }} />
                 </div>
               </div>
             </div>
           )}
 
-          {/* STEP 3: HOW DID THIS WEEK GO? (ROADMAP ACTION REVIEW) */}
+          {/* ROADMAP ACTIONS REVIEW */}
           {roadmap && roadmap.weekly_actions.length > 0 && (
-            <div className="space-y-3 pt-2 border-t border-[#E5E5DC]">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-[#667085] flex items-center gap-1.5">
-                <Clock className="w-4 h-4 text-[#32C6A6]" /> HOW DID THIS WEEK GO? (ROADMAP ACTIONS)
+            <div className="space-y-3 pt-2 border-t border-black/[0.06]">
+              <h4 className="text-xs font-mono font-bold uppercase tracking-[0.16em] text-slate-500 flex items-center gap-1.5">
+                <Clock className="w-4 h-4 text-[#10B981]" /> WEEKLY ROADMAP ACTIONS
               </h4>
 
               <div className="space-y-2.5">
@@ -311,31 +307,31 @@ export const CheckInModal: React.FC<CheckInModalProps> = ({
                   const currentSt = actionStatuses[act.id] || 'not_started';
 
                   return (
-                    <div key={act.id} className="p-3 rounded-xl bg-[#FAF9F5] border border-[#E5E5DC] flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+                    <div key={act.id} className="p-3.5 rounded-2xl bg-slate-50 border border-black/[0.05] flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
                       <div className="space-y-0.5">
-                        <span className="text-xs font-bold text-[#171827]">{act.title}</span>
-                        <p className="text-[11px] text-[#667085]">{act.target} ({act.category})</p>
+                        <span className="text-xs font-bold text-[#0F172A]">{act.title}</span>
+                        <p className="text-[11px] text-slate-500">{act.target} ({act.category})</p>
                       </div>
 
                       <div className="flex items-center gap-1.5 shrink-0">
                         <button
                           type="button"
                           onClick={() => handleActionStatusChange(act.id, 'completed')}
-                          className={`px-2.5 py-1 rounded-lg text-[10px] font-bold font-mono transition-all ${
+                          className={`px-3 py-1.5 rounded-xl text-[10px] font-bold font-mono transition-all ${
                             currentSt === 'completed'
-                              ? 'bg-[#32C6A6] text-white shadow-sm'
-                              : 'bg-white border border-[#E5E5DC] text-[#667085] hover:border-[#32C6A6]'
+                              ? 'bg-[#10B981] text-white shadow-sm'
+                              : 'bg-white border border-black/[0.08] text-slate-600 hover:border-[#10B981]'
                           }`}
                         >
-                          ✓ Completed
+                          ✓ Done
                         </button>
                         <button
                           type="button"
                           onClick={() => handleActionStatusChange(act.id, 'in_progress')}
-                          className={`px-2.5 py-1 rounded-lg text-[10px] font-bold font-mono transition-all ${
+                          className={`px-3 py-1.5 rounded-xl text-[10px] font-bold font-mono transition-all ${
                             currentSt === 'in_progress'
-                              ? 'bg-[#F5C96A] text-[#171827] shadow-sm'
-                              : 'bg-white border border-[#E5E5DC] text-[#667085] hover:border-[#F5C96A]'
+                              ? 'bg-[#F59E0B] text-white shadow-sm'
+                              : 'bg-white border border-black/[0.08] text-slate-600 hover:border-[#F59E0B]'
                           }`}
                         >
                           In Progress
@@ -343,10 +339,10 @@ export const CheckInModal: React.FC<CheckInModalProps> = ({
                         <button
                           type="button"
                           onClick={() => handleActionStatusChange(act.id, 'not_started')}
-                          className={`px-2.5 py-1 rounded-lg text-[10px] font-bold font-mono transition-all ${
+                          className={`px-3 py-1.5 rounded-xl text-[10px] font-bold font-mono transition-all ${
                             currentSt === 'not_started'
-                              ? 'bg-[#E5E5DC] text-[#171827]'
-                              : 'bg-white border border-[#E5E5DC] text-[#667085]'
+                              ? 'bg-slate-200 text-slate-700'
+                              : 'bg-white border border-black/[0.08] text-slate-600'
                           }`}
                         >
                           Not Started
@@ -359,15 +355,15 @@ export const CheckInModal: React.FC<CheckInModalProps> = ({
             </div>
           )}
 
-          {/* STEP 4: WEEKLY REFLECTION INPUTS */}
-          <div className="space-y-4 pt-2 border-t border-[#E5E5DC]">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[#667085] flex items-center gap-1.5">
-              <Calendar className="w-4 h-4 text-[#635BFF]" /> WEEKLY EXECUTION REFLECTION
+          {/* WEEKLY REFLECTION */}
+          <div className="space-y-4 pt-2 border-t border-black/[0.06]">
+            <h4 className="text-xs font-mono font-bold uppercase tracking-[0.16em] text-slate-500 flex items-center gap-1.5">
+              <Calendar className="w-4 h-4 text-[#5850EC]" /> WEEKLY EXECUTION REFLECTION
             </h4>
 
-            {/* 1. Completion level */}
+            {/* Completion level */}
             <div className="space-y-1.5">
-              <label className="block text-[11px] font-bold text-[#171827]">
+              <label className="block text-[11px] font-bold text-[#0F172A]">
                 1. How much of your planned work did you complete?
               </label>
               <div className="grid grid-cols-4 gap-2">
@@ -378,8 +374,8 @@ export const CheckInModal: React.FC<CheckInModalProps> = ({
                     onClick={() => setCompletionLevel(lvl)}
                     className={`py-2 rounded-xl text-xs font-bold transition-all ${
                       completionLevel === lvl
-                        ? 'bg-[#635BFF] text-white shadow-md'
-                        : 'bg-[#FAF9F5] border border-[#E5E5DC] text-[#667085] hover:border-[#635BFF]'
+                        ? 'bg-[#5850EC] text-white shadow-md'
+                        : 'bg-slate-50 border border-black/[0.06] text-slate-600 hover:border-[#5850EC]'
                     }`}
                   >
                     {lvl}
@@ -388,10 +384,10 @@ export const CheckInModal: React.FC<CheckInModalProps> = ({
               </div>
             </div>
 
-            {/* 2. Workload feeling */}
+            {/* Workload feeling */}
             <div className="space-y-1.5">
-              <label className="block text-[11px] font-bold text-[#171827]">
-                2. How difficult did the workload feel?
+              <label className="block text-[11px] font-bold text-[#0F172A]">
+                2. How did the workload feel?
               </label>
               <div className="grid grid-cols-4 gap-2">
                 {['Easy', 'Manageable', 'Heavy', 'Overwhelming'].map(wf => (
@@ -402,9 +398,9 @@ export const CheckInModal: React.FC<CheckInModalProps> = ({
                     className={`py-2 rounded-xl text-xs font-bold transition-all ${
                       workloadFeeling === wf
                         ? wf === 'Overwhelming'
-                          ? 'bg-[#FF7A6B] text-white shadow-md'
-                          : 'bg-[#32C6A6] text-white shadow-md'
-                        : 'bg-[#FAF9F5] border border-[#E5E5DC] text-[#667085] hover:border-[#32C6A6]'
+                          ? 'bg-[#F43F5E] text-white shadow-md'
+                          : 'bg-[#10B981] text-white shadow-md'
+                        : 'bg-slate-50 border border-black/[0.06] text-slate-600 hover:border-[#10B981]'
                     }`}
                   >
                     {wf}
@@ -413,21 +409,21 @@ export const CheckInModal: React.FC<CheckInModalProps> = ({
               </div>
             </div>
 
-            {/* 3. Primary Blocker */}
+            {/* Primary Blocker */}
             <div className="space-y-1.5">
-              <label className="block text-[11px] font-bold text-[#171827]">
-                3. What blocked you most this week?
+              <label className="block text-[11px] font-bold text-[#0F172A]">
+                3. What was your biggest friction or blocker?
               </label>
               <div className="grid grid-cols-5 gap-1.5">
-                {['Time', 'Motivation', 'Difficulty', 'Unexpected work', 'Other'].map(blk => (
+                {['Time', 'Motivation', 'Difficulty', 'Unexpected work', 'None'].map(blk => (
                   <button
                     key={blk}
                     type="button"
                     onClick={() => setSelectedBlocker(blk)}
                     className={`py-1.5 rounded-xl text-[10px] font-bold transition-all ${
                       selectedBlocker === blk
-                        ? 'bg-[#171827] text-white shadow-md'
-                        : 'bg-[#FAF9F5] border border-[#E5E5DC] text-[#667085] hover:border-[#171827]'
+                        ? 'bg-[#0F172A] text-white shadow-md'
+                        : 'bg-slate-50 border border-black/[0.06] text-slate-600 hover:border-[#0F172A]'
                     }`}
                   >
                     {blk}
@@ -437,75 +433,89 @@ export const CheckInModal: React.FC<CheckInModalProps> = ({
             </div>
           </div>
 
-          {/* STANDARD DAILY TELEMETRY INPUTS */}
-          <div className="space-y-4 pt-2 border-t border-[#E5E5DC]">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[#667085]">
-              DAILY TELEMETRY (SLEEP & ENERGY)
-            </h4>
+          {/* DAILY TELEMETRY INPUTS */}
+          <div className="space-y-4 pt-2 border-t border-black/[0.06]">
+            <div className="flex items-center justify-between">
+              <h4 className="text-xs font-mono font-bold uppercase tracking-[0.16em] text-slate-500">
+                DAILY TELEMETRY (SLEEP & ENERGY)
+              </h4>
+              <span className="text-xs font-mono font-bold text-[#5850EC] bg-[#5850EC]/10 px-2 py-0.5 rounded-md">
+                🌙 {calculatedSleepText} sleep
+              </span>
+            </div>
 
             {/* Sleep Schedule */}
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-[11px] font-bold text-[#667085] mb-1">Bedtime</label>
+                <label className="block text-[11px] font-bold text-slate-500 mb-1">Bedtime</label>
                 <input
                   type="time"
                   value={sleepTime}
                   onChange={e => setSleepTime(e.target.value)}
-                  className="w-full px-3.5 py-2 rounded-xl bg-[#FAF9F5] border border-[#E5E5DC] text-[#171827] text-xs font-mono font-bold"
+                  className="w-full px-3.5 py-2 rounded-xl bg-slate-50 border border-black/[0.08] text-[#0F172A] text-xs font-mono font-bold focus:outline-none focus:ring-2 focus:ring-[#5850EC]/30"
                 />
               </div>
               <div>
-                <label className="block text-[11px] font-bold text-[#667085] mb-1">Wake Time</label>
+                <label className="block text-[11px] font-bold text-slate-500 mb-1">Wake Time</label>
                 <input
                   type="time"
                   value={wakeTime}
                   onChange={e => setWakeTime(e.target.value)}
-                  className="w-full px-3.5 py-2 rounded-xl bg-[#FAF9F5] border border-[#E5E5DC] text-[#171827] text-xs font-mono font-bold"
+                  className="w-full px-3.5 py-2 rounded-xl bg-slate-50 border border-black/[0.08] text-[#0F172A] text-xs font-mono font-bold focus:outline-none focus:ring-2 focus:ring-[#5850EC]/30"
                 />
               </div>
             </div>
 
             {/* Ratings Sliders */}
             <div className="grid grid-cols-3 gap-3">
-              <div>
-                <label className="block text-[11px] font-bold text-[#667085] mb-1">Energy ({energy}/10)</label>
+              <div className="p-3 rounded-2xl bg-slate-50 border border-black/[0.04] space-y-1">
+                <div className="flex justify-between text-[11px] font-bold text-slate-600">
+                  <span>Energy</span>
+                  <span className="font-mono text-[#5850EC]">{energy}/10</span>
+                </div>
                 <input
                   type="range"
                   min="1"
                   max="10"
                   value={energy}
                   onChange={e => setEnergy(Number(e.target.value))}
-                  className="w-full cursor-pointer accent-[#635BFF]"
+                  className="w-full cursor-pointer"
                 />
               </div>
-              <div>
-                <label className="block text-[11px] font-bold text-[#667085] mb-1">Stress ({stress}/10)</label>
+              <div className="p-3 rounded-2xl bg-slate-50 border border-black/[0.04] space-y-1">
+                <div className="flex justify-between text-[11px] font-bold text-slate-600">
+                  <span>Stress</span>
+                  <span className="font-mono text-[#F43F5E]">{stress}/10</span>
+                </div>
                 <input
                   type="range"
                   min="1"
                   max="10"
                   value={stress}
                   onChange={e => setStress(Number(e.target.value))}
-                  className="w-full cursor-pointer accent-[#FF7A6B]"
+                  className="w-full cursor-pointer"
                 />
               </div>
-              <div>
-                <label className="block text-[11px] font-bold text-[#667085] mb-1">Mood ({mood}/10)</label>
+              <div className="p-3 rounded-2xl bg-slate-50 border border-black/[0.04] space-y-1">
+                <div className="flex justify-between text-[11px] font-bold text-slate-600">
+                  <span>Mood</span>
+                  <span className="font-mono text-[#10B981]">{mood}/10</span>
+                </div>
                 <input
                   type="range"
                   min="1"
                   max="10"
                   value={mood}
                   onChange={e => setMood(Number(e.target.value))}
-                  className="w-full cursor-pointer accent-[#32C6A6]"
+                  className="w-full cursor-pointer"
                 />
               </div>
             </div>
 
-            {/* EXERCISE & HABITS SELECTOR */}
-            <div className="space-y-2 pt-2 border-t border-[#E5E5DC]">
-              <label className="block text-[11px] font-bold text-[#667085]">
-                🏋️ EXERCISE & HABITS
+            {/* EXERCISE & HABITS */}
+            <div className="space-y-2 pt-2 border-t border-black/[0.06]">
+              <label className="block text-[11px] font-bold text-slate-600">
+                🏋️ PHYSICAL HABIT / WORKOUT
               </label>
               <div className="grid grid-cols-2 gap-3">
                 <button
@@ -513,76 +523,46 @@ export const CheckInModal: React.FC<CheckInModalProps> = ({
                   onClick={() => setExerciseCompleted(false)}
                   className={`px-4 py-2.5 rounded-xl text-xs font-bold font-mono transition border ${
                     !exerciseCompleted
-                      ? 'bg-[#FF7A6B]/15 border-[#FF7A6B] text-[#D84B3B] shadow-sm'
-                      : 'bg-[#FAF9F5] border-[#E5E5DC] text-[#667085] hover:border-[#171827]'
+                      ? 'bg-[#FFF1F2] border-[#F43F5E] text-[#F43F5E] shadow-sm'
+                      : 'bg-slate-50 border-black/[0.06] text-slate-600 hover:border-black/[0.2]'
                   }`}
                 >
-                  No Exercise
+                  No Workout Today
                 </button>
                 <button
                   type="button"
                   onClick={() => setExerciseCompleted(true)}
                   className={`px-4 py-2.5 rounded-xl text-xs font-bold font-mono transition border ${
                     exerciseCompleted
-                      ? 'bg-[#32C6A6]/15 border-[#32C6A6] text-[#219B81] shadow-sm'
-                      : 'bg-[#FAF9F5] border-[#E5E5DC] text-[#667085] hover:border-[#171827]'
+                      ? 'bg-[#ECFDF5] border-[#10B981] text-[#10B981] shadow-sm'
+                      : 'bg-slate-50 border-black/[0.06] text-slate-600 hover:border-black/[0.2]'
                   }`}
                 >
-                  Exercise Completed
+                  ✓ Workout Completed
                 </button>
               </div>
 
               {exerciseCompleted && (
-                <div className="pt-2 animate-fade-in">
+                <div className="pt-2 animate-in fade-in duration-200">
                   <input
                     type="text"
-                    placeholder="e.g. 30 min • Running, 45 min • Gym"
+                    placeholder="e.g. 30 min • Running, 45 min • Gym workout"
                     value={exerciseSummary}
                     onChange={e => setExerciseSummary(e.target.value)}
-                    className="w-full px-3.5 py-2 rounded-xl bg-[#FAF9F5] border border-[#E5E5DC] text-[#171827] text-xs font-mono"
+                    className="w-full px-3.5 py-2 rounded-xl bg-slate-50 border border-black/[0.08] text-[#0F172A] text-xs font-mono focus:outline-none focus:ring-2 focus:ring-[#10B981]/30"
                   />
                 </div>
               )}
             </div>
           </div>
 
-          {/* STEP 10: PREVIOUS CHECK-INS HISTORY */}
-          {(() => {
-            const uniqueHistory = Array.from(
-              new Map(weeklyHistory.map(item => [item.id, item])).values()
-            );
-            if (uniqueHistory.length === 0) return null;
-
-            return (
-              <div className="space-y-3 pt-2 border-t border-[#E5E5DC]">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-[#667085] flex items-center gap-1.5">
-                  <Calendar className="w-4 h-4 text-[#635BFF]" /> PREVIOUS CHECK-INS HISTORY
-                </h4>
-
-                <div className="space-y-2 text-xs">
-                  {uniqueHistory.slice(0, 3).map((item, idx) => (
-                    <div key={item.id || idx} className="p-3 rounded-xl bg-[#FAF9F5] border border-[#E5E5DC] flex justify-between items-center">
-                      <div>
-                        <span className="font-mono font-bold text-[#635BFF]">Week 0{uniqueHistory.length - idx}</span>
-                        <p className="text-[11px] text-[#667085]">{item.completion_percentage}% completed ({item.completed_actions_count}/{item.total_actions_count} actions)</p>
-                      </div>
-                      <Badge variant="indigo" className="font-mono text-[10px]">
-                        Workload: {item.workload_feeling}
-                      </Badge>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            );
-          })()}
-
           {/* Modal Footer Buttons */}
-          <div className="flex items-center justify-end gap-3 pt-4 border-t border-[#E5E5DC]">
-            <Button variant="secondary" size="sm" type="button" onClick={onClose}>
+          <div className="flex items-center justify-end gap-3 pt-4 border-t border-black/[0.06]">
+            <Button variant="outline" size="sm" type="button" onClick={onClose}>
               {submittedResult ? "Close" : "Cancel"}
             </Button>
-            <Button variant="primary" size="sm" type="submit" isLoading={loading}>
-              {submittedResult ? "Update Progress" : todayCheckIn ? "Update Check-in" : "Submit Weekly Check-in"}
+            <Button variant="default" size="sm" type="submit" disabled={loading} className="font-bold shadow-md">
+              {loading ? "Submitting..." : submittedResult ? "Update Progress" : todayCheckIn ? "Update Check-in" : "Submit Weekly Check-in"}
             </Button>
           </div>
         </form>
