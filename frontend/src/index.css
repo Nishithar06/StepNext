@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Geist:wght@400;500;600;700&display=swap');
+
+:root {
+  --canvas: #F7F7F2;
+  --surface: #FFFFFF;
+  --surface-elevated: #FAF9F5;
+  --surface-hover: #F0EEFF;
+  
+  --border: #E5E5DC;
+  --border-strong: #D1D1C7;
+
+  --ink: #171827;
+  --slate: #667085;
+  --muted: #98A2B3;
+
+  --indigo: #635BFF;
+  --mint: #32C6A6;
+  --coral: #FF7A6B;
+  --yellow: #F5C96A;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  min-height: 100%;
+  width: 100%;
+  background-color: var(--canvas);
+  color: var(--ink);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Global Subtle Radial Gradient Canvas */
+.light-canvas-bg {
+  background-color: #F7F7F2;
+  background-image: 
+    radial-gradient(at 10% 10%, rgba(240, 238, 255, 0.8) 0px, transparent 40%),
+    radial-gradient(at 90% 90%, rgba(99, 91, 255, 0.05) 0px, transparent 40%);
+  background-attachment: fixed;
+}
+
+h1, h2, h3, h4, .font-heading {
+  font-family: 'Inter', 'Geist', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Custom Styled Light Range Sliders */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 9999px;
+  background: #E5E5DC;
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--indigo);
+  border: 2px solid #ffffff;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(99, 91, 255, 0.3);
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  background: #5046e5;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--canvas);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--slate);
+}
+
+/* Keyframe animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes orbitPulse {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.05); opacity: 1; }
+}
+
+.orbit-node {
+  animation: orbitPulse 4s infinite ease-in-out;
+}
+
+/* Subtle Card Shadow Token */
+.light-card-shadow {
+  box-shadow: 0 10px 40px rgba(30, 30, 60, 0.05);
+}

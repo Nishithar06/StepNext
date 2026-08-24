@@ -1,0 +1,612 @@
+{
+  "user_1787476039949_y15sp": {
+    "id": "roadmap_bbc9d9c8",
+    "user_id": "user_1787476039949_y15sp",
+    "scenario": "Placement",
+    "overall_score": 77,
+    "reason": "Placement emerges as the top option with a 77/100 overall score, offering an exceptional financial outlook (89%) and strong goal alignment (93%) with lower relative risk (64%). It allows immediate application of Full Stack Development skills in an industry setting while seamlessly aligning with your focus on securing a high CGPA for campus hiring.",
+    "workload_risk": 64,
+    "risk_level": "Placement yields an overall score of 77/100. Goal alignment is 93%, skill growth potential is 75%, learning potential is 86%, and estimated financial outlook is 89%.",
+    "workload_caution": "Schedule caution: Monitor weekly hours (18.0 hrs/wk) to maintain steady execution.",
+    "milestones": [
+      {
+        "timeframe": "30 DAYS",
+        "title": "DSA & Foundations",
+        "items": [
+          "Complete 30 core DSA problems",
+          "Finalize resume project section",
+          "Review SQL & Database fundamentals"
+        ]
+      },
+      {
+        "timeframe": "60 DAYS",
+        "title": "Portfolio & System Design",
+        "items": [
+          "Deploy live production project",
+          "Complete 4 System Design case studies",
+          "Participate in 3 peer mock interviews"
+        ]
+      },
+      {
+        "timeframe": "90 DAYS",
+        "title": "Placement Readiness",
+        "items": [
+          "Achieve top placement shortlist status",
+          "Complete 5 technical interview rounds",
+          "Secure target offer"
+        ]
+      }
+    ],
+    "weekly_actions": [
+      {
+        "id": "2f6a4f21-4782-43f0-904c-57791ad0b9f5",
+        "title": "Solve Data Structures & Algorithms Problems",
+        "description": "Solve target problem sets focusing on LeetCode patterns for 8 hrs/week.",
+        "category": "SKILL",
+        "target": "8 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "63f8e57b-1cbc-4755-b235-dc49ee994013",
+        "title": "Build Full-Stack Portfolio Project",
+        "description": "Dedicate ~6 hrs/week to building & shipping your production project.",
+        "category": "PROJECT",
+        "target": "6 hrs/week",
+        "status": "completed",
+        "priority": "High"
+      },
+      {
+        "id": "f728cd5c-269a-4de9-92db-cacf822d780f",
+        "title": "System Design & Mock Interviews",
+        "description": "Review scalable architectures and practice mock interview communication for 4 hrs/week.",
+        "category": "CAREER",
+        "target": "4 hrs/week",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "top_priorities": [
+      {
+        "id": "8915881f-f225-4f95-b6c7-b13d35145fb0",
+        "title": "DSA Proficiency",
+        "description": "Master core algorithms & time complexity",
+        "category": "SKILL",
+        "target": "50+ Problems",
+        "status": "in_progress",
+        "priority": "High"
+      },
+      {
+        "id": "6fc2f30d-5183-4cf6-abf9-c63a0bfd6563",
+        "title": "Production Portfolio",
+        "description": "Deploy full-stack web application",
+        "category": "PROJECT",
+        "target": "1 Live Project",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "9be9e5f4-58fe-4ea7-bffe-ffae0d2de623",
+        "title": "System Architecture",
+        "description": "Master distributed system design basics",
+        "category": "CAREER",
+        "target": "4 Topics",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "metrics_to_track": [
+      {
+        "name": "DSA Problems Solved",
+        "current": "0",
+        "target": "32"
+      },
+      {
+        "name": "Mock Interviews Completed",
+        "current": "0",
+        "target": "5"
+      },
+      {
+        "name": "Portfolio Projects Live",
+        "current": "0",
+        "target": "2"
+      },
+      {
+        "name": "System Design Topics",
+        "current": "0",
+        "target": "6"
+      }
+    ],
+    "next_checkin": "In 7 Days",
+    "created_at": "2026-08-23T09:27:48.489359",
+    "goal_context": null
+  },
+  "user_1787478812925_b7btd": {
+    "id": "roadmap_e8be6aad",
+    "user_id": "user_1787478812925_b7btd",
+    "scenario": "Placement",
+    "overall_score": 81,
+    "reason": "Placement achieves the highest overall score (81/100) with an exceptional financial outlook (91%) and high goal alignment (87%). It offers immediate entry into the professional educational sector or EdTech domain, directly satisfying Nishi's strong financial priority (7/10) while providing practical teaching experience.",
+    "workload_risk": 40,
+    "risk_level": "Placement yields an overall score of 81/100. Goal alignment is 87%, skill growth potential is 83%, learning potential is 86%, and estimated financial outlook is 91%.",
+    "workload_caution": null,
+    "milestones": [
+      {
+        "timeframe": "30 DAYS",
+        "title": "Teacher Foundations & Skill Building",
+        "items": [
+          "Complete core practice units in Teaching Techniques",
+          "Draft baseline portfolio outline for Teacher roles",
+          "Review core principles in Data entry"
+        ]
+      },
+      {
+        "timeframe": "60 DAYS",
+        "title": "Teacher Portfolio & Practical Execution",
+        "items": [
+          "Deploy 2 real-world Teacher projects/case studies",
+          "Complete 4 peer evaluations/mock reviews in Teaching Techniques",
+          "Conduct networking outreach for Teacher opportunities"
+        ]
+      },
+      {
+        "timeframe": "90 DAYS",
+        "title": "Teacher Placement Readiness & Career Launch",
+        "items": [
+          "Achieve top placement shortlist status as a Teacher",
+          "Complete final interview/assessment rounds",
+          "Secure target offer/position as a Teacher"
+        ]
+      }
+    ],
+    "weekly_actions": [
+      {
+        "id": "43218817-1ba3-4c7c-98b5-acafe233dbdd",
+        "title": "Master Teacher Core Skills & Teaching Techniques",
+        "description": "Dedicate 8 hrs/week to mastering Teaching Techniques and core domain principles for becoming a Teacher.",
+        "category": "SKILL",
+        "target": "8 hrs/week",
+        "status": "completed",
+        "priority": "High"
+      },
+      {
+        "id": "1b848c6a-d79c-4a5b-88c5-a73368c94e9c",
+        "title": "Build Teacher Practical Portfolio & Case Studies",
+        "description": "Invest ~6 hrs/week building live portfolio projects, practical deliverables, or case studies in Data entry.",
+        "category": "PROJECT",
+        "target": "6 hrs/week",
+        "status": "in_progress",
+        "priority": "High"
+      },
+      {
+        "id": "4da405f9-9a1f-4e9d-ba45-06e5eb3288da",
+        "title": "Teacher Career Prep & Mock Evaluations",
+        "description": "Spend 4 hrs/week practicing role-specific assessments, peer evaluations, and industry networking for Teacher positions.",
+        "category": "CAREER",
+        "target": "4 hrs/week",
+        "status": "completed",
+        "priority": "Medium"
+      }
+    ],
+    "top_priorities": [
+      {
+        "id": "a47ba033-40e2-4412-b474-b87f3fcdbb8c",
+        "title": "Teacher Core Mastery",
+        "description": "Master key fundamentals in Teaching Techniques",
+        "category": "SKILL",
+        "target": "Core Competency",
+        "status": "in_progress",
+        "priority": "High"
+      },
+      {
+        "id": "c4857dc0-21a2-46dd-9a25-6332c1e44109",
+        "title": "Teacher Portfolio Assets",
+        "description": "Build & ship live practical deliverables in Data entry",
+        "category": "PROJECT",
+        "target": "2 Live Portfolio Items",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "9a6a1c62-6314-4088-8b2c-b6774caf3d23",
+        "title": "Teacher Industry Readiness",
+        "description": "Complete mock evaluations & professional application prep",
+        "category": "CAREER",
+        "target": "5 Outreach Contacts",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "metrics_to_track": [
+      {
+        "name": "Teaching Techniques Practice Units",
+        "current": "0",
+        "target": "32"
+      },
+      {
+        "name": "Teacher Portfolio Assets",
+        "current": "0",
+        "target": "2"
+      },
+      {
+        "name": "Mock Evaluations Completed",
+        "current": "0",
+        "target": "5"
+      },
+      {
+        "name": "Role Applications & Outreach",
+        "current": "0",
+        "target": "10"
+      }
+    ],
+    "next_checkin": "In 7 Days",
+    "created_at": "2026-08-23T10:00:02.609138",
+    "goal_context": "Teacher"
+  },
+  "user_1787485855572_fzy3y": {
+    "id": "roadmap_928107af",
+    "user_id": "user_1787485855572_fzy3y",
+    "scenario": "Placement",
+    "overall_score": 82,
+    "reason": "Highest overall score (82/100) aligned with your trajectory as a Wild life photographer.",
+    "workload_risk": 33,
+    "risk_level": "Placement yields an overall score of 82/100. Goal alignment is 87%, skill growth potential is 83%, learning potential is 86%, and estimated financial outlook is 91%.",
+    "workload_caution": null,
+    "milestones": [
+      {
+        "timeframe": "30 DAYS",
+        "title": "Wild Life Photographer Foundations & Skill Building",
+        "items": [
+          "Complete core practice units in Wildlife tracking",
+          "Draft baseline portfolio outline for Wild Life Photographer roles",
+          "Review core principles in Long-lens photography"
+        ]
+      },
+      {
+        "timeframe": "60 DAYS",
+        "title": "Wild Life Photographer Portfolio & Practical Execution",
+        "items": [
+          "Deploy 2 real-world Wild Life Photographer projects/case studies",
+          "Complete 4 peer evaluations/mock reviews in Wildlife tracking",
+          "Conduct networking outreach for Wild Life Photographer opportunities"
+        ]
+      },
+      {
+        "timeframe": "90 DAYS",
+        "title": "Wild Life Photographer Placement Readiness & Career Launch",
+        "items": [
+          "Achieve top placement shortlist status as a Wild Life Photographer",
+          "Complete final interview/assessment rounds",
+          "Secure target offer/position as a Wild Life Photographer"
+        ]
+      }
+    ],
+    "weekly_actions": [
+      {
+        "id": "46eb91eb-9120-45ad-bbe2-28523a6dd4bc",
+        "title": "Master Wild Life Photographer Core Skills & Wildlife tracking",
+        "description": "Dedicate 8 hrs/week to mastering Wildlife tracking and core domain principles for becoming a Wild Life Photographer.",
+        "category": "SKILL",
+        "target": "8 hrs/week",
+        "status": "in_progress",
+        "priority": "High"
+      },
+      {
+        "id": "698eda3c-0161-4b7d-af4e-aaf8b75c16ca",
+        "title": "Build Wild Life Photographer Practical Portfolio & Case Studies",
+        "description": "Invest ~6 hrs/week building live portfolio projects, practical deliverables, or case studies in Long-lens photography.",
+        "category": "PROJECT",
+        "target": "6 hrs/week",
+        "status": "in_progress",
+        "priority": "High"
+      },
+      {
+        "id": "d4ef5470-443b-4105-9173-090f00e54abe",
+        "title": "Wild Life Photographer Career Prep & Mock Evaluations",
+        "description": "Spend 4 hrs/week practicing role-specific assessments, peer evaluations, and industry networking for Wild Life Photographer positions.",
+        "category": "CAREER",
+        "target": "4 hrs/week",
+        "status": "in_progress",
+        "priority": "Medium"
+      }
+    ],
+    "top_priorities": [
+      {
+        "id": "ea3e8b64-c054-4831-b9a9-4e042822d4df",
+        "title": "Wild Life Photographer Core Mastery",
+        "description": "Master key fundamentals in Wildlife tracking",
+        "category": "SKILL",
+        "target": "Core Competency",
+        "status": "in_progress",
+        "priority": "High"
+      },
+      {
+        "id": "755bc2df-b098-43c0-a583-84ee411f8142",
+        "title": "Wild Life Photographer Portfolio Assets",
+        "description": "Build & ship live practical deliverables in Long-lens photography",
+        "category": "PROJECT",
+        "target": "2 Live Portfolio Items",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "9455336a-d696-4e4b-bbe9-6a007f137b16",
+        "title": "Wild Life Photographer Industry Readiness",
+        "description": "Complete mock evaluations & professional application prep",
+        "category": "CAREER",
+        "target": "5 Outreach Contacts",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "metrics_to_track": [
+      {
+        "name": "Wildlife tracking Practice Units",
+        "current": "0",
+        "target": "32"
+      },
+      {
+        "name": "Wild Life Photographer Portfolio Assets",
+        "current": "0",
+        "target": "2"
+      },
+      {
+        "name": "Mock Evaluations Completed",
+        "current": "0",
+        "target": "5"
+      },
+      {
+        "name": "Role Applications & Outreach",
+        "current": "0",
+        "target": "10"
+      }
+    ],
+    "next_checkin": "In 7 Days",
+    "created_at": "2026-08-23T12:01:15.075478",
+    "goal_context": "Wild life photographer"
+  },
+  "user_1787487870934_ilyim": {
+    "id": "roadmap_311427a4",
+    "user_id": "user_1787487870934_ilyim",
+    "scenario": "Placement",
+    "overall_score": 82,
+    "reason": "Highest overall score (82/100) aligned with your trajectory as a Hr.",
+    "workload_risk": 33,
+    "risk_level": "Placement yields an overall score of 82/100. Goal alignment is 87%, skill growth potential is 83%, learning potential is 86%, and estimated financial outlook is 91%.",
+    "workload_caution": null,
+    "milestones": [
+      {
+        "timeframe": "30 DAYS",
+        "title": "Hr Foundations & Skill Building",
+        "items": [
+          "Complete core practice units in HR technologies",
+          "Draft baseline portfolio outline for Hr roles",
+          "Review core principles in conflict resolvation"
+        ]
+      },
+      {
+        "timeframe": "60 DAYS",
+        "title": "Hr Portfolio & Practical Execution",
+        "items": [
+          "Deploy 2 real-world Hr projects/case studies",
+          "Complete 4 peer evaluations/mock reviews in HR technologies",
+          "Conduct networking outreach for Hr opportunities"
+        ]
+      },
+      {
+        "timeframe": "90 DAYS",
+        "title": "Hr Placement Readiness & Career Launch",
+        "items": [
+          "Achieve top placement shortlist status as a Hr",
+          "Complete final interview/assessment rounds",
+          "Secure target offer/position as a Hr"
+        ]
+      }
+    ],
+    "weekly_actions": [
+      {
+        "id": "75a89806-305e-4547-9e61-f42973840772",
+        "title": "Master Hr Core Skills & HR technologies",
+        "description": "Dedicate 8 hrs/week to mastering HR technologies and core domain principles for becoming a Hr.",
+        "category": "SKILL",
+        "target": "8 hrs/week",
+        "status": "in_progress",
+        "priority": "High"
+      },
+      {
+        "id": "5ec3f922-2bae-498c-8c1d-762d06851661",
+        "title": "Build Hr Practical Portfolio & Case Studies",
+        "description": "Invest ~6 hrs/week building live portfolio projects, practical deliverables, or case studies in conflict resolvation.",
+        "category": "PROJECT",
+        "target": "6 hrs/week",
+        "status": "in_progress",
+        "priority": "High"
+      },
+      {
+        "id": "400fe042-cfbb-43c1-9911-870f6529bd38",
+        "title": "Hr Career Prep & Mock Evaluations",
+        "description": "Spend 4 hrs/week practicing role-specific assessments, peer evaluations, and industry networking for Hr positions.",
+        "category": "CAREER",
+        "target": "4 hrs/week",
+        "status": "in_progress",
+        "priority": "Medium"
+      }
+    ],
+    "top_priorities": [
+      {
+        "id": "0c85aee9-db10-4d0b-aebf-deb440828907",
+        "title": "Hr Core Mastery",
+        "description": "Master key fundamentals in HR technologies",
+        "category": "SKILL",
+        "target": "Core Competency",
+        "status": "in_progress",
+        "priority": "High"
+      },
+      {
+        "id": "ce1a7bee-11ae-4ab5-bbca-249fc9659e99",
+        "title": "Hr Portfolio Assets",
+        "description": "Build & ship live practical deliverables in conflict resolvation",
+        "category": "PROJECT",
+        "target": "2 Live Portfolio Items",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "0922ef24-810b-4d31-858e-cb3742f93f31",
+        "title": "Hr Industry Readiness",
+        "description": "Complete mock evaluations & professional application prep",
+        "category": "CAREER",
+        "target": "5 Outreach Contacts",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "metrics_to_track": [
+      {
+        "name": "HR technologies Practice Units",
+        "current": "0",
+        "target": "32"
+      },
+      {
+        "name": "Hr Portfolio Assets",
+        "current": "0",
+        "target": "2"
+      },
+      {
+        "name": "Mock Evaluations Completed",
+        "current": "0",
+        "target": "5"
+      },
+      {
+        "name": "Role Applications & Outreach",
+        "current": "0",
+        "target": "10"
+      }
+    ],
+    "next_checkin": "In 7 Days",
+    "created_at": "2026-08-23T12:24:40.419351",
+    "goal_context": "HR"
+  },
+  "user_1787489213757_23ws2": {
+    "id": "roadmap_3d1c1808",
+    "user_id": "user_1787489213757_23ws2",
+    "scenario": "Higher Studies",
+    "overall_score": 83,
+    "reason": "Higher Studies is recommended as your primary path with an overall alignment score of 83/100, matching your career goal of 'Become a highly skilled Wildlife Photographer and build a professional career documenting wildlife and conservation' and financial priority (7/10).",
+    "workload_risk": 46,
+    "risk_level": "Higher Studies yields an overall score of 83/100. Goal alignment is 98%, skill growth potential is 78%, learning potential is 98%, and estimated financial outlook is 83%.",
+    "workload_caution": null,
+    "milestones": [
+      {
+        "timeframe": "30 DAYS",
+        "title": "Highly Skilled Wildlife Photographer And Build A Professional Career Documenting Wildlife And Conservation Specialization Foundations",
+        "items": [
+          "Complete core units in Advanced camera techniques",
+          "Take 2 field evaluations",
+          "Outline domain paper on wildlife tracking"
+        ]
+      },
+      {
+        "timeframe": "60 DAYS",
+        "title": "Research & Case Study Draft for Highly Skilled Wildlife Photographer And Build A Professional Career Documenting Wildlife And Conservation",
+        "items": [
+          "Draft literature/case study in wildlife tracking",
+          "Finalize professional statement",
+          "Secure 2 recommendation commitments"
+        ]
+      },
+      {
+        "timeframe": "90 DAYS",
+        "title": "Highly Skilled Wildlife Photographer And Build A Professional Career Documenting Wildlife And Conservation Advanced Certification & Launch",
+        "items": [
+          "Submit applications for advanced Highly Skilled Wildlife Photographer And Build A Professional Career Documenting Wildlife And Conservation programs/grants",
+          "Complete final evaluations",
+          "Finalize professional portfolio"
+        ]
+      }
+    ],
+    "weekly_actions": [
+      {
+        "id": "aa22621b-9afd-47ac-bd8c-c302a844cee5",
+        "title": "Advanced Highly Skilled Wildlife Photographer And Build A Professional Career Documenting Wildlife And Conservation Specialization & Technique",
+        "description": "Complete practice units and deep technique training in Advanced camera techniques for 14 hrs/week.",
+        "category": "SKILL",
+        "target": "14 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "4cccc494-91dd-43ca-8a19-1476a75e3e56",
+        "title": "Highly Skilled Wildlife Photographer And Build A Professional Career Documenting Wildlife And Conservation Domain Research & Field Practice",
+        "description": "Conduct field research, case studies, or domain papers on wildlife tracking for 8 hrs/week.",
+        "category": "RESEARCH",
+        "target": "8 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "245e74d4-bc95-4444-8e26-26a559ebacb8",
+        "title": "Professional Credentials & Grant Prep for Highly Skilled Wildlife Photographer And Build A Professional Career Documenting Wildlife And Conservation",
+        "description": "Refine professional portfolio & gather recommendations/credentials for 5 hrs/week.",
+        "category": "APPLICATION",
+        "target": "5 hrs/week",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "top_priorities": [
+      {
+        "id": "16bd9ed6-0447-42a7-8d9b-5af2beaba517",
+        "title": "Highly Skilled Wildlife Photographer And Build A Professional Career Documenting Wildlife And Conservation Domain Mastery",
+        "description": "Achieve specialist competence in Advanced camera techniques",
+        "category": "SKILL",
+        "target": "Specialist Level",
+        "status": "in_progress",
+        "priority": "High"
+      },
+      {
+        "id": "8a1cb1b6-3ce0-4f04-9393-95dfa272451f",
+        "title": "Highly Skilled Wildlife Photographer And Build A Professional Career Documenting Wildlife And Conservation Research Publication",
+        "description": "Draft specialist paper or case study on wildlife tracking",
+        "category": "RESEARCH",
+        "target": "1 Publication Draft",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "abeaedba-c4d6-4add-9d2c-294f1b3fc419",
+        "title": "Professional Certification / Grant",
+        "description": "Finalize applications for advanced Highly Skilled Wildlife Photographer And Build A Professional Career Documenting Wildlife And Conservation credentials",
+        "category": "APPLICATION",
+        "target": "Credentials Ready",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "metrics_to_track": [
+      {
+        "name": "Advanced camera techniques Practice Hours",
+        "current": "0",
+        "target": "56"
+      },
+      {
+        "name": "Research & Case Study Pages",
+        "current": "0",
+        "target": "16"
+      },
+      {
+        "name": "Portfolio Revisions",
+        "current": "0",
+        "target": "4"
+      },
+      {
+        "name": "Target Programs / Grants",
+        "current": "0",
+        "target": "5"
+      }
+    ],
+    "next_checkin": "In 7 Days",
+    "created_at": "2026-08-23T15:41:55.696274",
+    "goal_context": "Become a highly skilled Wildlife Photographer and build a professional career documenting wildlife and conservation"
+  }
+}

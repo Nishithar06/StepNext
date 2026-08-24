@@ -1,0 +1,252 @@
+{
+  "demo_user": {
+    "user_id": "demo_user",
+    "name": "Alex Morgan",
+    "education": "B.Tech Computer Science (Final Year)",
+    "career_goal": "Senior AI Software Engineer",
+    "interests": [
+      "Machine Learning",
+      "System Design",
+      "Open Source",
+      "Fintech"
+    ],
+    "skills": [
+      "Python",
+      "FastAPI",
+      "JavaScript",
+      "React",
+      "SQL",
+      "Git"
+    ],
+    "skills_to_improve": [
+      "Data Structures & Algorithms",
+      "Distributed Systems",
+      "PyTorch"
+    ],
+    "available_hours_per_day": 6.5,
+    "sleep_hours": 6.0,
+    "workload": "high",
+    "regular_activities": [
+      "Gym 3x/week",
+      "Open source contributions",
+      "Coding contests"
+    ],
+    "major_commitments": [
+      {
+        "name": "Final Year Capstone Project",
+        "hours_per_week": 12.0
+      },
+      {
+        "name": "Part-time Internship",
+        "hours_per_week": 15.0
+      },
+      {
+        "name": "Course Work & Exams",
+        "hours_per_week": 10.0
+      }
+    ],
+    "financial_priority": 8,
+    "short_term_goal": "Secure a high-growth tech placement or fund higher studies within 6 months"
+  },
+  "user_1787428116874_he3y4": {
+    "user_id": "user_1787428116874_he3y4",
+    "name": "nishi",
+    "education": "cse",
+    "career_goal": "senior engineer",
+    "interests": [],
+    "skills": [
+      "python",
+      "c",
+      "java"
+    ],
+    "skills_to_improve": [
+      "dsa"
+    ],
+    "available_hours_per_day": 6.0,
+    "sleep_hours": 7.0,
+    "workload": "medium",
+    "regular_activities": [
+      "Gym 3x/week",
+      "Coding practice"
+    ],
+    "major_commitments": [],
+    "financial_priority": 7,
+    "short_term_goal": "education"
+  },
+  "user_1787476039949_y15sp": {
+    "user_id": "user_1787476039949_y15sp",
+    "name": "Nishitha R",
+    "education": "B.Sc Computer Science",
+    "career_goal": "Full Stack Developer",
+    "interests": [],
+    "skills": [
+      "Java",
+      "python",
+      "c"
+    ],
+    "skills_to_improve": [
+      "Fullstack Java"
+    ],
+    "available_hours_per_day": 2.0,
+    "sleep_hours": 5.0,
+    "workload": "medium",
+    "regular_activities": [
+      "Gym 3x/week",
+      "Coding practice"
+    ],
+    "major_commitments": [],
+    "financial_priority": 5,
+    "short_term_goal": "Secure high CGPA"
+  },
+  "user_1787477987162_m6jb5": {
+    "user_id": "user_1787477987162_m6jb5",
+    "name": "Nishitha",
+    "education": "B.A English literature",
+    "career_goal": "Become teacher",
+    "interests": [],
+    "skills": [
+      "Communication",
+      "Writing",
+      "poetry"
+    ],
+    "skills_to_improve": [
+      "Teaching techniques"
+    ],
+    "available_hours_per_day": 6.0,
+    "sleep_hours": 8.0,
+    "workload": "medium",
+    "regular_activities": [
+      "Gym 3x/week",
+      "Coding practice"
+    ],
+    "major_commitments": [],
+    "financial_priority": 4,
+    "short_term_goal": "Secure high CGPA"
+  },
+  "user_1787478812925_b7btd": {
+    "user_id": "user_1787478812925_b7btd",
+    "name": "Nishi",
+    "education": "B.A English Literature",
+    "career_goal": "Teacher",
+    "interests": [],
+    "skills": [
+      "Communication",
+      "Data entry",
+      "Writing"
+    ],
+    "skills_to_improve": [
+      "Teaching Techniques"
+    ],
+    "available_hours_per_day": 6.0,
+    "sleep_hours": 7.0,
+    "workload": "medium",
+    "regular_activities": [
+      "Gym 3x/week",
+      "Coding practice"
+    ],
+    "major_commitments": [],
+    "financial_priority": 7,
+    "short_term_goal": "Secure high CGPA"
+  },
+  "user_1787485855572_fzy3y": {
+    "user_id": "user_1787485855572_fzy3y",
+    "name": "User A",
+    "education": "BBA",
+    "career_goal": "Wild life photographer",
+    "interests": [],
+    "skills": [
+      "Photography basics",
+      "Camera handling",
+      "Wildlife observation",
+      "Composition"
+    ],
+    "skills_to_improve": [
+      "Wildlife tracking",
+      "Long-lens photography",
+      "Low-light photography",
+      "Fieldcraft & animal behavior",
+      "Wildlife storytelling",
+      "Photo editing",
+      "Conservation photography"
+    ],
+    "available_hours_per_day": 6.0,
+    "sleep_hours": 7.0,
+    "workload": "medium",
+    "regular_activities": [
+      "Gym 3x/week",
+      "Coding practice"
+    ],
+    "major_commitments": [],
+    "financial_priority": 7,
+    "short_term_goal": "complete degree"
+  },
+  "user_1787487870934_ilyim": {
+    "user_id": "user_1787487870934_ilyim",
+    "name": "Nish",
+    "education": "MBA",
+    "career_goal": "HR",
+    "interests": [],
+    "skills": [
+      "Communication",
+      "conflict resolvation"
+    ],
+    "skills_to_improve": [
+      "HR technologies"
+    ],
+    "available_hours_per_day": 6.0,
+    "sleep_hours": 7.0,
+    "workload": "medium",
+    "regular_activities": [
+      "Gym 3x/week",
+      "Coding practice"
+    ],
+    "major_commitments": [],
+    "financial_priority": 7,
+    "short_term_goal": "complete degree"
+  },
+  "user_1787489213757_23ws2": {
+    "user_id": "user_1787489213757_23ws2",
+    "name": "Aarav Sharma",
+    "education": "B.E Computer Science and Engineering",
+    "career_goal": "Become a highly skilled Wildlife Photographer and build a professional career documenting wildlife and conservation",
+    "interests": [],
+    "skills": [
+      "Photography basics",
+      "DSLR handling",
+      "composition",
+      "basic photo editing",
+      "Lightroom",
+      "storytelling",
+      "observation",
+      "basic wildlife knowledge"
+    ],
+    "skills_to_improve": [
+      "Advanced camera techniques",
+      "wildlife tracking",
+      "animal behavior",
+      "long-lens photography",
+      "low-light photography",
+      "photo editing",
+      "visual storytelling",
+      "portfolio building",
+      "client communication",
+      "networking",
+      "conservation knowledge"
+    ],
+    "available_hours_per_day": 6.0,
+    "sleep_hours": 7.5,
+    "workload": "medium",
+    "regular_activities": [
+      "Gym 3x/week",
+      "Coding practice"
+    ],
+    "major_commitments": [
+      {
+        "name": "College classes and assignments (20 hrs/week), weekend family responsibilities",
+        "hours_per_week": 4.0
+      }
+    ],
+    "financial_priority": 7,
+    "short_term_goal": "Build a strong wildlife photography portfolio and complete 3 real-world wildlife photography projects within the next 6 months"
+  }
+}

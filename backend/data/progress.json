@@ -1,0 +1,55 @@
+{
+  "user_1787489213757_23ws2": {
+    "user_id": "user_1787489213757_23ws2",
+    "roadmap_id": "roadmap_3d1c1808",
+    "scenario": "Higher Studies",
+    "overall_execution_percentage": 0,
+    "latest_week_completion_percentage": 0,
+    "previous_week_completion_percentage": 0,
+    "completion_trend": "insufficient_data",
+    "execution_velocity": 0.0,
+    "current_execution_streak": 1,
+    "total_actions_planned": 3,
+    "total_actions_completed": 0,
+    "missed_actions": [
+      {
+        "action_id": "aa22621b-9afd-47ac-bd8c-c302a844cee5",
+        "title": "Advanced Highly Skilled Wildlife Photographer And Build A Professional Career Documenting Wildlife And Conservation Specialization & Technique",
+        "category": "SKILL",
+        "status": "not_started",
+        "missed_count": 1,
+        "insight_type": "carry_forward"
+      },
+      {
+        "action_id": "4cccc494-91dd-43ca-8a19-1476a75e3e56",
+        "title": "Highly Skilled Wildlife Photographer And Build A Professional Career Documenting Wildlife And Conservation Domain Research & Field Practice",
+        "category": "RESEARCH",
+        "status": "not_started",
+        "missed_count": 1,
+        "insight_type": "carry_forward"
+      },
+      {
+        "action_id": "245e74d4-bc95-4444-8e26-26a559ebacb8",
+        "title": "Professional Credentials & Grant Prep for Highly Skilled Wildlife Photographer And Build A Professional Career Documenting Wildlife And Conservation",
+        "category": "APPLICATION",
+        "status": "not_started",
+        "missed_count": 1,
+        "insight_type": "carry_forward"
+      }
+    ],
+    "repeatedly_missed_actions": [],
+    "weekly_history_trend": [
+      0
+    ],
+    "workload_signal": "Overwhelming",
+    "adaptive_recommendation": {
+      "recommendation_type": "reduce_workload",
+      "title": "Reduce Workload & Prioritize Core Actions",
+      "message": "Your execution is falling behind while workload feels heavy. Reduce or defer lower-impact actions before adding new commitments.",
+      "priority_actions": [
+        "Advanced Highly Skilled Wildlife Photographer And Build A Professional Career Documenting Wildlife And Conservation Specialization & Technique",
+        "Highly Skilled Wildlife Photographer And Build A Professional Career Documenting Wildlife And Conservation Domain Research & Field Practice"
+      ]
+    }
+  }
+}

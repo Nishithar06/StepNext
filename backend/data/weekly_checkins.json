@@ -1,0 +1,62 @@
+{
+  "user_1787478812925_b7btd": [
+    {
+      "id": "wcheckin_f2c13826",
+      "user_id": "user_1787478812925_b7btd",
+      "roadmap_id": "roadmap_e8be6aad",
+      "completed_actions_count": 2,
+      "total_actions_count": 3,
+      "completion_percentage": 67,
+      "completion_level": "Most",
+      "workload_feeling": "Manageable",
+      "blocker": "Motivation",
+      "guidance_message": "You're maintaining a sustainable pace and making solid progress.",
+      "created_at": "2026-08-23T10:06:23.632046"
+    }
+  ],
+  "user_1787485855572_fzy3y": [
+    {
+      "id": "wcheckin_user_1787485855572_fzy3y_2026_W34",
+      "user_id": "user_1787485855572_fzy3y",
+      "roadmap_id": "roadmap_928107af",
+      "completed_actions_count": 0,
+      "total_actions_count": 3,
+      "completion_percentage": 0,
+      "completion_level": "Most",
+      "workload_feeling": "Manageable",
+      "blocker": "Motivation",
+      "guidance_message": "You're maintaining a sustainable pace and making solid progress.",
+      "created_at": "2026-08-23T12:19:06.578584"
+    }
+  ],
+  "user_1787487870934_ilyim": [
+    {
+      "id": "wcheckin_user_1787487870934_ilyim_2026_W34",
+      "user_id": "user_1787487870934_ilyim",
+      "roadmap_id": "roadmap_311427a4",
+      "completed_actions_count": 0,
+      "total_actions_count": 3,
+      "completion_percentage": 0,
+      "completion_level": "Most",
+      "workload_feeling": "Manageable",
+      "blocker": "Motivation",
+      "guidance_message": "You're maintaining a sustainable pace and making solid progress.",
+      "created_at": "2026-08-23T12:32:05.578020"
+    }
+  ],
+  "user_1787489213757_23ws2": [
+    {
+      "id": "wcheckin_user_1787489213757_23ws2_2026_W34",
+      "user_id": "user_1787489213757_23ws2",
+      "roadmap_id": "roadmap_aa0ae6f9",
+      "completed_actions_count": 0,
+      "total_actions_count": 3,
+      "completion_percentage": 0,
+      "completion_level": "Some",
+      "workload_feeling": "Overwhelming",
+      "blocker": "Unexpected work",
+      "guidance_message": "Your plan may be too ambitious. Consider reducing workload before adding more goals.",
+      "created_at": "2026-08-23T12:49:56.018489"
+    }
+  ]
+}
