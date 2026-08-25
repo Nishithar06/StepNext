@@ -1,6 +1,7 @@
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, HTTPException, status, Depends
 from typing import Optional
 from app.config import get_supabase_client
+from app.auth import verify_jwt_token, verify_user_ownership
 from app.store import PROFILES_STORE, save_profiles_to_disk
 from app.schemas.models import UserProfile, UserProfileUpdate, DerivedProfile
 from app.services.digital_twin import get_digital_twin, generate_and_save_digital_twin
@@ -38,7 +39,8 @@ def fetch_profile_from_db_or_fixture(user_id: str) -> Optional[UserProfile]:
     return None
 
 @router.get("/profile/{user_id}", response_model=UserProfile)
-def get_user_profile(user_id: str):
+def get_user_profile(user_id: str, auth_uid: Optional[str] = Depends(verify_jwt_token)):
+    user_id = verify_user_ownership(user_id, auth_uid)
     prof = fetch_profile_from_db_or_fixture(user_id)
     if not prof:
         raise HTTPException(
@@ -49,7 +51,10 @@ def get_user_profile(user_id: str):
 
 
 @router.post("/profile", response_model=UserProfile, status_code=status.HTTP_201_CREATED)
-def create_user_profile(profile: UserProfile):
+def create_user_profile(profile: UserProfile, auth_uid: Optional[str] = Depends(verify_jwt_token)):
+    if auth_uid:
+        profile.user_id = auth_uid
+    
     print(f"[Profile] CREATE: user_id={profile.user_id}")
     # Save to in-memory store & disk
     PROFILES_STORE[profile.user_id] = profile
@@ -75,7 +80,8 @@ def create_user_profile(profile: UserProfile):
     return profile
 
 @router.put("/profile/{user_id}", response_model=UserProfile)
-def update_user_profile(user_id: str, updates: UserProfileUpdate):
+def update_user_profile(user_id: str, updates: UserProfileUpdate, auth_uid: Optional[str] = Depends(verify_jwt_token)):
+    user_id = verify_user_ownership(user_id, auth_uid)
     print(f"[Profile] UPDATE: user_id={user_id}")
     current = fetch_profile_from_db_or_fixture(user_id)
     if not current:
@@ -138,11 +144,13 @@ def update_user_profile(user_id: str, updates: UserProfileUpdate):
     return updated_profile
 
 @router.get("/digital-twin/{user_id}", response_model=DerivedProfile)
-def get_digital_twin_endpoint(user_id: str):
+def get_digital_twin_endpoint(user_id: str, auth_uid: Optional[str] = Depends(verify_jwt_token)):
+    user_id = verify_user_ownership(user_id, auth_uid)
     return get_digital_twin(user_id)
 
 @router.post("/digital-twin/{user_id}", response_model=DerivedProfile)
-def generate_digital_twin_endpoint(user_id: str):
+def generate_digital_twin_endpoint(user_id: str, auth_uid: Optional[str] = Depends(verify_jwt_token)):
+    user_id = verify_user_ownership(user_id, auth_uid)
     profile = fetch_profile_from_db_or_fixture(user_id)
     if not profile:
         profile = UserProfile(user_id=user_id)

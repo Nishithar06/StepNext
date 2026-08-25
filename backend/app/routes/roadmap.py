@@ -1,5 +1,6 @@
-from fastapi import APIRouter, HTTPException, Path
-from typing import Dict, Any
+from fastapi import APIRouter, HTTPException, Path, Depends
+from typing import Dict, Any, Optional
+from app.auth import verify_jwt_token, verify_user_ownership
 from app.schemas.models import ActionRoadmap, UserProfile
 from app.store import ROADMAPS_STORE, SIMULATIONS_STORE, PROFILES_STORE, save_roadmaps_to_disk
 from app.services.roadmap import generate_roadmap_deterministic
@@ -7,7 +8,8 @@ from app.services.roadmap import generate_roadmap_deterministic
 router = APIRouter(prefix="/api/roadmap", tags=["roadmap"])
 
 @router.get("/{user_id}", response_model=ActionRoadmap)
-def get_user_roadmap(user_id: str = Path(..., description="Target User ID")):
+def get_user_roadmap(user_id: str = Path(..., description="Target User ID"), auth_uid: Optional[str] = Depends(verify_jwt_token)):
+    user_id = verify_user_ownership(user_id, auth_uid)
     print(f"[Roadmap] FETCH_REQUEST: user_id={user_id}")
     profile = PROFILES_STORE.get(user_id)
     sim = SIMULATIONS_STORE.get(user_id)
@@ -40,7 +42,8 @@ def get_user_roadmap(user_id: str = Path(..., description="Target User ID")):
     raise HTTPException(status_code=404, detail=f"No roadmap found for user_id: {user_id}. Run simulation first.")
 
 @router.post("/{user_id}", response_model=ActionRoadmap)
-def generate_or_update_roadmap(user_id: str = Path(..., description="Target User ID")):
+def generate_or_update_roadmap(user_id: str = Path(..., description="Target User ID"), auth_uid: Optional[str] = Depends(verify_jwt_token)):
+    user_id = verify_user_ownership(user_id, auth_uid)
     print(f"[Roadmap] POST_REQUEST: user_id={user_id}")
     if user_id not in SIMULATIONS_STORE:
         raise HTTPException(status_code=400, detail="Cannot generate roadmap: Run a Future Simulation first.")
@@ -53,8 +56,10 @@ def generate_or_update_roadmap(user_id: str = Path(..., description="Target User
 @router.put("/{user_id}/action/{action_id}", response_model=ActionRoadmap)
 def update_action_status(
     user_id: str = Path(...),
-    action_id: str = Path(...)
+    action_id: str = Path(...),
+    auth_uid: Optional[str] = Depends(verify_jwt_token)
 ):
+    user_id = verify_user_ownership(user_id, auth_uid)
     if user_id not in ROADMAPS_STORE:
         raise HTTPException(status_code=404, detail=f"No roadmap found for user_id: {user_id}")
     

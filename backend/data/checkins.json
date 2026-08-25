@@ -1,6 +1,6 @@
 {
   "demo_user": {
-    "2026-08-20": {
+    "2026-08-21": {
       "sleep_time": "23:00",
       "wake_time": "06:30",
       "sleep_duration": 7.5,
@@ -16,13 +16,13 @@
       "achievement": "Completed system architecture draft",
       "blocker": "Context switching",
       "tomorrow_priority": "Finalize API endpoints",
-      "id": "d98b062f-01e1-4bc0-94d2-20c83cf69819",
+      "id": "fe834eee-7d5f-432c-ac1a-f94feacd49e3",
       "user_id": "demo_user",
-      "date": "2026-08-20",
+      "date": "2026-08-21",
       "created_at": null,
       "updated_at": null
     },
-    "2026-08-21": {
+    "2026-08-22": {
       "sleep_time": "23:30",
       "wake_time": "06:30",
       "sleep_duration": 7.0,
@@ -38,13 +38,13 @@
       "achievement": "Refactored database queries",
       "blocker": "Minor bug in cache",
       "tomorrow_priority": "Write unit tests",
-      "id": "7a0f06a0-a139-4711-b106-0d345cafa45b",
+      "id": "8919261f-731b-4d3c-93c1-358c4962ebb2",
       "user_id": "demo_user",
-      "date": "2026-08-21",
+      "date": "2026-08-22",
       "created_at": null,
       "updated_at": null
     },
-    "2026-08-22": {
+    "2026-08-23": {
       "sleep_time": "00:00",
       "wake_time": "07:00",
       "sleep_duration": 7.0,
@@ -60,13 +60,13 @@
       "achievement": "Completed 3 LeetCode problems",
       "blocker": "Sleepiness in afternoon",
       "tomorrow_priority": "Focus on React state",
-      "id": "0a1733e7-704c-4353-972c-9f6e08aa6f80",
+      "id": "ab14d6bb-913e-41dd-b8ec-ac9ecc5c2791",
       "user_id": "demo_user",
-      "date": "2026-08-22",
+      "date": "2026-08-23",
       "created_at": null,
       "updated_at": null
     },
-    "2026-08-23": {
+    "2026-08-24": {
       "sleep_time": "23:15",
       "wake_time": "06:45",
       "sleep_duration": 7.5,
@@ -82,9 +82,9 @@
       "achievement": "Finished project demo build",
       "blocker": "Late night review",
       "tomorrow_priority": "Deploy staging MVP",
-      "id": "666c6cd5-ae57-49b7-9d5a-52d5689acbf2",
+      "id": "1ff3edb2-c339-4a4f-ab29-f72a8bc25fc0",
       "user_id": "demo_user",
-      "date": "2026-08-23",
+      "date": "2026-08-24",
       "created_at": null,
       "updated_at": null
     }
@@ -419,6 +419,30 @@
       "date": "2026-08-23",
       "created_at": "2026-08-24T22:44:14.287133",
       "updated_at": "2026-08-24T22:44:14.287133"
+    }
+  },
+  "user_1787635172860_ryj1s": {
+    "2026-08-25": {
+      "sleep_time": "00:00",
+      "wake_time": "04:30",
+      "sleep_duration": 4.5,
+      "energy": 5,
+      "stress": 8,
+      "mood": 7,
+      "planned_tasks": 5,
+      "completed_tasks": 4,
+      "work_hours": 6.0,
+      "study_hours": 2.0,
+      "exercise_completed": false,
+      "exercise_summary": null,
+      "achievement": "",
+      "blocker": "Motivation",
+      "tomorrow_priority": "",
+      "id": "08829f0a-2387-4e24-a2f0-8dd065ea1bdb",
+      "user_id": "user_1787635172860_ryj1s",
+      "date": "2026-08-25",
+      "created_at": "2026-08-25T10:50:57.336194",
+      "updated_at": "2026-08-25T10:54:16.263060"
     }
   }
 }

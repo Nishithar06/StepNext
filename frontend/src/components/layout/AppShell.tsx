@@ -12,6 +12,7 @@ interface AppShellProps {
   profile: UserProfile | null;
   onOpenOnboarding: () => void;
   onRefreshData: () => void;
+  onSignOut?: () => void;
   children: React.ReactNode;
 }
 
@@ -24,6 +25,7 @@ export const AppShell: React.FC<AppShellProps> = ({
   profile,
   onOpenOnboarding,
   onRefreshData,
+  onSignOut,
   children
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -51,6 +53,7 @@ export const AppShell: React.FC<AppShellProps> = ({
           profile={profile}
           onOpenMobileMenu={() => setMobileMenuOpen(true)}
           onRefreshData={onRefreshData}
+          onSignOut={onSignOut}
         />
 
         <main className="flex-1 max-w-6xl w-full mx-auto px-4 lg:px-8 py-8 space-y-8">

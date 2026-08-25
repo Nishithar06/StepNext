@@ -619,5 +619,50 @@
       "message": "You're consistently executing at a sustainable pace. Consider increasing depth in your highest-impact activity rather than adding many new commitments.",
       "priority_actions": []
     }
+  },
+  "user_1787635172860_ryj1s": {
+    "user_id": "user_1787635172860_ryj1s",
+    "roadmap_id": "roadmap_9f5dd9bb",
+    "scenario": "Placement",
+    "overall_execution_percentage": 0,
+    "latest_week_completion_percentage": 33,
+    "previous_week_completion_percentage": 0,
+    "completion_trend": "insufficient_data",
+    "execution_velocity": 0.0,
+    "current_execution_streak": 1,
+    "total_actions_planned": 3,
+    "total_actions_completed": 1,
+    "missed_actions": [
+      {
+        "action_id": "438c6bfb-d223-494d-967a-8886a831c882",
+        "title": "Build Senior Software Developer Practical Portfolio & Case Studies",
+        "category": "PROJECT",
+        "status": "not_started",
+        "missed_count": 1,
+        "insight_type": "carry_forward"
+      },
+      {
+        "action_id": "6118d2ab-4c0f-4628-8df0-c072a54503ff",
+        "title": "Senior Software Developer Career Outreach & Portfolio Review",
+        "category": "CAREER",
+        "status": "not_started",
+        "missed_count": 1,
+        "insight_type": "carry_forward"
+      }
+    ],
+    "repeatedly_missed_actions": [],
+    "weekly_history_trend": [
+      0
+    ],
+    "workload_signal": "Heavy",
+    "adaptive_recommendation": {
+      "recommendation_type": "reduce_workload",
+      "title": "Reduce Workload & Prioritize Core Actions",
+      "message": "Your execution is falling behind while workload feels heavy. Reduce or defer lower-impact actions before adding new commitments.",
+      "priority_actions": [
+        "Build Senior Software Developer Practical Portfolio & Case Studies",
+        "Senior Software Developer Career Outreach & Portfolio Review"
+      ]
+    }
   }
 }

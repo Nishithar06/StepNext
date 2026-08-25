@@ -460,5 +460,32 @@
     "major_commitments": [],
     "financial_priority": 10,
     "short_term_goal": "Earn high"
+  },
+  "user_1787635172860_ryj1s": {
+    "user_id": "user_1787635172860_ryj1s",
+    "name": "Nishitha",
+    "education": "B.E Computer Science And Engineering",
+    "career_goal": "Senior Software Developer",
+    "interests": [],
+    "skills": [
+      "java",
+      "python",
+      "c",
+      "SQL"
+    ],
+    "skills_to_improve": [
+      "DSA",
+      "Javasript"
+    ],
+    "available_hours_per_day": 3.0,
+    "sleep_hours": 7.0,
+    "workload": "medium",
+    "regular_activities": [
+      "Gym 3x/week",
+      "Coding practice"
+    ],
+    "major_commitments": [],
+    "financial_priority": 8,
+    "short_term_goal": "Get placed in good company"
   }
 }

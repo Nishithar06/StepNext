@@ -1,5 +1,5 @@
 import React from 'react';
-import { Menu, RefreshCw, ChevronRight, Sparkles, CheckCircle2 } from 'lucide-react';
+import { Menu, RefreshCw, ChevronRight, Sparkles, CheckCircle2, LogOut } from 'lucide-react';
 import { HealthResponse, UserProfile } from '../../types/schema';
 import { TabType } from './Sidebar';
 import { Badge } from '../ui/badge';
@@ -13,6 +13,7 @@ interface TopbarProps {
   profile: UserProfile | null;
   onOpenMobileMenu: () => void;
   onRefreshData: () => void;
+  onSignOut?: () => void;
 }
 
 export const Topbar: React.FC<TopbarProps> = ({
@@ -21,7 +22,8 @@ export const Topbar: React.FC<TopbarProps> = ({
   apiConnected,
   profile,
   onOpenMobileMenu,
-  onRefreshData
+  onRefreshData,
+  onSignOut
 }) => {
   const getPageTitle = (tab: TabType) => {
     switch (tab) {
@@ -82,6 +84,16 @@ export const Topbar: React.FC<TopbarProps> = ({
               size="sm"
               status="online"
             />
+            {onSignOut && (
+              <button
+                type="button"
+                onClick={onSignOut}
+                title="Sign out of StepNext"
+                className="p-1 rounded-md text-[#667085] hover:text-rose-600 hover:bg-rose-500/10 transition-colors"
+              >
+                <LogOut className="w-4 h-4" />
+              </button>
+            )}
           </div>
 
           <Button

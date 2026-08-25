@@ -1,4 +1,6 @@
-from fastapi import APIRouter, HTTPException, Path
+from fastapi import APIRouter, HTTPException, Path, Depends
+from typing import Optional
+from app.auth import verify_jwt_token, verify_user_ownership
 from app.schemas.models import AdaptiveFutureFeedback
 from app.services.adaptive_future import evaluate_future_feedback
 from app.store import ADAPTIVE_FUTURE_STORE
@@ -6,7 +8,8 @@ from app.store import ADAPTIVE_FUTURE_STORE
 router = APIRouter(prefix="/api/adaptive-future", tags=["Adaptive Future Feedback"])
 
 @router.get("/{user_id}", response_model=AdaptiveFutureFeedback)
-def get_adaptive_future_feedback(user_id: str = Path(..., description="Target User ID")):
+def get_adaptive_future_feedback(user_id: str = Path(..., description="Target User ID"), auth_uid: Optional[str] = Depends(verify_jwt_token)):
+    user_id = verify_user_ownership(user_id, auth_uid)
     if user_id in ADAPTIVE_FUTURE_STORE:
         return ADAPTIVE_FUTURE_STORE[user_id]
     
@@ -14,5 +17,6 @@ def get_adaptive_future_feedback(user_id: str = Path(..., description="Target Us
     return evaluate_future_feedback(user_id)
 
 @router.post("/{user_id}", response_model=AdaptiveFutureFeedback)
-def request_adaptive_future_feedback(user_id: str = Path(..., description="Target User ID")):
+def request_adaptive_future_feedback(user_id: str = Path(..., description="Target User ID"), auth_uid: Optional[str] = Depends(verify_jwt_token)):
+    user_id = verify_user_ownership(user_id, auth_uid)
     return evaluate_future_feedback(user_id)

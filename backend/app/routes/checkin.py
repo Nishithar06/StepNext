@@ -1,7 +1,8 @@
 import uuid
 from datetime import datetime
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, HTTPException, status, Depends
 from typing import List, Optional
+from app.auth import verify_jwt_token, verify_user_ownership
 from app.schemas.models import DailyCheckInInput, DailyCheckIn, CheckInSummary, WeeklyCheckInSubmission, WeeklyCheckInResult
 from app.services.checkin import (
     create_or_update_daily_checkin,
@@ -17,8 +18,9 @@ from app.services.digital_twin import update_digital_twin_execution_signal
 router = APIRouter(prefix="/api", tags=["Daily Check-ins"])
 
 @router.post("/check-in", response_model=DailyCheckIn, status_code=status.HTTP_201_CREATED)
-def submit_daily_checkin(input_data: DailyCheckInInput, user_id: str = "demo_user"):
-    target_uid = input_data.user_id if (hasattr(input_data, 'user_id') and input_data.user_id) else user_id
+def submit_daily_checkin(input_data: DailyCheckInInput, user_id: str = "demo_user", auth_uid: Optional[str] = Depends(verify_jwt_token)):
+    raw_uid = input_data.user_id if (hasattr(input_data, 'user_id') and input_data.user_id) else user_id
+    target_uid = verify_user_ownership(raw_uid, auth_uid)
     checkin = create_or_update_daily_checkin(target_uid, input_data)
     
     # Sync latest checked-in sleep duration to shared user profile state & update overload, progress, adaptive future
@@ -38,14 +40,16 @@ def submit_daily_checkin(input_data: DailyCheckInInput, user_id: str = "demo_use
     return checkin
 
 @router.get("/check-in/today", response_model=Optional[DailyCheckIn])
-def get_today_checkin_endpoint(user_id: str = "demo_user"):
+def get_today_checkin_endpoint(user_id: str = "demo_user", auth_uid: Optional[str] = Depends(verify_jwt_token)):
     """Retrieves today's check-in for user_id (returns null if not checked in today)."""
+    user_id = verify_user_ownership(user_id, auth_uid)
     return get_today_checkin(user_id)
 
 @router.put("/check-in/today", response_model=DailyCheckIn)
-def update_today_checkin_endpoint(input_data: DailyCheckInInput, user_id: str = "demo_user"):
+def update_today_checkin_endpoint(input_data: DailyCheckInInput, user_id: str = "demo_user", auth_uid: Optional[str] = Depends(verify_jwt_token)):
     """Updates today's check-in for user_id, updates profile sleep_hours, and recalculates overload risk."""
-    target_uid = input_data.user_id if (hasattr(input_data, 'user_id') and input_data.user_id) else user_id
+    raw_uid = input_data.user_id if (hasattr(input_data, 'user_id') and input_data.user_id) else user_id
+    target_uid = verify_user_ownership(raw_uid, auth_uid)
     checkin = create_or_update_daily_checkin(target_uid, input_data)
 
     try:
@@ -64,18 +68,21 @@ def update_today_checkin_endpoint(input_data: DailyCheckInInput, user_id: str = 
     return checkin
 
 @router.get("/check-ins", response_model=List[DailyCheckIn])
-def get_user_checkins_endpoint(user_id: str = "demo_user", limit: int = 30):
+def get_user_checkins_endpoint(user_id: str = "demo_user", limit: int = 30, auth_uid: Optional[str] = Depends(verify_jwt_token)):
     """Retrieves list of past daily check-ins for user_id."""
+    user_id = verify_user_ownership(user_id, auth_uid)
     return get_user_checkins(user_id, limit=limit)
 
 @router.get("/check-ins/summary", response_model=CheckInSummary)
-def get_checkin_summary_endpoint(user_id: str = "demo_user"):
+def get_checkin_summary_endpoint(user_id: str = "demo_user", auth_uid: Optional[str] = Depends(verify_jwt_token)):
     """Retrieves weekly check-in summary analytics and streak for user_id."""
+    user_id = verify_user_ownership(user_id, auth_uid)
     return get_checkin_summary(user_id)
 
 @router.post("/check-in/weekly", response_model=WeeklyCheckInResult)
-def submit_weekly_checkin(input_data: WeeklyCheckInSubmission, user_id: str = "demo_user"):
-    target_uid = input_data.user_id or user_id
+def submit_weekly_checkin(input_data: WeeklyCheckInSubmission, user_id: str = "demo_user", auth_uid: Optional[str] = Depends(verify_jwt_token)):
+    raw_uid = input_data.user_id or user_id
+    target_uid = verify_user_ownership(raw_uid, auth_uid)
     print(f"[CheckIn] SUBMIT_STARTED for user_id={target_uid}")
 
     roadmap = ROADMAPS_STORE.get(target_uid)
@@ -144,7 +151,8 @@ def submit_weekly_checkin(input_data: WeeklyCheckInSubmission, user_id: str = "d
     return result
 
 @router.get("/check-in/weekly/history", response_model=List[WeeklyCheckInResult])
-def get_weekly_checkin_history(user_id: str = "demo_user"):
+def get_weekly_checkin_history(user_id: str = "demo_user", auth_uid: Optional[str] = Depends(verify_jwt_token)):
+    user_id = verify_user_ownership(user_id, auth_uid)
     print(f"[CheckIn] LOAD_STARTED for user_id={user_id}")
     from app.repositories.checkin_repository import CheckInRepository
     history = CheckInRepository.get_weekly_checkins(user_id)

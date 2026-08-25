@@ -8,6 +8,8 @@ import { SimulatorPage } from './pages/SimulatorPage';
 import { ProfilePage } from './pages/ProfilePage';
 import { OnboardingModal } from './components/OnboardingModal';
 import { CheckInModal } from './components/CheckInModal';
+import { AuthPage } from './components/auth/AuthPage';
+import { AuthProvider, useAuth } from './context/AuthContext';
 import {
   fetchPing,
   fetchHealth,
@@ -35,7 +37,7 @@ import {
   DailyCheckInInput,
   CheckInSummary
 } from './types/schema';
-import { AlertCircle, RefreshCw } from 'lucide-react';
+import { AlertCircle, RefreshCw, Compass } from 'lucide-react';
 import { Button } from './components/common/Button';
 
 import {
@@ -44,18 +46,10 @@ import {
   clearActiveUserId as clearActiveUserIdFromStorage
 } from './services/userService';
 
-export const App: React.FC = () => {
-  const [activeUserId, setActiveUserId] = useState<string | null>(getActiveUserId());
+const MainAppContent: React.FC = () => {
+  const { user, loading: authLoading, signOut } = useAuth();
+  const activeUserId = user?.id || getActiveUserId();
 
-  const updateActiveUserId = (uid: string | null) => {
-    if (uid) {
-      saveActiveUserIdToStorage(uid);
-    } else {
-      clearActiveUserIdFromStorage();
-    }
-    setActiveUserId(uid);
-  };
-  
   // Data State
   const [health, setHealth] = useState<HealthResponse | null>(null);
   const [apiConnected, setApiConnected] = useState(false);
@@ -80,14 +74,12 @@ export const App: React.FC = () => {
     const uid = targetUserId !== undefined ? targetUserId : activeUserId;
 
     if (!uid) {
-      // First-time user: No profile in localStorage
       setProfile(null);
       setDigitalTwin(null);
       setOverloadScore(null);
       setSimulationData(null);
       setTodayCheckIn(null);
       setCheckInSummary(null);
-      setIsOnboardingOpen(true);
       setLoading(false);
       return;
     }
@@ -151,9 +143,8 @@ export const App: React.FC = () => {
         }
 
       } catch (profErr: any) {
-        // Saved user ID is invalid/nonexistent on backend -> clear and open onboarding
-        console.warn(`Saved active user ID '${uid}' not found. Resetting state.`);
-        updateActiveUserId(null);
+        // First-time logged in user profile not found on backend -> prompt onboarding
+        console.info(`Profile for authenticated user ID '${uid}' not found. Opening onboarding wizard.`);
         setProfile(null);
         setDigitalTwin(null);
         setOverloadScore(null);
@@ -171,26 +162,39 @@ export const App: React.FC = () => {
   };
 
   useEffect(() => {
-    loadData();
-  }, [activeUserId]);
+    if (user && activeUserId) {
+      saveActiveUserIdToStorage(activeUserId);
+      loadData(activeUserId);
+    } else {
+      setLoading(false);
+    }
+  }, [user, activeUserId]);
+
+  // If Auth is initializing
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-[#0B0C14] flex flex-col justify-center items-center">
+        <Compass className="w-10 h-10 text-cyan-400 animate-spin mb-4" />
+        <p className="text-xs text-slate-400 font-mono">Authenticating with StepNext...</p>
+      </div>
+    );
+  }
+
+  // Protected Route Guard: If not logged in, render Auth Page
+  if (!user) {
+    return <AuthPage />;
+  }
 
   // Handlers
   const handleSaveProfile = async (newProfile: UserProfile) => {
-    await saveProfile(newProfile);
-    updateActiveUserId(newProfile.user_id);
+    const profileToSave = { ...newProfile, user_id: activeUserId || newProfile.user_id };
+    await saveProfile(profileToSave);
     setIsOnboardingOpen(false);
-    await loadData(newProfile.user_id);
+    await loadData(profileToSave.user_id);
   };
 
   const handleResetProfile = () => {
-    if (window.confirm("Are you sure you want to reset your local profile? This will start onboarding over.")) {
-      updateActiveUserId(null);
-      setProfile(null);
-      setDigitalTwin(null);
-      setOverloadScore(null);
-      setSimulationData(null);
-      setTodayCheckIn(null);
-      setCheckInSummary(null);
+    if (window.confirm("Are you sure you want to re-run onboarding for your account?")) {
       setIsOnboardingOpen(true);
     }
   };
@@ -257,6 +261,7 @@ export const App: React.FC = () => {
       profile={profile}
       onOpenOnboarding={() => setIsOnboardingOpen(true)}
       onRefreshData={() => loadData(activeUserId)}
+      onSignOut={signOut}
     >
       {/* Banner when operating in Offline / Local Store Mode */}
       {health && !health.supabase_connected && (
@@ -264,7 +269,7 @@ export const App: React.FC = () => {
           <div className="flex items-center gap-2">
             <AlertCircle className="w-4 h-4 text-amber-400 shrink-0" />
             <span>
-              <strong>Local Storage Mode Active:</strong> Data saved locally for active user: <code>{activeUserId || 'New User'}</code>.
+              <strong>Local Storage Mode Active:</strong> Data saved locally for authenticated user.
             </span>
           </div>
           <button
@@ -344,9 +349,9 @@ export const App: React.FC = () => {
       <OnboardingModal
         isOpen={isOnboardingOpen}
         onClose={() => {
-          if (activeUserId) setIsOnboardingOpen(false);
+          if (profile) setIsOnboardingOpen(false);
         }}
-        initialProfile={profile}
+        initialProfile={profile || { user_id: activeUserId || '', name: user.user_metadata?.name || user.email?.split('@')[0] || 'StepNext User' } as UserProfile}
         onSaveProfile={handleSaveProfile}
       />
 
@@ -361,3 +366,10 @@ export const App: React.FC = () => {
   );
 };
 
+export const App: React.FC = () => {
+  return (
+    <AuthProvider>
+      <MainAppContent />
+    </AuthProvider>
+  );
+};

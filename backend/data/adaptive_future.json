@@ -292,5 +292,26 @@
     "alternative_scenario": null,
     "alternative_score": null,
     "created_at": "2026-08-24T17:15:26.207037"
+  },
+  "user_1787635172860_ryj1s": {
+    "user_id": "user_1787635172860_ryj1s",
+    "status": "needs_adjustment",
+    "current_scenario": "Senior Software Developer",
+    "current_score": 77,
+    "execution_health": "Execution 33% (insufficient_data)",
+    "workload_health": "Heavy",
+    "future_confidence": 50,
+    "trigger_reason": "Execution dip is driven by workload overload rather than path mismatch.",
+    "recommendation": "reduce_workload",
+    "evidence": [
+      "Completion rate is 33%, but workload feels Heavy.",
+      "Workload overload is the primary blocker, not long-term career trajectory mismatch.",
+      "Current path 'Senior Software Developer' (77/100) remains mathematically optimal."
+    ],
+    "next_action": "Reduce weekly hours in investment sliders before considering long-term path changes.",
+    "should_re_evaluate": false,
+    "alternative_scenario": null,
+    "alternative_score": null,
+    "created_at": "2026-08-25T05:24:16.279489"
   }
 }

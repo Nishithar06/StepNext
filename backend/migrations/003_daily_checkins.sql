@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS daily_checkins (
     work_hours DOUBLE PRECISION DEFAULT 6.0,
     study_hours DOUBLE PRECISION DEFAULT 2.0,
     exercise_completed BOOLEAN DEFAULT FALSE,
+    exercise_summary TEXT,
     achievement TEXT,
     blocker TEXT,
     tomorrow_priority TEXT,

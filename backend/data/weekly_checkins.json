@@ -88,5 +88,20 @@
       "guidance_message": "Keep tracking your weekly actions consistently to stay aligned with your trajectory.",
       "created_at": "2026-08-24T16:57:13.232782"
     }
+  ],
+  "user_1787635172860_ryj1s": [
+    {
+      "id": "wcheckin_user_1787635172860_ryj1s_2026_W35",
+      "user_id": "user_1787635172860_ryj1s",
+      "roadmap_id": "roadmap_9f5dd9bb",
+      "completed_actions_count": 0,
+      "total_actions_count": 3,
+      "completion_percentage": 0,
+      "completion_level": "Some",
+      "workload_feeling": "Heavy",
+      "blocker": "Motivation",
+      "guidance_message": "Your plan may be too ambitious. Consider reducing workload before adding more goals.",
+      "created_at": "2026-08-25T05:24:16.445086"
+    }
   ]
 }

@@ -136,12 +136,16 @@ def get_supabase_client():
     if _supabase_client is not None:
         return _supabase_client
     
-    if not SUPABASE_URL or not SUPABASE_KEY or "your-supabase" in SUPABASE_URL or "your-supabase" in SUPABASE_KEY:
+    _load_gemini_config()
+    url = (os.getenv("SUPABASE_URL") or SUPABASE_URL or "").strip()
+    key = (os.getenv("SUPABASE_KEY") or SUPABASE_KEY or "").strip()
+    
+    if not url or not key or "your-supabase" in url or "your-supabase" in key:
         return None
         
     try:
         from supabase import create_client
-        _supabase_client = create_client(SUPABASE_URL, SUPABASE_KEY)
+        _supabase_client = create_client(url, key)
         return _supabase_client
     except Exception as e:
         print(f"[Config] Warning: Failed to initialize Supabase client: {e}")

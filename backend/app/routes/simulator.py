@@ -1,4 +1,6 @@
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, HTTPException, status, Depends
+from typing import Optional
+from app.auth import verify_jwt_token, verify_user_ownership
 from app.schemas.models import SimulationRequest, SimulationResponse
 from app.routes.profile import fetch_profile_from_db_or_fixture
 from app.services.simulator import run_simulation, get_latest_scenarios, get_scenario_by_id
@@ -6,7 +8,8 @@ from app.services.simulator import run_simulation, get_latest_scenarios, get_sce
 router = APIRouter(prefix="/api", tags=["Future Simulator"])
 
 @router.post("/simulate/{user_id}", response_model=SimulationResponse)
-def run_simulation_endpoint(user_id: str, request: SimulationRequest):
+def run_simulation_endpoint(user_id: str, request: SimulationRequest, auth_uid: Optional[str] = Depends(verify_jwt_token)):
+    user_id = verify_user_ownership(user_id, auth_uid)
     if not request.scenarios or len(request.scenarios) == 0:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -22,7 +25,8 @@ def run_simulation_endpoint(user_id: str, request: SimulationRequest):
     return run_simulation(user_id, profile, request)
 
 @router.get("/scenarios/{user_id}", response_model=SimulationResponse)
-def get_user_scenarios_endpoint(user_id: str = "demo_user"):
+def get_user_scenarios_endpoint(user_id: str = "demo_user", auth_uid: Optional[str] = Depends(verify_jwt_token)):
+    user_id = verify_user_ownership(user_id, auth_uid)
     sc = get_latest_scenarios(user_id)
     if not sc:
         profile = fetch_profile_from_db_or_fixture(user_id)
@@ -36,7 +40,8 @@ def get_user_scenarios_endpoint(user_id: str = "demo_user"):
     return sc
 
 @router.get("/scenarios/{user_id}/{comparison_id}", response_model=SimulationResponse)
-def get_single_scenario_endpoint(user_id: str, comparison_id: str):
+def get_single_scenario_endpoint(user_id: str, comparison_id: str, auth_uid: Optional[str] = Depends(verify_jwt_token)):
+    user_id = verify_user_ownership(user_id, auth_uid)
     sc = get_scenario_by_id(user_id, comparison_id)
     if not sc:
         raise HTTPException(
