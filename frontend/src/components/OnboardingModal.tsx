@@ -3,6 +3,7 @@ import { UserProfile, Commitment } from '../types/schema';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { X, ChevronRight, ChevronLeft, Check, Sparkles, AlertCircle, User, Compass, Zap, Target, Layers, Clock } from 'lucide-react';
+import { getActiveUserId } from '../services/userService';
 
 interface OnboardingModalProps {
   isOpen: boolean;
@@ -74,9 +75,10 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
     setLoading(true);
     setError(null);
     try {
+      const activeId = getActiveUserId();
       const generatedUserId = 'user_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7);
       const profileData: UserProfile = {
-        user_id: initialProfile?.user_id || generatedUserId,
+        user_id: initialProfile?.user_id || activeId || generatedUserId,
         name: name.trim() || 'User',
         education: education.trim(),
         career_goal: careerGoal.trim() || 'Software Engineer',
