@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { isSupabaseConfigured } from '../../lib/supabaseClient';
-import { Compass, Mail, Lock, User, AlertCircle, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Mail, Lock, User, AlertCircle, ArrowRight, ShieldCheck } from 'lucide-react';
 import { Button } from '../common/Button';
 
 export const AuthPage: React.FC = () => {
@@ -60,34 +60,32 @@ export const AuthPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0B0C14] text-[#E2E8F0] flex flex-col justify-center items-center p-4 selection:bg-cyan-500/20">
-      {/* Background Subtle Gradient Blurs */}
-      <div className="fixed top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="fixed bottom-1/4 left-1/2 -translate-x-1/2 translate-y-1/2 w-[400px] h-[400px] bg-indigo-500/10 rounded-full blur-[100px] pointer-events-none" />
+    <div className="min-h-screen bg-[#F7F7F2] text-[#171827] flex flex-col justify-center items-center p-4 sm:p-6 selection:bg-[#635BFF]/10 font-sans taste-grid-bg">
+      {/* Subtle Ambient Glows */}
+      <div className="fixed top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-500/5 rounded-full blur-[140px] pointer-events-none" />
+      <div className="fixed bottom-1/4 left-1/2 -translate-x-1/2 translate-y-1/2 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="w-full max-w-md z-10">
-        {/* Brand Header */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-tr from-cyan-500 to-indigo-600 p-0.5 mb-4 shadow-lg shadow-cyan-500/20">
-            <div className="w-full h-full bg-[#0B0C14] rounded-[14px] flex items-center justify-center">
-              <Compass className="w-7 h-7 text-cyan-400 animate-pulse" />
-            </div>
-          </div>
-          <h1 className="text-2xl font-bold tracking-tight text-white">StepNext AI</h1>
-          <p className="text-xs text-slate-400 mt-1">Autonomous Life Navigation & Decision Intelligence</p>
+      <div className="w-full max-w-md z-10 space-y-6">
+        {/* Brand Header with Original StepNext Logo PNG Asset */}
+        <div className="flex flex-col items-center justify-center text-center">
+          <img
+            src="/stepnext-logo.png"
+            alt="StepNext - Your next step, made clearer."
+            className="h-16 sm:h-20 w-auto max-w-full object-contain mx-auto"
+          />
         </div>
 
         {/* Auth Card */}
-        <div className="bg-[#121422]/90 border border-slate-800/80 backdrop-blur-xl rounded-2xl p-6 sm:p-8 shadow-2xl">
+        <div className="bg-white/95 border border-[#E5E5DC] backdrop-blur-md rounded-2xl p-6 sm:p-8 shadow-[0_10px_30px_rgba(0,0,0,0.05)]">
           {/* Tab Switcher */}
-          <div className="flex bg-[#0B0C14] p-1 rounded-xl mb-6 border border-slate-800/60">
+          <div className="flex bg-[#F1F1E8] p-1 rounded-xl mb-6 border border-[#E5E5DC]">
             <button
               type="button"
               onClick={() => { setMode('login'); setError(null); setMessage(null); }}
-              className={`flex-1 py-2 text-xs font-medium rounded-lg transition-all ${
+              className={`flex-1 py-2.5 text-xs font-semibold rounded-lg transition-all ${
                 mode === 'login'
-                  ? 'bg-gradient-to-r from-cyan-500/20 to-indigo-500/20 text-cyan-300 border border-cyan-500/30 font-semibold shadow-sm'
-                  : 'text-slate-400 hover:text-slate-200'
+                  ? 'bg-white text-[#171827] shadow-sm border border-[#E5E5DC]'
+                  : 'text-[#667085] hover:text-[#171827]'
               }`}
             >
               Sign In
@@ -95,10 +93,10 @@ export const AuthPage: React.FC = () => {
             <button
               type="button"
               onClick={() => { setMode('signup'); setError(null); setMessage(null); }}
-              className={`flex-1 py-2 text-xs font-medium rounded-lg transition-all ${
+              className={`flex-1 py-2.5 text-xs font-semibold rounded-lg transition-all ${
                 mode === 'signup'
-                  ? 'bg-gradient-to-r from-cyan-500/20 to-indigo-500/20 text-cyan-300 border border-cyan-500/30 font-semibold shadow-sm'
-                  : 'text-slate-400 hover:text-slate-200'
+                  ? 'bg-white text-[#171827] shadow-sm border border-[#E5E5DC]'
+                  : 'text-[#667085] hover:text-[#171827]'
               }`}
             >
               Create Account
@@ -107,22 +105,22 @@ export const AuthPage: React.FC = () => {
 
           {/* Alert Banners */}
           {!isSupabaseConfigured && (
-            <div className="mb-4 p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs flex items-center gap-2.5">
-              <AlertCircle className="w-4 h-4 text-amber-400 shrink-0" />
+            <div className="mb-5 p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-800 text-xs flex items-center gap-2.5">
+              <AlertCircle className="w-4 h-4 text-amber-600 shrink-0" />
               <span>Configuration Notice: VITE_SUPABASE_ANON_KEY is missing in Vercel environment variables. Please add VITE_SUPABASE_ANON_KEY and redeploy.</span>
             </div>
           )}
 
           {error && (
-            <div className="mb-4 p-3 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-300 text-xs flex items-center gap-2.5">
-              <AlertCircle className="w-4 h-4 text-rose-400 shrink-0" />
+            <div className="mb-5 p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-xs flex items-center gap-2.5">
+              <AlertCircle className="w-4 h-4 text-rose-600 shrink-0" />
               <span>{error}</span>
             </div>
           )}
 
           {message && (
-            <div className="mb-4 p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-xs flex items-center gap-2.5">
-              <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+            <div className="mb-5 p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs flex items-center gap-2.5">
+              <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
               <span>{message}</span>
             </div>
           )}
@@ -131,39 +129,39 @@ export const AuthPage: React.FC = () => {
           <form onSubmit={handleSubmit} className="space-y-4">
             {mode === 'signup' && (
               <div>
-                <label className="block text-xs font-medium text-slate-300 mb-1.5">Full Name</label>
+                <label className="block text-xs font-semibold text-[#171827] mb-1.5">Full Name</label>
                 <div className="relative">
-                  <User className="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
+                  <User className="w-4 h-4 text-[#98A2B3] absolute left-3.5 top-1/2 -translate-y-1/2" />
                   <input
                     type="text"
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     placeholder="Alex Morgan"
-                    className="w-full bg-[#0B0C14] border border-slate-800 focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 rounded-xl pl-9 pr-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 outline-none transition-all"
+                    className="w-full bg-white border border-[#E5E5DC] focus:border-[#635BFF] focus:ring-1 focus:ring-[#635BFF] rounded-xl pl-10 pr-4 py-2.5 text-xs text-[#171827] placeholder-[#98A2B3] outline-none transition-all"
                   />
                 </div>
               </div>
             )}
 
             <div>
-              <label className="block text-xs font-medium text-slate-300 mb-1.5">Email Address</label>
+              <label className="block text-xs font-semibold text-[#171827] mb-1.5">Email Address</label>
               <div className="relative">
-                <Mail className="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
+                <Mail className="w-4 h-4 text-[#98A2B3] absolute left-3.5 top-1/2 -translate-y-1/2" />
                 <input
                   type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="alex@example.com"
-                  className="w-full bg-[#0B0C14] border border-slate-800 focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 rounded-xl pl-9 pr-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 outline-none transition-all"
+                  className="w-full bg-white border border-[#E5E5DC] focus:border-[#635BFF] focus:ring-1 focus:ring-[#635BFF] rounded-xl pl-10 pr-4 py-2.5 text-xs text-[#171827] placeholder-[#98A2B3] outline-none transition-all"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-slate-300 mb-1.5">Password</label>
+              <label className="block text-xs font-semibold text-[#171827] mb-1.5">Password</label>
               <div className="relative">
-                <Lock className="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
+                <Lock className="w-4 h-4 text-[#98A2B3] absolute left-3.5 top-1/2 -translate-y-1/2" />
                 <input
                   type="password"
                   required
@@ -171,7 +169,7 @@ export const AuthPage: React.FC = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full bg-[#0B0C14] border border-slate-800 focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 rounded-xl pl-9 pr-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 outline-none transition-all"
+                  className="w-full bg-white border border-[#E5E5DC] focus:border-[#635BFF] focus:ring-1 focus:ring-[#635BFF] rounded-xl pl-10 pr-4 py-2.5 text-xs text-[#171827] placeholder-[#98A2B3] outline-none transition-all"
                 />
               </div>
             </div>
@@ -179,7 +177,7 @@ export const AuthPage: React.FC = () => {
             <Button
               type="submit"
               variant="primary"
-              className="w-full justify-center py-2.5 text-xs font-semibold shadow-lg shadow-cyan-500/20"
+              className="w-full justify-center py-3 text-xs font-bold bg-[#635BFF] hover:bg-[#5249E0] text-white shadow-md shadow-[#635BFF]/20 border-none rounded-xl transition-all"
               disabled={loading}
               icon={!loading ? <ArrowRight className="w-3.5 h-3.5" /> : undefined}
             >
@@ -189,8 +187,8 @@ export const AuthPage: React.FC = () => {
         </div>
 
         {/* Footer Note */}
-        <p className="text-center text-[11px] text-slate-600 mt-6">
-          Protected by Supabase Auth & StepNext End-to-End Decision Telemetry
+        <p className="text-center text-[11px] text-[#667085]">
+          Protected by Supabase Auth & StepNext Decision Telemetry
         </p>
       </div>
     </div>

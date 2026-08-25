@@ -1,26 +1,21 @@
 import React from 'react';
-import stepNextLogoAsset from '../../assets/stepnext-logo.svg';
 
 interface StepNextLogoProps {
   className?: string;
   height?: string;
+  alt?: string;
 }
 
 export const StepNextLogo: React.FC<StepNextLogoProps> = ({
   className = '',
-  height = 'h-[54px]'
+  height = 'h-16',
+  alt = 'StepNext - Your next step, made clearer.'
 }) => {
   return (
     <img
-      src={stepNextLogoAsset}
-      onError={(e) => {
-        const target = e.currentTarget;
-        if (target.src !== '/stepnext-logo.svg') {
-          target.src = '/stepnext-logo.svg';
-        }
-      }}
-      alt="StepNext — Your next step, made clearer."
-      className={`${height} w-auto object-contain max-w-full shrink-0 ${className}`}
+      src="/stepnext-logo.png"
+      alt={alt}
+      className={`w-auto object-contain ${height} ${className}`}
     />
   );
 };

@@ -1,86 +1,103 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="320" height="80">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 110" width="350" height="110">
   <defs>
-    <!-- Pathway Gradient -->
-    <linearGradient id="snPathGrad" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#1E40AF" />
-      <stop offset="40%" stop-color="#2563EB" />
-      <stop offset="75%" stop-color="#0D9488" />
-      <stop offset="100%" stop-color="#14B8A6" />
+    <!-- Pathway 3D Gradient -->
+    <linearGradient id="snPathGrad" x1="10%" y1="90%" x2="90%" y2="10%">
+      <stop offset="0%" stop-color="#1D4ED8" />
+      <stop offset="35%" stop-color="#2563EB" />
+      <stop offset="70%" stop-color="#0284C7" />
+      <stop offset="100%" stop-color="#059669" />
     </linearGradient>
 
-    <!-- Destination Dot Gradient -->
-    <radialGradient id="snDotGrad" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#FF7A6B" />
-      <stop offset="100%" stop-color="#F97316" />
+    <!-- Target Orb Gradient -->
+    <radialGradient id="snOrbGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FF7E67" />
+      <stop offset="65%" stop-color="#F97316" />
+      <stop offset="100%" stop-color="#EA580C" />
     </radialGradient>
 
-    <!-- Next Text Gradient -->
-    <linearGradient id="snNextGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#2563EB" />
-      <stop offset="50%" stop-color="#3B82F6" />
-      <stop offset="100%" stop-color="#06B6D4" />
+    <!-- Wordmark 'Next' Gradient -->
+    <linearGradient id="snNextTextGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1D4ED8" />
+      <stop offset="45%" stop-color="#2563EB" />
+      <stop offset="80%" stop-color="#0284C7" />
+      <stop offset="100%" stop-color="#059669" />
     </linearGradient>
 
-    <!-- Accent Underline Gradient -->
-    <linearGradient id="snAccentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+    <!-- Tagline Swoop Underline Gradient -->
+    <linearGradient id="snSwoopGrad" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#8B5CF6" />
       <stop offset="50%" stop-color="#3B82F6" />
       <stop offset="100%" stop-color="#06B6D4" />
     </linearGradient>
 
-    <!-- App Icon Background Soft Glow -->
-    <linearGradient id="snIconBg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#F0F5FF" />
-      <stop offset="50%" stop-color="#E0F2FE" />
-      <stop offset="100%" stop-color="#CCFBF1" />
+    <!-- Icon Container Glass Gradient -->
+    <linearGradient id="snIconContainerBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="50%" stop-color="#F8FAFC" />
+      <stop offset="100%" stop-color="#EFF6FF" />
     </linearGradient>
+
+    <!-- Soft Drop Shadow for Icon -->
+    <filter id="iconShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#1E3A8A" flood-opacity="0.12" />
+    </filter>
   </defs>
 
-  <!-- 1. LOGO APP ICON MARK -->
-  <g transform="translate(4, 6)">
-    <!-- Rounded App Container -->
-    <rect width="66" height="66" rx="18" fill="url(#snIconBg)" stroke="#CBD5E1" stroke-width="1.5" />
+  <!-- 1. ICON MARK CONTAINER -->
+  <g transform="translate(10, 10)" filter="url(#iconShadow)">
+    <!-- App Container Rectangle -->
+    <rect width="90" height="90" rx="26" fill="url(#snIconContainerBg)" stroke="#E2E8F0" stroke-width="1.5" />
     
-    <!-- Winding 3D Pathway -->
+    <!-- Outer Soft Arc Trace -->
     <path
-      d="M 17 54 C 31 56, 56 48, 47 35 C 36 23, 14 27, 23 16 C 28 10, 42 12, 47 13"
+      d="M 24 72 C 34 80, 60 76, 52 50 C 44 26, 22 34, 38 20 C 46 13, 62 16, 68 18"
+      fill="none"
+      stroke="#CBD5E1"
+      stroke-width="14"
+      stroke-linecap="round"
+      opacity="0.4"
+    />
+
+    <!-- Main S-Curve Path -->
+    <path
+      d="M 24 72 C 34 80, 60 76, 52 50 C 44 26, 22 34, 38 20 C 46 13, 62 16, 68 18"
       fill="none"
       stroke="url(#snPathGrad)"
-      stroke-width="9.5"
+      stroke-width="16"
       stroke-linecap="round"
       stroke-linejoin="round"
     />
 
-    <!-- Pathway Highlight Line -->
+    <!-- Inner Highlight -->
     <path
-      d="M 18 52 C 31 54, 54 45, 45 35 C 36 24, 16 28, 24 17"
+      d="M 26 70 C 35 77, 57 73, 50 49 C 43 28, 24 34, 37 21"
       fill="none"
-      stroke="#7DD3FC"
-      stroke-width="2.2"
+      stroke="#93C5FD"
+      stroke-width="3"
       stroke-linecap="round"
-      opacity="0.75"
+      opacity="0.7"
     />
 
-    <!-- Destination Glowing Dot -->
-    <circle cx="47" cy="13" r="5.5" fill="url(#snDotGrad)" />
-    <circle cx="45.5" cy="11.5" r="2" fill="#FFFFFF" opacity="0.9" />
+    <!-- Target Glowing Orb at Top Right -->
+    <circle cx="68" cy="18" r="7.5" fill="url(#snOrbGrad)" />
+    <circle cx="66.2" cy="16.2" r="2.2" fill="#FFFFFF" opacity="0.8" />
   </g>
 
   <!-- 2. WORDMARK: StepNext -->
-  <g transform="translate(80, 43)">
-    <text font-family="Inter, system-ui, -apple-system, sans-serif" font-weight="900" font-size="36" letter-spacing="-1.2">
-      <tspan fill="#0F172A">Step</tspan>
-      <tspan fill="url(#snNextGrad)">Next</tspan>
+  <g transform="translate(118, 62)">
+    <text font-family="Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="46" letter-spacing="-1.5">
+      <tspan fill="#0B1229">Step</tspan>
+      <tspan fill="url(#snNextTextGrad)">Next</tspan>
     </text>
   </g>
 
   <!-- 3. TAGLINE: Your next step, made clearer. -->
-  <g transform="translate(82, 63)">
-    <text font-family="Inter, system-ui, -apple-system, sans-serif" font-weight="600" font-size="13.5" fill="#334155" letter-spacing="-0.3">
-      Your <tspan font-weight="800" fill="#0F172A">next step</tspan>, made clearer.
+  <g transform="translate(120, 88)">
+    <text font-family="Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="600" font-size="16" fill="#475569" letter-spacing="-0.4">
+      Your <tspan font-weight="800" fill="#0B1229">next step</tspan>, made clearer.
     </text>
-    <!-- Accent Line under 'next step' -->
-    <path d="M 33 4 Q 58 7, 83 4" stroke="url(#snAccentGrad)" stroke-width="2.2" stroke-linecap="round" fill="none" />
-    <circle cx="85" cy="5" r="1.2" fill="#06B6D4" />
+    <!-- Curved Swoop Underline under 'next step' -->
+    <path d="M 40 5 Q 70 9, 100 5" stroke="url(#snSwoopGrad)" stroke-width="2.6" stroke-linecap="round" fill="none" />
+    <circle cx="103" cy="6" r="1.5" fill="#06B6D4" />
   </g>
 </svg>
