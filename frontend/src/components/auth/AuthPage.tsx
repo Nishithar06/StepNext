@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
+import { isSupabaseConfigured } from '../../lib/supabaseClient';
 import { Compass, Mail, Lock, User, AlertCircle, ArrowRight, ShieldCheck } from 'lucide-react';
 import { Button } from '../common/Button';
 
@@ -20,6 +21,11 @@ export const AuthPage: React.FC = () => {
     e.preventDefault();
     setError(null);
     setMessage(null);
+
+    if (!isSupabaseConfigured) {
+      setError('VITE_SUPABASE_ANON_KEY is missing in environment variables. Please configure VITE_SUPABASE_ANON_KEY in Vercel and redeploy.');
+      return;
+    }
 
     if (!email.trim() || !password.trim()) {
       setError('Please fill in both email and password.');
@@ -100,6 +106,13 @@ export const AuthPage: React.FC = () => {
           </div>
 
           {/* Alert Banners */}
+          {!isSupabaseConfigured && (
+            <div className="mb-4 p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs flex items-center gap-2.5">
+              <AlertCircle className="w-4 h-4 text-amber-400 shrink-0" />
+              <span>Configuration Notice: VITE_SUPABASE_ANON_KEY is missing in Vercel environment variables. Please add VITE_SUPABASE_ANON_KEY and redeploy.</span>
+            </div>
+          )}
+
           {error && (
             <div className="mb-4 p-3 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-300 text-xs flex items-center gap-2.5">
               <AlertCircle className="w-4 h-4 text-rose-400 shrink-0" />
