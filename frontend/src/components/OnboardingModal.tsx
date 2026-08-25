@@ -77,9 +77,9 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
     setError(null);
     try {
       const activeId = getActiveUserId();
-      const generatedUserId = 'user_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7);
+      const targetUserId = initialProfile?.user_id || activeId || 'demo_user';
       const profileData: UserProfile = {
-        user_id: initialProfile?.user_id || activeId || generatedUserId,
+        user_id: targetUserId,
         name: name.trim() || 'User',
         education: education.trim(),
         career_goal: careerGoal.trim() || 'Software Engineer',

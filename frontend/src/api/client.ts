@@ -56,7 +56,9 @@ async function authFetch(input: string, init?: RequestInit): Promise<Response> {
 async function handleResponse<T>(response: Response): Promise<T> {
   if (!response.ok) {
     const errorText = await response.text();
-    throw new Error(`API Error [${response.status}]: ${errorText || response.statusText}`);
+    const err = new Error(`API Error [${response.status}]: ${errorText || response.statusText}`);
+    (err as any).status = response.status;
+    throw err;
   }
   return response.json() as Promise<T>;
 }

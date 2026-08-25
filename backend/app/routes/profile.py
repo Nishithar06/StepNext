@@ -17,6 +17,10 @@ def fetch_profile_from_db_or_fixture(user_id: str) -> Optional[UserProfile]:
             res = client.table("user_profiles").select("*").eq("user_id", user_id).execute()
             if res.data and len(res.data) > 0:
                 data = res.data[0]
+                # Sanitize NULL list fields from Supabase to prevent Pydantic validation errors
+                for list_field in ["interests", "skills", "skills_to_improve", "regular_activities", "major_commitments"]:
+                    if list_field in data and data[list_field] is None:
+                        data[list_field] = []
                 prof = UserProfile(**data)
                 PROFILES_STORE[user_id] = prof
                 save_profiles_to_disk()
@@ -85,11 +89,7 @@ def update_user_profile(user_id: str, updates: UserProfileUpdate, auth_uid: Opti
     print(f"[Profile] UPDATE: user_id={user_id}")
     current = fetch_profile_from_db_or_fixture(user_id)
     if not current:
-        print(f"[Profile] UPDATE_FAILED: user_id={user_id} reason=Not found")
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"User profile '{user_id}' not found."
-        )
+        current = UserProfile(user_id=user_id)
     update_data = updates.model_dump(exclude_unset=True)
     
     updated_dict = current.model_dump()

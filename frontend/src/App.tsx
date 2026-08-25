@@ -103,8 +103,12 @@ const MainAppContent: React.FC = () => {
 
       // Fetch user profile for active user ID
       try {
+        console.log(`[Profile] Current user ID: ${uid}`);
+        console.log(`[Profile] Fetching saved profile...`);
         const prof = await fetchProfile(uid);
+        console.log(`[Profile] Profile found: true (user_id=${prof.user_id})`);
         setProfile(prof);
+        setIsOnboardingOpen(false);
 
         // Fetch telemetry in parallel / sequence for valid active user
         try {
@@ -143,15 +147,23 @@ const MainAppContent: React.FC = () => {
         }
 
       } catch (profErr: any) {
-        // First-time logged in user profile not found on backend -> prompt onboarding
-        console.info(`Profile for authenticated user ID '${uid}' not found. Opening onboarding wizard.`);
-        setProfile(null);
         setDigitalTwin(null);
         setOverloadScore(null);
         setSimulationData(null);
         setTodayCheckIn(null);
         setCheckInSummary(null);
-        setIsOnboardingOpen(true);
+
+        const isNotFound = profErr?.status === 404 || profErr?.message?.includes('404');
+        if (isNotFound) {
+          console.info(`[Profile] Profile for user ID '${uid}' not found (404). Opening onboarding wizard.`);
+          setProfile(null);
+          setIsOnboardingOpen(true);
+        } else {
+          console.error(`[Profile] Error fetching profile for user ID '${uid}':`, profErr);
+          setError(profErr.message || 'Unable to connect to StepNext backend service.');
+          setProfile(null);
+          setIsOnboardingOpen(false);
+        }
       }
 
     } catch (err: any) {
@@ -188,9 +200,13 @@ const MainAppContent: React.FC = () => {
   // Handlers
   const handleSaveProfile = async (newProfile: UserProfile) => {
     const profileToSave = { ...newProfile, user_id: activeUserId || newProfile.user_id };
-    await saveProfile(profileToSave);
+    console.log(`[Profile] Saving profile for user_id=${profileToSave.user_id}...`);
+    const savedProf = await saveProfile(profileToSave);
+    const persistentUid = savedProf?.user_id || profileToSave.user_id;
+    console.log(`[Profile] Profile saved successfully for user_id=${persistentUid}`);
+    saveActiveUserIdToStorage(persistentUid);
     setIsOnboardingOpen(false);
-    await loadData(profileToSave.user_id);
+    await loadData(persistentUid);
   };
 
   const handleResetProfile = () => {

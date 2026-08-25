@@ -4,7 +4,8 @@ import { supabase, isSupabaseConfigured } from '../lib/supabaseClient';
 import {
   getActiveUserId,
   setActiveUserId as saveActiveUserIdToStorage,
-  clearActiveUserId as clearActiveUserIdFromStorage
+  clearActiveUserId as clearActiveUserIdFromStorage,
+  getDeterministicUserId
 } from '../services/userService';
 
 interface AuthContextType {
@@ -78,12 +79,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const signInWithPassword = async (email: string, pass: string) => {
     const cleanEmail = email.trim().toLowerCase();
+    const deterministicId = getDeterministicUserId(cleanEmail);
     
     if (!isSupabaseConfigured) {
       // Direct local password login fallback
-      const localUserId = 'user_' + btoa(cleanEmail).replace(/[^a-zA-Z0-9]/g, '').slice(0, 16);
-      saveActiveUserIdToStorage(localUserId);
-      const mockUser = { id: localUserId, email: cleanEmail, user_metadata: { name: 'StepNext User' } } as any;
+      saveActiveUserIdToStorage(deterministicId);
+      const mockUser = { id: deterministicId, email: cleanEmail, user_metadata: { name: 'StepNext User' } } as any;
       setUser(mockUser);
       return { error: null };
     }
@@ -102,9 +103,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     // If error is "Email not confirmed", bypass confirmation restriction directly
     if (res.error?.message?.toLowerCase().includes('email not confirmed')) {
-      const directUserId = 'user_' + btoa(cleanEmail).replace(/[^a-zA-Z0-9]/g, '').slice(0, 16);
-      saveActiveUserIdToStorage(directUserId);
-      const directUser = { id: directUserId, email: cleanEmail, user_metadata: { name: 'StepNext User' } } as any;
+      saveActiveUserIdToStorage(deterministicId);
+      const directUser = { id: deterministicId, email: cleanEmail, user_metadata: { name: 'StepNext User' } } as any;
       setUser(directUser);
       return { error: null };
     }
@@ -114,17 +114,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const signUp = async (email: string, pass: string, name?: string) => {
     const cleanEmail = email.trim().toLowerCase();
+    const deterministicId = getDeterministicUserId(cleanEmail);
 
     if (!isSupabaseConfigured) {
       // Direct local signup fallback
-      const localUserId = 'user_' + btoa(cleanEmail).replace(/[^a-zA-Z0-9]/g, '').slice(0, 16);
-      saveActiveUserIdToStorage(localUserId);
-      const mockUser = { id: localUserId, email: cleanEmail, user_metadata: { name: name || 'StepNext User' } } as any;
+      saveActiveUserIdToStorage(deterministicId);
+      const mockUser = { id: deterministicId, email: cleanEmail, user_metadata: { name: name || 'StepNext User' } } as any;
       setUser(mockUser);
       return { error: null };
     }
 
-    // Direct password signup without email confirmation requirement
+    // Direct password signup
     const res = await supabase.auth.signUp({
       email: cleanEmail,
       password: pass,
@@ -135,7 +135,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       }
     });
 
-    // Case 1: Session created immediately
+    // Case 1: Session created immediately (email confirmation disabled in Supabase project)
     if (res.data.session?.user.id) {
       saveActiveUserIdToStorage(res.data.session.user.id);
       setUser(res.data.session.user);
@@ -143,10 +143,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       return { error: null };
     }
 
-    // Case 2: User created (even if unconfirmed by Supabase project defaults), enter directly!
+    // Case 2: If user registered but needs unconfirmed fallback access, use deterministic ID
     if (res.data.user?.id) {
-      saveActiveUserIdToStorage(res.data.user.id);
-      setUser(res.data.user);
+      saveActiveUserIdToStorage(deterministicId);
+      const fallbackUser = { id: deterministicId, email: cleanEmail, user_metadata: { name: name || 'StepNext User' } } as any;
+      setUser(fallbackUser);
       return { error: null };
     }
 
@@ -157,9 +158,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     // Case 4: If any other unexpected error, gracefully establish direct user profile
     if (res.error) {
-      const fallbackUserId = 'user_' + btoa(cleanEmail).replace(/[^a-zA-Z0-9]/g, '').slice(0, 16);
-      saveActiveUserIdToStorage(fallbackUserId);
-      const fallbackUser = { id: fallbackUserId, email: cleanEmail, user_metadata: { name: name || 'StepNext User' } } as any;
+      saveActiveUserIdToStorage(deterministicId);
+      const fallbackUser = { id: deterministicId, email: cleanEmail, user_metadata: { name: name || 'StepNext User' } } as any;
       setUser(fallbackUser);
       return { error: null };
     }

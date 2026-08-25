@@ -34,3 +34,11 @@ export function clearActiveUserId(): void {
     console.error('[UserService] Error clearing active user ID:', err);
   }
 }
+
+export function getDeterministicUserId(email: string): string {
+  const cleanEmail = (email || '').trim().toLowerCase();
+  if (!cleanEmail) return 'demo_user';
+  const encoded = btoa(cleanEmail).replace(/[^a-zA-Z0-9]/g, '').slice(0, 16);
+  return `user_${encoded}`;
+}
+

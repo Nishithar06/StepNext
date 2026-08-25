@@ -119,7 +119,8 @@ def get_digital_twin(user_id: str) -> DerivedProfile:
         return TWINS_STORE[user_id]
 
     # Generate from profile if profile exists
-    current_profile = PROFILES_STORE.get(user_id, UserProfile(user_id=user_id))
+    from app.routes.profile import fetch_profile_from_db_or_fixture
+    current_profile = fetch_profile_from_db_or_fixture(user_id) or UserProfile(user_id=user_id)
     return generate_and_save_digital_twin(current_profile)
 
 def update_digital_twin_execution_signal(user_id: str, completion_percentage: int, workload_feeling: str) -> None:

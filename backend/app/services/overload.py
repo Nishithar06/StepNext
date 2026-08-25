@@ -160,5 +160,6 @@ def get_overload_score(user_id: str) -> OverloadScore:
     if user_id in OVERLOADS_STORE:
         return OVERLOADS_STORE[user_id]
 
-    current_profile = PROFILES_STORE.get(user_id, UserProfile(user_id=user_id))
+    from app.routes.profile import fetch_profile_from_db_or_fixture
+    current_profile = fetch_profile_from_db_or_fixture(user_id) or UserProfile(user_id=user_id)
     return calculate_and_save_overload(current_profile)

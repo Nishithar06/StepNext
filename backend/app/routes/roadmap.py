@@ -11,7 +11,8 @@ router = APIRouter(prefix="/api/roadmap", tags=["roadmap"])
 def get_user_roadmap(user_id: str = Path(..., description="Target User ID"), auth_uid: Optional[str] = Depends(verify_jwt_token)):
     user_id = verify_user_ownership(user_id, auth_uid)
     print(f"[Roadmap] FETCH_REQUEST: user_id={user_id}")
-    profile = PROFILES_STORE.get(user_id)
+    from app.routes.profile import fetch_profile_from_db_or_fixture
+    profile = fetch_profile_from_db_or_fixture(user_id)
     sim = SIMULATIONS_STORE.get(user_id)
     
     current_goal = (profile.career_goal or profile.short_term_goal or "") if profile else ""
@@ -48,7 +49,8 @@ def generate_or_update_roadmap(user_id: str = Path(..., description="Target User
     if user_id not in SIMULATIONS_STORE:
         raise HTTPException(status_code=400, detail="Cannot generate roadmap: Run a Future Simulation first.")
     
-    profile = PROFILES_STORE.get(user_id)
+    from app.routes.profile import fetch_profile_from_db_or_fixture
+    profile = fetch_profile_from_db_or_fixture(user_id)
     sim = SIMULATIONS_STORE[user_id]
     roadmap = generate_roadmap_deterministic(user_id, profile, sim)
     return roadmap

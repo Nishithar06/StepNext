@@ -22,13 +22,13 @@ def evaluate_future_feedback(user_id: str) -> AdaptiveFutureFeedback:
     roadmap: Optional[ActionRoadmap] = ROADMAPS_STORE.get(user_id)
     progress: ProgressSummary = analyze_user_progress(user_id)
     from app.services.checkin import get_checkin_summary
-    from app.store import PROFILES_STORE
+    from app.routes.profile import fetch_profile_from_db_or_fixture
 
     daily_summary = get_checkin_summary(user_id)
     weekly_checkins = WEEKLY_CHECKINS_STORE.get(user_id, [])
     checkin_count = max(len(weekly_checkins), daily_summary.total_checkins)
 
-    profile = PROFILES_STORE.get(user_id)
+    profile = fetch_profile_from_db_or_fixture(user_id)
     career_goal = (profile.career_goal or "").strip() if profile else ""
     if not career_goal and roadmap and roadmap.goal_context:
         career_goal = roadmap.goal_context.strip()
