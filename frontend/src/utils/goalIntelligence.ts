@@ -573,14 +573,31 @@ export function analyzeCareerGoal(
   }
 
   // Calculate matching vs skills to acquire
+  // Uses proper keyword matching: extract meaningful tokens (≥4 chars) from competency
+  // and check if the user actually has any skill that contains those tokens.
+  // This prevents false positives from short words like "git", "sql", "api" fuzzy-matching everything.
   const matchingSkills: string[] = [];
   const skillsToAcquire: string[] = [];
 
   for (const comp of requiredCompetencies) {
     const compLower = comp.toLowerCase();
-    const hasMatch = allUserSkillsLower.some(uSkill =>
-      compLower.includes(uSkill) || uSkill.includes(compLower.split(' ')[0])
-    );
+    // Extract meaningful keyword tokens from the competency string (≥4 chars, skip filler words)
+    const fillerWords = new Set(['and', 'the', 'for', 'with', 'via', 'using', 'based', 'driven']);
+    const compTokens = compLower
+      .replace(/[&\/\(\),]/g, ' ')
+      .split(/\s+/)
+      .filter(t => t.length >= 4 && !fillerWords.has(t));
+
+    // A user skill "matches" only if:
+    //   - the full competency string contains the user skill (≥4 chars), OR
+    //   - the user skill contains at least one meaningful token from the competency (≥4 chars)
+    const hasMatch = allUserSkillsLower.some(uSkill => {
+      if (uSkill.length < 3) return false;
+      // Direct containment: competency description contains user's skill name
+      if (compLower.includes(uSkill)) return true;
+      // Token match: any meaningful competency keyword exists in the user's skill string
+      return compTokens.some(token => uSkill.includes(token) || token.includes(uSkill));
+    });
 
     if (hasMatch) {
       matchingSkills.push(comp);
@@ -589,10 +606,15 @@ export function analyzeCareerGoal(
     }
   }
 
-  // Compute readiness percentage
+  // Compute readiness percentage — only based on actual skills in profile, not empty state
   const totalComp = requiredCompetencies.length || 1;
   const matchCount = matchingSkills.length;
-  const baseScore = Math.round((matchCount / totalComp) * 50) + 35;
+
+  // If user has no skills at all, start at 30% base (not 35% which looks too high)
+  const hasAnySkills = allUserSkillsLower.length > 0;
+  const baseScore = hasAnySkills
+    ? Math.round((matchCount / totalComp) * 60) + 30
+    : 30;
   const readinessPercentage = Math.min(95, Math.max(30, baseScore));
 
   return {

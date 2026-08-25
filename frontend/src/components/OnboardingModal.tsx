@@ -358,14 +358,14 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
                         <Sparkles className="w-3 h-3" />
                         RECOMMENDED SKILLS FOR {goalPreview.normalizedTitle.toUpperCase()}
                       </span>
-                      <span className="text-[9px] font-mono text-slate-400">Click to add</span>
+                      <span className="text-[9px] font-mono text-slate-400">Click → adds to Skills to Develop</span>
                     </div>
                     <div className="flex flex-wrap gap-1.5">
                       {goalPreview.requiredCompetencies.map((comp, compIdx) => (
                         <button
                           key={compIdx}
                           type="button"
-                          onClick={() => handleAddSkill(comp, false)}
+                          onClick={() => handleAddSkill(comp, true)}
                           className="text-[10px] font-medium bg-white hover:bg-slate-50 text-[#0F172A] px-2.5 py-1 rounded-xl border border-black/[0.08] flex items-center gap-1 shadow-xs transition"
                         >
                           <span>+ {comp}</span>
