@@ -56,7 +56,7 @@ export const AppShell: React.FC<AppShellProps> = ({
           onSignOut={onSignOut}
         />
 
-        <main className="flex-1 max-w-6xl w-full mx-auto px-4 lg:px-8 py-8 space-y-8">
+        <main className={`flex-1 ${activeTab === 'simulator' ? 'max-w-7xl' : 'max-w-6xl'} w-full mx-auto px-4 lg:px-8 py-8 space-y-8 min-w-0`}>
           {children}
         </main>
       </div>
