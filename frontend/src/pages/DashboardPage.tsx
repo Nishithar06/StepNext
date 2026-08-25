@@ -29,6 +29,7 @@ import {
 } from 'lucide-react';
 import { TabType } from '../components/layout/Sidebar';
 import { useStaggerEntrance } from '../hooks/useGsap';
+import { GoalRequirementsCard } from '../components/dashboard/GoalRequirementsCard';
 
 interface DashboardPageProps {
   profile: UserProfile | null;
@@ -132,7 +133,16 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
         </div>
       </section>
 
-      {/* 02: PROMINENT DAILY CHECK-IN HERO BANNER */}
+      {/* 02: TARGET GOAL REQUIREMENTS & 90-DAY MILESTONE TRAJECTORY */}
+      <section className="stagger-card">
+        <GoalRequirementsCard
+          profile={profile}
+          onNavigateTab={onNavigateTab}
+          onOpenOnboarding={onOpenOnboarding}
+        />
+      </section>
+
+      {/* 03: PROMINENT DAILY CHECK-IN HERO BANNER */}
       <section className="stagger-card bg-white rounded-[26px] border border-[#5850EC]/30 p-6 lg:p-7 shadow-[0_4px_24px_rgba(99,102,241,0.08)] space-y-4">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-5">
           <div className="space-y-1.5">

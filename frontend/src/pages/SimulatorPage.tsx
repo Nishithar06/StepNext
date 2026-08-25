@@ -10,6 +10,7 @@ import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
 import { Progress } from '../components/ui/progress';
 import { useStaggerEntrance } from '../hooks/useGsap';
+import { analyzeCareerGoal } from '../utils/goalIntelligence';
 import { 
   CheckCircle2, 
   Sparkles, 
@@ -842,7 +843,59 @@ const SimulatorPageContent: React.FC<SimulatorPageProps> = ({
         </Card>
       )}
 
-      {/* 2. SCENARIO COMPARISON (CLEAN COMPARISON ROW WITH LEADER BADGE) */}
+      {/* 2. GOAL PREREQUISITES & TRAJECTORY MAP BANNER */}
+      {(() => {
+        const goalInfo = analyzeCareerGoal(profile?.career_goal, profile?.skills, profile?.skills_to_improve);
+        return (
+          <section className="p-5 rounded-[24px] bg-gradient-to-r from-white via-slate-50 to-[#EEF2FF] border border-[#5850EC]/20 shadow-xs space-y-3">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-black/[0.05] pb-2.5">
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] font-mono font-bold uppercase tracking-[0.16em] text-[#5850EC] flex items-center gap-1.5">
+                  <Target className="w-3.5 h-3.5" />
+                  GOAL PREREQUISITES & TRAJECTORY MAP
+                </span>
+                <Badge variant="indigo" size="sm" className="font-mono text-[9px]">
+                  {goalInfo.domainFamily}
+                </Badge>
+              </div>
+              <span className="text-xs font-bold font-mono text-[#0F172A]">
+                Target: <span className="text-[#5850EC]">{goalInfo.normalizedTitle}</span> ({goalInfo.readinessPercentage}% Baseline Fit)
+              </span>
+            </div>
+
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+              <div className="space-y-1.5">
+                <span className="text-[10px] font-mono font-bold uppercase text-slate-400 block tracking-wider">
+                  Key Skills & Competencies Required for this Goal:
+                </span>
+                <div className="flex flex-wrap gap-1.5">
+                  {goalInfo.requiredCompetencies.map((comp, cIdx) => {
+                    const isAcquired = goalInfo.matchingSkills.includes(comp);
+                    return (
+                      <Badge
+                        key={cIdx}
+                        variant={isAcquired ? 'success' : 'outline'}
+                        size="sm"
+                        className="text-[10px] font-medium"
+                      >
+                        {isAcquired ? '✓ ' : '○ '}
+                        {comp}
+                      </Badge>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div className="p-2.5 rounded-xl bg-white border border-black/[0.06] text-right shrink-0">
+                <span className="text-[9px] font-mono uppercase text-slate-400 block font-bold">Target Investment</span>
+                <span className="text-xs font-mono font-extrabold text-[#5850EC]">{goalInfo.recommendedWeeklyHours.total} hrs/week</span>
+              </div>
+            </div>
+          </section>
+        );
+      })()}
+
+      {/* 3. SCENARIO COMPARISON (CLEAN COMPARISON ROW WITH LEADER BADGE) */}
       <section className="space-y-4">
         <div className="flex items-center justify-between">
           <h2 className="text-xs font-mono font-bold uppercase tracking-[0.16em] text-slate-500">

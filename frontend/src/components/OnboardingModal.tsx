@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { UserProfile, Commitment } from '../types/schema';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
-import { X, ChevronRight, ChevronLeft, Check, Sparkles, AlertCircle, User, Compass, Zap, Target, Layers, Clock } from 'lucide-react';
+import { X, ChevronRight, ChevronLeft, Check, Sparkles, AlertCircle, User, Compass, Zap, Target, Layers, Clock, ArrowRight } from 'lucide-react';
 import { getActiveUserId } from '../services/userService';
+import { analyzeCareerGoal } from '../utils/goalIntelligence';
 
 interface OnboardingModalProps {
   isOpen: boolean;
@@ -205,78 +206,199 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
           )}
 
           {/* STEP 2: Career & Goals */}
-          {step === 2 && (
-            <div className="space-y-4 animate-in fade-in duration-200">
-              <div>
-                <span className="text-[10px] font-mono font-bold uppercase tracking-[0.16em] text-[#5850EC]">STEP 02</span>
-                <h4 className="text-base font-bold text-[#0F172A] font-heading">Career Aspirations & Financial Weight</h4>
-              </div>
-              <div className="space-y-1">
-                <label className="block text-xs font-bold text-[#0F172A]">Primary Career Goal</label>
-                <input
-                  type="text"
-                  placeholder="e.g. Senior AI Software Engineer"
-                  value={careerGoal}
-                  onChange={e => setCareerGoal(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-2xl bg-slate-50 border border-black/[0.08] text-[#0F172A] placeholder:text-slate-400 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#5850EC]/30"
-                />
-              </div>
-              <div className="space-y-1">
-                <label className="block text-xs font-bold text-[#0F172A]">Short-term Target (6 months)</label>
-                <input
-                  type="text"
-                  placeholder="e.g. Secure high-impact software role"
-                  value={shortTermGoal}
-                  onChange={e => setShortTermGoal(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-2xl bg-slate-50 border border-black/[0.08] text-[#0F172A] placeholder:text-slate-400 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#5850EC]/30"
-                />
-              </div>
-              <div className="p-3.5 rounded-2xl bg-slate-50 border border-black/[0.05] space-y-1.5">
-                <div className="flex justify-between text-xs">
-                  <label className="text-[#0F172A] font-bold">Financial Priority Rating</label>
-                  <span className="text-[#5850EC] font-bold font-mono">{financialPriority} / 10</span>
+          {step === 2 && (() => {
+            const goalPreview = analyzeCareerGoal(careerGoal);
+            const popularGoals = [
+              'Software & AI Engineer',
+              'Data Scientist',
+              'Full Stack Developer',
+              'UI/UX Designer',
+              'Doctor / Clinical Medicine',
+              'Corporate Lawyer',
+              'Teacher / Educator',
+              'Civil Services / IAS'
+            ];
+
+            return (
+              <div className="space-y-4 animate-in fade-in duration-200">
+                <div>
+                  <span className="text-[10px] font-mono font-bold uppercase tracking-[0.16em] text-[#5850EC]">STEP 02</span>
+                  <h4 className="text-base font-bold text-[#0F172A] font-heading">Career Aspirations & Goal Requirements</h4>
                 </div>
-                <input
-                  type="range"
-                  min="1"
-                  max="10"
-                  value={financialPriority}
-                  onChange={e => setFinancialPriority(Number(e.target.value))}
-                  className="w-full cursor-pointer"
-                />
+
+                <div className="space-y-1.5">
+                  <label className="block text-xs font-bold text-[#0F172A]">Primary Career Target</label>
+                  <input
+                    type="text"
+                    placeholder="e.g. Senior AI Software Engineer"
+                    value={careerGoal}
+                    onChange={e => setCareerGoal(e.target.value)}
+                    className="w-full px-4 py-2.5 rounded-2xl bg-slate-50 border border-black/[0.08] text-[#0F172A] placeholder:text-slate-400 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#5850EC]/30"
+                  />
+                  {/* Quick Goal Selector Chips */}
+                  <div className="flex flex-wrap gap-1.5 pt-1">
+                    {popularGoals.map((g, gIdx) => (
+                      <button
+                        key={gIdx}
+                        type="button"
+                        onClick={() => setCareerGoal(g)}
+                        className={`text-[10px] font-mono px-2.5 py-1 rounded-xl border transition-all ${
+                          careerGoal.toLowerCase() === g.toLowerCase()
+                            ? 'bg-[#5850EC] text-white border-[#5850EC] font-bold shadow-xs'
+                            : 'bg-slate-50 text-slate-600 border-black/[0.06] hover:bg-slate-100'
+                        }`}
+                      >
+                        {g}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* LIVE GOAL REQUIREMENTS BREAKDOWN */}
+                {careerGoal && (
+                  <div className="p-4 rounded-2xl bg-gradient-to-br from-[#EEF2FF]/60 to-white border border-[#5850EC]/20 space-y-3">
+                    <div className="flex items-center justify-between border-b border-black/[0.05] pb-2">
+                      <span className="text-[10px] font-mono font-bold uppercase text-[#5850EC] tracking-wider flex items-center gap-1.5">
+                        <Target className="w-3.5 h-3.5" />
+                        REQUIREMENTS FOR: {goalPreview.normalizedTitle}
+                      </span>
+                      <Badge variant="indigo" size="sm" className="text-[9px] font-mono">
+                        {goalPreview.domainFamily}
+                      </Badge>
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <span className="text-[10px] font-mono font-bold uppercase text-slate-400 block tracking-wider">
+                        Core Competencies Needed:
+                      </span>
+                      <div className="flex flex-wrap gap-1.5">
+                        {goalPreview.requiredCompetencies.map((comp, cIdx) => (
+                          <Badge key={cIdx} variant="outline" size="sm" className="text-[10px] bg-white font-medium">
+                            {comp}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="space-y-1.5 pt-1 border-t border-black/[0.05]">
+                      <span className="text-[10px] font-mono font-bold uppercase text-slate-400 block tracking-wider">
+                        90-Day Trajectory Phases:
+                      </span>
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[11px]">
+                        {goalPreview.milestones.map((m, mIdx) => (
+                          <div key={mIdx} className="p-2 rounded-xl bg-white border border-black/[0.05] space-y-0.5">
+                            <span className="font-mono font-bold text-[9px] text-[#5850EC] block">0{mIdx + 1} {m.duration}</span>
+                            <span className="font-bold text-[#0F172A] block leading-tight">{m.focusTitle}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                <div className="space-y-1">
+                  <label className="block text-xs font-bold text-[#0F172A]">Short-term Target (6 months)</label>
+                  <input
+                    type="text"
+                    placeholder="e.g. Secure high-impact software role or crack entrance exam"
+                    value={shortTermGoal}
+                    onChange={e => setShortTermGoal(e.target.value)}
+                    className="w-full px-4 py-2.5 rounded-2xl bg-slate-50 border border-black/[0.08] text-[#0F172A] placeholder:text-slate-400 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#5850EC]/30"
+                  />
+                </div>
+
+                <div className="p-3.5 rounded-2xl bg-slate-50 border border-black/[0.05] space-y-1.5">
+                  <div className="flex justify-between text-xs">
+                    <label className="text-[#0F172A] font-bold">Financial Priority Rating</label>
+                    <span className="text-[#5850EC] font-bold font-mono">{financialPriority} / 10</span>
+                  </div>
+                  <input
+                    type="range"
+                    min="1"
+                    max="10"
+                    value={financialPriority}
+                    onChange={e => setFinancialPriority(Number(e.target.value))}
+                    className="w-full cursor-pointer"
+                  />
+                </div>
               </div>
-            </div>
-          )}
+            );
+          })()}
 
           {/* STEP 3: Skills */}
-          {step === 3 && (
-            <div className="space-y-4 animate-in fade-in duration-200">
-              <div>
-                <span className="text-[10px] font-mono font-bold uppercase tracking-[0.16em] text-[#5850EC]">STEP 03</span>
-                <h4 className="text-base font-bold text-[#0F172A] font-heading">Skills Profile & Growth Focus</h4>
+          {step === 3 && (() => {
+            const goalPreview = analyzeCareerGoal(careerGoal);
+
+            const handleAddSkill = (skillName: string, isImprovement: boolean) => {
+              if (isImprovement) {
+                const current = skillsToImproveStr.split(',').map(s => s.trim()).filter(Boolean);
+                if (!current.includes(skillName)) {
+                  setSkillsToImproveStr([...current, skillName].join(', '));
+                }
+              } else {
+                const current = skillsStr.split(',').map(s => s.trim()).filter(Boolean);
+                if (!current.includes(skillName)) {
+                  setSkillsStr([...current, skillName].join(', '));
+                }
+              }
+            };
+
+            return (
+              <div className="space-y-4 animate-in fade-in duration-200">
+                <div>
+                  <span className="text-[10px] font-mono font-bold uppercase tracking-[0.16em] text-[#5850EC]">STEP 03</span>
+                  <h4 className="text-base font-bold text-[#0F172A] font-heading">Skills Profile & Goal Competencies</h4>
+                </div>
+
+                {/* Recommended Skills for this Goal */}
+                {goalPreview.requiredCompetencies.length > 0 && (
+                  <div className="p-3.5 rounded-2xl bg-[#5850EC]/[0.03] border border-[#5850EC]/15 space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] font-mono font-bold uppercase text-[#5850EC] tracking-wider flex items-center gap-1.5">
+                        <Sparkles className="w-3 h-3" />
+                        RECOMMENDED SKILLS FOR {goalPreview.normalizedTitle.toUpperCase()}
+                      </span>
+                      <span className="text-[9px] font-mono text-slate-400">Click to add</span>
+                    </div>
+                    <div className="flex flex-wrap gap-1.5">
+                      {goalPreview.requiredCompetencies.map((comp, compIdx) => (
+                        <button
+                          key={compIdx}
+                          type="button"
+                          onClick={() => handleAddSkill(comp, false)}
+                          className="text-[10px] font-medium bg-white hover:bg-slate-50 text-[#0F172A] px-2.5 py-1 rounded-xl border border-black/[0.08] flex items-center gap-1 shadow-xs transition"
+                        >
+                          <span>+ {comp}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <div className="space-y-1">
+                  <label className="block text-xs font-bold text-[#0F172A]">Current Active Skills (comma separated)</label>
+                  <input
+                    type="text"
+                    placeholder="e.g. Python, React, FastAPI, SQL"
+                    value={skillsStr}
+                    onChange={e => setSkillsStr(e.target.value)}
+                    className="w-full px-4 py-2.5 rounded-2xl bg-slate-50 border border-black/[0.08] text-[#0F172A] placeholder:text-slate-400 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#5850EC]/30"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <label className="block text-xs font-bold text-[#0F172A]">Skills to Develop (comma separated)</label>
+                  <input
+                    type="text"
+                    placeholder="e.g. DSA, System Design, LLM fine-tuning"
+                    value={skillsToImproveStr}
+                    onChange={e => setSkillsToImproveStr(e.target.value)}
+                    className="w-full px-4 py-2.5 rounded-2xl bg-slate-50 border border-black/[0.08] text-[#0F172A] placeholder:text-slate-400 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#5850EC]/30"
+                  />
+                </div>
               </div>
-              <div className="space-y-1">
-                <label className="block text-xs font-bold text-[#0F172A]">Current Active Skills (comma separated)</label>
-                <input
-                  type="text"
-                  placeholder="e.g. Python, React, FastAPI, SQL"
-                  value={skillsStr}
-                  onChange={e => setSkillsStr(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-2xl bg-slate-50 border border-black/[0.08] text-[#0F172A] placeholder:text-slate-400 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#5850EC]/30"
-                />
-              </div>
-              <div className="space-y-1">
-                <label className="block text-xs font-bold text-[#0F172A]">Skills to Develop (comma separated)</label>
-                <input
-                  type="text"
-                  placeholder="e.g. DSA, System Design, LLM fine-tuning"
-                  value={skillsToImproveStr}
-                  onChange={e => setSkillsToImproveStr(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-2xl bg-slate-50 border border-black/[0.08] text-[#0F172A] placeholder:text-slate-400 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#5850EC]/30"
-                />
-              </div>
-            </div>
-          )}
+            );
+          })()}
+
 
           {/* STEP 4: Lifestyle */}
           {step === 4 && (
