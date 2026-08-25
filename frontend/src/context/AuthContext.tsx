@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { User, Session } from '@supabase/supabase-js';
-import { supabase } from '../lib/supabaseClient';
+import { supabase, isSupabaseConfigured } from '../lib/supabaseClient';
 import {
   setActiveUserId as saveActiveUserIdToStorage,
   clearActiveUserId as clearActiveUserIdFromStorage
@@ -24,6 +24,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
+    if (!isSupabaseConfigured) {
+      // Check for locally persisted user
+      const storedId = localStorage.getItem('stepnext_active_user_id');
+      if (storedId) {
+        setUser({ id: storedId, email: `${storedId}@stepnext.local`, user_metadata: { name: 'StepNext User' } } as any);
+      }
+      setLoading(false);
+      return;
+    }
+
     // Initial Session Check
     supabase.auth.getSession().then(({ data: { session: initSession } }) => {
       setSession(initSession);
@@ -55,17 +65,38 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   const signInWithPassword = async (email: string, pass: string) => {
+    if (!isSupabaseConfigured) {
+      // Direct local password login fallback
+      const localUserId = 'user_' + btoa(email).replace(/[^a-zA-Z0-9]/g, '').slice(0, 16);
+      saveActiveUserIdToStorage(localUserId);
+      const mockUser = { id: localUserId, email, user_metadata: { name: 'StepNext User' } } as any;
+      setUser(mockUser);
+      return { error: null };
+    }
+
     const res = await supabase.auth.signInWithPassword({
       email,
       password: pass
     });
     if (res.data.session?.user.id) {
       saveActiveUserIdToStorage(res.data.session.user.id);
+      setUser(res.data.session.user);
+      setSession(res.data.session);
     }
     return { error: res.error };
   };
 
   const signUp = async (email: string, pass: string, name?: string) => {
+    if (!isSupabaseConfigured) {
+      // Direct local password signup fallback
+      const localUserId = 'user_' + btoa(email).replace(/[^a-zA-Z0-9]/g, '').slice(0, 16);
+      saveActiveUserIdToStorage(localUserId);
+      const mockUser = { id: localUserId, email, user_metadata: { name: name || 'StepNext User' } } as any;
+      setUser(mockUser);
+      return { error: null };
+    }
+
+    // Direct password signup without OTP
     const res = await supabase.auth.signUp({
       email,
       password: pass,
@@ -75,15 +106,36 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         }
       }
     });
+
+    if (res.error) {
+      return { error: res.error };
+    }
+
     if (res.data.session?.user.id) {
       saveActiveUserIdToStorage(res.data.session.user.id);
+      setUser(res.data.session.user);
+      setSession(res.data.session);
+    } else {
+      // Immediate password login if signup succeeded
+      const loginRes = await supabase.auth.signInWithPassword({
+        email,
+        password: pass
+      });
+      if (loginRes.data.session?.user.id) {
+        saveActiveUserIdToStorage(loginRes.data.session.user.id);
+        setUser(loginRes.data.session.user);
+        setSession(loginRes.data.session);
+      }
     }
-    return { error: res.error };
+
+    return { error: null };
   };
 
   const signOut = async () => {
     try {
-      await supabase.auth.signOut();
+      if (isSupabaseConfigured) {
+        await supabase.auth.signOut();
+      }
     } catch (err) {
       console.warn('[AuthContext] Sign out notice:', err);
     } finally {

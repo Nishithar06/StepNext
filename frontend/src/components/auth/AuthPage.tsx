@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
-import { isSupabaseConfigured } from '../../lib/supabaseClient';
-import { Mail, Lock, User, AlertCircle, ArrowRight, ShieldCheck } from 'lucide-react';
-import { Button } from '../common/Button';
+import { Mail, Lock, User, AlertCircle, ArrowRight, Sparkles } from 'lucide-react';
+import { Button } from '../ui/button';
 
 export const AuthPage: React.FC = () => {
   const { signInWithPassword, signUp } = useAuth();
@@ -15,17 +14,10 @@ export const AuthPage: React.FC = () => {
   
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [message, setMessage] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-    setMessage(null);
-
-    if (!isSupabaseConfigured) {
-      setError('VITE_SUPABASE_ANON_KEY is missing in environment variables. Please configure VITE_SUPABASE_ANON_KEY in Vercel and redeploy.');
-      return;
-    }
 
     if (!email.trim() || !password.trim()) {
       setError('Please fill in both email and password.');
@@ -48,8 +40,6 @@ export const AuthPage: React.FC = () => {
         const { error: err } = await signUp(email.trim(), password, fullName.trim() || undefined);
         if (err) {
           setError(err.message || 'Failed to create account.');
-        } else {
-          setMessage('Account created successfully! If email confirmation is enabled, please check your inbox.');
         }
       }
     } catch (err: any) {
@@ -60,43 +50,46 @@ export const AuthPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F7F7F2] text-[#171827] flex flex-col justify-center items-center p-4 sm:p-6 selection:bg-[#635BFF]/10 font-sans taste-grid-bg">
-      {/* Subtle Ambient Glows */}
-      <div className="fixed top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-500/5 rounded-full blur-[140px] pointer-events-none" />
-      <div className="fixed bottom-1/4 left-1/2 -translate-x-1/2 translate-y-1/2 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[120px] pointer-events-none" />
+    <div className="min-h-screen bg-[#FAFAF7] text-[#0F172A] flex flex-col justify-center items-center p-4 sm:p-6 selection:bg-[#5850EC]/10 font-sans taste-grid-bg relative overflow-hidden">
+      {/* Subtle Ambient Radial Glows */}
+      <div className="fixed top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#5850EC]/5 rounded-full blur-[140px] pointer-events-none" />
+      <div className="fixed bottom-1/4 left-1/2 -translate-x-1/2 translate-y-1/2 w-[500px] h-[500px] bg-[#10B981]/5 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="w-full max-w-md z-10 space-y-6">
-        {/* Brand Header with Original StepNext Logo PNG Asset */}
-        <div className="flex flex-col items-center justify-center text-center">
+      <div className="w-full max-w-md z-10 space-y-6 animate-in fade-in zoom-in-95 duration-300">
+        {/* Brand Header */}
+        <div className="flex flex-col items-center justify-center text-center space-y-2">
           <img
             src="/stepnext-logo.png"
-            alt="StepNext - Your next step, made clearer."
-            className="h-16 sm:h-20 w-auto max-w-full object-contain mx-auto"
+            alt="StepNext"
+            className="h-16 sm:h-20 w-auto max-w-full object-contain mx-auto drop-shadow-sm"
           />
+          <p className="text-xs text-slate-500 font-mono tracking-wider uppercase font-medium">
+            Autonomous Decision & Career Intelligence
+          </p>
         </div>
 
         {/* Auth Card */}
-        <div className="bg-white/95 border border-[#E5E5DC] backdrop-blur-md rounded-2xl p-6 sm:p-8 shadow-[0_10px_30px_rgba(0,0,0,0.05)]">
+        <div className="bg-white rounded-[28px] border border-black/[0.08] p-6 sm:p-8 shadow-[0_12px_40px_rgba(0,0,0,0.06)] space-y-6">
           {/* Tab Switcher */}
-          <div className="flex bg-[#F1F1E8] p-1 rounded-xl mb-6 border border-[#E5E5DC]">
+          <div className="flex bg-slate-100/80 p-1 rounded-2xl border border-black/[0.05]">
             <button
               type="button"
-              onClick={() => { setMode('login'); setError(null); setMessage(null); }}
-              className={`flex-1 py-2.5 text-xs font-semibold rounded-lg transition-all ${
+              onClick={() => { setMode('login'); setError(null); }}
+              className={`flex-1 py-2.5 text-xs font-bold rounded-xl transition-all ${
                 mode === 'login'
-                  ? 'bg-white text-[#171827] shadow-sm border border-[#E5E5DC]'
-                  : 'text-[#667085] hover:text-[#171827]'
+                  ? 'bg-white text-[#0F172A] shadow-sm'
+                  : 'text-slate-500 hover:text-[#0F172A]'
               }`}
             >
               Sign In
             </button>
             <button
               type="button"
-              onClick={() => { setMode('signup'); setError(null); setMessage(null); }}
-              className={`flex-1 py-2.5 text-xs font-semibold rounded-lg transition-all ${
+              onClick={() => { setMode('signup'); setError(null); }}
+              className={`flex-1 py-2.5 text-xs font-bold rounded-xl transition-all ${
                 mode === 'signup'
-                  ? 'bg-white text-[#171827] shadow-sm border border-[#E5E5DC]'
-                  : 'text-[#667085] hover:text-[#171827]'
+                  ? 'bg-white text-[#0F172A] shadow-sm'
+                  : 'text-slate-500 hover:text-[#0F172A]'
               }`}
             >
               Create Account
@@ -104,64 +97,50 @@ export const AuthPage: React.FC = () => {
           </div>
 
           {/* Alert Banners */}
-          {!isSupabaseConfigured && (
-            <div className="mb-5 p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-800 text-xs flex items-center gap-2.5">
-              <AlertCircle className="w-4 h-4 text-amber-600 shrink-0" />
-              <span>Configuration Notice: VITE_SUPABASE_ANON_KEY is missing in Vercel environment variables. Please add VITE_SUPABASE_ANON_KEY and redeploy.</span>
-            </div>
-          )}
-
           {error && (
-            <div className="mb-5 p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-xs flex items-center gap-2.5">
-              <AlertCircle className="w-4 h-4 text-rose-600 shrink-0" />
+            <div className="p-3.5 rounded-2xl bg-[#FFF1F2] border border-[#F43F5E]/30 text-[#F43F5E] text-xs flex items-center gap-2.5 font-medium">
+              <AlertCircle className="w-4 h-4 shrink-0" />
               <span>{error}</span>
-            </div>
-          )}
-
-          {message && (
-            <div className="mb-5 p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs flex items-center gap-2.5">
-              <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
-              <span>{message}</span>
             </div>
           )}
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
             {mode === 'signup' && (
-              <div>
-                <label className="block text-xs font-semibold text-[#171827] mb-1.5">Full Name</label>
+              <div className="space-y-1">
+                <label className="block text-xs font-bold text-[#0F172A]">Full Name</label>
                 <div className="relative">
-                  <User className="w-4 h-4 text-[#98A2B3] absolute left-3.5 top-1/2 -translate-y-1/2" />
+                  <User className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                   <input
                     type="text"
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
-                    placeholder="Alex Morgan"
-                    className="w-full bg-white border border-[#E5E5DC] focus:border-[#635BFF] focus:ring-1 focus:ring-[#635BFF] rounded-xl pl-10 pr-4 py-2.5 text-xs text-[#171827] placeholder-[#98A2B3] outline-none transition-all"
+                    placeholder="e.g. Alex Morgan"
+                    className="w-full bg-slate-50 border border-black/[0.08] focus:border-[#5850EC] focus:ring-2 focus:ring-[#5850EC]/20 rounded-2xl pl-10 pr-4 py-2.5 text-xs text-[#0F172A] placeholder-slate-400 outline-none transition-all"
                   />
                 </div>
               </div>
             )}
 
-            <div>
-              <label className="block text-xs font-semibold text-[#171827] mb-1.5">Email Address</label>
+            <div className="space-y-1">
+              <label className="block text-xs font-bold text-[#0F172A]">Email Address</label>
               <div className="relative">
-                <Mail className="w-4 h-4 text-[#98A2B3] absolute left-3.5 top-1/2 -translate-y-1/2" />
+                <Mail className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                 <input
                   type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="alex@example.com"
-                  className="w-full bg-white border border-[#E5E5DC] focus:border-[#635BFF] focus:ring-1 focus:ring-[#635BFF] rounded-xl pl-10 pr-4 py-2.5 text-xs text-[#171827] placeholder-[#98A2B3] outline-none transition-all"
+                  className="w-full bg-slate-50 border border-black/[0.08] focus:border-[#5850EC] focus:ring-2 focus:ring-[#5850EC]/20 rounded-2xl pl-10 pr-4 py-2.5 text-xs text-[#0F172A] placeholder-slate-400 outline-none transition-all"
                 />
               </div>
             </div>
 
-            <div>
-              <label className="block text-xs font-semibold text-[#171827] mb-1.5">Password</label>
+            <div className="space-y-1">
+              <label className="block text-xs font-bold text-[#0F172A]">Password</label>
               <div className="relative">
-                <Lock className="w-4 h-4 text-[#98A2B3] absolute left-3.5 top-1/2 -translate-y-1/2" />
+                <Lock className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                 <input
                   type="password"
                   required
@@ -169,26 +148,27 @@ export const AuthPage: React.FC = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full bg-white border border-[#E5E5DC] focus:border-[#635BFF] focus:ring-1 focus:ring-[#635BFF] rounded-xl pl-10 pr-4 py-2.5 text-xs text-[#171827] placeholder-[#98A2B3] outline-none transition-all"
+                  className="w-full bg-slate-50 border border-black/[0.08] focus:border-[#5850EC] focus:ring-2 focus:ring-[#5850EC]/20 rounded-2xl pl-10 pr-4 py-2.5 text-xs text-[#0F172A] placeholder-slate-400 outline-none transition-all"
                 />
               </div>
             </div>
 
             <Button
               type="submit"
-              variant="primary"
-              className="w-full justify-center py-3 text-xs font-bold bg-[#635BFF] hover:bg-[#5249E0] text-white shadow-md shadow-[#635BFF]/20 border-none rounded-xl transition-all"
+              variant="gradient"
+              size="lg"
+              className="w-full justify-center py-3 text-xs font-bold rounded-2xl gap-2 shadow-md shadow-[#5850EC]/25 hover:shadow-lg"
               disabled={loading}
-              icon={!loading ? <ArrowRight className="w-3.5 h-3.5" /> : undefined}
             >
-              {loading ? 'Processing...' : mode === 'login' ? 'Sign In to StepNext' : 'Create StepNext Account'}
+              <span>{loading ? 'Processing...' : mode === 'login' ? 'Sign In to StepNext' : 'Create StepNext Account'}</span>
+              {!loading && <ArrowRight className="w-3.5 h-3.5" />}
             </Button>
           </form>
         </div>
 
         {/* Footer Note */}
-        <p className="text-center text-[11px] text-[#667085]">
-          Protected by Supabase Auth & StepNext Decision Telemetry
+        <p className="text-center text-[11px] font-mono text-slate-400">
+          Protected by StepNext Closed-Loop Decision Intelligence
         </p>
       </div>
     </div>

@@ -72,7 +72,7 @@ def verify_user_ownership(requested_user_id: str, authenticated_user_id: Optiona
     If authenticated_user_id is set (production mode), requested_user_id MUST match authenticated_user_id.
     Prevents User A from passing user_id=User_B to access User B's profile/check-ins.
     """
-    if authenticated_user_id is not None:
+    if isinstance(authenticated_user_id, str) and authenticated_user_id:
         if requested_user_id != authenticated_user_id:
             print(f"[Security Alert] Ownership mismatch: auth_id='{authenticated_user_id}' requested_id='{requested_user_id}'")
             raise HTTPException(
