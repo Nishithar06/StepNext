@@ -491,19 +491,18 @@
   "user_bmlzaGl0aGFyYWpr": {
     "user_id": "user_bmlzaGl0aGFyYWpr",
     "name": "Nishi",
-    "education": "B.Sc.Fashion Designing",
-    "career_goal": "Fashion Designing",
+    "education": "B.Arch",
+    "career_goal": "Architect",
     "interests": [],
     "skills": [
-      "Embroidary",
-      "Fabric Stitching"
+      "Architectural drawing",
+      "AutoCAD"
     ],
     "skills_to_improve": [
-      "Fashion Illustration & Technical Flat Sketches",
-      "Pattern Making",
-      "Draping & Fitting"
+      "3D modeling",
+      "sustainable design"
     ],
-    "available_hours_per_day": 6.0,
+    "available_hours_per_day": 3.0,
     "sleep_hours": 7.0,
     "workload": "medium",
     "regular_activities": [
@@ -511,7 +510,7 @@
       "Coding practice"
     ],
     "major_commitments": [],
-    "financial_priority": 7,
-    "short_term_goal": "Get Placed"
+    "financial_priority": 6,
+    "short_term_goal": "Build a strong architecture portfolio"
   }
 }

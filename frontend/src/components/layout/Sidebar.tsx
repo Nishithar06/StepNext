@@ -1,14 +1,14 @@
-import React from 'react';
-import { Home, Compass, Activity, User, X, Brain, Sparkles, ChevronRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { Home, Compass, User, X, Brain, Sparkles, ChevronRight, Target } from 'lucide-react';
 import { UserProfile, HealthResponse } from '../../types/schema';
 import { StepNextLogo } from '../common/StepNextLogo';
 import { Avatar } from '../ui/avatar';
-import { Badge } from '../ui/badge';
 
 export type TabType = 'overview' | 'digital_twin' | 'current_state' | 'simulator' | 'profile';
 
 interface SidebarProps {
   activeTab: TabType;
+  activeSection?: string;
   onTabChange: (tab: TabType) => void;
   onNavigateSection?: (tab: TabType, sectionId?: string) => void;
   profile: UserProfile | null;
@@ -20,6 +20,7 @@ interface SidebarProps {
 
 export const Sidebar: React.FC<SidebarProps> = ({
   activeTab,
+  activeSection,
   onTabChange,
   onNavigateSection,
   profile,
@@ -28,26 +29,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
   isOpenMobile,
   onCloseMobile
 }) => {
-  const workspaceItems: { id: TabType; label: string; sublabel: string; icon: React.ReactNode; accent: string }[] = [
-    { id: 'overview', label: 'Dashboard', sublabel: 'Trajectory & Telemetry', icon: <Home className="w-4 h-4" />, accent: 'text-[#5850EC]' },
-    { id: 'digital_twin', label: 'Digital Twin', sublabel: 'Cognitive Model', icon: <Brain className="w-4 h-4" />, accent: 'text-purple-600' },
-    { id: 'current_state', label: 'Current State', sublabel: 'Overload Risk Matrix', icon: <Activity className="w-4 h-4" />, accent: 'text-[#F43F5E]' },
-    { id: 'simulator', label: 'Future Simulator', sublabel: 'Scenario Evaluation', icon: <Compass className="w-4 h-4" />, accent: 'text-[#10B981]' }
-  ];
-
-  const simulatorSubSections = [
-    { label: 'Scenarios', sectionId: 'section-simulator', hint: 'Inputs' },
-    { label: '90-Day Roadmap', sectionId: 'section-roadmap', hint: 'Milestones' },
-    { label: 'Check-in Sync', sectionId: 'section-checkin', hint: 'Daily' },
-    { label: 'Progress Intelligence', sectionId: 'section-progress', hint: 'Velocity' },
-    { label: 'Adaptive Future', sectionId: 'section-adaptive-future', hint: 'Confidence' }
-  ];
-
-  const accountItems: { id: TabType; label: string; sublabel: string; icon: React.ReactNode }[] = [
-    { id: 'profile', label: 'Profile & Goals', sublabel: 'Baseline Configuration', icon: <User className="w-4 h-4 text-slate-500" /> }
-  ];
+  const [localSectionId, setLocalSectionId] = useState<string | undefined>(undefined);
+  const currentSection = activeSection || localSectionId;
 
   const handleNavClick = (tabId: TabType, sectionId?: string) => {
+    setLocalSectionId(sectionId);
     if (onNavigateSection) {
       onNavigateSection(tabId, sectionId);
     } else {
@@ -56,7 +42,79 @@ export const Sidebar: React.FC<SidebarProps> = ({
     onCloseMobile();
   };
 
-  const isGeminiLive = health?.gemini_connected && health?.api_key_configured;
+  const navigationGroups = [
+    {
+      groupTitle: 'WORKSPACE',
+      items: [
+        {
+          id: 'overview',
+          label: 'Dashboard',
+          tabId: 'overview' as TabType,
+          icon: <Home className="w-4 h-4" />,
+          accent: 'text-[#5850EC]',
+          children: []
+        },
+        {
+          id: 'my_profile',
+          label: 'My Profile',
+          icon: <User className="w-4 h-4" />,
+          accent: 'text-purple-600',
+          children: [
+            { label: 'Digital Twin', tabId: 'digital_twin' as TabType, hint: 'Cognitive' },
+            { label: 'Current State', tabId: 'current_state' as TabType, hint: 'Risk Matrix' }
+          ]
+        },
+        {
+          id: 'future_simulator',
+          label: 'Future Simulator',
+          icon: <Compass className="w-4 h-4" />,
+          accent: 'text-[#10B981]',
+          children: [
+            { label: 'Scenarios', tabId: 'simulator' as TabType, sectionId: 'section-scenarios', hint: 'Trajectories' },
+            { label: 'Inputs', tabId: 'simulator' as TabType, sectionId: 'section-inputs', hint: 'Sliders' },
+            { label: 'Comparison', tabId: 'simulator' as TabType, sectionId: 'section-comparison', hint: 'Evaluation' }
+          ]
+        }
+      ]
+    },
+    {
+      groupTitle: 'MY PLAN',
+      items: [
+        {
+          id: 'my_plan',
+          label: 'My Plan',
+          icon: <Target className="w-4 h-4" />,
+          accent: 'text-[#5850EC]',
+          children: [
+            { label: '90-Day Roadmap', tabId: 'simulator' as TabType, sectionId: 'section-roadmap', hint: 'Actions' },
+            { label: 'Milestones', tabId: 'simulator' as TabType, sectionId: 'section-milestones', hint: 'Phases' },
+            { label: 'Execution', tabId: 'simulator' as TabType, sectionId: 'section-progress', hint: 'Tracking' }
+          ]
+        }
+      ]
+    },
+    {
+      groupTitle: 'INSIGHTS',
+      items: [
+        {
+          id: 'insights',
+          label: 'Insights',
+          icon: <Sparkles className="w-4 h-4" />,
+          accent: 'text-[#F59E0B]',
+          children: [
+            { label: 'Progress Intelligence', tabId: 'simulator' as TabType, sectionId: 'section-progress-intelligence', hint: 'Analytics' },
+            { label: 'Adaptive Future', tabId: 'simulator' as TabType, sectionId: 'section-adaptive-future', hint: 'Feedback' },
+            { label: 'Velocity', tabId: 'simulator' as TabType, sectionId: 'section-velocity', hint: 'Streak' },
+            { label: 'Confidence', tabId: 'simulator' as TabType, sectionId: 'section-confidence', hint: 'Score' }
+          ]
+        }
+      ]
+    }
+  ];
+
+  const preferencesItems = [
+    { id: 'profile' as TabType, label: 'Profile & Goals', icon: <User className="w-4 h-4 text-slate-500" /> }
+  ];
 
   const sidebarContent = (
     <div className="flex flex-col h-full bg-white/95 backdrop-blur-xl border-r border-black/[0.06] w-64 py-5 px-4 text-[#0F172A] shadow-[4px_0_24px_rgba(0,0,0,0.02)]">
@@ -70,63 +128,85 @@ export const Sidebar: React.FC<SidebarProps> = ({
       </div>
 
       {/* Nav Links */}
-      <div className="space-y-6 flex-1 overflow-y-auto pr-1">
-        {/* WORKSPACE SECTION */}
-        <div className="space-y-1">
-          <p className="text-[9px] font-mono font-bold uppercase text-slate-400 tracking-[0.18em] px-3 mb-2 flex items-center justify-between">
-            <span>WORKSPACE</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-pulse" />
-          </p>
-          {workspaceItems.map((item) => {
-            const isActive = activeTab === item.id;
-            return (
-              <div key={item.id} className="space-y-1">
-                <button
-                  onClick={() => handleNavClick(item.id, item.id === 'simulator' ? 'section-simulator' : undefined)}
-                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-2xl text-xs transition-all duration-200 ${
-                    isActive
-                      ? 'bg-[#EEF2FF] text-[#5850EC] font-bold shadow-[0_2px_12px_rgba(99,102,241,0.12)] border border-[#5850EC]/20'
-                      : 'hover:bg-slate-50 text-slate-600 hover:text-slate-900 border border-transparent'
-                  }`}
-                >
-                  <div className="flex items-center gap-2.5">
-                    <span className={`shrink-0 ${isActive ? 'text-[#5850EC]' : item.accent}`}>{item.icon}</span>
-                    <div className="text-left">
-                      <span className="block font-semibold">{item.label}</span>
+      <div className="space-y-4 flex-1 overflow-y-auto pr-1">
+        {navigationGroups.map((group, gIdx) => (
+          <div key={gIdx} className={`space-y-1 ${gIdx > 0 ? 'pt-3 border-t border-black/[0.06]' : ''}`}>
+            <p className="text-[9px] font-mono font-bold uppercase text-slate-400 tracking-[0.18em] px-3 mb-2 flex items-center justify-between">
+              <span>{group.groupTitle}</span>
+              {gIdx === 0 && <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-pulse" />}
+            </p>
+
+            {group.items.map((item) => {
+              const itemTabId = 'tabId' in item ? (item as any).tabId : undefined;
+              const isDirectActive = itemTabId && activeTab === itemTabId && !item.children.length;
+
+              return (
+                <div key={item.id} className="space-y-0.5">
+                  {/* Parent Section Header / Direct Link */}
+                  {itemTabId && !item.children.length ? (
+                    <button
+                      onClick={() => handleNavClick(itemTabId)}
+                      className={`w-full flex items-center justify-between px-3 py-2.5 rounded-2xl text-xs transition-all duration-200 ${
+                        isDirectActive
+                          ? 'bg-[#EEF2FF] text-[#5850EC] font-bold shadow-[0_2px_12px_rgba(99,102,241,0.12)] border border-[#5850EC]/20'
+                          : 'hover:bg-slate-50 text-slate-600 hover:text-slate-900 border border-transparent'
+                      }`}
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <span className={`shrink-0 ${isDirectActive ? 'text-[#5850EC]' : item.accent}`}>{item.icon}</span>
+                        <span className="block font-semibold">{item.label}</span>
+                      </div>
+                      <ChevronRight className={`w-3.5 h-3.5 transition-transform duration-200 ${isDirectActive ? 'text-[#5850EC] translate-x-0.5' : 'text-slate-300 opacity-0 group-hover:opacity-100'}`} />
+                    </button>
+                  ) : (
+                    <div className="pt-1">
+                      <div className="flex items-center gap-2.5 px-3 py-1.5 text-xs font-extrabold text-[#0F172A] uppercase tracking-wider font-mono">
+                        <span className={item.accent}>{item.icon}</span>
+                        <span>{item.label}</span>
+                      </div>
+
+                      {/* Sub-items */}
+                      <div className="ml-5 pl-2.5 border-l border-black/[0.08] my-1 space-y-0.5">
+                        {item.children.map((child, cIdx) => {
+                          const isChildActive = activeTab === child.tabId && (
+                            !child.sectionId
+                              ? (!currentSection || currentSection === 'section-simulator')
+                              : (currentSection === child.sectionId || (currentSection === 'section-simulator' && child.sectionId === 'section-scenarios'))
+                          );
+
+                          return (
+                            <button
+                              key={cIdx}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleNavClick(child.tabId, child.sectionId);
+                              }}
+                              className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-xl text-[11px] font-medium transition-all text-left ${
+                                isChildActive
+                                  ? 'bg-[#EEF2FF] text-[#5850EC] font-bold shadow-xs border border-[#5850EC]/20'
+                                  : 'text-slate-500 hover:text-slate-900 hover:bg-slate-50'
+                              }`}
+                            >
+                              <span className="font-semibold">{child.label}</span>
+                              <span className="text-[9px] font-mono text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded-md">{child.hint}</span>
+                            </button>
+                          );
+                        })}
+                      </div>
                     </div>
-                  </div>
-                  <ChevronRight className={`w-3.5 h-3.5 transition-transform duration-200 ${isActive ? 'text-[#5850EC] translate-x-0.5' : 'text-slate-300 opacity-0 group-hover:opacity-100'}`} />
-                </button>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        ))}
 
-                {/* Sub-sections for Future Simulator */}
-                {item.id === 'simulator' && (
-                  <div className="ml-5 pl-2.5 border-l border-[#10B981]/40 my-1 space-y-0.5 animate-in fade-in duration-200">
-                    {simulatorSubSections.map((sub) => (
-                      <button
-                        key={sub.sectionId}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleNavClick('simulator', sub.sectionId);
-                        }}
-                        className="w-full flex items-center justify-between px-2.5 py-1.5 rounded-xl text-[11px] font-medium text-slate-500 hover:text-[#5850EC] hover:bg-[#EEF2FF]/60 transition-all text-left"
-                      >
-                        <span className="font-semibold">{sub.label}</span>
-                        <span className="text-[9px] font-mono text-slate-400 bg-slate-100 px-1.5 py-0.2 rounded-md">{sub.hint}</span>
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-
-        {/* ACCOUNT SECTION */}
-        <div className="space-y-1">
+        {/* PREFERENCES SECTION */}
+        <div className="space-y-1 pt-2">
           <p className="text-[9px] font-mono font-bold uppercase text-slate-400 tracking-[0.18em] px-3 mb-2">
             PREFERENCES
           </p>
-          {accountItems.map((item) => {
+          {preferencesItems.map((item) => {
             const isActive = activeTab === item.id;
             return (
               <button

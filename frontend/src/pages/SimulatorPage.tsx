@@ -899,7 +899,7 @@ const SimulatorPageContent: React.FC<SimulatorPageProps> = ({
       })()}
 
       {/* 3. SCENARIO COMPARISON (CLEAN COMPARISON ROW WITH LEADER BADGE) */}
-      <section className="space-y-4">
+      <section id="section-scenarios" className="space-y-4 scroll-mt-24">
         <div className="flex items-center justify-between">
           <h2 className="text-xs font-mono font-bold uppercase tracking-[0.16em] text-slate-500">
             1. SCENARIO COMPARISON — SELECT TARGET TRAJECTORY
@@ -1052,7 +1052,7 @@ const SimulatorPageContent: React.FC<SimulatorPageProps> = ({
       </section>
 
       {/* 3. INVESTMENT CONTROLS & LIVE CONSEQUENCE PANEL (DESKTOP SPLIT LAYOUT) */}
-      <section ref={configRef} className="space-y-4 pt-2">
+      <section ref={configRef} id="section-inputs" className="space-y-4 pt-2 scroll-mt-24">
         <h2 className="text-xs font-bold uppercase tracking-wider text-[#667085]">
           2. CONFIGURE WEEKLY INVESTMENT ({activeResult.name.toUpperCase()})
         </h2>
@@ -1399,7 +1399,7 @@ const SimulatorPageContent: React.FC<SimulatorPageProps> = ({
       )}
 
       {/* 5. RECOMMENDATION & DECISION ANALYSIS */}
-      <section ref={boardRef} className="space-y-4 pt-4 border-t border-black/[0.06]">
+      <section ref={boardRef} id="section-comparison" className="space-y-4 pt-4 border-t border-black/[0.06] scroll-mt-24">
         <h2 className="text-xs font-mono font-bold uppercase tracking-[0.16em] text-slate-500">
           3. DECISION & RECOMMENDATION ANALYSIS
         </h2>
@@ -1525,25 +1525,39 @@ const SimulatorPageContent: React.FC<SimulatorPageProps> = ({
       </section>
 
       {/* 6. ACTION ROADMAP SECTION */}
-      <ActionRoadmapSection
-        roadmap={roadmap}
-        loading={roadmapLoading}
-        onToggleAction={handleToggleAction}
-        onStartExecution={handleAdjustScenarios}
-      />
+      <div id="section-roadmap" className="scroll-mt-24">
+        <div id="section-milestones">
+          <ActionRoadmapSection
+            roadmap={roadmap}
+            loading={roadmapLoading}
+            onToggleAction={handleToggleAction}
+            onStartExecution={handleAdjustScenarios}
+          />
+        </div>
+      </div>
 
       {/* 7. PROGRESS INTELLIGENCE SECTION */}
-      <ProgressIntelligenceSection
-        progress={progress}
-        loading={progressLoading}
-      />
+      <div id="section-progress" className="scroll-mt-24">
+        <div id="section-progress-intelligence">
+          <div id="section-velocity">
+            <ProgressIntelligenceSection
+              progress={progress}
+              loading={progressLoading}
+            />
+          </div>
+        </div>
+      </div>
 
       {/* 8. ADAPTIVE FUTURE FEEDBACK SECTION */}
-      <AdaptiveFutureSection
-        feedback={adaptiveFuture}
-        loading={adaptiveFutureLoading}
-        onReRunSimulator={handleAdjustScenarios}
-      />
+      <div id="section-adaptive-future" className="scroll-mt-24">
+        <div id="section-confidence">
+          <AdaptiveFutureSection
+            feedback={adaptiveFuture}
+            loading={adaptiveFutureLoading}
+            onReRunSimulator={handleAdjustScenarios}
+          />
+        </div>
+      </div>
     </div>
   );
 };

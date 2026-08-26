@@ -64,6 +64,7 @@ const MainAppContent: React.FC = () => {
 
   // UI State
   const [activeTab, setActiveTab] = useState<TabType>('overview');
+  const [activeSection, setActiveSection] = useState<string | undefined>(undefined);
   const [isOnboardingOpen, setIsOnboardingOpen] = useState(false);
   const [isCheckInOpen, setIsCheckInOpen] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -254,6 +255,7 @@ const MainAppContent: React.FC = () => {
 
   const handleNavigateSection = (tab: TabType, sectionId?: string) => {
     setActiveTab(tab);
+    setActiveSection(sectionId);
     
     if (!sectionId) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -272,10 +274,17 @@ const MainAppContent: React.FC = () => {
     setTimeout(() => attemptScroll(), 50);
   };
 
+  const handleTabChangeDirect = (tab: TabType) => {
+    setActiveTab(tab);
+    setActiveSection(undefined);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <AppShell
       activeTab={activeTab}
-      onTabChange={setActiveTab}
+      activeSection={activeSection}
+      onTabChange={handleTabChangeDirect}
       onNavigateSection={handleNavigateSection}
       health={health}
       apiConnected={apiConnected}
@@ -321,7 +330,7 @@ const MainAppContent: React.FC = () => {
           simulationData={simulationData}
           todayCheckIn={todayCheckIn}
           checkInSummary={checkInSummary}
-          onNavigateTab={setActiveTab}
+          onNavigateTab={handleNavigateSection}
           onOpenOnboarding={() => setIsOnboardingOpen(true)}
           onOpenCheckInModal={() => setIsCheckInOpen(true)}
         />

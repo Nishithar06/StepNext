@@ -5,6 +5,7 @@ import { HealthResponse, UserProfile } from '../../types/schema';
 
 interface AppShellProps {
   activeTab: TabType;
+  activeSection?: string;
   onTabChange: (tab: TabType) => void;
   onNavigateSection?: (tab: TabType, sectionId?: string) => void;
   health: HealthResponse | null;
@@ -18,6 +19,7 @@ interface AppShellProps {
 
 export const AppShell: React.FC<AppShellProps> = ({
   activeTab,
+  activeSection,
   onTabChange,
   onNavigateSection,
   health,
@@ -35,6 +37,7 @@ export const AppShell: React.FC<AppShellProps> = ({
       {/* Desktop & Mobile Sidebar */}
       <Sidebar
         activeTab={activeTab}
+        activeSection={activeSection}
         onTabChange={onTabChange}
         onNavigateSection={onNavigateSection}
         profile={profile}
