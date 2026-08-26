@@ -171,7 +171,7 @@ def analyze_user_progress(user_id: str) -> ProgressSummary:
     else:
         rec_type = "observe"
         rec_title = "Observe Execution Pattern"
-        rec_msg = "Keep checking in for another week so LifePilot can identify a reliable execution pattern."
+        rec_msg = "Keep checking in for another week so StepNext can identify a reliable execution pattern."
 
     print(f"[Progress] ADAPTATION_DECISION: user_id={user_id} recommendation_type={rec_type}")
 

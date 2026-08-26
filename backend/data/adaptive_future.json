@@ -313,5 +313,26 @@
     "alternative_scenario": null,
     "alternative_score": null,
     "created_at": "2026-08-25T05:24:16.279489"
+  },
+  "user_bmlzaGl0aGFyYWpr": {
+    "user_id": "user_bmlzaGl0aGFyYWpr",
+    "status": "on_track",
+    "current_scenario": "Fashion Designing",
+    "current_score": 86,
+    "execution_health": "Execution 0% (insufficient_data)",
+    "workload_health": "Unknown",
+    "future_confidence": 60,
+    "trigger_reason": "Execution pattern is healthy and consistent with recommended path.",
+    "recommendation": "continue_current_path",
+    "evidence": [
+      "Weekly execution (0%) is aligned with Fashion Designing milestone requirements.",
+      "Workload level (Unknown) is sustainable.",
+      "Confidence score of 60% indicates strong trajectory alignment."
+    ],
+    "next_action": "Continue executing weekly roadmap actions consistently.",
+    "should_re_evaluate": false,
+    "alternative_scenario": null,
+    "alternative_score": null,
+    "created_at": "2026-08-26T07:54:21.944997"
   }
 }

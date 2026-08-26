@@ -89,7 +89,16 @@ export function getPersonalizedCareerContext(profile?: UserProfile | null): Pers
     slider3Label = `Moot Court & Advocacy Practice`;
     slider3Desc = `Oral arguments, litigation practice, and bar exam prep.`;
     focusAreas = [primarySkill, "Legal Research", "Case Briefing", "Advocacy"];
-  } else if (g.includes('designer') || g.includes('ux') || g.includes('ui') || g.includes('graphic')) {
+  } else if (g.includes('fashion') || g.includes('apparel') || g.includes('textile') || g.includes('garment')) {
+    domainFamily = 'Fashion & Apparel Design';
+    slider1Label = `Garment Construction & ${primarySkill}`;
+    slider1Desc = `Pattern making, fabric selection, draping, and ${primarySkill}.`;
+    slider2Label = `Fashion Illustration & ${secondarySkill}`;
+    slider2Desc = `Collection design, fashion sketching, moodboards, and ${secondarySkill}.`;
+    slider3Label = `Portfolio & Fashion Industry Outreach`;
+    slider3Desc = `Fashion lookbook, sample construction, fashion week/brand networking, and client outreach.`;
+    focusAreas = [primarySkill, secondarySkill, "Garment Construction", "Fashion Illustration", "Collection Portfolio"];
+  } else if (g.includes('ux') || g.includes('ui') || g.includes('product design') || g.includes('user experience') || g.includes('user interface') || g.includes('graphic design') || g.includes('ui/ux')) {
     domainFamily = 'Design & Creative Technologies';
     slider1Label = `Design Fundamentals & ${primarySkill}`;
     slider1Desc = `Visual hierarchy, typography, and ${primarySkill}.`;

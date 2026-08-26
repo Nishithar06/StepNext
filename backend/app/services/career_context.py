@@ -113,7 +113,25 @@ def get_personalized_career_context(profile: Optional[UserProfile]) -> Dict[str,
         sc3_desc = "Establish an independent law consultancy, legal advisory practice, or mediation firm."
         sc3_focus = ["Client Acquisition (12h/wk)", "Practice Setup (5h/wk)", "Networking & Retainers (3h/wk)"]
 
-    elif any(k in lower_goal for k in ['designer', 'ux', 'ui', 'graphic', 'product design']):
+    elif any(k in lower_goal for k in ['fashion', 'apparel', 'textile', 'garment', 'fashion designer']):
+        domain_family = 'Fashion & Apparel Design'
+        slider1_label = f"Garment Construction & {primary_skill}"
+        slider1_desc = f"Pattern making, fabric selection, draping, and {primary_skill}."
+        slider2_label = f"Fashion Illustration & {secondary_skill}"
+        slider2_desc = f"Collection design, fashion sketching, moodboards, and {secondary_skill}."
+        slider3_label = f"Portfolio & Fashion Industry Outreach"
+        slider3_desc = f"Fashion lookbook, sample construction, fashion week/brand networking, and client outreach."
+        focus_areas = [primary_skill, secondary_skill, "Garment Construction", "Fashion Illustration", "Collection Portfolio"]
+
+        sc1_name = "Fashion Design Career Execution"
+        sc1_desc = f"Build a fashion portfolio, gain practical experience, pursue internships/assistant roles, and enter the fashion industry."
+        sc1_focus = [f"Fashion Illustration ({primary_skill}) (8h/wk)", "Garment Construction (6h/wk)", "Collection Portfolio (4h/wk)"]
+
+        sc3_name = "Independent Fashion Brand & Label"
+        sc3_desc = "Build and validate an independent fashion label, sample collection, brand launch, and retail/online distribution."
+        sc3_focus = ["Collection Development (12h/wk)", "Brand Marketing & Sourcing (5h/wk)", "Client & Wholesale Outreach (3h/wk)"]
+
+    elif any(k in lower_goal for k in ['ux', 'ui', 'user experience', 'user interface', 'interaction design', 'product designer', 'graphic design', 'ui/ux', 'ui/ux designer']):
         domain_family = 'Design & Creative Technologies'
         slider1_label = f"Design Fundamentals & {primary_skill}"
         slider1_desc = f"Visual hierarchy, typography, and {primary_skill}."

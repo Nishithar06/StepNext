@@ -233,7 +233,7 @@ class ActionProgressInsight(BaseModel):
 class AdaptiveRecommendation(BaseModel):
     recommendation_type: str = "observe"  # reduce_workload, increase_depth, stabilize, continue, observe
     title: str = "Observe Pattern"
-    message: str = "Keep checking in weekly so LifePilot can identify a reliable execution pattern."
+    message: str = "Keep checking in weekly so StepNext can identify a reliable execution pattern."
     priority_actions: List[str] = Field(default_factory=list)
 
 class ProgressSummary(BaseModel):

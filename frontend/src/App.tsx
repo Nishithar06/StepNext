@@ -106,9 +106,14 @@ const MainAppContent: React.FC = () => {
         console.log(`[Profile] Current user ID: ${uid}`);
         console.log(`[Profile] Fetching saved profile...`);
         const prof = await fetchProfile(uid);
-        console.log(`[Profile] Profile found: true (user_id=${prof.user_id})`);
-        setProfile(prof);
-        setIsOnboardingOpen(false);
+        console.log(`[Profile] Profile found: true (user_id=${prof.user_id}, goal=${prof.career_goal})`);
+        if (prof && prof.career_goal && prof.career_goal.trim().length > 0) {
+          setProfile(prof);
+          setIsOnboardingOpen(false);
+        } else {
+          setProfile(prof);
+          setIsOnboardingOpen(true);
+        }
 
         // Fetch telemetry in parallel / sequence for valid active user
         try {

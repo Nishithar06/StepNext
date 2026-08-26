@@ -29,14 +29,12 @@ def fetch_profile_from_db_or_fixture(user_id: str) -> Optional[UserProfile]:
         except Exception as e:
             print(f"[Profile Route] Supabase read profile error: {e}")
 
-    # Return in-memory profile if available
+    # Return in-memory profile if available and initialized
     if user_id in PROFILES_STORE:
-        print(f"[Profile] LOOKUP_SUCCESS: user_id={user_id}")
-        return PROFILES_STORE[user_id]
-
-    if user_id == "demo_user":
-        print(f"[Profile] LOOKUP_SUCCESS: user_id={user_id}")
-        return UserProfile(user_id="demo_user", name="Demo User")
+        prof = PROFILES_STORE[user_id]
+        if prof and prof.career_goal:
+            print(f"[Profile] LOOKUP_SUCCESS: user_id={user_id}")
+            return prof
 
     print(f"[Profile] LOOKUP_FAILED: user_id={user_id}")
     print(f"[Profile] AVAILABLE_USER_IDS: {list(PROFILES_STORE.keys())}")

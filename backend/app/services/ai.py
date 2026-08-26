@@ -109,7 +109,11 @@ def generate_digital_twin_ai(profile: UserProfile) -> Optional[DerivedProfile]:
     print("[AI Service] GEMINI_REQUEST_STARTED: context=Digital Twin Generation")
 
     prompt = f"""
-    You are an expert psychological & career profiler. Analyze the following user profile and return a JSON object ONLY matching this schema:
+    You are an expert psychological & career profiler for StepNext.
+    CRITICAL CAREER PRESERVATION INSTRUCTION:
+    The user's career goal is '{profile.career_goal}'. Treat this as the primary career objective.
+    All strengths, motivations, risk factors, learning styles, and career alignment outputs MUST be directly relevant to becoming a '{profile.career_goal}'.
+    Do not replace, reinterpret, or silently map this career to another profession (e.g. do NOT turn 'Fashion Designer' into 'UI/UX Designer' or 'Software Engineer').
 
     Profile Data:
     - Name: {profile.name}
@@ -198,6 +202,11 @@ def explain_scenarios_ai(
 
     prompt = f"""
     Analyze these evaluated future scenarios for user '{profile.name}':
+
+    CRITICAL CAREER PRESERVATION INSTRUCTION:
+    The user's career goal is '{profile.career_goal}'. Treat this as the primary career objective.
+    All recommendations, reasons, tradeoffs, and next steps MUST be directly relevant to '{profile.career_goal}'.
+    Do not replace, reinterpret, or silently map this career to another profession.
 
     User Career Goal: {profile.career_goal}
     Education: {profile.education}

@@ -2926,5 +2926,127 @@
     "next_checkin": "In 7 Days",
     "created_at": "2026-08-25T05:22:49.057977",
     "goal_context": "Senior Software Developer"
+  },
+  "user_bmlzaGl0aGFyYWpr": {
+    "id": "roadmap_a23e9831",
+    "user_id": "user_bmlzaGl0aGFyYWpr",
+    "scenario": "Fashion Design Career Execution",
+    "overall_score": 86,
+    "reason": "Highest overall score (86/100) aligned with your trajectory as a Fashion designing.",
+    "workload_risk": 33,
+    "risk_level": "Fashion Design Career Execution yields an overall score of 86/100. Goal alignment is 98%, skill growth potential is 83%, learning potential is 86%, and estimated financial outlook is 91%.",
+    "workload_caution": null,
+    "milestones": [
+      {
+        "timeframe": "30 DAYS",
+        "title": "Fashion Designing Foundations & Skill Building",
+        "items": [
+          "Complete core practice units in Fashion Illustration & Technical Flat Sketches",
+          "Draft baseline portfolio outline for Fashion Designing roles",
+          "Review core principles in Pattern Making"
+        ]
+      },
+      {
+        "timeframe": "60 DAYS",
+        "title": "Fashion Designing Portfolio & Practical Execution",
+        "items": [
+          "Deploy 2 real-world Fashion Designing projects/case studies",
+          "Complete peer evaluations in Fashion Illustration & Technical Flat Sketches",
+          "Conduct networking outreach for Fashion Designing opportunities"
+        ]
+      },
+      {
+        "timeframe": "90 DAYS",
+        "title": "Fashion Designing Career Launch & Placement",
+        "items": [
+          "Achieve top shortlist status as a Fashion Designing",
+          "Complete final assessment rounds",
+          "Secure target offer/position as a Fashion Designing"
+        ]
+      }
+    ],
+    "weekly_actions": [
+      {
+        "id": "9d35d89e-0370-4aa4-99f7-09d7ee8906ad",
+        "title": "Master Fashion Designing Core Skills & Fashion Illustration & Technical Flat Sketches",
+        "description": "Dedicate 8 hrs/week to mastering Fashion Illustration & Technical Flat Sketches and core domain principles for becoming a Fashion Designing.",
+        "category": "SKILL",
+        "target": "8 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "45affa95-aec1-4027-ad3f-a8633b8c2545",
+        "title": "Build Fashion Designing Practical Portfolio & Case Studies",
+        "description": "Invest ~6 hrs/week building live portfolio projects, field deliverables, or case studies in Pattern Making.",
+        "category": "PROJECT",
+        "target": "6 hrs/week",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "3d89c5a0-7ebf-431e-a7ac-ae6e222cff2f",
+        "title": "Fashion Designing Career Outreach & Portfolio Review",
+        "description": "Spend 4 hrs/week practicing role-specific assessments, portfolio presentations, and industry networking for Fashion Designing positions.",
+        "category": "CAREER",
+        "target": "4 hrs/week",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "top_priorities": [
+      {
+        "id": "29ff143b-42d1-43fc-b7c1-5042162442d9",
+        "title": "Fashion Designing Core Mastery",
+        "description": "Master key fundamentals in Fashion Illustration & Technical Flat Sketches",
+        "category": "SKILL",
+        "target": "Core Competency",
+        "status": "in_progress",
+        "priority": "High"
+      },
+      {
+        "id": "ea64c955-332d-4d22-b252-e5293422a7db",
+        "title": "Fashion Designing Portfolio Assets",
+        "description": "Build & ship live practical deliverables in Pattern Making",
+        "category": "PROJECT",
+        "target": "2 Live Portfolio Items",
+        "status": "not_started",
+        "priority": "High"
+      },
+      {
+        "id": "75554d8a-f094-4661-a7d7-c6c8ba4387df",
+        "title": "Fashion Designing Industry Readiness",
+        "description": "Complete portfolio reviews & professional outreach prep",
+        "category": "CAREER",
+        "target": "5 Outreach Contacts",
+        "status": "not_started",
+        "priority": "Medium"
+      }
+    ],
+    "metrics_to_track": [
+      {
+        "name": "Fashion Illustration & Technical Flat Sketches Practice Units",
+        "current": "0",
+        "target": "32"
+      },
+      {
+        "name": "Fashion Designing Portfolio Assets",
+        "current": "0",
+        "target": "2"
+      },
+      {
+        "name": "Portfolio Reviews Completed",
+        "current": "0",
+        "target": "5"
+      },
+      {
+        "name": "Outreach Contacts",
+        "current": "0",
+        "target": "10"
+      }
+    ],
+    "next_checkin": "In 7 Days",
+    "created_at": "2026-08-26T07:54:21.849098",
+    "goal_context": "Fashion Designing"
   }
 }

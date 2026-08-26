@@ -228,8 +228,17 @@ def resolve_higher_studies_path(profile: Optional[UserProfile]) -> Dict[str, Any
         if any(term in text_context for term in ['gre', 'us', 'usa', 'united states', 'germany', 'abroad', 'international', 'uk', 'canada']):
             destination = "International"
 
-    # Resolve Postgraduate Degree Name & Specialization
-    if deg_family == "Engineering":
+    # Priority Goal-Aligned Overrides for Higher Studies when specific career target is set
+    career_goal_lower = (profile.career_goal or "").lower() if profile else ""
+    if any(k in career_goal_lower for k in ['fashion', 'apparel', 'textile', 'garment']):
+        pg_degree = "M.Des / Master's in Fashion Design & Innovation"
+        slider1 = "Fashion Design Methodology & Collection Research"
+        slider2 = "M.Des / NIFT / Portfolio Entrance Prep"
+        slider3 = "Fashion Design Thesis & Collection Showcase"
+        domain_name = "Fashion & Apparel Design Studies"
+
+    # Resolve Postgraduate Degree Name & Specialization based on background
+    elif deg_family == "Engineering":
         if destination == "International":
             pg_degree = f"MS in {major}" if major else "MS in Engineering"
         else:

@@ -207,7 +207,7 @@ export const ProgressIntelligenceSection: React.FC<ProgressIntelligenceSectionPr
           </div>
         </div>
 
-        {/* Card 3: What LifePilot Learned */}
+        {/* Card 3: What StepNext Learned */}
         <div className="bg-gradient-to-b from-white to-[#EEF2FF]/60 rounded-[26px] border border-[#5850EC]/30 p-6 space-y-4 shadow-sm flex flex-col justify-between h-full min-w-0 md:col-span-2 lg:col-span-1 hover:-translate-y-1 transition-transform">
           <div className="space-y-2 min-w-0">
             <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#5850EC] flex items-center gap-1.5">

@@ -109,7 +109,7 @@
     "adaptive_recommendation": {
       "recommendation_type": "observe",
       "title": "Observe Execution Pattern",
-      "message": "Keep checking in for another week so LifePilot can identify a reliable execution pattern.",
+      "message": "Keep checking in for another week so StepNext can identify a reliable execution pattern.",
       "priority_actions": [
         "Solve DSA Problems",
         "Build Portfolio"
@@ -264,7 +264,7 @@
     "adaptive_recommendation": {
       "recommendation_type": "observe",
       "title": "Observe Execution Pattern",
-      "message": "Keep checking in for another week so LifePilot can identify a reliable execution pattern.",
+      "message": "Keep checking in for another week so StepNext can identify a reliable execution pattern.",
       "priority_actions": [
         "Master Teacher Core Skills & Teacher Core Fundamentals",
         "Build Teacher Practical Portfolio & Case Studies"
@@ -312,7 +312,7 @@
     "adaptive_recommendation": {
       "recommendation_type": "observe",
       "title": "Observe Execution Pattern",
-      "message": "Keep checking in for another week so LifePilot can identify a reliable execution pattern.",
+      "message": "Keep checking in for another week so StepNext can identify a reliable execution pattern.",
       "priority_actions": [
         "A1"
       ]
@@ -356,7 +356,7 @@
     "adaptive_recommendation": {
       "recommendation_type": "observe",
       "title": "Observe Execution Pattern",
-      "message": "Keep checking in for another week so LifePilot can identify a reliable execution pattern.",
+      "message": "Keep checking in for another week so StepNext can identify a reliable execution pattern.",
       "priority_actions": [
         "Solve DSA Problems",
         "Build Portfolio"
@@ -459,7 +459,7 @@
     "adaptive_recommendation": {
       "recommendation_type": "observe",
       "title": "Observe Execution Pattern",
-      "message": "Keep checking in for another week so LifePilot can identify a reliable execution pattern.",
+      "message": "Keep checking in for another week so StepNext can identify a reliable execution pattern.",
       "priority_actions": [
         "Master Ai Software Engineer Core Skills & Ai Software Engineer Core Fundamentals",
         "Build Ai Software Engineer Practical Portfolio & Case Studies"
@@ -537,7 +537,7 @@
     "adaptive_recommendation": {
       "recommendation_type": "observe",
       "title": "Observe Execution Pattern",
-      "message": "Keep checking in for another week so LifePilot can identify a reliable execution pattern.",
+      "message": "Keep checking in for another week so StepNext can identify a reliable execution pattern.",
       "priority_actions": [
         "Master Wild Life Photographer Core Skills & Advanced camera techniques",
         "Build Wild Life Photographer Practical Portfolio & Case Studies"

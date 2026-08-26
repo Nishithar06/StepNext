@@ -487,5 +487,31 @@
     "major_commitments": [],
     "financial_priority": 8,
     "short_term_goal": "Get placed in good company"
+  },
+  "user_bmlzaGl0aGFyYWpr": {
+    "user_id": "user_bmlzaGl0aGFyYWpr",
+    "name": "Nishi",
+    "education": "B.Sc.Fashion Designing",
+    "career_goal": "Fashion Designing",
+    "interests": [],
+    "skills": [
+      "Embroidary",
+      "Fabric Stitching"
+    ],
+    "skills_to_improve": [
+      "Fashion Illustration & Technical Flat Sketches",
+      "Pattern Making",
+      "Draping & Fitting"
+    ],
+    "available_hours_per_day": 6.0,
+    "sleep_hours": 7.0,
+    "workload": "medium",
+    "regular_activities": [
+      "Gym 3x/week",
+      "Coding practice"
+    ],
+    "major_commitments": [],
+    "financial_priority": 7,
+    "short_term_goal": "Get Placed"
   }
 }

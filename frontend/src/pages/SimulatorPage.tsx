@@ -376,7 +376,10 @@ export function getGoalSliderDimensions(profile?: UserProfile | null): GoalSlide
   } else if (lowerGoal.includes('lawyer') || lowerGoal.includes('legal') || lowerGoal.includes('attorney')) {
     sc3Title = "INDEPENDENT LEGAL FIRM VENTURE";
     sc3Desc = "Establish an independent law consultancy, legal advisory practice, or mediation firm.";
-  } else if (lowerGoal.includes('designer') || lowerGoal.includes('ux') || lowerGoal.includes('ui')) {
+  } else if (lowerGoal.includes('fashion') || lowerGoal.includes('apparel') || lowerGoal.includes('textile') || lowerGoal.includes('garment')) {
+    sc3Title = "INDEPENDENT FASHION BRAND & LABEL";
+    sc3Desc = "Build and validate an independent fashion label, sample collection, brand launch, and retail/online distribution.";
+  } else if (lowerGoal.includes('ux') || lowerGoal.includes('ui') || lowerGoal.includes('product design') || lowerGoal.includes('user experience') || lowerGoal.includes('user interface') || lowerGoal.includes('graphic design') || lowerGoal.includes('ui/ux')) {
     sc3Title = "DESIGN STUDIO & AGENCY VENTURE";
     sc3Desc = "Build an independent design studio, client branding agency, or digital product consultancy.";
   } else if (lowerGoal.includes('software') || lowerGoal.includes('developer') || lowerGoal.includes('engineer')) {
@@ -778,12 +781,12 @@ const SimulatorPageContent: React.FC<SimulatorPageProps> = ({
     return activeSelectedScenario;
   })();
 
-  console.log('[LifePilot] CONTEXT_LOAD_STARTED: activeUserId=', profile?.user_id || 'demo_user');
-  console.log('[LifePilot] STATUS_READY: simulation=', !!simulationData, 'roadmap=', !!roadmap, 'progress=', !!progress, 'adaptive=', !!adaptiveFuture);
+  console.log('[StepNext] CONTEXT_LOAD_STARTED: activeUserId=', profile?.user_id || 'demo_user');
+  console.log('[StepNext] STATUS_READY: simulation=', !!simulationData, 'roadmap=', !!roadmap, 'progress=', !!progress, 'adaptive=', !!adaptiveFuture);
 
   return (
     <div id="section-simulator" className="scroll-mt-24 space-y-10 animate-fade-in max-w-[1400px] mx-auto w-full px-4 sm:px-6 lg:px-8 min-w-0">
-      {/* 0. LIFEPILOT SYSTEM INTELLIGENCE STATUS SUMMARY BANNER */}
+      {/* 0. STEPNEXT SYSTEM INTELLIGENCE STATUS SUMMARY BANNER */}
       <LifePilotStatus
         simulationData={simulationData}
         roadmap={roadmap}
@@ -796,7 +799,7 @@ const SimulatorPageContent: React.FC<SimulatorPageProps> = ({
       <section className="bg-gradient-to-r from-white via-[#FAF9F5] to-[#F0EEFF] border border-[#635BFF]/30 rounded-[28px] p-6 lg:p-8 light-card-shadow space-y-3">
         <div className="flex items-center justify-between">
           <span className="text-[10px] font-bold uppercase tracking-wider text-[#635BFF] font-mono flex items-center gap-1.5">
-            <Compass className="w-4 h-4 text-[#635BFF]" /> LIFEPILOT
+            <Compass className="w-4 h-4 text-[#635BFF]" /> STEPNEXT
           </span>
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#32C6A6]/10 border border-[#32C6A6]/30 text-[10px] font-mono font-bold text-[#219B81]">
             <span className="w-2 h-2 rounded-full bg-[#32C6A6] animate-pulse" />
@@ -811,18 +814,18 @@ const SimulatorPageContent: React.FC<SimulatorPageProps> = ({
         </p>
       </section>
 
-      {/* WHY LIFEPILOT IS DIFFERENT — THE CLOSED DECISION LOOP */}
+      {/* WHY STEPNEXT IS DIFFERENT — THE CLOSED DECISION LOOP */}
       <section className="bg-gradient-to-r from-[#FAF9F5] to-white border border-[#E5E5DC] rounded-[24px] p-5 light-card-shadow space-y-2">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-[#E5E5DC] pb-3">
           <span className="text-[10px] font-bold uppercase tracking-wider text-[#635BFF] font-mono flex items-center gap-1.5">
-            <Sparkles className="w-4 h-4 text-[#635BFF]" /> WHY LIFEPILOT IS DIFFERENT
+            <Sparkles className="w-4 h-4 text-[#635BFF]" /> WHY STEPNEXT IS DIFFERENT
           </span>
           <span className="text-[10px] font-mono font-bold text-[#635BFF] bg-[#635BFF]/10 px-3 py-1 rounded-full border border-[#635BFF]/20">
             DECIDE → SIMULATE → ACT → CHECK IN → LEARN → ADAPT
           </span>
         </div>
         <p className="text-xs text-[#667085] leading-relaxed">
-          Standard career tools stop at one-off suggestions. <strong className="text-[#171827]">LifePilot</strong> models your choices in real time, turns recommendations into executable 90-day roadmaps, tracks real weekly execution, and dynamically adapts when workload or trajectory demands it.
+          Standard career tools stop at one-off suggestions. <strong className="text-[#171827]">StepNext</strong> models your choices in real time, turns recommendations into executable 90-day roadmaps, tracks real weekly execution, and dynamically adapts when workload or trajectory demands it.
         </p>
       </section>
 

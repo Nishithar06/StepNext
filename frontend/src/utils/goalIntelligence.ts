@@ -211,8 +211,68 @@ export function analyzeCareerGoal(
       'Clear translation of complex numbers into business action items'
     ];
   }
-  // 3. UI/UX & PRODUCT DESIGN
-  else if (goalLower.includes('design') || goalLower.includes('ui') || goalLower.includes('ux') || goalLower.includes('product designer')) {
+  // 3. FASHION & APPAREL DESIGN
+  else if (goalLower.includes('fashion') || goalLower.includes('apparel') || goalLower.includes('textile') || goalLower.includes('garment')) {
+    domainFamily = 'Fashion & Apparel Design';
+    tagline = `Garment construction, fashion illustration, textile science, and capsule collection development.`;
+    requiredCompetencies = [
+      'Fashion Illustration & Technical Flat Sketches',
+      'Garment Construction & Sewing Technique',
+      'Pattern Making, Draping & Fitting',
+      'Textile & Fabric Science',
+      'Fashion Styling & Trend Forecasting',
+      'Capsule Collection & Portfolio Lookbook'
+    ];
+    recommendedWeeklyHours = { coreLearning: 8, practicalProjects: 7, reviewAndOutreach: 3, total: 18 };
+    milestones = [
+      {
+        phaseNumber: 1,
+        phaseName: 'Phase 01: Core Foundations',
+        duration: 'Month 1 (Days 1–30)',
+        focusTitle: 'Fashion Illustration & Pattern Drafting',
+        description: 'Master croquis fashion drawing, fabric selection, draping techniques, and basic pattern drafting.',
+        keyDeliverables: [
+          'Create 15 technical flat sketches and fashion croquis illustrations',
+          'Complete 3 pattern draping exercises on dress form',
+          'Develop moodboard and color palette for initial collection concept'
+        ],
+        recommendedHoursPerWeek: 8
+      },
+      {
+        phaseNumber: 2,
+        phaseName: 'Phase 02: Garment Construction',
+        duration: 'Month 2 (Days 31–60)',
+        focusTitle: 'Sample Cutting, Sewing & Capsule Collection',
+        description: 'Construct 2 physical or digital 3D garment samples with precise fitting, finishing, and textile pairing.',
+        keyDeliverables: [
+          'Sew and finish 2 complete wearable garment prototypes',
+          'Document tech packs with specs, measurements, and seam details',
+          'Conduct fitting reviews and refine garment silhouettes'
+        ],
+        recommendedHoursPerWeek: 7
+      },
+      {
+        phaseNumber: 3,
+        phaseName: 'Phase 03: Lookbook & Fashion Launch',
+        duration: 'Month 3 (Days 61–90)',
+        focusTitle: 'Fashion Portfolio & Industry Outreach',
+        description: 'Assemble professional fashion lookbook, digital portfolio, and engage with fashion houses, buyers, or clients.',
+        keyDeliverables: [
+          'Publish high-resolution fashion portfolio lookbook showcasing 5 collection looks',
+          'Present collection deck to fashion mentors, boutiques, or hiring leads',
+          'Apply to fashion assistant roles, internships, or launch independent brand prep'
+        ],
+        recommendedHoursPerWeek: 3
+      }
+    ];
+    criticalSuccessFactors = [
+      'High-quality physical or 3D digital garment lookbook showcasing finished construction',
+      'Mastery of fabric drape, fit, and technical flat specs',
+      'Strong creative voice aligned with current fashion market trends'
+    ];
+  }
+  // 4. UI/UX & PRODUCT DESIGN
+  else if (goalLower.includes('ui') || goalLower.includes('ux') || goalLower.includes('product design') || goalLower.includes('user experience') || goalLower.includes('user interface') || goalLower.includes('interaction design') || goalLower.includes('graphic design') || goalLower.includes('ui/ux')) {
     domainFamily = 'Product & UX Design';
     tagline = `User research, design systems, interactive prototyping, and case study storytelling.`;
     requiredCompetencies = [
