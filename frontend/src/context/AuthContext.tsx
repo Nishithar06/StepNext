@@ -27,35 +27,30 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   useEffect(() => {
     if (!isSupabaseConfigured) {
-      // Check for locally persisted user
-      const storedId = getActiveUserId();
-      if (storedId) {
-        setUser({ id: storedId, email: `${storedId}@stepnext.local`, user_metadata: { name: 'StepNext User' } } as any);
-      }
+      setSession(null);
+      setUser(null);
+      clearActiveUserIdFromStorage();
       setLoading(false);
       return;
     }
 
-    // Initial Session Check
+    // Initial Session Check - Supabase is the sole source of truth
     supabase.auth.getSession().then(({ data: { session: initSession } }) => {
       if (initSession?.user?.id) {
         setSession(initSession);
         setUser(initSession.user);
         saveActiveUserIdToStorage(initSession.user.id);
       } else {
-        // Check if we have an active user ID saved directly
-        const storedId = getActiveUserId();
-        if (storedId) {
-          setUser({ id: storedId, email: 'user@stepnext.app', user_metadata: { name: 'StepNext User' } } as any);
-        }
+        setSession(null);
+        setUser(null);
+        clearActiveUserIdFromStorage();
       }
       setLoading(false);
     }).catch(err => {
       console.warn('[AuthContext] Session init notice:', err);
-      const storedId = getActiveUserId();
-      if (storedId) {
-        setUser({ id: storedId, email: 'user@stepnext.app', user_metadata: { name: 'StepNext User' } } as any);
-      }
+      setSession(null);
+      setUser(null);
+      clearActiveUserIdFromStorage();
       setLoading(false);
     });
 
@@ -65,9 +60,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setSession(currentSession);
         setUser(currentSession.user);
         saveActiveUserIdToStorage(currentSession.user.id);
-      } else if (!getActiveUserId()) {
+      } else {
         setSession(null);
         setUser(null);
+        clearActiveUserIdFromStorage();
       }
       setLoading(false);
     });
@@ -79,14 +75,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const signInWithPassword = async (email: string, pass: string) => {
     const cleanEmail = email.trim().toLowerCase();
-    const deterministicId = getDeterministicUserId(cleanEmail);
     
     if (!isSupabaseConfigured) {
-      // Direct local password login fallback
-      saveActiveUserIdToStorage(deterministicId);
-      const mockUser = { id: deterministicId, email: cleanEmail, user_metadata: { name: 'StepNext User' } } as any;
-      setUser(mockUser);
-      return { error: null };
+      return { error: new Error('Supabase authentication is not configured. Please verify environment variables.') };
     }
 
     const res = await supabase.auth.signInWithPassword({
@@ -101,30 +92,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       return { error: null };
     }
 
-    // If error is "Email not confirmed", bypass confirmation restriction directly
-    if (res.error?.message?.toLowerCase().includes('email not confirmed')) {
-      saveActiveUserIdToStorage(deterministicId);
-      const directUser = { id: deterministicId, email: cleanEmail, user_metadata: { name: 'StepNext User' } } as any;
-      setUser(directUser);
-      return { error: null };
-    }
-
-    return { error: res.error };
+    return { error: res.error || new Error('Invalid email or password') };
   };
 
   const signUp = async (email: string, pass: string, name?: string) => {
     const cleanEmail = email.trim().toLowerCase();
-    const deterministicId = getDeterministicUserId(cleanEmail);
 
     if (!isSupabaseConfigured) {
-      // Direct local signup fallback
-      saveActiveUserIdToStorage(deterministicId);
-      const mockUser = { id: deterministicId, email: cleanEmail, user_metadata: { name: name || 'StepNext User' } } as any;
-      setUser(mockUser);
-      return { error: null };
+      return { error: new Error('Supabase authentication is not configured. Please verify environment variables.') };
     }
 
-    // Direct password signup
     const res = await supabase.auth.signUp({
       email: cleanEmail,
       password: pass,
@@ -135,7 +112,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       }
     });
 
-    // Case 1: Session created immediately (email confirmation disabled in Supabase project)
+    // Case 1: Session created immediately (auto-confirm enabled)
     if (res.data.session?.user.id) {
       saveActiveUserIdToStorage(res.data.session.user.id);
       setUser(res.data.session.user);
@@ -143,28 +120,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       return { error: null };
     }
 
-    // Case 2: If user registered but needs unconfirmed fallback access, use deterministic ID
-    if (res.data.user?.id) {
-      saveActiveUserIdToStorage(deterministicId);
-      const fallbackUser = { id: deterministicId, email: cleanEmail, user_metadata: { name: name || 'StepNext User' } } as any;
-      setUser(fallbackUser);
-      return { error: null };
+    // Case 2: User registered but email confirmation is pending
+    if (res.data.user?.id && !res.data.session) {
+      return { error: new Error('Account created! Please check your email to confirm your account, then sign in.') };
     }
 
     // Case 3: If user already exists, sign in directly with password
-    if (res.error?.message?.toLowerCase().includes('already registered')) {
+    if (res.error?.message?.toLowerCase().includes('already registered') || res.error?.message?.toLowerCase().includes('already exists')) {
       return signInWithPassword(cleanEmail, pass);
     }
 
-    // Case 4: If any other unexpected error, gracefully establish direct user profile
-    if (res.error) {
-      saveActiveUserIdToStorage(deterministicId);
-      const fallbackUser = { id: deterministicId, email: cleanEmail, user_metadata: { name: name || 'StepNext User' } } as any;
-      setUser(fallbackUser);
-      return { error: null };
-    }
-
-    return { error: null };
+    return { error: res.error || new Error('Failed to create account') };
   };
 
   const signOut = async () => {

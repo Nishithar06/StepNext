@@ -84,7 +84,8 @@ export const CheckInModal: React.FC<CheckInModalProps> = ({
 
   useEffect(() => {
     if (isOpen) {
-      const activeUid = localStorage.getItem('stepnext_active_user_id') || 'demo_user';
+      const activeUid = localStorage.getItem('stepnext_active_user_id') || todayCheckIn?.user_id || '';
+      if (!activeUid) return;
       
       fetchRoadmap(activeUid)
         .then(rm => {
@@ -151,7 +152,12 @@ export const CheckInModal: React.FC<CheckInModalProps> = ({
     setLoading(true);
     setError(null);
 
-    const activeUid = localStorage.getItem('stepnext_active_user_id') || 'demo_user';
+    const activeUid = localStorage.getItem('stepnext_active_user_id') || todayCheckIn?.user_id || '';
+    if (!activeUid) {
+      setError('User identity not found. Please log in.');
+      setLoading(false);
+      return;
+    }
 
     try {
       const payload: DailyCheckInInput = {

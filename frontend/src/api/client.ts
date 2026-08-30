@@ -19,11 +19,16 @@ import { supabase } from '../lib/supabaseClient';
 
 const getApiBase = (): string => {
   const envUrl = (import.meta.env.VITE_API_URL || import.meta.env.VITE_API_BASE_URL || '').trim();
-  if (!envUrl) {
+  if (envUrl) {
+    const cleanUrl = envUrl.replace(/\/+$/, '');
+    return cleanUrl.endsWith('/api') ? cleanUrl : `${cleanUrl}/api`;
+  }
+  // In development, preserve the existing Vite /api proxy behavior
+  if (import.meta.env.DEV) {
     return '/api';
   }
-  const cleanUrl = envUrl.replace(/\/+$/, '');
-  return cleanUrl.endsWith('/api') ? cleanUrl : `${cleanUrl}/api`;
+  // In production when VITE_API_URL is omitted, use the verified Render backend URL
+  return 'https://stepnext.onrender.com/api';
 };
 
 const API_BASE = getApiBase();

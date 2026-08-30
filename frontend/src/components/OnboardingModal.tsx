@@ -76,8 +76,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
     setLoading(true);
     setError(null);
     try {
-      const activeId = getActiveUserId();
-      const targetUserId = initialProfile?.user_id || activeId || 'demo_user';
+      const targetUserId = initialProfile?.user_id || getActiveUserId() || '';
       const profileData: UserProfile = {
         user_id: targetUserId,
         name: name.trim() || 'User',

@@ -781,7 +781,7 @@ const SimulatorPageContent: React.FC<SimulatorPageProps> = ({
     return activeSelectedScenario;
   })();
 
-  console.log('[StepNext] CONTEXT_LOAD_STARTED: activeUserId=', profile?.user_id || 'demo_user');
+  console.log('[StepNext] CONTEXT_LOAD_STARTED: activeUserId=', profile?.user_id || 'unauthenticated');
   console.log('[StepNext] STATUS_READY: simulation=', !!simulationData, 'roadmap=', !!roadmap, 'progress=', !!progress, 'adaptive=', !!adaptiveFuture);
 
   return (

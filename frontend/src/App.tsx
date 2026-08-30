@@ -48,7 +48,7 @@ import {
 
 const MainAppContent: React.FC = () => {
   const { user, loading: authLoading, signOut } = useAuth();
-  const activeUserId = user?.id || getActiveUserId();
+  const activeUserId = user?.id || null;
 
   // Data State
   const [health, setHealth] = useState<HealthResponse | null>(null);
@@ -180,13 +180,19 @@ const MainAppContent: React.FC = () => {
   };
 
   useEffect(() => {
-    if (user && activeUserId) {
-      saveActiveUserIdToStorage(activeUserId);
-      loadData(activeUserId);
+    if (user && user.id) {
+      saveActiveUserIdToStorage(user.id);
+      loadData(user.id);
     } else {
+      setProfile(null);
+      setDigitalTwin(null);
+      setOverloadScore(null);
+      setSimulationData(null);
+      setTodayCheckIn(null);
+      setCheckInSummary(null);
       setLoading(false);
     }
-  }, [user, activeUserId]);
+  }, [user]);
 
   // If Auth is initializing
   if (authLoading) {
@@ -205,7 +211,8 @@ const MainAppContent: React.FC = () => {
 
   // Handlers
   const handleSaveProfile = async (newProfile: UserProfile) => {
-    const profileToSave = { ...newProfile, user_id: activeUserId || newProfile.user_id };
+    if (!user?.id) return;
+    const profileToSave = { ...newProfile, user_id: user.id };
     console.log(`[Profile] Saving profile for user_id=${profileToSave.user_id}...`);
     const savedProf = await saveProfile(profileToSave);
     const persistentUid = savedProf?.user_id || profileToSave.user_id;
@@ -381,7 +388,7 @@ const MainAppContent: React.FC = () => {
         onClose={() => {
           if (profile) setIsOnboardingOpen(false);
         }}
-        initialProfile={profile || { user_id: activeUserId || '', name: user.user_metadata?.name || user.email?.split('@')[0] || 'StepNext User' } as UserProfile}
+        initialProfile={profile || ({ user_id: user.id, name: user.user_metadata?.name || user.email?.split('@')[0] || 'StepNext User' } as UserProfile)}
         onSaveProfile={handleSaveProfile}
       />
 
