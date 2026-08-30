@@ -199,7 +199,7 @@ const MainAppContent: React.FC = () => {
     return (
       <div className="min-h-screen bg-[#0B0C14] flex flex-col justify-center items-center">
         <Compass className="w-10 h-10 text-cyan-400 animate-spin mb-4" />
-        <p className="text-xs text-slate-400 font-mono">Authenticating with StepNext...</p>
+        <p className="text-xs text-slate-400 font-mono">Loading StepNext...</p>
       </div>
     );
   }

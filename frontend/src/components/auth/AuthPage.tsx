@@ -1,49 +1,37 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
-import { Mail, Lock, User, AlertCircle, ArrowRight, Sparkles } from 'lucide-react';
+import { Mail, User, AlertCircle, ArrowRight, Sparkles } from 'lucide-react';
 import { Button } from '../ui/button';
 
 export const AuthPage: React.FC = () => {
-  const { signInWithPassword, signUp } = useAuth();
+  const { login } = useAuth();
   const [mode, setMode] = useState<'login' | 'signup'>('login');
   
   // Form Fields
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
   
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [notice, setNotice] = useState<{ message: string; isInfo?: boolean } | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(null);
+    setNotice(null);
 
-    if (!email.trim() || !password.trim()) {
-      setError('Please fill in both email and password.');
-      return;
-    }
-
-    if (mode === 'signup' && password.length < 6) {
-      setError('Password must be at least 6 characters.');
+    const cleanEmail = email.trim();
+    if (!cleanEmail) {
+      setNotice({ message: 'Please enter an email address to continue.' });
       return;
     }
 
     setLoading(true);
     try {
-      if (mode === 'login') {
-        const { error: err } = await signInWithPassword(email.trim(), password);
-        if (err) {
-          setError(err.message || 'Failed to sign in. Please check your credentials.');
-        }
-      } else {
-        const { error: err } = await signUp(email.trim(), password, fullName.trim() || undefined);
-        if (err) {
-          setError(err.message || 'Failed to create account.');
-        }
+      const { error: err } = await login(cleanEmail, mode === 'signup' ? fullName.trim() : undefined);
+      if (err) {
+        setNotice({ message: err.message || 'Unable to enter StepNext. Please try again.' });
       }
     } catch (err: any) {
-      setError(err.message || 'An unexpected error occurred.');
+      setNotice({ message: err.message || 'An unexpected error occurred.' });
     } finally {
       setLoading(false);
     }
@@ -74,7 +62,7 @@ export const AuthPage: React.FC = () => {
           <div className="flex bg-slate-100/80 p-1 rounded-2xl border border-black/[0.05]">
             <button
               type="button"
-              onClick={() => { setMode('login'); setError(null); }}
+              onClick={() => { setMode('login'); setNotice(null); }}
               className={`flex-1 py-2.5 text-xs font-bold rounded-xl transition-all ${
                 mode === 'login'
                   ? 'bg-white text-[#0F172A] shadow-sm'
@@ -85,23 +73,30 @@ export const AuthPage: React.FC = () => {
             </button>
             <button
               type="button"
-              onClick={() => { setMode('signup'); setError(null); }}
+              onClick={() => { setMode('signup'); setNotice(null); }}
               className={`flex-1 py-2.5 text-xs font-bold rounded-xl transition-all ${
                 mode === 'signup'
                   ? 'bg-white text-[#0F172A] shadow-sm'
                   : 'text-slate-500 hover:text-[#0F172A]'
               }`}
             >
-              Create Account
+              New Workspace
             </button>
           </div>
 
-          {/* Alert Banners */}
-          {error && (
-            <div className="p-3.5 rounded-2xl bg-[#FFF1F2] border border-[#F43F5E]/30 text-[#F43F5E] text-xs flex items-center gap-2.5 font-medium">
-              <AlertCircle className="w-4 h-4 shrink-0" />
-              <span>{error}</span>
-            </div>
+          {/* Alert / Notice Banners */}
+          {notice && (
+            notice.isInfo ? (
+              <div className="p-3.5 rounded-2xl bg-[#ECFDF5] border border-[#10B981]/30 text-[#065F46] text-xs flex items-center gap-2.5 font-medium">
+                <Sparkles className="w-4 h-4 text-[#10B981] shrink-0" />
+                <span>{notice.message}</span>
+              </div>
+            ) : (
+              <div className="p-3.5 rounded-2xl bg-[#FFF1F2] border border-[#F43F5E]/30 text-[#F43F5E] text-xs flex items-center gap-2.5 font-medium">
+                <AlertCircle className="w-4 h-4 shrink-0" />
+                <span>{notice.message}</span>
+              </div>
+            )
           )}
 
           {/* Form */}
@@ -135,22 +130,11 @@ export const AuthPage: React.FC = () => {
                   className="w-full bg-slate-50 border border-black/[0.08] focus:border-[#5850EC] focus:ring-2 focus:ring-[#5850EC]/20 rounded-2xl pl-10 pr-4 py-2.5 text-xs text-[#0F172A] placeholder-slate-400 outline-none transition-all"
                 />
               </div>
-            </div>
-
-            <div className="space-y-1">
-              <label className="block text-xs font-bold text-[#0F172A]">Password</label>
-              <div className="relative">
-                <Lock className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
-                <input
-                  type="password"
-                  required
-                  minLength={6}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="••••••••"
-                  className="w-full bg-slate-50 border border-black/[0.08] focus:border-[#5850EC] focus:ring-2 focus:ring-[#5850EC]/20 rounded-2xl pl-10 pr-4 py-2.5 text-xs text-[#0F172A] placeholder-slate-400 outline-none transition-all"
-                />
-              </div>
+              <p className="text-[10px] text-slate-400 mt-1">
+                {mode === 'login'
+                  ? 'Enter your email to load your existing profile and telemetry.'
+                  : 'Enter your email to start a new personalized StepNext workspace.'}
+              </p>
             </div>
 
             <Button
@@ -160,7 +144,7 @@ export const AuthPage: React.FC = () => {
               className="w-full justify-center py-3 text-xs font-bold rounded-2xl gap-2 shadow-md shadow-[#5850EC]/25 hover:shadow-lg"
               disabled={loading}
             >
-              <span>{loading ? 'Processing...' : mode === 'login' ? 'Sign In to StepNext' : 'Create StepNext Account'}</span>
+              <span>{loading ? 'Entering...' : mode === 'login' ? 'Enter StepNext' : 'Create & Enter StepNext'}</span>
               {!loading && <ArrowRight className="w-3.5 h-3.5" />}
             </Button>
           </form>
@@ -168,7 +152,7 @@ export const AuthPage: React.FC = () => {
 
         {/* Footer Note */}
         <p className="text-center text-[11px] font-mono text-slate-400">
-          Protected by StepNext Closed-Loop Decision Intelligence
+          StepNext Autonomous Decision Intelligence
         </p>
       </div>
     </div>

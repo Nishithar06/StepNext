@@ -15,8 +15,6 @@ import {
   AdaptiveFutureFeedback
 } from '../types/schema';
 
-import { supabase } from '../lib/supabaseClient';
-
 const getApiBase = (): string => {
   const envUrl = (import.meta.env.VITE_API_URL || import.meta.env.VITE_API_BASE_URL || '').trim();
   if (envUrl) {
@@ -33,29 +31,8 @@ const getApiBase = (): string => {
 
 const API_BASE = getApiBase();
 
-async function getAuthHeaders(): Promise<Record<string, string>> {
-  const headers: Record<string, string> = {};
-  try {
-    const { data: { session } } = await supabase.auth.getSession();
-    if (session?.access_token) {
-      headers['Authorization'] = `Bearer ${session.access_token}`;
-    }
-  } catch (err) {
-    console.warn('[ApiClient] Auth header resolution notice:', err);
-  }
-  return headers;
-}
-
 async function authFetch(input: string, init?: RequestInit): Promise<Response> {
-  const authHeaders = await getAuthHeaders();
-  const mergedInit: RequestInit = {
-    ...init,
-    headers: {
-      ...authHeaders,
-      ...(init?.headers || {})
-    }
-  };
-  return fetch(input, mergedInit);
+  return fetch(input, init);
 }
 
 async function handleResponse<T>(response: Response): Promise<T> {

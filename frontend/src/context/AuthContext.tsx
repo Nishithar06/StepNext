@@ -1,156 +1,82 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { User, Session } from '@supabase/supabase-js';
-import { supabase, isSupabaseConfigured } from '../lib/supabaseClient';
 import {
-  getActiveUserId,
-  setActiveUserId as saveActiveUserIdToStorage,
-  clearActiveUserId as clearActiveUserIdFromStorage,
+  AppUser,
+  getActiveUser,
+  setActiveUser as saveActiveUserToStorage,
+  clearActiveUser as clearActiveUserFromStorage,
   getDeterministicUserId
 } from '../services/userService';
 
 interface AuthContextType {
-  user: User | null;
-  session: Session | null;
-  token: string | null;
+  user: AppUser | null;
+  session: null;
+  token: null;
   loading: boolean;
-  signInWithPassword: (email: string, pass: string) => Promise<{ error: any }>;
-  signUp: (email: string, pass: string, name?: string) => Promise<{ error: any }>;
+  login: (email: string, name?: string) => Promise<{ error: any }>;
+  signInWithPassword: (email: string, pass?: string) => Promise<{ error: any }>;
+  signUp: (email: string, pass?: string, name?: string) => Promise<{ error: any }>;
   signOut: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [session, setSession] = useState<Session | null>(null);
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<AppUser | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    if (!isSupabaseConfigured) {
-      setSession(null);
+    // Check locally persisted identity
+    const savedUser = getActiveUser();
+    if (savedUser && savedUser.id) {
+      setUser(savedUser);
+    } else {
       setUser(null);
-      clearActiveUserIdFromStorage();
-      setLoading(false);
-      return;
     }
-
-    // Initial Session Check - Supabase is the sole source of truth
-    supabase.auth.getSession().then(({ data: { session: initSession } }) => {
-      if (initSession?.user?.id) {
-        setSession(initSession);
-        setUser(initSession.user);
-        saveActiveUserIdToStorage(initSession.user.id);
-      } else {
-        setSession(null);
-        setUser(null);
-        clearActiveUserIdFromStorage();
-      }
-      setLoading(false);
-    }).catch(err => {
-      console.warn('[AuthContext] Session init notice:', err);
-      setSession(null);
-      setUser(null);
-      clearActiveUserIdFromStorage();
-      setLoading(false);
-    });
-
-    // Subscribe to Auth State Changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, currentSession) => {
-      if (currentSession?.user?.id) {
-        setSession(currentSession);
-        setUser(currentSession.user);
-        saveActiveUserIdToStorage(currentSession.user.id);
-      } else {
-        setSession(null);
-        setUser(null);
-        clearActiveUserIdFromStorage();
-      }
-      setLoading(false);
-    });
-
-    return () => {
-      subscription.unsubscribe();
-    };
+    setLoading(false);
   }, []);
 
-  const signInWithPassword = async (email: string, pass: string) => {
-    const cleanEmail = email.trim().toLowerCase();
-    
-    if (!isSupabaseConfigured) {
-      return { error: new Error('Supabase authentication is not configured. Please verify environment variables.') };
+  const loginOrRegister = async (email: string, name?: string): Promise<{ error: any }> => {
+    const cleanEmail = (email || '').trim().toLowerCase();
+    if (!cleanEmail) {
+      return { error: new Error('Please enter a valid email address.') };
     }
 
-    const res = await supabase.auth.signInWithPassword({
+    const userId = getDeterministicUserId(cleanEmail);
+    const displayName = (name && name.trim()) || cleanEmail.split('@')[0] || 'User';
+
+    const userObj: AppUser = {
+      id: userId,
       email: cleanEmail,
-      password: pass
-    });
+      name: displayName,
+      user_metadata: {
+        name: displayName
+      }
+    };
 
-    if (res.data.session?.user.id) {
-      saveActiveUserIdToStorage(res.data.session.user.id);
-      setUser(res.data.session.user);
-      setSession(res.data.session);
-      return { error: null };
-    }
-
-    return { error: res.error || new Error('Invalid email or password') };
+    saveActiveUserToStorage(userObj);
+    setUser(userObj);
+    return { error: null };
   };
 
-  const signUp = async (email: string, pass: string, name?: string) => {
-    const cleanEmail = email.trim().toLowerCase();
+  const login = async (email: string, name?: string) => {
+    return loginOrRegister(email, name);
+  };
 
-    if (!isSupabaseConfigured) {
-      return { error: new Error('Supabase authentication is not configured. Please verify environment variables.') };
-    }
+  const signInWithPassword = async (email: string, _pass?: string) => {
+    return loginOrRegister(email);
+  };
 
-    const res = await supabase.auth.signUp({
-      email: cleanEmail,
-      password: pass,
-      options: {
-        data: {
-          name: name || 'StepNext User'
-        }
-      }
-    });
-
-    // Case 1: Session created immediately (auto-confirm enabled)
-    if (res.data.session?.user.id) {
-      saveActiveUserIdToStorage(res.data.session.user.id);
-      setUser(res.data.session.user);
-      setSession(res.data.session);
-      return { error: null };
-    }
-
-    // Case 2: User registered but email confirmation is pending
-    if (res.data.user?.id && !res.data.session) {
-      return { error: new Error('Account created! Please check your email to confirm your account, then sign in.') };
-    }
-
-    // Case 3: If user already exists, sign in directly with password
-    if (res.error?.message?.toLowerCase().includes('already registered') || res.error?.message?.toLowerCase().includes('already exists')) {
-      return signInWithPassword(cleanEmail, pass);
-    }
-
-    return { error: res.error || new Error('Failed to create account') };
+  const signUp = async (email: string, _pass?: string, name?: string) => {
+    return loginOrRegister(email, name);
   };
 
   const signOut = async () => {
-    try {
-      if (isSupabaseConfigured) {
-        await supabase.auth.signOut();
-      }
-    } catch (err) {
-      console.warn('[AuthContext] Sign out notice:', err);
-    } finally {
-      clearActiveUserIdFromStorage();
-      setSession(null);
-      setUser(null);
-    }
+    clearActiveUserFromStorage();
+    setUser(null);
   };
 
-  const token = session?.access_token ?? null;
-
   return (
-    <AuthContext.Provider value={{ user, session, token, loading, signInWithPassword, signUp, signOut }}>
+    <AuthContext.Provider value={{ user, session: null, token: null, loading, login, signInWithPassword, signUp, signOut }}>
       {children}
     </AuthContext.Provider>
   );
